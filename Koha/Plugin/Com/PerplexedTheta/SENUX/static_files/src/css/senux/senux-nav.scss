@@ -1,0 +1,217 @@
+@charset "UTF-8";
+//
+// Part of the Senux Project
+// Copyright 2021-2022 Jake Deery
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+//
+//
+// navbar
+
+//
+// logo
+#logo {
+	display: $navbarLogoDisplayMobile;
+	width: 100px;
+	margin: 0;
+
+	color: $navbarLogoText;
+	background: $navbarLogoBg;
+
+	&:hover, &:focus-visible,
+	&:active, &.active {
+		color: $navbarLinkTextHov;
+		background: $navbarLogoBgHov;
+	}
+
+	a {
+		width: 100px;
+		padding: 40px 0 0;
+
+		background-color: transparent!important;
+		color: $navbarLogoText;
+		border: $defaultBorderWidth $defaultBorderType $navbarLogoBorderCol;
+		outline: $defaultOutlineWidth $defaultOutlineType $navbarLogoOutlineCol;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $navbarLogoBoxShadowCol;
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLogoDecorationCol $defaultDecorationThickness;
+
+		&:focus-visible, &:active,
+		&.active {
+			background-color: $transparent!important;
+			color: $navbarLogoTextFoc;
+			border: $defaultBorderWidth $defaultBorderType $navbarLogoBorderColFoc;
+			outline: $defaultOutlineWidth $defaultOutlineType $navbarLogoOutlineColFoc;
+			box-shadow: 0 0 0 $defaultBoxShadowWidth $navbarLogoBoxShadowColFoc;
+			text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLogoDecorationColFoc $defaultDecorationThickness;
+		}
+	}
+}
+@media(min-width: $breakpoint-pc) {
+	#logo {
+		display: $navbarLogoDisplay
+	}
+}
+
+img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
+	display: none
+}
+
+//
+// navbar
+.navbar-expand {
+	background-color: $navbarBg;
+	padding: .5rem 1rem;
+	border: $defaultBorderWidth $defaultBorderType $transparent
+}
+
+#cartDetails {
+	top: calc(57px + 1rem);
+	right: auto;
+	bottom: auto;
+	left: 1rem;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	outline: $defaultOutlineWidth $defaultOutlineType $defaultOutlineCol;
+	outline-offset: $defaultOffset;
+	border-radius: $defaultRadius
+}
+
+#cart-list-nav, #members, #header_langmenu {
+	li {
+		a {
+			color: $navbarLinkText;
+			text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLinkDecorationCol $defaultDecorationThickness;
+			text-shadow: none;
+
+			i.fa {
+				color: $navbarLinkText
+			}
+
+			&:hover {
+				color: $navbarLinkTextHov;
+				text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLinkDecorationColHov $defaultDecorationThickness;
+
+				i.fa {
+					color: $navbarLinkTextHov
+				}
+			}
+
+			&:focus-visible, &:active,
+			&.active {
+				color: $navbarLinkTextHov;
+				text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLinkDecorationColHov $defaultDecorationThickness;
+
+				i.fa {
+					color: $navbarLinkTextHov
+				}
+			}
+		}
+
+		a.dropdown-item {
+			background-color: $dropdownLinkBg;
+			color: $dropdownLinkText;
+			text-decoration: $defaultDecorationLine $defaultDecorationStyle $dropdownLinkDecorationCol $defaultDecorationThickness;
+
+			i.fa {
+				color: $dropdownLinkText;
+			}
+
+			&:hover {
+				background-color: $dropdownLinkBgHov;
+				color: $dropdownLinkTextHov;
+				text-decoration: $defaultDecorationLine $defaultDecorationStyle $dropdownLinkDecorationColHov $defaultDecorationThickness;
+
+				i.fa {
+					color: $dropdownLinkTextHov;
+				}
+			}
+
+			&:focus-visible, &:active,
+			&.active {
+				background-color: $dropdownLinkBgHov;
+				color: $dropdownLinkTextHov;
+				text-decoration: $defaultDecorationLine $defaultDecorationStyle $dropdownLinkDecorationColHov $defaultDecorationThickness;
+
+				i.fa {
+					color: $dropdownLinkTextHov;
+				}
+			}
+		}
+
+		&::before {
+			content: none
+		}
+	}
+
+	.divider-vertical, .clearsh {
+		display: none
+	}
+}
+
+#user-menu {
+	display: block;
+	padding: .5rem
+}
+
+#loggedinuser-menu {
+	background-color: $navbarUsermenuBg;
+
+	p {
+		a.login-link {
+			color: $navbarUsermenuLinkText;
+
+			&:hover, &:focus-visible,
+			&:active, &.active {
+				color: $navbarUsermenuLinkTextHov
+			}
+		}
+	}
+
+	a#logout.logout {
+		color: $navbarUsermenuLogoutText;
+
+		&:hover, &:focus-visible,
+		&:active, &.active {
+			color: $navbarUsermenuLogoutTextHov
+		}
+	}
+}
+
+.dropdown-menu {
+	background-color: $dropdownBg;
+	color: $dropdownText;
+	border-radius: $defaultRadius
+}
+
+.navbar .nav > li {
+	&::before {
+		content: none
+	}
+}
+
+//
+//
+// mobile overrides
+.custlabel1, .custlabel2,
+.custlabel3, .custlabel4,
+.custlabel5 {
+	display: none
+}
+@media only screen and (min-width: $breakpoint-pc) {
+	.custlabel1, .custlabel2,
+	.custlabel3, .custlabel4,
+	.custlabel5 {
+		display: inline
+	}
+}

@@ -1,0 +1,471 @@
+@charset "UTF-8";
+//
+// Part of the Senux Project
+// Copyright 2021-2022 Jake Deery
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+//
+//
+// generic
+
+html {
+	font-size: 16px
+}
+
+body {
+	color: $defaultText;
+	background-color: $defaultBg
+}
+
+body::after {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	z-index: -1;
+	content: '';
+}
+
+//
+// generic content
+p {
+	padding: 0 0 .75em;
+	margin: 0;
+	color: $defaultText
+}
+
+h1, h2, h3,
+h4, h5, h6,
+.h1, .h2, .h3,
+.h4, .h5, .h6 {
+	color: $defaultText
+}
+
+a {
+	background: $defaultLinkBg;
+	color: $defaultLinkText;
+	border: $defaultBorderWidth $defaultBorderType $defaultLinkBorderCol;
+	outline: $defaultOutlineWidth $defaultOutlineType $defaultLinkOutlineCol;
+	box-shadow: 0 0 0 $defaultBoxShadowWidth $defaultLinkBoxShadowCol;
+	text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+
+	border-radius: $defaultRadius;
+	outline-offset: $defaultOffset;
+
+	i.fa {
+		color: $defaultLinkText
+	}
+
+	&:link, &:visited {
+		background: $defaultLinkBg;
+		color: $defaultLinkText;
+		border: $defaultBorderWidth $defaultBorderType $defaultLinkBorderCol;
+		outline: $defaultOutlineWidth $defaultOutlineType $defaultLinkOutlineCol;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $defaultLinkBoxShadowCol;
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+
+		i.fa {
+			color: $defaultLinkText
+		}
+	}
+
+	&:hover {
+		background: $defaultLinkBgHov;
+		color: $defaultLinkTextHov;
+		border: $defaultBorderWidth $defaultBorderType $defaultLinkBorderColHov;
+		outline: $defaultOutlineWidth $defaultOutlineType $defaultLinkOutlineColHov;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $defaultLinkBoxShadowColHov;
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness;
+
+		i.fa {
+			color: $defaultLinkTextHov
+		}
+	}
+
+	&:focus-visible, &:active,
+	&.active {
+		background: $defaultLinkBgFoc!important;
+		color: $defaultLinkTextFoc!important;
+		border: $defaultBorderWidth $defaultBorderType $defaultLinkBorderColFoc!important;
+		outline: $defaultOutlineWidth $defaultOutlineType $defaultLinkOutlineColFoc!important;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $defaultLinkBoxShadowColFoc!important;
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness!important;
+
+		i.fa {
+			color: $defaultLinkTextFoc!important
+		}
+	}
+}
+
+a[target="_blank"] {
+	&::after {
+		font-family: var(--fa-style-family,"Font Awesome 6 Free");
+		font-weight: var(--fa-style,900);
+		font-size: .75em;
+		text-rendering: auto;
+		content: " \f08e"
+	}
+}
+
+label, .label, .hint {
+	color: $defaultText
+}
+
+ul {
+	list-style-type: $defaultBullet
+}
+
+hr {
+	border-top: $defaultBorderWidth $defaultBorderType $defaultBorderCol
+}
+
+//
+// specify page fonts
+.fonts-loaded body, .fonts-loaded button,
+.fonts-loaded input, .fonts-loaded optgroup,
+.fonts-loaded option, .fonts-loaded select,
+.fonts-loaded textarea {
+	font-family: $defaultFonts;
+
+	body, button, input,
+	optgroup, option, select,
+	textarea {
+		font-family: $defaultFonts
+	}
+}
+
+//
+// main content
+#wrapper {
+	overflow: hidden;
+	width: 100%;
+	margin: auto;
+	padding: 0
+}
+
+.container-fluid {
+	width: 100%;
+	margin: auto;
+	padding: 0
+}
+
+//
+// buttons
+.btn, input[type="submit"].btn {
+	background-image: none;
+	text-shadow: none;
+	text-decoration: none!important;
+
+	padding: .45rem 1.125rem;
+	font-size: 1rem;
+	border-radius: $defaultRadius;
+	outline-offset: $defaultOffset;
+	cursor: pointer;
+	white-space: normal;
+	word-wrap: break-word;
+	font-weight: 400;
+
+	color: $btnPriText;
+	background-color: $btnPriBg;
+	border: $defaultBorderWidth $defaultBorderType $btnPriBorderCol;
+	outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineCol;
+	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowCol;
+
+	i.fa {
+		color: $btnPriText
+	}
+
+	&:hover, &:focus,
+	&:active, &.active {
+		background-image: none;
+		text-shadow: none;
+		text-decoration: none!important;
+
+		color: $btnPriTextHov;
+		background-color: $btnPriBgHov;
+		border: $defaultBorderWidth $defaultBorderType $btnPriBorderColHov;
+		outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineColHov;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowColHov;
+
+		i.fa {
+			color: $btnPriTextHov
+		}
+	}
+}
+
+.btn-primary, #loginModal input[type="submit"],
+.btn-primary:not(:disabled):not(.disabled), .btn-success,
+.btn-success:not(:disabled):not(.disabled), #searchsubmit.btn.btn-primary,
+.btn-primary.disabled, .btn-primary:disabled {
+	background-image: none;
+	text-shadow: none;
+	text-decoration: none!important;
+
+	color: $btnPriText;
+	background-color: $btnPriBg;
+	border: $defaultBorderWidth $defaultBorderType $btnPriBorderCol;
+	outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineCol;
+	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowCol;
+
+	i.fa {
+		color: $btnPriText
+	}
+
+	&:hover, &:focus,
+	&:active, &.active {
+		background-image: none;
+		text-shadow: none;
+		text-decoration: none!important;
+
+		color: $btnPriTextHov;
+		background-color: $btnPriBgHov;
+		border: $defaultBorderWidth $defaultBorderType $btnPriBorderColHov;
+		outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineColHov;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowColHov;
+
+		i.fa {
+			color: $btnPriTextHov
+		}
+	}
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+	opacity: .6;
+}
+
+.btn-default, .btn-secondary,
+.btn-default:not(:disabled):not(.disabled), 
+.btn-secondary:not(:disabled):not(.disabled), .btn-default.disabled,
+.btn-default:disabled, .btn-secondary.disabled,
+.btn-secondary:disabled {
+	background-image: none;
+	text-shadow: none;
+
+	color: $btnSecText;
+	background-color: $btnSecBg;
+	border: $defaultBorderWidth $defaultBorderType $btnSecBorderCol;
+	outline: $defaultOutlineWidth $defaultOutlineType $btnSecOutlineCol;
+	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnSecBoxShadowCol;
+
+	i.fa {
+		color: $btnSecText
+	}
+
+	&:hover, &:focus,
+	&:active, &.active {
+		background-image: none;
+		text-shadow: none;
+
+		color: $btnSecTextHov;
+		background-color: $btnSecBgHov;
+		border: $defaultBorderWidth $defaultBorderType $btnSecBorderColHov;
+		outline: $defaultOutlineWidth $defaultOutlineType $btnSecOutlineColHov;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $btnSecBoxShadowCol;
+
+		i.fa {
+			color: $btnSecTextHov
+		}
+	}
+}
+
+.btn-default.disabled, .btn-default:disabled,
+.btn-secondary.disabled, .btn-secondary:disabled {
+        opacity: .6;
+}
+
+.btn-link, .dt-button,
+.btn-link:not(:disabled):not(.disabled), .btn-link.disabled,
+.btn-link:disabled {
+	background-image: none;
+	text-shadow: none;
+
+	color: $btnLinkText;
+	background-color: $btnLinkBg;
+	border: $defaultBorderWidth $defaultBorderType $btnLinkBorderCol;
+	outline: $defaultOutlineWidth $defaultOutlineType $btnLinkOutlineCol;
+	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnLinkBoxShadowCol;
+
+	i.fa {
+		color: $btnLinkText
+	}
+
+	&:hover, &:focus,
+	&:active, &.active {
+		background-image: none;
+		text-shadow: none;
+
+		color: $btnLinkTextHov;
+		background-color: $btnLinkBgHov;
+		border: $defaultBorderWidth $defaultBorderType $btnLinkBorderColHov;
+		outline: $defaultOutlineWidth $defaultOutlineType $btnLinkOutlineColHov;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $btnLinkBoxShadowColHov;
+
+		i.fa {
+			color: $btnLinkTextHov
+		}
+	}
+}
+
+.btn-link.disabled, .btn-link:disabled {
+	opacity: .6
+}
+
+.dt-button::before {
+	color: $defaultLinkText
+}
+
+.dt-button:hover::before {
+	color: darken($defaultLinkText, 15%)
+}
+
+.btn-danger, input[type="submit"].btn-danger,
+.btn-danger:not(:disabled):not(.disabled), .btn-danger.disabled,
+.btn-danger:disabled {
+	background-image: none;
+	text-shadow: none;
+
+	color: $msWhite;
+	background-color: $msRed;
+	border: $defaultBorderWidth $defaultBorderType $msRed;
+	outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineCol;
+	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowCol;
+
+	i.fa {
+		color: $msWhite
+	}
+
+	&:hover, &:focus,
+	&:active, &.active {
+		background-image: none;
+		text-shadow: none;
+
+		color: $msWhite;
+		background-color: darken($msRed, 15%);
+		border: $defaultBorderWidth $defaultBorderType darken($msRed, 10%);
+		outline: $defaultOutlineWidth $defaultOutlineType darken($msRed, 10%);
+		box-shadow: 0 0 0 $defaultBoxShadowWidth darken($msRed, 10%);
+
+		i.fa {
+			color: $msWhite
+		}
+	}
+}
+
+.btn-danger.disabled, .btn-danger:disabled {
+
+}
+
+.input-append .add-on:last-child, .input-append .btn:last-child,
+.input-append .btn-group:last-child > .dropdown-toggle {
+	color: $msWhite;
+	background-color: darken($msRed, 15%);
+	border: $defaultBorderWidth $defaultBorderType darken($msRed, 10%);
+	outline: $defaultOutlineWidth $defaultOutlineType darken($msRed, 10%);
+	box-shadow: 0 0 0 $defaultBoxShadowWidth darken($msRed, 10%);
+}
+
+//
+// input fields
+input[type="text"], input[type="password"],
+input[type="email"], input[type="url"],
+input[type="time"], input[type="date"],
+input[type="datetime-local"], input[type="tel"],
+input[type="number"], input[type="search-md"],
+input[type="search"], select, textarea,
+.form-control, .table_controls,
+.dataTables_filter input[type="search"],
+.form-select {
+	padding: 0.375rem 0.75rem;
+	font-weight: 300;
+	font-size: 1.1rem;
+	height: auto;
+	line-height: normal;
+	background-image: none;
+	text-shadow: none;
+	border-radius: $defaultRadius;
+	outline-offset: $defaultOffset;
+
+	color: $inputText;
+	background-color: $inputBg;
+	border: $defaultBorderWidth $defaultBorderType $inputBorderCol;
+	outline: $defaultOutlineWidth $defaultOutlineType $inputOutlineCol;
+	box-shadow: 0 0 0 $defaultBoxShadowWidth $inputBoxShadowCol;
+
+	&:hover {
+		background-image: none;
+		text-shadow: none;
+
+		color: $inputTextHov;
+		background-color: $inputBgHov;
+		border: $defaultBorderWidth $defaultBorderType $inputBorderColHov;
+		outline: $defaultOutlineWidth $defaultOutlineType $inputOutlineColHov;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $inputBoxShadowColHov;
+	}
+
+	&:focus, &:active,
+	&.active {
+		background-image: none;
+		text-shadow: none;
+
+		color: $inputTextFoc;
+		background-color: $inputBgFoc;
+		border: $defaultBorderWidth $defaultBorderType $inputBorderColFoc;
+		outline: $defaultOutlineWidth $defaultOutlineType $inputOutlineColFoc;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $inputBoxShadowColFoc;
+	}
+
+	&:disabled {
+		color: $inputDisabledText;
+		background-color: $inputDisabledBg;
+		border: $defaultBorderWidth $defaultBorderType $inputDisabledBorderCol;
+		outline: $defaultOutlineWidth $defaultOutlineType $inputDisabledOutlineCol;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $inputDisabledBoxShadowCol;
+	}
+}
+
+input[type="text"], input[type="password"],
+input[type="email"], input[type="url"],
+input[type="time"], input[type="date"],
+input[type="datetime-local"], input[type="tel"],
+input[type="number"], input[type="search-md"],
+input[type="search"], textarea,
+input[type="search"] {
+	&:read-only {
+		color: $inputDisabledText;
+		background-color: $inputDisabledBg;
+		border: $defaultBorderWidth $defaultBorderType $inputDisabledBorderCol;
+		outline: $defaultOutlineWidth $defaultOutlineType $inputDisabledOutlineCol;
+		box-shadow: 0 0 0 $defaultBoxShadowWidth $inputDisabledBoxShadowCol;
+	}
+}
+
+//
+// alerts
+.alert {
+	border-radius: $defaultRadius
+}
+
+//
+// accessibility - screen reader text
+.sr-only {
+	position: absolute;
+	width: .066rem;
+	height: .066rem;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: none
+}

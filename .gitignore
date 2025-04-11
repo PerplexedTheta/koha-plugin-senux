@@ -1,0 +1,6 @@
+dist/
+node_modules/
+package-log.json
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/dist/
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/node_modules/
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/package-lock.json

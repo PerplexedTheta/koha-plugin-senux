@@ -1,0 +1,807 @@
+@charset "UTF-8";
+//
+// Part of the Senux Project
+// Copyright 2021-2022 Jake Deery
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+//
+//
+// opac overrides
+.search_history {
+	display: none
+}
+
+//
+//
+// main page
+.maincontent {
+	color: $defaultText;
+	background-color: $transparent;
+
+	h1, h2, h3,
+	h4, h5 {
+		&::after {
+			content: "";
+			display: block;
+			max-width: 33%
+		}
+	}
+
+	h1, h2, h3 {
+		&::after {
+			border-bottom: .25rem solid $defaultText;
+			border-radius: $defaultRadius
+		}
+	}
+}
+
+#OpacMainUserBlock, #news {
+	margin: 0 0 .5rem 0;
+	padding: 1rem;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius;
+	max-width: none
+}
+
+#navigation, #OpacNavRight,
+#login {
+	margin: 0 0 .5rem 0;
+	padding: 1rem;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius;
+	max-width: none;
+
+	.btn {
+		width: 100%;
+		margin-bottom: .33rem
+	}
+
+	h3, h4, h5 {
+		&::after {
+			content: "";
+			display: block;
+			max-width: 33%;
+			border-bottom: .25rem solid $defaultText;
+			border-radius: $defaultRadius;
+		}
+	}
+}
+
+#user_summary {
+	margin: 0 0 .5rem 0;
+	padding: 1rem;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius;
+	max-width: none;
+
+	h2 {
+		color: $headlinerText;
+		background-color: $headlinerBg;
+		border-radius: $defaultRadius
+	}
+}
+
+#nologininstructions {
+	display: none
+}
+
+@media only screen and (min-width: $breakpoint-pc) {
+	#opac-main {
+		.col-12 {
+			display: flex;
+			flex: 0 0 auto;
+			flex-direction: column
+		}
+
+		#OpacMainUserBlock, #navigation,
+		#OpacNavRight {
+			flex-grow: 1
+		}
+	}
+}
+
+// news
+#news {
+	margin: 0 0 .5rem 0
+}
+
+.newsheader {
+	a {
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+
+		&:hover {
+			text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness
+		}
+
+		&:focus-visible, &:active,
+		&.active {
+			text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness
+		}
+	}
+}
+
+.newsfooter {
+	border: $defaultBorderWidth $defaultBorderType $transparent
+}
+
+// hide rss because its old & branch select unless its required
+#news-branch-select, #rssnews-container, .rsssearchlink {
+	display: none
+}
+
+//
+//
+// login & reserve modal
+.modal-content {
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+.closebtn {
+	opacity: 1;
+	color: $msRed;
+
+	&:hover, &:focus-visible,
+	&:active, &.active {
+		opacity: 1;
+		color: lighten($msRed, 15%)
+	}
+}
+
+//
+//
+// adv search
+#advsearch .main .container-fluid {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+.advsearch_limit {
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+#advsearch_limits label, #subtypes label {
+	color: $defaultText
+}
+
+//
+//
+// search results
+.selections {
+	color: $msBlack
+}
+
+.returntosearch {
+	padding: 0 1rem
+}
+
+@media(min-width: $breakpoint-pc) {
+	.returntosearch {
+		padding: 0
+	}
+}
+
+.page-item {
+	&.disabled {
+		.page-link {
+			background-color: $defaultLinkText;
+			color: $defaultBg
+		}
+	}
+
+	.page-link {
+		background-color: lighten($white, 100%);
+		color: $defaultLinkText;
+		border: none;
+
+		&:hover, &:focus-visible,
+		&:active, &.active {
+			background-color: $defaultLinkText;
+			color: $defaultBg;
+
+			i.fa {
+				color: $defaultBg
+			}
+		}
+	}
+}
+
+.pagination-sm .page-item:first-child .page-link {
+	border-top-left-radius: $defaultRadius;
+	border-bottom-left-radius: $defaultRadius
+}
+
+.pagination-sm .page-item:last-child .page-link {
+	border-top-right-radius: $defaultRadius;
+	border-bottom-right-radius: $defaultRadius
+}
+
+.pagination_list li, .pagination_list .li_pag_index {
+	color: $defaultText
+}
+
+#numresults, #selections {
+	color: $defaultText
+}
+
+.shelves {
+	ul {
+		padding-left: 0
+	}
+}
+
+//
+// search facets
+#facetcontainer, .facetcontainer {
+	padding: 1rem;
+	margin-bottom: 1rem;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+#search-facets, .search-facets {
+	border: $defaultBorderWidth $defaultBorderType $transparent;
+
+	.menu-collapse {
+		border: none;
+		padding: 1rem 0 0 0
+	}
+
+	ul {
+		border-right: none
+	}
+
+	li {
+		font-size: .9em;
+		font-weight: 700;
+		list-style-type: none
+	}
+
+	h2 {
+		margin: 0;
+		font-size: .9em;
+		text-align: center;
+
+		a, a:link,
+		a:visited, p {
+			display: block;
+			font-weight: 700;
+			padding: .5rem .33rem;
+
+			color: $headlinerText;
+			background-color: $headlinerBg;
+			border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+			border-radius: $defaultRadius
+		}
+
+		a, a:link, a:visited {
+			text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+
+			&:hover {
+				text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness
+			}
+
+			&:focus-visible, &:active,
+			&.active {
+				text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness
+			}
+		}
+	}
+
+	h3 a {
+		display: block;
+		font-size: initial;
+		font-weight: bold;
+
+		i.fa {
+			float: right
+		}
+	}
+}
+
+#yr_id {
+	p {
+		text-align: center
+	}
+
+	input, a.btn {
+		width: 100%
+	}
+}
+
+#facet-yr-error {
+	color: $msRed
+}
+
+//
+// bookbag form
+#bookbag_form {
+	border-bottom: $defaultBorderWidth $defaultBorderType $defaultBorderCol
+}
+
+//
+// floating toolbar
+#floating {
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-bottom: none;
+	border-radius: $defaultRadius
+}
+
+#toolbar.toolbar, #toolbar.toolbar.clearfix,
+#selections-toolbar, .selections-toolbar {
+	color: $toolbarText;
+	background: $toolbarBg;
+	border-bottom: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+// underlined links
+#CheckAll, #CheckNone,
+.CheckAll, .CheckNone,
+#search-facets a {
+	text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+
+	&:hover {
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness;
+	}
+
+	&:focus-visible, &:active,
+	&.active {
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness;
+	}
+}
+
+//
+// results text of importance
+.available.reallyavailable, .available.reference,
+.unavailable {
+	display: block
+}
+
+.results_summary.online_resources {
+	background: $onlineAccessBg;
+	color: onlineAccessText;
+	padding: .25rem;
+	padding-left: 1rem;
+
+	.label {
+		color: $onlineAccessText;
+		font-weight: bold
+	}
+
+	a {
+		color: $onlineAccessLinkText;
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $onlineAccessLinkDecorationCol $defaultDecorationThickness;
+
+		&:hover {
+			color: $onlineAccessLinkTextHov;
+			text-decoration: $defaultDecorationLine $defaultDecorationStyle $onlineAccessLinkDecorationColHov $defaultDecorationThickness
+		}
+
+		&:focus-visible, &:active,
+		&.active {
+			color: $onlineAccessLinkTextHov;
+			text-decoration: $defaultDecorationLine $defaultDecorationStyle $onlineAccessLinkDecorationColHov $defaultDecorationThickness
+		}
+	}
+}
+
+//
+// suggestions box
+.suggestion {
+	background-color: $defaultFg;
+	color: $defaultText;
+	border: $defaultBorderWidth $defaultBorderType $transparent;
+	border-radius: $defaultRadius
+}
+
+//
+//
+// details page
+.no-image {
+	display: none
+}
+
+.bookcover {
+	position: relative;
+	margin: 2.5em 1em 1em auto;
+	padding: 0;
+	float: left;
+
+	img {
+		margin: 0;
+	}
+
+	#biblio-cover-slider {
+		margin: 0;
+		padding: 0;
+		border: none;
+		border-radius: none
+	}
+
+	.hint {
+		display: none
+	}
+}
+
+#catalogue_detail_biblio {
+	padding: 1rem;
+	overflow: auto; // clearfix
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+.contents .r, .contents .t {
+	font-weight: normal
+}
+
+#action, .actions,
+.toolbar, .view{
+	color: $defaultText;
+
+	i.fa {
+		color: $defaultText
+	}
+
+	a {
+		color: $defaultLinkText;
+
+		i.fa {
+			color: $defaultLinkText
+		}
+
+		&:hover, &:focus-visible {
+			color: darken($defaultLinkText, 33%);
+
+			i.fa {
+				color: darken($defaultLinkText, 33%)
+			}
+		}
+	}
+}
+
+#action {
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius;
+}
+
+//
+// views
+#views {
+	border-bottom: $defaultBorderWidth $defaultBorderType $defaultBorderCol
+}
+
+.view {
+	color: $defaultText;
+
+	border-top: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-right: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-bottom: $defaultBorderWidth $defaultBorderType $transparent;
+	border-left: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius $defaultRadius 0 0
+}
+
+.current-view {
+	background-color: $defaultFg
+}
+
+// moresearches menu
+#export .dropdown-menu, #moresearches_menu .dropdown-menu {
+	a {
+		background-color: $dropdownLinkBg;
+		color: $dropdownLinkText;
+
+		&:hover {
+			background-color: $dropdownLinkBgHov;
+			color: $dropdownLinkTextHov
+		}
+	}
+}
+
+// moreactions
+.nav_results {
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius;
+}
+
+.l_Results {
+	color: $headlinerText;
+	background-color: $headlinerBg;
+	border-radius: $defaultRadius;
+}
+.pg_menu .pg_link a, .pg_menu .pg_link span {
+	background-color: $defaultFg;
+	border-radius: $defaultRadius
+}
+
+//
+// socials
+#social_networks {
+	a {
+		border-radius: $defaultRadius;
+
+		&:hover, &:focus-visible,
+		&:active, &.active {
+			border-color: $defaultBorderCol
+		}
+	}
+}
+
+//
+// view tabs
+a#Normalview, a#MARCview,
+a#ISBDview {
+	text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+
+	&:hover {
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness
+	}
+
+	&:focus-visible, &:active,
+	&.active {
+		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness
+	}
+}
+
+//
+//
+// course reserves
+#courses {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+table.dataTable thead tr th span.dt-column-order::after,
+table.dataTable thead tr th span.dt-column-order::before {
+	color: $defaultText;
+}
+
+.dataTables_filter input,
+.dataTables_filter label {
+	font-size: 1rem
+}
+
+.pg_menu .pg_link a,
+.pg_menu .pg_link span {
+	&:hover, &:focus-visible,
+	&:active, &.active {
+		background-color: $defaultLinkText;
+		color: $defaultFg;
+		text-decoration: none;
+
+                i.fa {
+                  color: $defaultFg
+                }
+	}
+}
+
+#a_listResults,
+#listResults li a {
+	color: $defaultLinkText;
+
+	i.fa {
+		color: $defaultLinkText;
+	}
+
+	&:hover, &:focus-visible,
+	&:active, &.active {
+		background-color: $defaultLinkText;
+		color: $defaultFg;
+
+		i.fa {
+			color: $defaultFg
+		}
+	}
+}
+
+#listResults li a {
+	background-color: $transparent;
+	color: $defaultLinkText;
+}
+
+//
+//
+// serials
+#libraryfilter, #subscriptionidfilter {
+	margin-bottom: .5rem
+}
+
+//
+//
+// account
+#opac-auth, #userdetails,
+#useraccount, #opac-patron-update .col-md-12.col-lg-10.order-1,
+#usertags, #searchhistory,
+#userreadingrecord, #userholdshistory,
+#usersuggestions, #usermessaging,
+#usershelves, #illrequests {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+fieldset.rows {
+	float: none
+}
+
+div#ill-opac-results_wrapper {
+	overflow-x: scroll
+}
+
+#illrequests .bg-info {
+	color: rgb(212, 237, 218)!important;
+	background-color: rgb(40, 167, 69)!important
+}
+
+//
+//
+// libraries
+#library_info {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+//
+//
+// holds
+#holds {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+//
+//
+// subject cloud
+#subjectcloud {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+//
+//
+// auths
+#userauthhome, #userauthsearchresults,
+#userauthdetails {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+//
+//
+// browser
+#userbrowser {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+//
+//
+// lists
+#useraddbybiblionumber {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+//
+//
+// basket
+#userbasket, #usersendbasket {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+//
+//
+// languages
+#changelanguage {
+	display: none
+}
+
+//
+//
+// error pages
+div[id^="errormsg"], #noresultsfound {
+	padding: 1rem;
+	color: $defaultText;
+	background-color: $defaultFg;
+	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
+	border-radius: $defaultRadius
+}
+
+//
+//
+// inlibro changes
+#inlibro-carrousel {
+	padding: 1rem
+}
+
+#inlibro-carrousel .slider img {
+	height: 250px!important
+}
+
+#inlibro-carrousel hr {
+	display: none
+}
+
+#inlibro-carrousel button {
+	background-image: none!important;
+	text-shadow: none!important;
+	text-decoration: none!important;
+
+	color: $btnPriText!important;
+	background-color: $btnPriBg!important;
+	border: $defaultBorderWidth $defaultBorderType $btnPriBorderCol!important;
+	outline: $defaultBorderWidth $defaultBorderType $btnPriOutlineCol!important;
+
+	border-radius: $defaultRadius!important;
+	outline-offset: $defaultOffset!important;
+
+	&:hover, &:focus-visible,
+	&:active, &.active {
+		background-image: none!important;
+		text-shadow: none!important;
+		text-decoration: none!important;
+
+		color: $btnPriTextHov!important;
+		background-color: $btnPriBgHov!important;
+		border: $defaultBorderWidth $defaultBorderType $btnPriBorderColHov!important;
+		outline: $defaultBorderWidth $defaultBorderType $btnPriOutlineColHov!important;
+	}
+}
+
+
+#inlibro-carrousel .slider hr + div {
+	background-color: $transparent!important
+}
