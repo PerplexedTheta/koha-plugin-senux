@@ -1,6 +1,6 @@
 {
   "name": "senux",
-  "version": "23.11.x",
+  "version": "trunk",
   "description": "Theme for the Koha OPAC",
   "main": "gulpfile.js",
   "scripts": {
