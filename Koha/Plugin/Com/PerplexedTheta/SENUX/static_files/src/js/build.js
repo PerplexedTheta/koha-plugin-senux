@@ -87,8 +87,17 @@ function basketLinkHandler() {
 // function to monitor masthead pulldown for changes and act on events
 function mastheadEventHandler(altSearchName) {
 	$("#masthead_search").on('change', function (event) { // this handles dropdown change events
-		if ($(this).val() == 'catalogue') searchCatalogue(altSearchName);
-		else if ($(this).val() == 'ebsco') searchEbsco(); // if the user picks ebsco
+		if ($(this).val() == 'catalogue') {
+			searchCatalogue(altSearchName);
+		} else if ($(this).val() == 'explorit') { // if the user picks explorit . . .
+			searchExplorit();
+		} else if ($(this).val() == 'ebsco') { // if the user picks ebsco . . .
+			searchEbsco();
+		} else if ($(this).val() == 'everything') { // for explorit full search
+			$('#fullText').val('');
+		} else if ($(this).val() == 'ftonly') { // for explorit text-only search
+			$('#fullText').val('true');
+		}
 	});
 }
 
@@ -116,13 +125,13 @@ function searchCatalogue(altSearchName) {
 	if (altSearchName == 'explorit') {
 		$('#masthead_search').append($('<option>', { // explorit option
 			value: 'explorit',
-			text: 'explorit'
+			text: 'Search Articles Plus'
 		}));
 	}
 	if (altSearchName == 'ebsco') {
 		$('#masthead_search').append($('<option>', { // explorit option
 			value: 'ebsco',
-			text: 'Search Plus'
+			text: 'Search EBSCO'
 		}));
 	}
 	$('#masthead_search').append($('<option>', { // catalogue option
@@ -130,6 +139,73 @@ function searchCatalogue(altSearchName) {
 		text: 'Search Catalogue',
 		selected: 'selected'
 	}));
+	$('#masthead_search').append($('<option>', { // search books
+		value: 'mc-ccode:PBK',
+		text: '-- Books'
+	}));
+	$('#masthead_search').append($('<option>', { // search ebooks
+		value: 'mc-ccode:EBK',
+		text: '-- e-Books'
+	}));
+	$('#masthead_search').append($('<option>', { // search journals
+		value: 'mc-ccode:JOUR',
+		text: '-- Journals'
+	}));
+	$('#masthead_search').append($('<option>', { // search ejournals
+		value: 'mc-ccode:EJOURN',
+		text: '-- e-Journals'
+	}));
+	$('#masthead_search').append($('<option>', { // search dvds
+		value: 'mc-ccode:DVD',
+		text: '-- DVDs'
+	}));
+	$('#masthead_search').append($('<option>', { // search streaming media
+		value: 'mc-ccode:ESTREAM',
+		text: '-- Streaming media'
+	}));
+}
+
+
+//
+// masthead seach pulldown changes -- search catalogue
+function searchExplorit() {
+	// form config
+	$('#masthead_search').find('option').remove().end(); // remove all masthead options
+	$('#searchform').find('input[type="hidden"]').remove().end(); // remove all masthead hidden inputs
+	$('#searchform').attr('action', '//foo.bar/baz/'); // set form name
+	$('#searchform').attr('name', 'dwtform'); // set form name
+	$('#searchform').attr('method', 'post'); // set form method
+	$('#searchform').attr('target', '_blank'); // set target
+	$('#translControl1').attr('name', 'fullRecord'); // set search box name
+	$('#translControl1').attr('placeholder', 'Find full-text articles, reports, images, books and e-books'); // set text field placeholder
+	$('#masthead_search').attr('name', 'formName');
+	$('#masthead_search').before('<input id=\"fullText\" type=\"hidden\" name=\"fullTextOnly\" value=\"\" \/>');
+	$('#masthead_search').after('<input type=\"hidden\" name=\"formName\" value=\"undefined\" \/>');
+	$('#select_library').attr('name', '');
+	$('#select_library').parent().css('display', 'none'); // hide library pulldown
+
+	// dropdown config
+	$('#masthead_search').append($('<option>', { // catalogue option
+		value: 'catalogue',
+		text: 'Search Catalogue'
+	}));
+	$('#masthead_search').append($('<option>', { // explorit option
+		value: 'everything',
+		text: 'Search Articles Plus',
+		selected: 'selected'
+	}));
+	$('#masthead_search').append($('<option>', { // search fulltext-only
+		value: 'ftonly',
+		text: '-- Search full-text only'
+	}));
+
+	// explorit link handler
+	$('a[href="#switchSearch"]').on('click', function (event) {
+		event.preventDefault(); // prevent the url from changing
+		if ($('#searchform').attr('name') == 'searchform') searchExplorit();
+		else if ($('#searchform').attr('name') == 'dwtform') searchCatalogue('explorit');
+	});
+
 }
 
 
@@ -147,7 +223,7 @@ function searchEbsco() {
 	$('#translControl1').attr('placeholder', 'Find full-text articles, reports, images, books and e-books'); // set text field placeholder
 	$('#masthead_search').attr('name', '');
 	$('#masthead_search').before('<input name=\"schemaId\" value=\"search\" type=\"hidden\" \/>');
-	$('#masthead_search').before('<input name=\"custid\" value=\"s4501996\" type=\"hidden\" \/>');
+	$('#masthead_search').before('<input name=\"custid\" value=\"sxxxxxxx\" type=\"hidden\" \/>');
 	$('#masthead_search').before('<input name=\"groupid\" value=\"main\" type=\"hidden\" \/>');
 	$('#masthead_search').before('<input name=\"profid\" value=\"eds\" type=\"hidden\" \/>');
 	$('#masthead_search').before('<input name=\"scope\" value=\"site\" type=\"hidden\" \/>');
@@ -155,7 +231,6 @@ function searchEbsco() {
 	$('#masthead_search').before('<input name=\"direct\" value=\"true\" type=\"hidden\" \/>');
 	$('#select_library').attr('name', '');
 	$('#select_library').parent().css('display', 'none'); // hide library pulldown
-	$('input[name="weight_search"]').remove(); // nuke weight_search
 
 	// dropdown config
 	$('#masthead_search').append($('<option>', { // catalogue option
@@ -164,14 +239,14 @@ function searchEbsco() {
 	}));
 	$('#masthead_search').append($('<option>', { // ebsco option
 		value: 'ebsco',
-		text: 'Search Plus',
+		text: 'Search EBSCO',
 		selected: 'selected'
 	}));
 
 	// ebsco link handler
 	$('a[href="#switchSearch"]').on('click', function (event) {
 		event.preventDefault(); // prevent the url from changing
-		if ($('#searchform').attr('name') == 'searchform') searchEbsco();
+		if ($('#searchform').attr('name') == 'searchform') searchExplorit();
 		else if ($('#searchform').attr('name') == '') searchCatalogue('ebsco');
 	});
 
@@ -179,24 +254,31 @@ function searchEbsco() {
 
 
 //
-// function to enable autocompletion from wikipedia
-function wikiAutocomplete() {
-	$('#translControl1').autocomplete({
-		source: function (request, response) {
-			$.ajax({
-				url: 'https://en.wikipedia.org/w/api.php',
-				dataType: 'jsonp',
-				data: {
-					'action': 'opensearch',
-					'format': 'json',
-					'search': request.term
-				},
-				success: function (data) {
-					response(data[1]);
-				}
-			});
+// function to improve search dropdown tooltip
+function searchDropdownTooltipHandler() {
+	$('#masthead_search').on('change', function () {
+		if ($('#masthead_search option:selected').val() == 'everything' || $('#masthead_search option:selected').val() == '') {
+			$('#masthead_search').tooltip({ title: "Click to refine further", placement: "left" });
+			$('#masthead_search').tooltip('show');
+		} else {
+			$('#masthead_search').tooltip('dispose');
 		}
 	});
+}
+
+
+//
+// function to always select correct branch
+function searchDropdownBranchHandler() {
+	// vars
+	var urlParams = new URLSearchParams(window.location.search.substring(1));
+	var urlParamsFiltered = Array.from(urlParams.entries()).filter(value => { // remove previous limit params
+		if (!value[1].includes('branch:')) return false;
+		else return true; // only return true if above conditions are met
+	});
+
+	// select the right value
+	if (urlParamsFiltered[0][1]) $('option[value="' + urlParamsFiltered[0][1] + '"]').attr('selected', 'selected');
 }
 
 
@@ -304,12 +386,6 @@ function facetPublicationDateRange() {
 		$(this).find('i.fa').toggleClass('fa-chevron-left');
 	});
 
-	if (urlFacetSet) {
-		$('input[name="limit-yr"]').val(urlFacet);
-		$('a[href="#facetYrRefine"]').after('<a href=\"#facetYrClear\" class=\"btn btn-danger mt-2\">Clear date refinement [x]<\/a>'); // add clear button
-		$('#facet-yr a').click(); // we want to show the user the facet, you see
-	}
-
 	$('a[href="#facetYrRefine"]').on('click', function (event) {
 		event.preventDefault();
 
@@ -328,6 +404,11 @@ function facetPublicationDateRange() {
 		}
 	});
 
+	if (urlFacetSet) {
+		$('input[name="limit-yr"]').val(urlFacet);
+		$('a[href="#facetYrRefine"]').after('<a href=\"#facetYrClear\" class=\"btn btn-danger mt-2\">Clear date refinement [x]<\/a>'); // add clear button
+		$('#facet-yr a').click(); // we want to show the user the facet, you see
+	}
 	return;
 }
 
@@ -381,6 +462,40 @@ function facetPublicationDateRangeResetHandler() {
 }
 
 
+//
+// function to handle reservation link actions
+function reservationLinkHandler() {
+	$('a[href*="/cgi-bin/koha/opac-reserve.pl"]').on('click', function (event) {
+		event.preventDefault();
+		$('#modalReserveOk').attr('href', $(this).attr('href')); // set link to be correct
+		$("#reserveModal").modal("show"); // show modal
+	});
+
+	$('#loginModal').after('<div class=\"modal show\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"modalLoginLabel\" id=\"reserveModal\" aria-modal=\"true\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><h2 class=\"modal-title\" id=\"modalReserveLabel\">Place a reservation on this item?<\/h2><button type=\"button\" class=\"closebtn\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">\u00D7<\/span><\/button><\/div><div class=\"modal-body\"><p id=\"modalReserveDesc\">Please click Ok to progress with this reservation. Be sure to await an email from your local Library branch, before coming in!<\/p><\/div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel<\/button><a id=\"modalReserveOk\" href=\"#\" class=\"btn btn-primary\" aria-describedby=\"modalReserveDesc\">Ok<\/a><\/div><\/div><\/div><\/div>');
+}
+
+
+// function to add proper tooltips to things
+function addBootstrapTooltips() {
+	$('body').find('*').each(function () {
+		if ($(this).attr('title') != undefined) $(this).tooltip();
+	});
+}
+
+
+//
+// function to relabel save record links
+function renameSaveRecord() {
+	$('#export .dropdown-item').each(function () {
+		// vars
+		var thisText = $(this).text();
+
+		$(this).text('Save to ' + thisText);
+	});
+}
+
+
+//
 // function to replace all instances of password with PIN
 function replacePasswordWithPin() {
 	// do most entries
@@ -400,24 +515,4 @@ function replacePasswordWithPin() {
 	// tidy-up
 	$('input[value="Change password"]').val('Change PIN');
 
-
-	// Pedro - move copyright disclaimer button
-	const url = window.location.href;
-	if (url.includes('cgi-bin/koha/opac-illrequests.pl?method=create&backend=FreeForm')) {
-		const buttons = document.querySelectorAll('.btn-sm');
-		const yesAgreePara = document.querySelector('#show_after');
-
-		if (buttons.length < 2) {
-			return;
-		}
-
-		if (!yesAgreePara) {
-			return;
-		}
-
-		yesAgreePara.parentNode.insertBefore(buttons[0], yesAgreePara);
-		yesAgreePara.parentNode.insertBefore(buttons[1], yesAgreePara);
-		yesAgreePara.style.marginTop = '10px';
-	}
-
-}  
+}
