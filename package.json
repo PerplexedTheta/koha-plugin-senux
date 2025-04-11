@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PTFS-Europe/koha-plugin-newsletter-consent.git"
+    "url": "git+https://github.com/PerplexedTheta/koha-plugin-senux.git"
   },
   "author": "PTFS Europe Ltd",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/PTFS-Europe/koha-plugin-newsletter-consent/issues"
+    "url": "https://github.com/PerplexedTheta/koha-plugin-senux/issues"
   },
-  "homepage": "https://github.com/PTFS-Europe/koha-plugin-newsletter-consent#readme",
+  "homepage": "https://github.com/PerplexedTheta/koha-plugin-senux#readme",
   "devDependencies": {
     "gulp": "^5.0.0",
     "gulp-cli": "^3.0.0",
