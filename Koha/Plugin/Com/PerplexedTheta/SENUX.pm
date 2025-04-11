@@ -35,12 +35,36 @@ sub new {
 
 sub install {
     my ($self) = shift;
+
+    $self->store_data({ enable_js => 1 });
+
     return 1;
 }
 
 sub uninstall {
     my ($self) = @_;
     return 1;
+}
+
+sub configure {
+    my ($self) = @_;
+    my $cgi = $self->{'cgi'};
+
+    unless ($cgi->param('save')) {
+        my $template = $self->get_template({file => 'configure.tt'});
+
+        $template->param(
+            enable_js => $self->retrieve_data('enable_js'),
+        );
+
+        $self->output_html($template->output());
+    }
+    else {
+        $self->store_data({
+            enable_js => scalar $cgi->param('enable_js') ? 1 : 0,
+        });
+        $self->go_home();
+    }
 }
 
 sub api_namespace {
@@ -67,6 +91,9 @@ sub opac_head {
 
 sub opac_js {
     my ($self) = @_;
+
+    return
+        unless scalar $self->retrieve_data('enable_js') == 1;
 
     return '<script src="/api/v1/contrib/senux/static/static_files/dist/senux.min.js"></script>';
 }
