@@ -1,6 +1,6 @@
 {
   "name": "koha-plugin-senux",
-  "version": "24.11.02",
+  "version": "24.11.03",
   "description": "A Koha plugin that will allow for borrower-centred marketing consent preferences",
   "main": "gulpfile.js",
   "scripts": {

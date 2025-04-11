@@ -9,7 +9,7 @@ use Koha::Libraries;
 use JSON;
 use JSON::Validator::Schema::OpenAPIv2;
 
-our $VERSION  = '24.11.02';
+our $VERSION  = '24.11.03';
 our $metadata = {
     name            => 'SENUX',
     author          => 'Jake Deery',
