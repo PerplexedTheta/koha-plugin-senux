@@ -23,195 +23,199 @@
 //
 // logo
 #logo {
-	display: $navbarLogoDisplayMobile;
-	width: 100px;
-	margin: 0;
+    display: $navbarLogoDisplayMobile;
+    width: 100px;
+    margin: 0;
 
-	color: $navbarLogoText;
-	background: $navbarLogoBg;
+    color: $navbarLogoText;
+    background: $navbarLogoBg;
 
-	&:hover, &:focus-visible,
-	&:active, &.active {
-		color: $navbarLinkTextHov;
-		background: $navbarLogoBgHov;
-	}
+    &:hover {
+        color: $navbarLinkTextHov;
+        background: $navbarLogoBgHov;
+    }
 
-	a {
-		width: 100px;
-		padding: 40px 0 0;
+    &:focus {
+        color: $navbarLinkTextHov;
+        background: $navbarLogoBgHov;
+    }
 
-		background-color: transparent!important;
-		color: $navbarLogoText;
-		border: $defaultBorderWidth $defaultBorderType $navbarLogoBorderCol;
-		outline: $defaultOutlineWidth $defaultOutlineType $navbarLogoOutlineCol;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $navbarLogoBoxShadowCol;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLogoDecorationCol $defaultDecorationThickness;
+    a {
+        width: 100px;
+        padding: 40px 0 0;
 
-		&:focus-visible, &:active,
-		&.active {
-			background-color: $transparent!important;
-			color: $navbarLogoTextFoc;
-			border: $defaultBorderWidth $defaultBorderType $navbarLogoBorderColFoc;
-			outline: $defaultOutlineWidth $defaultOutlineType $navbarLogoOutlineColFoc;
-			box-shadow: 0 0 0 $defaultBoxShadowWidth $navbarLogoBoxShadowColFoc;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLogoDecorationColFoc $defaultDecorationThickness;
-		}
-	}
+        background-color: transparent !important;
+        color: $navbarLogoText;
+        border: $navbarLogoBorderSettings;
+        outline: $navbarLogoOutlineSettings;
+        box-shadow: $navbarLogoBoxShadowSettings;
+        text-decoration: $navbarLogoDecorationSettings;
+
+        &:hover {
+            background: $transparent;
+            color: $navbarLogoTextHov;
+            border: $navbarLogoBorderSettingsHov;
+            outline: $navbarLogoOutlineSettingsHov;
+            box-shadow: $navbarLogoBoxShadowSettingsHov;
+            text-decoration: $navbarLogoDecorationSettingsHov;
+            text-decoration-thickness: .1875rem;
+        }
+
+        &:focus {
+            border: $navbarLogoBorderSettingsFoc !important;
+            outline: $navbarLogoOutlineSettingsFoc !important;
+            box-shadow: $navbarLogoBoxShadowSettingsFoc !important;
+            text-decoration: $navbarLogoDecorationSettingsFoc !important;
+            text-decoration-thickness: .1875rem !important;
+        }
+    }
 }
+
 @media(min-width: $breakpoint-pc) {
-	#logo {
-		display: $navbarLogoDisplay
-	}
+    #logo {
+        display: $navbarLogoDisplay
+    }
 }
 
 img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
-	display: none
+    display: none
 }
 
 //
 // navbar
 .navbar-expand {
-	background-color: $navbarBg;
-	padding: .5rem 1rem;
-	border: $defaultBorderWidth $defaultBorderType $transparent
+    background-color: $navbarBg;
+    padding: .5rem 1rem;
+    border: $transparent
 }
 
 #cartDetails {
-	top: calc(57px + 1rem);
-	right: auto;
-	bottom: auto;
-	left: 1rem;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	outline: $defaultOutlineWidth $defaultOutlineType $defaultOutlineCol;
-	outline-offset: $defaultOffset;
-	border-radius: $defaultRadius
+    top: calc(57px + 1rem);
+    right: auto;
+    bottom: auto;
+    left: 1rem;
+    border: $defaultBorderSettings;
+    outline: $defaultOutlineSettings;
 }
 
-#cart-list-nav, #members, #header_langmenu {
-	li {
-		a {
-			color: $navbarLinkText;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLinkDecorationCol $defaultDecorationThickness;
-			text-shadow: none;
+#cart-list-nav,
+#members,
+#header_langmenu {
+    li {
+        a {
+            color: $navbarLinkText;
+            text-decoration: $navbarLinkDecorationSettings;
+            text-shadow: none;
 
-			i.fa {
-				color: $navbarLinkText
-			}
+            i.fa {
+                color: $navbarLinkText
+            }
 
-			&:hover {
-				color: $navbarLinkTextHov;
-				text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLinkDecorationColHov $defaultDecorationThickness;
+            &:hover {
+                color: $navbarLinkTextHov;
+                text-decoration: $navbarLinkDecorationSettingsHov;
 
-				i.fa {
-					color: $navbarLinkTextHov
-				}
-			}
+                i.fa {
+                    color: $navbarLinkTextHov
+                }
+            }
+        }
 
-			&:focus-visible, &:active,
-			&.active {
-				color: $navbarLinkTextHov;
-				text-decoration: $defaultDecorationLine $defaultDecorationStyle $navbarLinkDecorationColHov $defaultDecorationThickness;
+        a.dropdown-item {
+            background-color: $dropdownLinkBg;
+            color: $dropdownLinkText;
+            text-decoration: $dropdownLinkDecorationSettings;
 
-				i.fa {
-					color: $navbarLinkTextHov
-				}
-			}
-		}
+            i.fa {
+                color: $dropdownLinkText;
+            }
 
-		a.dropdown-item {
-			background-color: $dropdownLinkBg;
-			color: $dropdownLinkText;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $dropdownLinkDecorationCol $defaultDecorationThickness;
+            &:hover {
+                background-color: $dropdownLinkBgHov;
+                color: $dropdownLinkTextHov;
+                text-decoration: $dropdownLinkDecorationSettingsHov;
 
-			i.fa {
-				color: $dropdownLinkText;
-			}
+                i.fa {
+                    color: $dropdownLinkTextHov;
+                }
+            }
+        }
 
-			&:hover {
-				background-color: $dropdownLinkBgHov;
-				color: $dropdownLinkTextHov;
-				text-decoration: $defaultDecorationLine $defaultDecorationStyle $dropdownLinkDecorationColHov $defaultDecorationThickness;
+        &::before {
+            content: none
+        }
+    }
 
-				i.fa {
-					color: $dropdownLinkTextHov;
-				}
-			}
-
-			&:focus-visible, &:active,
-			&.active {
-				background-color: $dropdownLinkBgHov;
-				color: $dropdownLinkTextHov;
-				text-decoration: $defaultDecorationLine $defaultDecorationStyle $dropdownLinkDecorationColHov $defaultDecorationThickness;
-
-				i.fa {
-					color: $dropdownLinkTextHov;
-				}
-			}
-		}
-
-		&::before {
-			content: none
-		}
-	}
-
-	.divider-vertical, .clearsh {
-		display: none
-	}
+    .divider-vertical,
+    .clearsh {
+        display: none
+    }
 }
 
 #user-menu {
-	display: block;
-	padding: .5rem
+    display: block;
+    padding: .5rem
 }
 
 #loggedinuser-menu {
-	background-color: $navbarUsermenuBg;
+    background-color: $navbarUsermenuBg;
 
-	p {
-		a.login-link {
-			color: $navbarUsermenuLinkText;
+    p {
+        a.login-link {
+            color: $navbarUsermenuLinkText;
 
-			&:hover, &:focus-visible,
-			&:active, &.active {
-				color: $navbarUsermenuLinkTextHov
-			}
-		}
-	}
+            &:hover {
+                color: $navbarUsermenuLinkTextHov
+            }
 
-	a#logout.logout {
-		color: $navbarUsermenuLogoutText;
+            &:focus {
+                color: $navbarUsermenuLinkTextHov
+            }
+        }
+    }
 
-		&:hover, &:focus-visible,
-		&:active, &.active {
-			color: $navbarUsermenuLogoutTextHov
-		}
-	}
+    a#logout.logout {
+        color: $navbarUsermenuLogoutText;
+
+        &:hover {
+            color: $navbarUsermenuLogoutTextHov
+        }
+
+        &:focus {
+            color: $navbarUsermenuLogoutTextHov
+        }
+    }
 }
 
 .dropdown-menu {
-	background-color: $dropdownBg;
-	color: $dropdownText;
-	border-radius: $defaultRadius
+    background-color: $dropdownBg;
+    color: $dropdownText
 }
 
-.navbar .nav > li {
-	&::before {
-		content: none
-	}
+.navbar .nav>li {
+    &::before {
+        content: none
+    }
 }
 
 //
 //
 // mobile overrides
-.custlabel1, .custlabel2,
-.custlabel3, .custlabel4,
+.custlabel1,
+.custlabel2,
+.custlabel3,
+.custlabel4,
 .custlabel5 {
-	display: none
+    display: none
 }
+
 @media only screen and (min-width: $breakpoint-pc) {
-	.custlabel1, .custlabel2,
-	.custlabel3, .custlabel4,
-	.custlabel5 {
-		display: inline
-	}
+
+    .custlabel1,
+    .custlabel2,
+    .custlabel3,
+    .custlabel4,
+    .custlabel5 {
+        display: inline
+    }
 }

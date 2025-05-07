@@ -6,10 +6,12 @@ use base qw{ Koha::Plugins::Base };
 
 use Koha::Libraries;
 
+use Cwd         qw( abs_path );
+use File::Which qw{ which };
 use JSON;
 use JSON::Validator::Schema::OpenAPIv2;
 
-our $VERSION  = '24.11.03';
+our $VERSION  = '24.11.05';
 our $metadata = {
     name            => 'SENUX',
     author          => 'Jake Deery',
@@ -22,49 +24,239 @@ our $metadata = {
 };
 
 sub new {
-    my ($class, $args) = @_;
+    my ( $class, $args ) = @_;
 
     $args->{'metadata'} = $metadata;
     $args->{'metadata'}->{'class'} = $class;
 
     my $self = $class->SUPER::new($args);
-    $self->{cgi} = CGI->new();
+    $self->{'cgi'} = CGI->new();
 
     return $self;
 }
 
 sub install {
-    my ($self) = shift;
+    my ($self) = @_;
 
-    $self->store_data({ enable_js => 1 });
+    return undef
+        unless ( $self->_is_npm_installed );
+
+    return undef
+        unless ( $self->npm_new );
+
+    return 1;
+}
+
+sub upgrade {
+    my ($self) = @_;
+
+    return undef
+        unless ( $self->_is_npm_installed );
+
+    return undef
+        unless ( $self->npm_new );
 
     return 1;
 }
 
 sub uninstall {
     my ($self) = @_;
+
+    return undef
+        unless ( $self->_is_npm_installed );
+
+    return undef
+        unless ( $self->npm_delete );
+
+    return 1;
+}
+
+sub npm_new {
+    my ( $self, $args ) = @_;
+
+    return undef
+        unless ( $self->npm_delete );
+
+    my $cd_static_files = chdir abs_path( $self->mbf_dir ) . '/static_files';
+    unless ($cd_static_files) {
+        $self->_throw_error(
+            {
+                message     => 'could not cd to static_files',
+                return_code => $cd_static_files,
+            }
+        );
+
+        return undef;
+    }
+
+    my $install = `bash -- ./manage_senux.sh --install-all 2>&1`;
+    unless ( $? == 0 ) {
+        $self->_throw_error(
+            {
+                message     => '`bash -- ./manage_senux.sh --install-all` failed to run',
+                output      => $install,
+                return_code => $?,
+            }
+        );
+
+        return undef;
+    }
+
+    return 1;
+}
+
+sub npm_reset {
+    my ( $self, $args ) = @_;
+
+    return undef
+        unless ( $args->{'confirm'} eq 'yes_please' );
+
+    my $cd_static_files = chdir abs_path( $self->mbf_dir ) . '/static_files';
+    unless ($cd_static_files) {
+        $self->_throw_error(
+            {
+                message     => 'could not cd to static_files',
+                return_code => $cd_static_files,
+            }
+        );
+
+        return undef;
+    }
+
+    my $reset_all = `bash -- ./manage_senux.sh --reset-all 2>&1`;
+    unless ( $? == 0 ) {
+        $self->_throw_error(
+            {
+                message     => '`bash -- ./manage_senux.sh --reset-all` failed to run',
+                output      => $reset_all,
+                return_code => $?,
+            }
+        );
+
+        return undef;
+    }
+
+    return 1;
+}
+
+sub npm_build {
+    my ( $self, $args ) = @_;
+    my $build_type = $args->{'build_type'} || 'all';
+    my $build;
+
+    my $cd_static_files = chdir abs_path( $self->mbf_dir ) . '/static_files';
+    unless ($cd_static_files) {
+        $self->_throw_error(
+            {
+                message     => 'could not cd to static_files',
+                return_code => $cd_static_files,
+            }
+        );
+
+        return undef;
+    }
+
+    if ( $build_type eq 'sass' ) {
+        $build = `bash -- ./manage_senux.sh --build-sass 2>&1`;
+    } elsif ( $build_type eq 'js' ) {
+        $build = `bash -- ./manage_senux.sh --build-js 2>&1`;
+    } else {
+        $build = `bash -- ./manage_senux.sh --build-all 2>&1`;
+    }
+
+    unless ( $? == 0 ) {
+        $self->_throw_error(
+            {
+                message     => '`bash -- ./manage_senux.sh --build-' . $build_type . '` failed to run',
+                output      => $build,
+                return_code => $?,
+            }
+        );
+
+        return undef;
+    }
+
+    return 1;
+}
+
+sub npm_delete {
+    my ( $self, $args ) = @_;
+
+    my $cd_static_files = chdir abs_path( $self->mbf_dir ) . '/static_files';
+    unless ($cd_static_files) {
+        $self->_throw_error(
+            {
+                message     => 'could not cd to static_files',
+                return_code => $cd_static_files,
+            }
+        );
+
+        return undef;
+    }
+
+    my $delete = `bash -- ./manage_senux.sh --delete 2>&1`;
+    unless ( $? == 0 ) {
+        $self->_throw_error(
+            {
+                message     => '`bash -- ./manage_senux.sh --delete` failed to run',
+                output      => $delete,
+                return_code => $?,
+            }
+        );
+
+        return undef;
+    }
+
     return 1;
 }
 
 sub configure {
     my ($self) = @_;
-    my $cgi = $self->{'cgi'};
+    my $cgi    = $self->{'cgi'};
+    my $op     = $cgi->param('op') || '';
 
-    unless ($cgi->param('save')) {
-        my $template = $self->get_template({file => 'configure.tt'});
+    my $template = $self->get_template( { file => 'configure.tt' } );
+    $self->output_html( $template->output() );
+}
 
-        $template->param(
-            enable_js => $self->retrieve_data('enable_js'),
-        );
+sub load_text_file {
+    my ( $self, $filename ) = @_;
 
-        $self->output_html($template->output());
-    }
-    else {
-        $self->store_data({
-            enable_js => scalar $cgi->param('enable_js') ? 1 : 0,
-        });
-        $self->go_home();
-    }
+    return undef
+        unless defined $filename;
+
+    return $self->_load_text_file(
+        {
+            filename => $filename,
+        }
+    );
+}
+
+sub save_text_file {
+    my ( $self, $filename, $content ) = @_;
+
+    return undef
+        unless defined $filename;
+
+    return undef
+        unless defined $content;
+
+    return $self->_save_text_file(
+        {
+            filename => $filename,
+            content  => $content,
+        }
+    );
+}
+
+sub api_routes {
+    my ($self) = @_;
+
+    my $spec_file = $self->mbf_path('openapi.yaml');
+    my $schema    = JSON::Validator::Schema::OpenAPIv2->new->resolve($spec_file);
+    my $spec      = $schema->bundle->data;
+
+    return $spec;
 }
 
 sub api_namespace {
@@ -92,10 +284,99 @@ sub opac_head {
 sub opac_js {
     my ($self) = @_;
 
-    return
-        unless scalar $self->retrieve_data('enable_js') == 1;
-
     return '<script src="/api/v1/contrib/senux/static/static_files/dist/senux.min.js"></script>';
+}
+
+sub _is_npm_installed {
+    my ($self) = @_;
+
+    unless ( which('npm') ) {
+        $self->_throw_error(
+            {
+                message     => '`npm` not found in PATH',
+                return_code => 0,
+            }
+        );
+
+        return undef;
+    }
+
+    return 1;
+}
+
+sub _load_text_file {
+    my ( $self, $args ) = @_;
+    my $filename = $args->{'filename'};
+
+    unless ( -f $filename ) {
+        $self->_throw_error(
+            {
+                message     => $args->{'filename'} . ' does not exist',
+                return_code => 0,
+            }
+        );
+
+        return undef;
+    }
+
+    open my $fh, '<', $filename;
+
+    unless ( defined $fh ) {
+        $self->_throw_error(
+            {
+                message     => 'could not create filehandle',
+                return_code => $?,
+            }
+        );
+
+        return undef;
+    }
+
+    chomp( my @lines = <$fh> );
+
+    close $fh;
+
+    return join "\n", @lines;
+}
+
+sub _save_text_file {
+    my ( $self, $args ) = @_;
+    my $filename = $args->{'filename'};
+    my $content  = $args->{'content'};
+
+    open my $fh, '>', $filename;
+
+    unless ( defined $fh ) {
+        $self->_throw_error(
+            {
+                message     => 'could not create filehandle',
+                return_code => $?,
+            }
+        );
+
+        return undef;
+    }
+
+    print $fh $content;
+
+    close $fh;
+
+    return 1;
+}
+
+sub _throw_error {
+    my ( $self, $args ) = @_;
+    my $json = JSON->new->allow_nonref;
+
+    return undef
+        unless defined $args;
+
+    warn $json->encode($args);
+
+    die
+        if defined $self->{'_die'};
+
+    return 1;
 }
 
 1;

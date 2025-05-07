@@ -22,177 +22,164 @@
 
 // header
 #opacheader {
-	margin: 0;
-	margin-left: 0;
-	padding: 2.5rem 1rem;
-	color: $headerText;
-	background: $headerBg;
-	background-size: $headerBgSize;
+    margin: 0;
+    margin-left: 0;
+    padding: 2.5rem 1rem;
+    color: $headerText;
+    background: $headerBg;
+    background-size: $headerBgSize;
 
-	h1, h3 {
-		display: inline-block;
-		color: $headerText;
+    h1,
+    h3 {
+        display: inline-block;
+        color: $headerText;
 
-		&::after {
-			content: '';
-			display: block;
-			max-width: 33%;
-			border-bottom: .25rem solid $headerText;
-			border-radius: $defaultRadius
-		}
-	}
+        &::after {
+            content: '';
+            display: block;
+            max-width: 33%;
+            border: calc($defaultHeaderUnderlineThickness / 2) $defaultHeaderUnderlineType $headerText;
+        }
+    }
 
-	h1 {
-		font-size: 3rem
-	}
+    h1 {
+        font-size: 3rem
+    }
 }
+
 @media (min-width: $breakpoint-pc) {
-	#opacheader {
-		padding: 2.5rem 5rem
-	}
+    #opacheader {
+        padding: 2.5rem 5rem
+    }
 }
 
 // mobile-only class
 @media (min-width: $breakpoint-pc) {
-	.mobile_only {
-		display: none
-	}
+    .mobile_only {
+        display: none
+    }
 }
 
 #opacheader_logowrapper {
-	border: 0;
-	margin: 0 1rem;
-	padding: 0;
-	background: $headerLogoBg;
-	width: $headerLogoWidth;
+    border: 0;
+    margin: 0 1rem;
+    padding: 0;
+    background: $headerLogoBg;
+    width: $headerLogoWidth;
 
-	a {
-		display: block;
-		height: 0!important;
-		overflow: hidden;
-		padding: $headerLogoHeight 0 0;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+    a {
+        display: block;
+        height: 0 !important;
+        overflow: hidden;
+        padding: $headerLogoHeight 0 0;
 
-		&:hover {
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness;
-			background-color: transparent!important
-		}
+        border: $btnBorderSettings;
 
-		&:focus-visible, &:active,
-		&.active {
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness;
-			background-color: transparent!important
-		}
-	}
+        &:hover {
+            background-color: transparent !important;
+            border: $btnBorderSettingsHov !important
+        }
+
+        &:focus {
+            background-color: $transparent !important;
+            border: $btnBorderSettingsFoc !important
+        }
+    }
 }
 
 #opacheader_titles {
-	margin: 0;
-	padding: 0 1rem;
-	display: flex;
-	justify-content: center
+    margin: 0;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center
 }
+
 @media (min-width: $breakpoint-pc) {
-	#opacheader_titles {
-		padding: 0
-	}
+    #opacheader_titles {
+        padding: 0
+    }
 }
 
 //
 // search box
 #opac-main-search {
-	margin: 0;
-	padding: 0;
-	color: $mainSearchText;
-	background-color: $mainSearchBg;
+    margin: 0;
+    padding: 0;
+    color: $mainSearchText;
+    background-color: $mainSearchBg;
 
-	a {
-		color: $mainSearchLinkText;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $mainSearchLinkDecorationCol $defaultDecorationThickness;
+    a {
+        color: $mainSearchLinkText;
+        text-decoration: $mainSearchLinkDecorationSettings;
 
-		&:hover {
-			color: $mainSearchLinkTextHov;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $mainSearchLinkDecorationColHov $defaultDecorationThickness
-		}
+        &:hover {
+            color: $mainSearchLinkTextHov;
+            text-decoration: $mainSearchLinkDecorationSettingsHov
+        }
+    }
 
-		&:focus-visible, &:active,
-		&.active {
-			color: $mainSearchLinkTextHov;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $mainSearchLinkDecorationColHov $defaultDecorationThickness
-		}
-	}
-
-	label {
-		display: none
-	}
+    label {
+        display: none
+    }
 }
 
 #searchform {
-	margin: 0 auto;
-	padding: 1.5rem 1rem;
-	max-width: 1440px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    max-width: 1440px;
 
 
-	button, input, select,
-	textarea {
-		height: 3rem
-	}
+    button,
+    input,
+    select,
+    textarea {
+        height: 3rem
+    }
 }
+
 @media (min-width: $breakpoint-pc) {
-	#searchform {
-		padding: 1.5rem 2.5rem;
-	}
+    #searchform {
+        padding: 1.5rem 2.5rem;
+    }
 }
 
 #moresearches {
-	display: flex;
-	align-content: center;
-	justify-content: center;
-	width: 100%;
-	margin: 0;
-	padding: 1rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
 
-	color: $moreSearchText;
-	background-color: $moreSearchBg;
+    color: $moreSearchText;
+    background-color: $moreSearchBg;
 
-	a {
-		color: $moreSearchLinkText;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $moreSearchLinkDecorationCol $defaultDecorationThickness;
+    a {
+        color: $moreSearchLinkText;
+        text-decoration: $moreSearchLinkDecorationSettings;
 
-		&:hover {
-			color: $moreSearchLinkTextHov;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $moreSearchLinkDecorationColHov $defaultDecorationThickness
-		}
+        &:hover {
+            color: $moreSearchLinkTextHov;
+            text-decoration: $moreSearchLinkDecorationSettingsHov;
+        }
+    }
 
-		&:focus-visible, &:active,
-		&.active {
-			color: $moreSearchLinkTextHov;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $moreSearchLinkDecorationColHov $defaultDecorationThickness
-		}
-	}
-
-	.nav-item {
-		&::before {
-			content: none
-		}
-	}
+    .nav-item {
+        &::before {
+            content: none
+        }
+    }
 }
 
 //
 // dropdown items
 .dropdown-item {
-	color: $dropdownLinkText;
-	text-decoration: $defaultDecorationLine $defaultDecorationStyle $dropdownLinkDecorationCol $defaultDecorationThickness;
+    color: $dropdownLinkText;
+    text-decoration: $dropdownLinkDecorationSettings;
 
-	&:hover {
-		color: $dropdownLinkTextHov;
-		background-color: $dropdownLinkBgHov;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $dropdownLinkDecorationColHov $defaultDecorationThickness
-	}
-
-	&:hover {
-		color: $dropdownLinkTextHov;
-		background-color: $dropdownLinkBgHov;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $dropdownLinkDecorationColHov $defaultDecorationThickness
-        }
+    &:hover {
+        color: $dropdownLinkTextHov;
+        background-color: $dropdownLinkBgHov;
+        text-decoration: $dropdownLinkDecorationSettingsHov
+    }
 }

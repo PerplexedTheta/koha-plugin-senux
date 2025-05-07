@@ -20,452 +20,615 @@
 //
 // generic
 
+* {
+    border-radius: $defaultRadius;
+    outline-offset: $defaultOffset
+}
+
 html {
-	font-size: 16px
+    font-size: 16px
 }
 
 body {
-	color: $defaultText;
-	background-color: $defaultBg
+    color: $defaultText;
+    background-color: $defaultBg
 }
 
 body::after {
-	position: absolute;
-	width: 0;
-	height: 0;
-	overflow: hidden;
-	z-index: -1;
-	content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
+    content: '';
 }
 
 //
 // generic content
 p {
-	padding: 0 0 .75em;
-	margin: 0;
-	color: $defaultText
+    padding: 0 0 .75em;
+    margin: 0;
+    color: $defaultText
 }
 
-h1, h2, h3,
-h4, h5, h6,
-.h1, .h2, .h3,
-.h4, .h5, .h6 {
-	color: $defaultText
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    color: $defaultText
 }
 
 a {
-	background: $defaultLinkBg;
-	color: $defaultLinkText;
-	border: $defaultBorderWidth $defaultBorderType $defaultLinkBorderCol;
-	outline: $defaultOutlineWidth $defaultOutlineType $defaultLinkOutlineCol;
-	box-shadow: 0 0 0 $defaultBoxShadowWidth $defaultLinkBoxShadowCol;
-	text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+    background: $defaultLinkBg;
+    color: $defaultLinkText;
+    border: $defaultLinkBorderSettings;
+    outline: $defaultLinkOutlineSettings;
+    box-shadow: $defaultLinkBoxShadowSettings;
+    text-decoration: $defaultLinkDecorationSettings;
+    text-decoration-thickness: 0.0625rem;
 
-	border-radius: $defaultRadius;
-	outline-offset: $defaultOffset;
+    i.fa {
+        color: $defaultLinkText
+    }
 
-	i.fa {
-		color: $defaultLinkText
-	}
+    &:link,
+    &:visited {
+        background: $defaultLinkBg;
+        color: $defaultLinkText;
+        border: $defaultLinkBorderSettings;
+        outline: $defaultLinkOutlineSettings;
+        box-shadow: $defaultLinkBoxShadowSettings;
+        text-decoration: $defaultLinkDecorationSettings;
+        text-decoration-thickness: .0625rem;
 
-	&:link, &:visited {
-		background: $defaultLinkBg;
-		color: $defaultLinkText;
-		border: $defaultBorderWidth $defaultBorderType $defaultLinkBorderCol;
-		outline: $defaultOutlineWidth $defaultOutlineType $defaultLinkOutlineCol;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $defaultLinkBoxShadowCol;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+        i.fa {
+            color: $defaultLinkText
+        }
+    }
 
-		i.fa {
-			color: $defaultLinkText
-		}
-	}
+    &:hover {
+        background: $defaultLinkBgHov;
+        color: $defaultLinkTextHov;
+        border: $defaultLinkBorderSettingsHov;
+        outline: $defaultLinkOutlineSettingsHov;
+        box-shadow: $defaultLinkBoxShadowSettingsHov;
+        text-decoration: $defaultLinkDecorationSettingsHov;
+        text-decoration-thickness: .1875rem;
 
-	&:hover {
-		background: $defaultLinkBgHov;
-		color: $defaultLinkTextHov;
-		border: $defaultBorderWidth $defaultBorderType $defaultLinkBorderColHov;
-		outline: $defaultOutlineWidth $defaultOutlineType $defaultLinkOutlineColHov;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $defaultLinkBoxShadowColHov;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness;
+        i.fa {
+            color: $defaultLinkTextHov
+        }
+    }
 
-		i.fa {
-			color: $defaultLinkTextHov
-		}
-	}
+    &:focus {
+        border: $defaultLinkBorderSettingsFoc !important;
+        outline: $defaultLinkOutlineSettingsFoc !important;
+        box-shadow: $defaultLinkBoxShadowSettingsFoc !important;
+        text-decoration: $defaultLinkDecorationSettingsFoc !important;
+        text-decoration-thickness: .1875rem !important;
 
-	&:focus-visible, &:active,
-	&.active {
-		background: $defaultLinkBgFoc!important;
-		color: $defaultLinkTextFoc!important;
-		border: $defaultBorderWidth $defaultBorderType $defaultLinkBorderColFoc!important;
-		outline: $defaultOutlineWidth $defaultOutlineType $defaultLinkOutlineColFoc!important;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $defaultLinkBoxShadowColFoc!important;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness!important;
-
-		i.fa {
-			color: $defaultLinkTextFoc!important
-		}
-	}
+        &:not(:active):not(:hover) {
+            background: $defaultLinkBgFoc !important;
+            color: $defaultLinkTextFoc !important;
+            border: $defaultLinkBorderSettingsFoc !important;
+            border-color: $transparent !important;
+            outline: $defaultLinkOutlineSettingsFoc !important;
+            outline-color: $transparent !important;
+            box-shadow: $defaultLinkBoxShadowSettingsFoc !important;
+            text-decoration: $defaultLinkDecorationSettingsFoc !important;
+            text-decoration-thickness: .1875rem !important;
+    
+            i.fa {
+                color: $defaultLinkTextFoc !important
+            }
+        }
+    }
 }
 
 a[target="_blank"] {
-	&::after {
-		font-family: var(--fa-style-family,"Font Awesome 6 Free");
-		font-weight: var(--fa-style,900);
-		font-size: .75em;
-		text-rendering: auto;
-		content: " \f08e"
-	}
+    &::after {
+        font-family: var(--fa-style-family, "Font Awesome 6 Free");
+        font-weight: var(--fa-style, 900);
+        font-size: .75em;
+        text-rendering: auto;
+        content: " \f08e"
+    }
 }
 
-label, .label, .hint {
-	color: $defaultText
+label,
+.label,
+.hint {
+    color: $defaultText
 }
 
 ul {
-	list-style-type: $defaultBullet
+    list-style-type: $defaultBullet
 }
 
 hr {
-	border-top: $defaultBorderWidth $defaultBorderType $defaultBorderCol
+    border-top: $defaultBorderSettings
 }
 
 //
 // specify page fonts
-.fonts-loaded body, .fonts-loaded button,
-.fonts-loaded input, .fonts-loaded optgroup,
-.fonts-loaded option, .fonts-loaded select,
+.fonts-loaded body,
+.fonts-loaded button,
+.fonts-loaded input,
+.fonts-loaded optgroup,
+.fonts-loaded option,
+.fonts-loaded select,
 .fonts-loaded textarea {
-	font-family: $defaultFonts;
+    font-family: $defaultFonts;
 
-	body, button, input,
-	optgroup, option, select,
-	textarea {
-		font-family: $defaultFonts
-	}
+    body,
+    button,
+    input,
+    optgroup,
+    option,
+    select,
+    textarea {
+        font-family: $defaultFonts
+    }
 }
 
 //
 // main content
 #wrapper {
-	overflow: hidden;
-	width: 100%;
-	margin: auto;
-	padding: 0
+    overflow: hidden;
+    width: 100%;
+    margin: auto;
+    padding: 0
 }
 
 .container-fluid {
-	width: 100%;
-	margin: auto;
-	padding: 0
+    width: 100%;
+    margin: auto;
+    padding: 0
 }
 
 //
 // buttons
-.btn, input[type="submit"].btn {
-	background-image: none;
-	text-shadow: none;
-	text-decoration: none!important;
+.btn,
+input[type="submit"].btn {
+    display: inline-block;
+    position: relative;
 
-	padding: .45rem 1.125rem;
-	font-size: 1rem;
-	border-radius: $defaultRadius;
-	outline-offset: $defaultOffset;
-	cursor: pointer;
-	white-space: normal;
-	word-wrap: break-word;
-	font-weight: 400;
+    background-image: none;
+    text-shadow: none;
 
-	color: $btnPriText;
-	background-color: $btnPriBg;
-	border: $defaultBorderWidth $defaultBorderType $btnPriBorderCol;
-	outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineCol;
-	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowCol;
+    padding: .45rem 1.125rem;
+    font-size: 1rem;
+    cursor: pointer;
+    white-space: normal;
+    word-wrap: break-word;
+    font-weight: 400;
 
-	i.fa {
-		color: $btnPriText
-	}
+    color: $btnText;
+    background-color: $btnBg;
+    border: $btnBorderSettings;
+    outline: $btnOutlineSettings;
+    box-shadow: $btnBoxShadowSettings;
+    text-decoration: $btnDecorationSettings;
 
-	&:hover, &:focus,
-	&:active, &.active {
-		background-image: none;
-		text-shadow: none;
-		text-decoration: none!important;
+    border-radius: $defaultRadius;
+    outline-offset: $defaultOffset;
 
-		color: $btnPriTextHov;
-		background-color: $btnPriBgHov;
-		border: $defaultBorderWidth $defaultBorderType $btnPriBorderColHov;
-		outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineColHov;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowColHov;
+    i.fa {
+        color: $btnText
+    }
 
-		i.fa {
-			color: $btnPriTextHov
-		}
-	}
+    &:hover {
+        background-image: none;
+        text-shadow: none;
+
+        color: $btnTextHov;
+        background-color: $btnBgHov;
+        border: $btnBorderSettingsHov;
+        outline: $btnOutlineSettingsHov;
+        box-shadow: $btnBoxShadowSettingsHov;
+        text-decoration: $btnDecorationSettingsHov;
+
+        i.fa {
+            color: $btnTextHov
+        }
+    }
+
+    &:focus {
+        background-image: none !important;
+        text-shadow: none !important;
+
+        border: $btnBorderSettingsFoc !important;
+        outline: $btnOutlineSettingsFoc !important;
+        box-shadow: none !important;
+        text-decoration: $btnDecorationSettingsFoc !important;
+
+        &:not(:active):not(:hover) {
+            color: $btnTextFoc !important;
+            background-color: $btnBgFoc !important;
+            border: $btnBorderSettingsFoc !important;
+            outline: $btnOutlineSettingsFoc !important;
+            box-shadow: $btnBoxShadowSettingsFoc !important;
+            text-decoration: $btnDecorationSettingsFoc !important;
+
+            i.fa {
+                color: $btnTextFoc !important
+            }
+        }
+    }
+
+    &:active, &.active {
+        top: .125rem;
+    }
 }
 
-.btn-primary, #loginModal input[type="submit"],
-.btn-primary:not(:disabled):not(.disabled), .btn-success,
-.btn-success:not(:disabled):not(.disabled), #searchsubmit.btn.btn-primary,
-.btn-primary.disabled, .btn-primary:disabled {
-	background-image: none;
-	text-shadow: none;
-	text-decoration: none!important;
+.btn-primary,
+#loginModal input[type="submit"],
+.btn-primary:not(:disabled):not(.disabled),
+.btn-success,
+.btn-success:not(:disabled):not(.disabled),
+#searchsubmit.btn.btn-primary,
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-image: none;
+    text-shadow: none;
 
-	color: $btnPriText;
-	background-color: $btnPriBg;
-	border: $defaultBorderWidth $defaultBorderType $btnPriBorderCol;
-	outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineCol;
-	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowCol;
+    color: $btnPriText;
+    background-color: $btnPriBg;
+    border: $btnPriBorderSettings;
+    outline: $btnPriOutlineSettings;
+    box-shadow: $btnPriBoxShadowSettings;
+    text-decoration: $btnPriDecorationSettings;
 
-	i.fa {
-		color: $btnPriText
-	}
+    i.fa {
+        color: $btnPriText
+    }
 
-	&:hover, &:focus,
-	&:active, &.active {
-		background-image: none;
-		text-shadow: none;
-		text-decoration: none!important;
+    &:hover {
+        background-image: none;
+        text-shadow: none;
 
-		color: $btnPriTextHov;
-		background-color: $btnPriBgHov;
-		border: $defaultBorderWidth $defaultBorderType $btnPriBorderColHov;
-		outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineColHov;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowColHov;
-
-		i.fa {
-			color: $btnPriTextHov
-		}
-	}
+        color: $btnPriTextHov;
+        background-color: $btnPriBgHov;
+        border: $btnPriBorderSettingsHov;
+        outline: $btnPriOutlineSettingsHov;
+        box-shadow: $btnPriBoxShadowSettingsHov;
+        text-decoration: $btnPriDecorationSettingsHov;
+    
+        i.fa {
+            color: $btnPriTextHov
+        }
+    }
 }
 
-.btn-primary.disabled, .btn-primary:disabled {
-	opacity: .6;
+.btn-primary.disabled,
+.btn-primary:disabled {
+    opacity: .6;
 }
 
-.btn-default, .btn-secondary,
-.btn-default:not(:disabled):not(.disabled), 
-.btn-secondary:not(:disabled):not(.disabled), .btn-default.disabled,
-.btn-default:disabled, .btn-secondary.disabled,
+.btn-default,
+.btn-secondary,
+.btn-default:not(:disabled):not(.disabled),
+.btn-secondary:not(:disabled):not(.disabled),
+.btn-default.disabled,
+.btn-default:disabled,
+.btn-secondary.disabled,
 .btn-secondary:disabled {
-	background-image: none;
-	text-shadow: none;
+    background-image: none;
+    text-shadow: none;
 
-	color: $btnSecText;
-	background-color: $btnSecBg;
-	border: $defaultBorderWidth $defaultBorderType $btnSecBorderCol;
-	outline: $defaultOutlineWidth $defaultOutlineType $btnSecOutlineCol;
-	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnSecBoxShadowCol;
+    color: $btnSecText;
+    background-color: $btnSecBg;
+    border: $btnSecBorderSettings;
+    outline: $btnSecOutlineSettings;
+    box-shadow: $btnSecBoxShadowSettings;
+    text-decoration: $btnSecDecorationSettings;
 
-	i.fa {
-		color: $btnSecText
-	}
+    i.fa {
+        color: $btnSecText
+    }
 
-	&:hover, &:focus,
-	&:active, &.active {
-		background-image: none;
-		text-shadow: none;
+    &:hover {
+        background-image: none;
+        text-shadow: none;
 
-		color: $btnSecTextHov;
-		background-color: $btnSecBgHov;
-		border: $defaultBorderWidth $defaultBorderType $btnSecBorderColHov;
-		outline: $defaultOutlineWidth $defaultOutlineType $btnSecOutlineColHov;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $btnSecBoxShadowCol;
-
-		i.fa {
-			color: $btnSecTextHov
-		}
-	}
+        color: $btnSecTextHov;
+        background-color: $btnSecBgHov;
+        border: $btnSecBorderSettingsHov;
+        outline: $btnSecOutlineSettingsHov;
+        box-shadow: $btnSecBoxShadowSettingsHov;
+        text-decoration: $btnSecDecorationSettingsHov;
+    
+        i.fa {
+            color: $btnSecTextHov
+        }
+    }
 }
 
-.btn-default.disabled, .btn-default:disabled,
-.btn-secondary.disabled, .btn-secondary:disabled {
-        opacity: .6;
+.btn-default.disabled,
+.btn-default:disabled,
+.btn-secondary.disabled,
+.btn-secondary:disabled {
+    opacity: .6;
 }
 
-.btn-link, .dt-button,
-.btn-link:not(:disabled):not(.disabled), .btn-link.disabled,
+.btn-link,
+.dt-button,
+.btn-link:not(:disabled):not(.disabled),
+.btn-link.disabled,
 .btn-link:disabled {
-	background-image: none;
-	text-shadow: none;
+    background-image: none;
+    text-shadow: none;
 
-	color: $btnLinkText;
-	background-color: $btnLinkBg;
-	border: $defaultBorderWidth $defaultBorderType $btnLinkBorderCol;
-	outline: $defaultOutlineWidth $defaultOutlineType $btnLinkOutlineCol;
-	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnLinkBoxShadowCol;
+    color: $btnLinkText;
+    background-color: $btnLinkBg;
+    border: $btnLinkBorderSettings;
+    outline: $btnLinkOutlineSettings;
+    box-shadow: $btnLinkBoxShadowSettings;
+    text-decoration: $btnLinkDecorationSettings;
 
-	i.fa {
-		color: $btnLinkText
-	}
+    i.fa {
+        color: $btnLinkText
+    }
 
-	&:hover, &:focus,
-	&:active, &.active {
-		background-image: none;
-		text-shadow: none;
+    &:hover {
+        background-image: none;
+        text-shadow: none;
 
-		color: $btnLinkTextHov;
-		background-color: $btnLinkBgHov;
-		border: $defaultBorderWidth $defaultBorderType $btnLinkBorderColHov;
-		outline: $defaultOutlineWidth $defaultOutlineType $btnLinkOutlineColHov;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $btnLinkBoxShadowColHov;
-
-		i.fa {
-			color: $btnLinkTextHov
-		}
-	}
+        color: $btnLinkTextHov;
+        background-color: $btnLinkBgHov;
+        border: $btnLinkBorderSettingsHov;
+        outline: $btnLinkOutlineSettingsHov;
+        box-shadow: $btnLinkBoxShadowSettingsHov;
+        text-decoration: $btnLinkDecorationSettingsHov;
+        text-decoration-thickness: .1875rem;
+    
+        i.fa {
+            color: $btnLinkTextHov
+        }
+    }
 }
 
-.btn-link.disabled, .btn-link:disabled {
-	opacity: .6
+.btn-link.disabled,
+.btn-link:disabled {
+    opacity: .6
 }
 
 .dt-button::before {
-	color: $defaultLinkText
+    color: $defaultLinkText
 }
 
 .dt-button:hover::before {
-	color: darken($defaultLinkText, 15%)
+    color: darken($defaultLinkText, 15%)
 }
 
-.btn-danger, input[type="submit"].btn-danger,
-.btn-danger:not(:disabled):not(.disabled), .btn-danger.disabled,
+.btn-danger,
+input[type="submit"].btn-danger,
+.btn-danger:not(:disabled):not(.disabled),
+.btn-danger.disabled,
 .btn-danger:disabled {
-	background-image: none;
-	text-shadow: none;
+    background-image: none;
+    text-shadow: none;
 
-	color: $msWhite;
-	background-color: $msRed;
-	border: $defaultBorderWidth $defaultBorderType $msRed;
-	outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineCol;
-	box-shadow: 0 0 0 $defaultBoxShadowWidth $btnPriBoxShadowCol;
+    color: $msWhite;
+    background-color: $msRed;
+    /*border: $msRed;
+    outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineCol;
+    box-shadow: $defaultBoxShadowSettings $btnPriBoxShadowCol;*/
 
-	i.fa {
-		color: $msWhite
-	}
+    i.fa {
+        color: $msWhite
+    }
 
-	&:hover, &:focus,
-	&:active, &.active {
-		background-image: none;
-		text-shadow: none;
+    &:hover {
+        background-image: none;
+        text-shadow: none;
 
-		color: $msWhite;
-		background-color: darken($msRed, 15%);
-		border: $defaultBorderWidth $defaultBorderType darken($msRed, 10%);
-		outline: $defaultOutlineWidth $defaultOutlineType darken($msRed, 10%);
-		box-shadow: 0 0 0 $defaultBoxShadowWidth darken($msRed, 10%);
+        color: $msWhite;
+        background-color: darken($msRed, 15%);
+        /*border: darken($msRed, 10%);
+        outline: $defaultOutlineWidth $defaultOutlineType darken($msRed, 10%);
+        box-shadow: $defaultBoxShadowSettings darken($msRed, 10%);*/
 
-		i.fa {
-			color: $msWhite
-		}
-	}
+        i.fa {
+            color: $msWhite
+        }
+    }
 }
 
-.btn-danger.disabled, .btn-danger:disabled {
+.btn-danger.disabled,
+.btn-danger:disabled {}
 
-}
-
-.input-append .add-on:last-child, .input-append .btn:last-child,
-.input-append .btn-group:last-child > .dropdown-toggle {
-	color: $msWhite;
-	background-color: darken($msRed, 15%);
-	border: $defaultBorderWidth $defaultBorderType darken($msRed, 10%);
-	outline: $defaultOutlineWidth $defaultOutlineType darken($msRed, 10%);
-	box-shadow: 0 0 0 $defaultBoxShadowWidth darken($msRed, 10%);
+.input-append .add-on:last-child,
+.input-append .btn:last-child,
+.input-append .btn-group:last-child>.dropdown-toggle {
+    color: $msWhite;
+    background-color: darken($msRed, 15%);
+    /*border: darken($msRed, 10%);
+    outline: $defaultOutlineWidth $defaultOutlineType darken($msRed, 10%);
+    box-shadow: $defaultBoxShadowSettings darken($msRed, 10%);*/
 }
 
 //
 // input fields
-input[type="text"], input[type="password"],
-input[type="email"], input[type="url"],
-input[type="time"], input[type="date"],
-input[type="datetime-local"], input[type="tel"],
-input[type="number"], input[type="search-md"],
-input[type="search"], select, textarea,
-.form-control, .table_controls,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="time"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="tel"],
+input[type="number"],
+input[type="search-md"],
+input[type="search"],
+select,
+textarea,
+.form-control,
+.table_controls,
 .dataTables_filter input[type="search"],
 .form-select {
-	padding: 0.375rem 0.75rem;
-	font-weight: 300;
-	font-size: 1.1rem;
-	height: auto;
-	line-height: normal;
-	background-image: none;
-	text-shadow: none;
-	border-radius: $defaultRadius;
-	outline-offset: $defaultOffset;
+    padding: .375rem .75rem;
+    font-weight: 300;
+    font-size: 1.1rem;
+    height: auto;
+    line-height: normal;
+    text-shadow: none;
 
-	color: $inputText;
-	background-color: $inputBg;
-	border: $defaultBorderWidth $defaultBorderType $inputBorderCol;
-	outline: $defaultOutlineWidth $defaultOutlineType $inputOutlineCol;
-	box-shadow: 0 0 0 $defaultBoxShadowWidth $inputBoxShadowCol;
+    color: $inputText;
+    background-color: $inputBg;
+    border: $inputBorderSettings;
+    outline: $inputOutlineSettings;
+    box-shadow: $inputBoxShadowSettings;
+    text-decoration: $inputDecorationSettings;
 
-	&:hover {
-		background-image: none;
-		text-shadow: none;
+    border-radius: $defaultRadius;
+    outline-offset: $defaultOffset;
 
-		color: $inputTextHov;
-		background-color: $inputBgHov;
-		border: $defaultBorderWidth $defaultBorderType $inputBorderColHov;
-		outline: $defaultOutlineWidth $defaultOutlineType $inputOutlineColHov;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $inputBoxShadowColHov;
-	}
+    &:hover {
+        text-shadow: none;
 
-	&:focus, &:active,
-	&.active {
-		background-image: none;
-		text-shadow: none;
+        color: $inputTextHov;
+        background-color: $inputBgHov;
+        border: $inputBorderSettingsHov;
+        outline: $inputOutlineSettingsHov;
+        box-shadow: $inputBoxShadowSettingsHov;
+        text-decoration: $inputDecorationSettingsHov;
+    }
 
-		color: $inputTextFoc;
-		background-color: $inputBgFoc;
-		border: $defaultBorderWidth $defaultBorderType $inputBorderColFoc;
-		outline: $defaultOutlineWidth $defaultOutlineType $inputOutlineColFoc;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $inputBoxShadowColFoc;
-	}
+    &:focus {
+        text-shadow: none !important;
 
-	&:disabled {
-		color: $inputDisabledText;
-		background-color: $inputDisabledBg;
-		border: $defaultBorderWidth $defaultBorderType $inputDisabledBorderCol;
-		outline: $defaultOutlineWidth $defaultOutlineType $inputDisabledOutlineCol;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $inputDisabledBoxShadowCol;
-	}
+        color: $inputTextFoc !important;
+        background-color: $inputBgFoc !important;
+        border: $inputBorderSettingsFoc !important;
+        outline: $inputOutlineSettingsFoc !important;
+        box-shadow: $inputBoxShadowSettingsFoc !important;
+        text-decoration: $inputDecorationSettingsFoc !important;
+    }
+
+    &:disabled {
+        text-shadow: none;
+
+        color: $inputDisabledText;
+        background-color: $inputDisabledBg;
+        border: $inputDisabledBorderSettings;
+        outline: $inputDisabledOutlineSettings;
+        box-shadow: $inputDisabledBoxShadowSettings;
+        text-decoration: $inputDisabledDecorationSettings;
+    }
 }
 
-input[type="text"], input[type="password"],
-input[type="email"], input[type="url"],
-input[type="time"], input[type="date"],
-input[type="datetime-local"], input[type="tel"],
-input[type="number"], input[type="search-md"],
-input[type="search"], textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="time"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="tel"],
+input[type="number"],
+input[type="search-md"],
+input[type="search"],
+textarea,
 input[type="search"] {
-	&:read-only {
-		color: $inputDisabledText;
-		background-color: $inputDisabledBg;
-		border: $defaultBorderWidth $defaultBorderType $inputDisabledBorderCol;
-		outline: $defaultOutlineWidth $defaultOutlineType $inputDisabledOutlineCol;
-		box-shadow: 0 0 0 $defaultBoxShadowWidth $inputDisabledBoxShadowCol;
-	}
+    &:read-only {
+        text-shadow: none;
+
+        color: $inputDisabledText;
+        background-color: $inputDisabledBg;
+        border: $inputDisabledBorderSettings;
+        outline: $inputDisabledOutlineSettings;
+        box-shadow: $inputDisabledBoxShadowSettings;
+        text-decoration: $inputDisabledDecorationSettings;
+    }
 }
 
-//
-// alerts
-.alert {
-	border-radius: $defaultRadius
+input[type="checkbox"],
+input[type="radio"] {
+    display: inline-block !important;
+    position: relative !important;
+    appearance: none !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: .25rem !important;
+    vertical-align: top !important;
+    background-color: $white !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+    border: $inputBorderSettings !important;
+    outline: $inputOutlineSettings !important;
+    box-shadow: $inputBoxShadowSettings !important;
+    text-decoration: $inputDecorationSettings !important;
+
+    &:hover {
+        border: $inputBorderSettingsHov !important;
+        outline: $inputOutlineSettingsHov !important;
+        box-shadow: $inputBoxShadowSettingsHov !important;
+        text-decoration: $inputDecorationSettingsHov !important;
+    }
+
+    &:focus {
+        border: $inputBorderSettingsFoc !important;
+        outline: $inputOutlineSettingsFoc !important;
+        box-shadow: $inputBoxShadowSettingsFoc !important;
+        text-decoration: $inputDecorationSettingsFoc !important;
+    }
+
+    &:active, &.active {
+        top: .125rem;
+    }
+
+    &:disabled {
+        border: $inputDisabledBorderSettings !important;
+        outline: $inputDisabledOutlineSettings !important;
+        box-shadow: $inputDisabledBoxShadowSettings !important;
+        text-decoration: $inputDisabledDecorationSettings !important;
+    }
+}
+
+input[type="radio"] {
+    border-radius: 50% !important;
+}
+
+input:checked[type="checkbox"] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e") !important;
+}
+
+input:checked[type="radio"] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23000'/%3e%3c/svg%3e") !important;
+}
+
+select {
+    display: block;
+    padding: .375rem 2.25rem .375rem .75rem !important;
+    appearance: none;
+
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem .75rem;
 }
 
 //
 // accessibility - screen reader text
 .sr-only {
-	position: absolute;
-	width: .066rem;
-	height: .066rem;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: none
+    position: absolute;
+    width: .066rem;
+    height: .066rem;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: none
 }

@@ -1,6 +1,10 @@
-dist/
+node_cache/
 node_modules/
 package-log.json
-Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/dist/
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/dist/senux.min.*
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/node_cache/
 Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/node_modules/
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/customisations.js
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/customisations.scss
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/variables.scss
 Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/package-lock.json

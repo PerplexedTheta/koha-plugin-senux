@@ -1,33 +1,34 @@
 @charset"UTF-8";
 
+
 //
 // vars--global
 // vars--global--monotones
-//$transparent: transparent;
-//$black: rgba(0,0,0,1);
-//$white: rgba(255,255,255,1);
+//$transparent: rgba(0,0,0,0);
+//$black: rgba(0, 0, 0, 1);
+//$white: rgba(255, 255, 255, 1);
 // vars--global--microsoft
-//$msBlack: rgba(35,31,32,1);
-//$msWhite: rgba(243,242,241,1);
-//$msCharcoal: rgba(59,58,57,1);
-//$msCloudy: rgba(243,242,241,1);
-//$msRed: rgba(177,55,25,1);
-//$msGold: rgba(242,200,17,1);
-//$msGreen: rgba(15,112,59,1);
-//$msBlue: rgba(43,87,154,1);
-//$msLagoon: rgba(3,120,124,1);
-//$msPurple: rgba(101,102,163,1);
-//$msMagenta: rgba(135,68,125,1);
+//$msBlack: rgba(35, 31, 32, 1);
+//$msWhite: rgba(243, 242, 241, 1);
+//$msCharcoal: rgba(59, 58, 57, 1);
+//$msCloudy: rgba(243, 242, 241, 1);
+//$msRed: rgba(177, 55, 25, 1);
+//$msGold: rgba(242, 200, 17, 1);
+//$msGreen: rgba(15, 112, 59, 1);
+//$msBlue: rgba(43, 87, 154, 1);
+//$msLagoon: rgba(3, 120, 124, 1);
+//$msPurple: rgba(101, 102, 163, 1);
+//$msMagenta: rgba(135, 68, 125, 1);
 // vars--global--senux
-//$userHue1: rgba(8,75,131,1);
-//$userHue2: rgba(90,169,230,1);
-//$userHue3: rgba(127,200,248,1);
-//$userHue4: rgba(255,99,146,1);
-//$userHue5: rgba(255,173,198,1);
+//$userHue1: rgba(8, 75, 131, 1);
+//$userHue2: rgba(27, 112, 177, 1);
+//$userHue3: rgba(127, 200, 248, 1);
+//$userHue4: rgba(224, 0, 67, 1);
+//$userHue5: rgba(255, 173, 198, 1);
 //$userText1: $white;
-//$userText2: $black;
+//$userText2: $white;
 //$userText3: $black;
-//$userText4: $black;
+//$userText4: $white;
 //$userText5: $black;
 
 // vars--global--bootstrap
@@ -39,147 +40,191 @@
 //$defaultBg: $msWhite;
 //$defaultFg: $white;
 //$defaultText: $msBlack;
-//$defaultFonts: 'SegoeUI','Roboto','Helvetica Neue','Arial',sans-serif;
+//$defaultFonts: 'SegoeUI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
 //$defaultBullet: disc;
 // vars--generic--bordersandoutlines
-//$defaultRadius: .198rem;
+//$defaultRadius: 0;
 //$defaultOffset: 0;
-//$defaultBorderWidth: .066rem;
-//$defaultBorderType: solid;
-//$defaultBorderCol: darken($defaultFg,15%);
-//$defaultOutlineWidth: .0625rem;
-//$defaultOutlineType: solid;
-//$defaultOutlineCol: darken($defaultFg,15%);
-//$defaultBoxShadowWidth: .1875rem;
-//$defaultBoxShadowCol: transparentize( darken($defaultFg,15%), .66 );
-//$defaultDecorationLine: solid;
-//$defaultDecorationStyle: underline;
-//$defaultDecorationCol: $transparent;
-//$defaultDecorationThickness: auto;
+//$defaultBorderSettings: .066rem solid darken($defaultFg, 15%);
+//$defaultOutlineSettings: .125rem solid $transparent;
+//$defaultBoxShadowSettings: 0 .125rem 0 $transparent;
+//$defaultDecorationSettings: none;
+// vars--generic--headers
+//$defaultHeaderUnderlineThickness: .125rem;
+//$defaultHeaderUnderlineType: solid;
+//$defaultHeaderUnderlineCol: $defaultText;
+//$defaultHeaderUnderlineWidthPct: 33%;
 // vars--generic--links
 //$defaultLinkBg: $transparent;
 //$defaultLinkText: $msBlue;
-//$defaultLinkBorderCol: $transparent;
-//$defaultLinkOutlineCol: $transparent;
-//$defaultLinkBoxShadowCol: $transparent;
-//$defaultLinkDecorationCol: $transparent;
+//$defaultLinkBorderSettings: none;
+//$defaultLinkOutlineSettings: .1875rem solid $transparent;
+//$defaultLinkBoxShadowSettings: 0 .125rem 0 $transparent;
+//$defaultLinkDecorationSettings: underline;
 //$defaultLinkBgHov: $transparent;
-//$defaultLinkTextHov: darken($defaultLinkText,15%);
-//$defaultLinkBorderColHov: $transparent;
-//$defaultLinkOutlineColHov: $transparent;
-//$defaultLinkBoxShadowColHov: $transparent;
-//$defaultLinkDecorationColHov: $defaultLinkTextHov;
-//$defaultLinkBgFoc: lighten($defaultLinkText,45%);
-//$defaultLinkTextFoc: darken($defaultLinkText,15%);
-//$defaultLinkBorderColFoc: lighten($defaultLinkText,15%);
-//$defaultLinkOutlineColFoc: $msWhite;
-//$defaultLinkBoxShadowColFoc: transparentize( darken($defaultLinkText,15%), .66 );
-//$defaultLinkDecorationColFoc: $transparent;
+//$defaultLinkTextHov: darken($defaultLinkText, 5%);
+//$defaultLinkBorderSettingsHov: $defaultLinkBorderSettings;
+//$defaultLinkOutlineSettingsHov: $defaultLinkOutlineSettings;
+//$defaultLinkBoxShadowSettingsHov: $defaultLinkBoxShadowSettings;
+//$defaultLinkDecorationSettingsHov: underline;
+//$defaultLinkBgFoc: $msGold;
+//$defaultLinkTextFoc: $msBlack;
+//$defaultLinkBorderSettingsFoc: $defaultLinkBorderSettings;
+//$defaultLinkOutlineSettingsFoc: .1875rem solid $msGold;
+//$defaultLinkBoxShadowSettingsFoc: 0 .125rem 0 $msBlack;
+//$defaultLinkDecorationSettingsFoc: none;
 
 //
 // vars--main
 // vars--main--btns
-//$btnPriText: darken($userText4,5%);
-//$btnPriBg: darken($userHue4,5%);
-//$btnPriBorderCol: darken($userHue4,15%);
-//$btnPriOutlineCol: $transparent;
-//$btnPriBoxShadowCol: $transparent;
-//$btnPriTextHov: darken($userText4,15%);
-//$btnPriBgHov: darken($userHue4,15%);
-//$btnPriBorderColHov: darken($userHue4,30%);
-//$btnPriOutlineColHov: $transparent;
-//$btnPriBoxShadowColHov: transparentize( darken($userHue4,30%), .66 );
+//$btnBg: $transparent;
+//$btnText: $defaultLinkText;
+//$btnBorderSettings: .125rem solid $btnBg;
+//$btnOutlineSettings: $defaultOutlineSettings;
+//$btnBoxShadowSettings: 0 .125rem 0 $msBlack;
+//$btnDecorationSettings: $defaultDecorationSettings;
+//$btnBgHov: $transparent;
+//$btnTextHov: $defaultLinkTextHov;
+//$btnBorderSettingsHov: .125rem solid $btnBgHov;
+//$btnOutlineSettingsHov: $defaultOutlineSettings;
+//$btnBoxShadowSettingsHov: $btnBoxShadowSettings;
+//$btnDecorationSettingsHov: $btnDecorationSettings;
+//$btnBgFoc: $msGold;
+//$btnTextFoc: $msBlack;
+//$btnBorderSettingsFoc: .125rem solid $btnBgFoc;
+//$btnOutlineSettingsFoc: $defaultOutlineSettings;
+//$btnBoxShadowSettingsFoc: $btnBoxShadowSettings;
+//$btnDecorationSettingsFoc: $btnDecorationSettings;
+// vars--main--btns--pri
+//$btnPriBg: darken($userHue4, 5%);
+//$btnPriText: darken($userText4, 5%);
+//$btnPriBorderSettings: .125rem solid $btnPriBg;
+//$btnPriOutlineSettings: $defaultOutlineSettings;
+//$btnPriBoxShadowSettings: $btnBoxShadowSettings;
+//$btnPriDecorationSettings: $defaultDecorationSettings;
+//$btnPriBgHov: darken($userHue4, 15%);
+//$btnPriTextHov: $btnPriText;
+//$btnPriBorderSettingsHov: .125rem solid $btnPriBgHov;
+//$btnPriOutlineSettingsHov: $defaultOutlineSettings;
+//$btnPriBoxShadowSettingsHov: $btnPriBoxShadowSettings;
+//$btnPriDecorationSettingsHov: $btnDecorationSettings;
+// vars--main--btns--sec
+//$btnSecBg: darken($msWhite, 25%);
 //$btnSecText: $msBlack;
-//$btnSecBg: darken($msWhite,15%);
-//$btnSecBorderCol: darken($msWhite,30%);
-//$btnSecOutlineCol: $transparent;
-//$btnSecBoxShadowCol: $transparent;
-//$btnSecTextHov: $msWhite;
-//$btnSecBgHov: $msBlack;
-//$btnSecBorderColHov: lighten($msBlack,15%);
-//$btnSecOutlineColHov: $transparent;
-//$btnSecBoxShadowColHov: transparentize( lighten($msBlack,15%), .66 );
-//$btnMenuText: $btnSecText;
+//$btnSecBorderSettings: .125rem solid $btnSecBg;
+//$btnSecOutlineSettings: $defaultOutlineSettings;
+//$btnSecBoxShadowSettings: $btnBoxShadowSettings;
+//$btnSecDecorationSettings: $defaultDecorationSettings;
+//$btnSecBgHov: darken($msWhite, 15%);
+//$btnSecTextHov: $btnSecText;
+//$btnSecBorderSettingsHov: .125rem solid $btnSecBgHov;
+//$btnSecOutlineSettingsHov: $defaultOutlineSettings;
+//$btnSecBoxShadowSettingsHov: $btnSecBoxShadowSettings;
+//$btnSecDecorationSettingsHov: $btnDecorationSettings;
+// vars--main--btns--menu
 //$btnMenuBg: $btnSecBg;
-//$btnMenuBorderCol: $btnSecBorderCol;
-//$btnMenuOutlineCol: $transparent;
-//$btnMenuTextHov: $btnSecTextHov;
+//$btnMenuText: $btnSecText;
+//$btnMenuBorderSettings: $btnSecBorderSettings;
+//$btnMenuOutlineSettings: $btnSecOutlineSettings;
+//$btnMenuBoxShadowSettings: $btnSecBoxShadowSettings;
+//$btnMenuDecorationSettings: $btnSecDecorationSettings;
 //$btnMenuBgHov: $btnSecBgHov;
-//$btnMenuBorderColHov: $btnSecBorderColHov;
-//$btnMenuOutlineColHov: $transparent;
-//$btnLinkText: $defaultLinkText;
-//$btnLinkBg: $transparent;
-//$btnLinkBorderCol: $transparent;
-//$btnLinkOutlineCol: $transparent;
-//$btnLinkBoxShadowCol: $transparent;
-//$btnLinkTextHov: $defaultLinkTextHov;
-//$btnLinkBgHov: lighten($defaultLinkText,60%);
-//$btnLinkBorderColHov: darken($userText1,15%);
-//$btnLinkOutlineColHov: $transparent;
-//$btnLinkBoxShadowColHov: darken($userText1,15%);
+//$btnMenuTextHov: $btnSecTextHov;
+//$btnMenuBorderSettingsHov: $btnSecBorderSettingsHov;
+//$btnMenuOutlineSettingsHov: $btnSecOutlineSettingsHov;
+//$btnMenuBoxShadowSettingsHov: $btnSecBoxShadowSettingsHov;
+//$btnMenuDecorationSettingsHov: $btnSecDecorationSettingsHov;
+// vars--main--btns--link
+//$btnLinkBg: $btnBg;
+//$btnLinkText: $btnText;
+//$btnLinkBorderSettings: none;
+//$btnLinkOutlineSettings: none;
+//$btnLinkBoxShadowSettings: none;
+//$btnLinkDecorationSettings: $defaultLinkDecorationSettings;
+//$btnLinkBgHov: $btnBgHov;
+//$btnLinkTextHov: $btnTextHov;
+//$btnLinkBorderSettingsHov: none;
+//$btnLinkOutlineSettingsHov: none;
+//$btnLinkBoxShadowSettingsHov: none;
+//$btnLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 // vars--main--inputs
-//$inputText: $msBlack;
 //$inputBg: $white;
-//$inputBorderCol: darken($msWhite,15%);
-//$inputOutlineCol: $transparent;
-//$inputBoxShadowCol: $transparent;
-//$inputTextHov: $inputText;
+//$inputText: $msBlack;
+//$inputBorderSettings: .125rem solid $inputText;
+//$inputOutlineSettings: $defaultOutlineSettings;
+//$inputBoxShadowSettings: $defaultBoxShadowSettings;
+//$inputDecorationSettings: none;
 //$inputBgHov: $inputBg;
-//$inputBorderColHov: darken($userHue5,30%);
-//$inputOutlineColHov: $transparent;
-//$inputBoxShadowColHov: transparentize( darken($userHue5,30%), .66 );
-//$inputTextFoc: $inputText;
+//$inputTextHov: $inputText;
+//$inputBorderSettingsHov: $inputBorderSettings;
+//$inputOutlineSettingsHov: $defaultOutlineSettings;
+//$inputBoxShadowSettingsHov: 0 0 0 .125rem inset;
+//$inputDecorationSettingsHov: $inputDecorationSettings;
 //$inputBgFoc: $inputBg;
-//$inputBorderColFoc: darken($userHue4,30%);
-//$inputOutlineColFoc: $transparent;
-//$inputBoxShadowColFoc: transparentize( darken($userHue4,30%), .66 );
+//$inputTextFoc: $inputText;
+//$inputBorderSettingsFoc: $inputBorderSettings;
+//$inputOutlineSettingsFoc: $msGold solid .1875rem;
+//$inputBoxShadowSettingsFoc:$inputBoxShadowSettingsHov;
+//$inputDecorationSettingsFoc: $inputDecorationSettings;
+// vars--main--inputs--disabled
+//$inputDisabledBg: rgba(224, 224, 224, 1);
 //$inputDisabledText: $inputText;
-//$inputDisabledBg: rgba(224,224,224,1);
-//$inputDisabledBorderCol: $inputBorderCol;
-//$inputDisabledOutlineCol: $transparent;
-//$inputDisabledBoxShadowCol: $inputOutlineCol;
+//$inputDisabledBorderSettings: $inputBorderSettings;
+//$inputDisabledOutlineSettings: $inputOutlineSettings;
+//$inputDisabledBoxShadowSettings: $inputBoxShadowSettings;
+//$inputDisabledDecorationSettings: $inputDecorationSettings;
 // vars--main--dropdowns
 //$dropdownBg: $msWhite;
 //$dropdownText: $msBlack;
 //$dropdownLinkBg: $transparent;
 //$dropdownLinkText: $msBlack;
-//$dropdownLinkDecorationCol: $transparent;
+//$dropdownLinkBorderSettings: $defaultLinkBorderSettings;
+//$dropdownLinkOutlineSettings: $defaultLinkOutlineSettings;
+//$dropdownLinkBoxShadowSettings: $defaultLinkBoxShadowSettings;
+//$dropdownLinkDecorationSettings: $defaultLinkDecorationSettings;
 //$dropdownLinkBgHov: $userHue2;
-//$dropdownLinkTextHov: $msBlack;
-//$dropdownLinkDecorationColHov: $dropdownLinkTextHov;
+//$dropdownLinkTextHov: $msWhite;
+//$dropdownLinkBorderSettingsHov: $defaultLinkBorderSettings;
+//$dropdownLinkOutlineSettingsHov: $defaultLinkOutlineSettings;
+//$dropdownLinkBoxShadowSettingsHov: $defaultLinkBoxShadowSettings;
+//$dropdownLinkDecorationSettingsHov: $dropdownLinkDecorationSettings;
 
 //
 // vars--navbar
 // vars--navbar--root
 //$navbarBg: $msBlack;
-//$navbarLinkText: lighten($msBlack,85%);
-//$navbarLinkDecorationCol: $transparent;
-//$navbarLinkTextHov: lighten($msBlack,65%);
-//$navbarLinkDecorationColHov: $transparent;
+//$navbarLinkText: lighten($msBlack, 85%);
+//$navbarLinkDecorationSettings: none;
+//$navbarLinkTextHov: lighten($msBlack, 65%);
+//$navbarLinkDecorationSettingsHov: $navbarLinkDecorationSettings;
 // vars--navbar--logo
-//$navbarLogoText: $defaultLinkText;
 //$navbarLogoBg: $transparent url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="22.939"%3E%3Cpath fill="%23faf9fa" d="M8.54 1.1C9.7.4 11.04.05 12.38 0a6.03 6.05 0 0 1 5.16 3.1 10.3 10.32 0 0 1 1.23 4.13 18.86 18.9 0 0 1-4.4 13.16 8.42 8.45 0 0 1-4.28 2.48 5.37 5.4 0 0 1-3.97-.97c-.7-.5-.96-1.4-.92-2.23.63.86 1.6 1.45 2.7 1.5.95.02 1.9-.4 2.55-1.12a3.45 3.46 0 0 0 .18-4.42c-.46-.54-1-1.03-1.65-1.37a5.78 5.8 0 0 0-2.08-.63 7.23 7.26 0 0 0-3.88.8 4.67 4.7 0 0 0-2.24 3.1c-.28 1-.17 2.06-.07 3.05-.43-1.14-.6-2.4-.7-3.62v-.9A19.3 19.35 0 0 1 5.03 3.83C6.06 2.76 7.2 1.78 8.53 1.1zm15.54.8c1.58.05 3.17 0 4.7-.38-1.16 4.05-2.32 8.08-3.48 12.13.14-.08.27-.18.4-.3 1.42-1.26 2.8-2.6 4.24-3.85.67-.55 1.37-1.17 2.23-1.35.4-.1.88-.07 1.2.23.72.65.65 1.92-.08 2.54-.4.35-.98.42-1.46.28-.4-.1-.62-.5-.97-.7-.55 0-1.03.35-1.46.67-.87.75-1.73 1.53-2.62 2.26-.03.12.1.23.13.35.9 1.58 1.8 3.18 2.68 4.78.32.5.64 1.07 1.16 1.42.27.2.7.16.92-.06.48-.4.82-.94 1.05-1.5.28 0 .55 0 .8 0-.33.9-.75 1.82-1.4 2.58-.45.54-1.1 1.03-1.83 1-.64.02-1.2-.35-1.62-.8-.66-.75-1.12-1.66-1.6-2.54-.72-1.24-1.4-2.5-2.1-3.75-.63 2.22-1.2 4.46-1.85 6.66-.73 0-1.5 0-2.2 0 1.43-5.16 2.85-10.32 4.3-15.5.24-.85.56-1.7.54-2.58 0-.32-.2-.65-.53-.72-.45-.1-.9-.03-1.36-.04.08-.27.15-.53.23-.78zm29.7 0c1.58.04 3.17.04 4.7-.38-.9 3.33-1.9 6.65-2.82 10a9.93 9.96 0 0 1 2.8-2.78 4.16 4.17 0 0 1 2.9-.57c.7.12 1.37.57 1.67 1.26.25.52.27 1.1.2 1.68-.14 1.52-.8 2.93-1.3 4.36-.4 1.2-.87 2.4-1.27 3.6-.13.46-.34 1-.2 1.5.12.33.58.37.9.25.3-.15.56-.38.8-.65.4-.57.8-1.2.96-1.9.3 0 .57 0 .88 0a5.46 5.48 0 0 1-1.86 3.1c-.7.56-1.72.76-2.57.47-.76-.25-1.23-1.03-1.26-1.8-.03-.8.24-1.6.47-2.36.43-1.33.96-2.63 1.45-3.94.45-1.22.93-2.45.93-3.76a.8.8 0 0 0-.6-.78c-.9-.16-1.77.23-2.46.76a9.1 9.13 0 0 0-2.25 2.86c-.9 1.57-1.48 3.33-1.94 5.07-.36 1.2-.7 2.43-1.05 3.64h-2.22c1.03-3.7 2.06-7.44 3.1-11.16.54-2 1.13-4 1.65-6 .08-.42.28-.86.12-1.28-.04-.23-.27-.34-.46-.34-.5-.1-.98-.04-1.5-.05.1-.26.2-.52.24-.78zM43.6 8.1a6.57 6.6 0 0 0-3.1.73 9.26 9.28 0 0 0-4.1 9.14c.2 1.38.9 2.72 2.13 3.44 1 .62 2.22.66 3.33.47a6.35 6.37 0 0 0 3.48-1.84c.84-.83 1.5-1.83 1.96-2.93.6-1.54.84-3.24.6-4.88a5.14 5.16 0 0 0-1.8-3.33 4.4 4.4 0 0 0-2.5-.8zm.02.75c.46 0 .9.14 1.23.46.58.52.74 1.32.83 2.07a13.63 13.67 0 0 1-2.27 8.3 3.54 3.55 0 0 1-2.3 1.52c-.62.07-1.32-.04-1.77-.5-.58-.6-.7-1.44-.77-2.22-.1-1.95.32-3.88 1.05-5.67.4-.9.8-1.82 1.44-2.6.46-.56 1.05-1.05 1.76-1.25.26-.08.54-.1.8-.1zm29.74-.76c-.12 0-.23 0-.32 0a5.18 5.2 0 0 0-3.5 1.55 10.2 10.22 0 0 0-2.8 8.54c.18 1.2.67 2.45 1.7 3.22.8.6 1.95.64 2.9.4a5.78 5.8 0 0 0 3.2-2.53c.05.73.18 1.53.68 2.12.46.54 1.26.65 1.92.44.62-.2 1.14-.65 1.53-1.15.64-.8 1.06-1.73 1.35-2.7-.26 0-.53 0-.8.02-.23.86-.7 1.62-1.18 2.34-.28.32-.6.76-1.08.68-.32-.08-.44-.46-.46-.75-.08-.87.06-1.73.3-2.57.87-3.07 1.76-6.13 2.63-9.2-.75 0-1.5 0-2.25 0-.26.9-.54 1.85-.8 2.8 0-.9-.37-1.75-1-2.36a2.96 2.97 0 0 0-2-.88zm.08 1.07c.45 0 .93.1 1.3.42.56.5.74 1.3.82 2.03.23 2.4-.42 4.8-1.53 6.9-.5.92-1.2 1.86-2.23 2.2-.63.2-1.4.23-1.96-.15-.68-.42-.83-1.28-.9-2-.05-1.37.13-2.73.47-4.06.4-1.37.88-2.77 1.72-3.95.44-.62 1.08-1.15 1.85-1.34.16-.03.3-.05.46-.05z"/%3E%3C/svg%3E%0A') no-repeat left center;
-//$navbarLogoBorderCol: $defaultLinkBorderCol;
-//$navbarLogoOutlineCol: $defaultLinkOutlineCol;
-//$navbarLogoBoxShadowCol: $defaultLinkBoxShadowCol;
-//$navbarLogoDecorationCol: $defaultLinkDecorationCol;
-//$navbarLogoTextHov: $defaultLinkTextHov;
+//$navbarLogoText: $defaultLinkText;
+//$navbarLogoBorderSettings: $defaultLinkBorderSettings;
+//$navbarLogoOutlineSettings: $defaultLinkOutlineSettings;
+//$navbarLogoBoxShadowSettings: $defaultLinkBoxShadowSettings;
+//$navbarLogoDecorationSettings: $defaultLinkDecorationSettings;
 //$navbarLogoBgHov: $transparent url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="22.939"%3E%3Cpath fill="%23cac3c5" d="M8.54 1.1C9.7.4 11.04.05 12.38 0a6.03 6.05 0 0 1 5.16 3.1 10.3 10.32 0 0 1 1.23 4.13 18.86 18.9 0 0 1-4.4 13.16 8.42 8.45 0 0 1-4.28 2.48 5.37 5.4 0 0 1-3.97-.97c-.7-.5-.96-1.4-.92-2.23.63.86 1.6 1.45 2.7 1.5.95.02 1.9-.4 2.55-1.12a3.45 3.46 0 0 0 .18-4.42c-.46-.54-1-1.03-1.65-1.37a5.78 5.8 0 0 0-2.08-.63 7.23 7.26 0 0 0-3.88.8 4.67 4.7 0 0 0-2.24 3.1c-.28 1-.17 2.06-.07 3.05-.43-1.14-.6-2.4-.7-3.62v-.9A19.3 19.35 0 0 1 5.03 3.83C6.06 2.76 7.2 1.78 8.53 1.1zm15.54.8c1.58.05 3.17 0 4.7-.38-1.16 4.05-2.32 8.08-3.48 12.13.14-.08.27-.18.4-.3 1.42-1.26 2.8-2.6 4.24-3.85.67-.55 1.37-1.17 2.23-1.35.4-.1.88-.07 1.2.23.72.65.65 1.92-.08 2.54-.4.35-.98.42-1.46.28-.4-.1-.62-.5-.97-.7-.55 0-1.03.35-1.46.67-.87.75-1.73 1.53-2.62 2.26-.03.12.1.23.13.35.9 1.58 1.8 3.18 2.68 4.78.32.5.64 1.07 1.16 1.42.27.2.7.16.92-.06.48-.4.82-.94 1.05-1.5.28 0 .55 0 .8 0-.33.9-.75 1.82-1.4 2.58-.45.54-1.1 1.03-1.83 1-.64.02-1.2-.35-1.62-.8-.66-.75-1.12-1.66-1.6-2.54-.72-1.24-1.4-2.5-2.1-3.75-.63 2.22-1.2 4.46-1.85 6.66-.73 0-1.5 0-2.2 0 1.43-5.16 2.85-10.32 4.3-15.5.24-.85.56-1.7.54-2.58 0-.32-.2-.65-.53-.72-.45-.1-.9-.03-1.36-.04.08-.27.15-.53.23-.78zm29.7 0c1.58.04 3.17.04 4.7-.38-.9 3.33-1.9 6.65-2.82 10a9.93 9.96 0 0 1 2.8-2.78 4.16 4.17 0 0 1 2.9-.57c.7.12 1.37.57 1.67 1.26.25.52.27 1.1.2 1.68-.14 1.52-.8 2.93-1.3 4.36-.4 1.2-.87 2.4-1.27 3.6-.13.46-.34 1-.2 1.5.12.33.58.37.9.25.3-.15.56-.38.8-.65.4-.57.8-1.2.96-1.9.3 0 .57 0 .88 0a5.46 5.48 0 0 1-1.86 3.1c-.7.56-1.72.76-2.57.47-.76-.25-1.23-1.03-1.26-1.8-.03-.8.24-1.6.47-2.36.43-1.33.96-2.63 1.45-3.94.45-1.22.93-2.45.93-3.76a.8.8 0 0 0-.6-.78c-.9-.16-1.77.23-2.46.76a9.1 9.13 0 0 0-2.25 2.86c-.9 1.57-1.48 3.33-1.94 5.07-.36 1.2-.7 2.43-1.05 3.64h-2.22c1.03-3.7 2.06-7.44 3.1-11.16.54-2 1.13-4 1.65-6 .08-.42.28-.86.12-1.28-.04-.23-.27-.34-.46-.34-.5-.1-.98-.04-1.5-.05.1-.26.2-.52.24-.78zM43.6 8.1a6.57 6.6 0 0 0-3.1.73 9.26 9.28 0 0 0-4.1 9.14c.2 1.38.9 2.72 2.13 3.44 1 .62 2.22.66 3.33.47a6.35 6.37 0 0 0 3.48-1.84c.84-.83 1.5-1.83 1.96-2.93.6-1.54.84-3.24.6-4.88a5.14 5.16 0 0 0-1.8-3.33 4.4 4.4 0 0 0-2.5-.8zm.02.75c.46 0 .9.14 1.23.46.58.52.74 1.32.83 2.07a13.63 13.67 0 0 1-2.27 8.3 3.54 3.55 0 0 1-2.3 1.52c-.62.07-1.32-.04-1.77-.5-.58-.6-.7-1.44-.77-2.22-.1-1.95.32-3.88 1.05-5.67.4-.9.8-1.82 1.44-2.6.46-.56 1.05-1.05 1.76-1.25.26-.08.54-.1.8-.1zm29.74-.76c-.12 0-.23 0-.32 0a5.18 5.2 0 0 0-3.5 1.55 10.2 10.22 0 0 0-2.8 8.54c.18 1.2.67 2.45 1.7 3.22.8.6 1.95.64 2.9.4a5.78 5.8 0 0 0 3.2-2.53c.05.73.18 1.53.68 2.12.46.54 1.26.65 1.92.44.62-.2 1.14-.65 1.53-1.15.64-.8 1.06-1.73 1.35-2.7-.26 0-.53 0-.8.02-.23.86-.7 1.62-1.18 2.34-.28.32-.6.76-1.08.68-.32-.08-.44-.46-.46-.75-.08-.87.06-1.73.3-2.57.87-3.07 1.76-6.13 2.63-9.2-.75 0-1.5 0-2.25 0-.26.9-.54 1.85-.8 2.8 0-.9-.37-1.75-1-2.36a2.96 2.97 0 0 0-2-.88zm.08 1.07c.45 0 .93.1 1.3.42.56.5.74 1.3.82 2.03.23 2.4-.42 4.8-1.53 6.9-.5.92-1.2 1.86-2.23 2.2-.63.2-1.4.23-1.96-.15-.68-.42-.83-1.28-.9-2-.05-1.37.13-2.73.47-4.06.4-1.37.88-2.77 1.72-3.95.44-.62 1.08-1.15 1.85-1.34.16-.03.3-.05.46-.05z"/%3E%3C/svg%3E%0A') no-repeat left center;
-//$navbarLogoTextFoc: $defaultLinkTextFoc;
+//$navbarLogoTextHov: $defaultLinkTextHov;
+//$navbarLogoBorderSettingsHov: $defaultLinkBorderSettingsHov;
+//$navbarLogoOutlineSettingsHov: $defaultLinkOutlineSettingsHov;
+//$navbarLogoBoxShadowSettingsHov: $defaultLinkBoxShadowSettingsHov;
+//$navbarLogoDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 //$navbarLogoBgFoc: $navbarLogoBgHov;
-//$navbarLogoBorderColFoc: $defaultLinkBorderColFoc;
-//$navbarLogoOutlineColFoc: $defaultLinkOutlineColFoc;
-//$navbarLogoBoxShadowColFoc: $defaultLinkBoxShadowColFoc;
-//$navbarLogoDecorationColFoc: $defaultLinkDecorationColFoc;
+//$navbarLogoTextFoc: $defaultLinkTextFoc;
+//$navbarLogoBorderSettingsFoc: $defaultLinkBorderSettingsFoc;
+//$navbarLogoOutlineSettingsFoc: $defaultLinkOutlineSettingsFoc;
+//$navbarLogoBoxShadowSettingsFoc: $defaultLinkBoxShadowSettingsFoc;
+//$navbarLogoDecorationSettingsFoc: $defaultLinkDecorationSettingsFoc;
 //$navbarLogoDisplay: block;
 //$navbarLogoDisplayMobile: block;
 // vars--navbar--usermenu
 //$navbarUsermenuBg: $msWhite;
 //$navbarUsermenuText: $msBlack;
 //$navbarUsermenuLinkText: $msBlue;
-//$navbarUsermenuLinkTextHov: darken($msBlue,15%);
+//$navbarUsermenuLinkTextHov: darken($msBlue, 15%);
 //$navbarUsermenuLogoutText: $msRed;
-//$navbarUsermenuLogoutTextHov: darken($msRed,15%);
+//$navbarUsermenuLogoutTextHov: darken($msRed, 15%);
 
 //
 // vars--masthead
@@ -187,23 +232,25 @@
 //$headerBg: $black url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height="100%25" width="100%25"%3E%3Cdefs%3E%3Cpattern id="doodad" width="64" height="64" viewBox="0 0 40 40" patternUnits="userSpaceOnUse" patternTransform="rotate(135)"%3E%3Crect width="100%25" height="100%25" fill="rgba(153, 0, 46,1)"/%3E%3Cpath d="M0 10h40v20h-40z" fill="rgba(153, 128, 0,1)"/%3E%3Cpath d="M-40 10h20l1 10l-1 10h-20l1-10zM0 10h20l1 10l-1 10h-20l1-10z" fill="rgba(0, 0, 0,0)"/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill="url(%23doodad)" height="200%25" width="200%25"/%3E%3C/svg%3E ');
 //$headerBgSize: cover;
 //$headerText: $msWhite;
-//$headerLogoBg: $transparent url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="UTF-8"%3F%3E%3Csvg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200px" height="200px" viewBox="0 0 200 200" version="1.1"%3E%3Cg id="surface1"%3E%3Crect x="0" y="0" width="200" height="200" rx="3" style="fill:%23242020;fill-opacity:1;stroke:none;"/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 43.273438 28.519531 C 43.273438 36.613281 36.710938 43.175781 28.613281 43.175781 C 20.519531 43.175781 13.957031 36.613281 13.957031 28.519531 C 13.957031 20.425781 20.519531 13.863281 28.613281 13.863281 C 36.710938 13.863281 43.273438 20.425781 43.273438 28.519531 Z M 43.273438 28.519531 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 186.042969 28.519531 C 186.042969 36.613281 179.480469 43.175781 171.386719 43.175781 C 163.289062 43.175781 156.726562 36.613281 156.726562 28.519531 C 156.726562 20.425781 163.289062 13.863281 171.386719 13.863281 C 179.480469 13.863281 186.042969 20.425781 186.042969 28.519531 Z M 186.042969 28.519531 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 171.386719 61.453125 C 168.71875 61.453125 166.246094 62.214844 164.152344 63.355469 L 136.359375 35.753906 C 137.5 33.660156 138.261719 31.183594 138.261719 28.519531 C 138.261719 20.523438 131.789062 13.863281 123.605469 13.863281 C 115.417969 13.863281 108.945312 20.332031 108.945312 28.519531 C 108.945312 36.703125 115.417969 43.175781 123.605469 43.175781 C 126.269531 43.175781 128.746094 42.414062 130.839844 41.273438 L 158.441406 68.875 C 157.296875 70.96875 156.539062 73.445312 156.539062 76.109375 C 156.539062 78.773438 157.296875 81.25 158.441406 83.34375 L 131.027344 111.136719 C 128.933594 109.992188 126.460938 109.234375 123.796875 109.234375 C 115.800781 109.234375 109.136719 115.703125 109.136719 123.890625 C 109.136719 132.074219 115.609375 138.546875 123.796875 138.546875 C 131.980469 138.546875 138.453125 132.074219 138.453125 123.890625 C 138.453125 121.226562 137.691406 118.75 136.550781 116.65625 L 164.152344 89.054688 C 166.246094 90.195312 168.71875 90.957031 171.386719 90.957031 C 179.378906 90.957031 186.042969 84.484375 186.042969 76.300781 C 186.042969 68.113281 179.378906 61.453125 171.386719 61.453125 Z M 171.386719 61.453125 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 28.613281 90.765625 C 36.609375 90.765625 43.273438 84.296875 43.273438 76.109375 C 43.273438 73.445312 42.511719 70.96875 41.367188 68.875 L 68.972656 41.273438 C 71.066406 42.414062 73.539062 43.175781 76.203125 43.175781 C 78.871094 43.175781 81.34375 42.414062 83.4375 41.273438 L 111.039062 68.875 C 109.898438 70.96875 109.136719 73.445312 109.136719 76.109375 C 109.136719 84.105469 115.609375 90.765625 123.796875 90.765625 C 131.980469 90.765625 138.453125 84.296875 138.453125 76.109375 C 138.453125 67.925781 131.980469 61.453125 123.796875 61.453125 C 121.128906 61.453125 118.65625 62.214844 116.5625 63.355469 L 88.769531 35.753906 C 89.910156 33.660156 90.671875 31.183594 90.671875 28.519531 C 90.671875 20.523438 84.199219 13.863281 76.015625 13.863281 C 67.828125 13.863281 61.355469 20.332031 61.355469 28.519531 C 61.355469 31.183594 62.117188 33.660156 63.261719 35.753906 L 35.847656 63.546875 C 33.753906 62.402344 31.28125 61.640625 28.613281 61.640625 C 20.621094 61.640625 13.957031 68.113281 13.957031 76.300781 C 13.957031 84.484375 20.621094 90.765625 28.613281 90.765625 Z M 28.613281 90.765625 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 43.273438 171.289062 C 43.273438 179.386719 36.710938 185.949219 28.613281 185.949219 C 20.519531 185.949219 13.957031 179.386719 13.957031 171.289062 C 13.957031 163.195312 20.519531 156.632812 28.613281 156.632812 C 36.710938 156.632812 43.273438 163.195312 43.273438 171.289062 Z M 43.273438 171.289062 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 76.203125 156.632812 C 73.539062 156.632812 71.066406 157.394531 68.972656 158.535156 L 41.179688 130.933594 C 42.320312 128.839844 43.082031 126.363281 43.082031 123.699219 C 43.082031 121.035156 42.320312 118.558594 41.179688 116.464844 L 68.78125 88.863281 C 70.875 90.007812 73.347656 90.765625 76.015625 90.765625 C 84.007812 90.765625 90.671875 84.296875 90.671875 76.109375 C 90.671875 67.925781 84.199219 61.453125 76.015625 61.453125 C 67.828125 61.453125 61.355469 67.925781 61.355469 76.109375 C 61.355469 78.773438 62.117188 81.25 63.261719 83.34375 L 35.847656 111.136719 C 33.753906 109.992188 31.28125 109.234375 28.613281 109.234375 C 20.621094 109.234375 13.957031 115.703125 13.957031 123.890625 C 13.957031 132.074219 20.429688 138.546875 28.613281 138.546875 C 31.28125 138.546875 33.753906 137.785156 35.847656 136.644531 L 63.449219 164.246094 C 62.308594 166.339844 61.546875 168.816406 61.546875 171.480469 C 61.546875 179.476562 68.019531 186.136719 76.203125 186.136719 C 84.390625 186.136719 90.863281 179.667969 90.863281 171.480469 C 90.863281 163.296875 84.199219 156.632812 76.203125 156.632812 Z M 76.203125 156.632812 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 186.042969 171.289062 C 186.042969 179.386719 179.480469 185.949219 171.386719 185.949219 C 163.289062 185.949219 156.726562 179.386719 156.726562 171.289062 C 156.726562 163.195312 163.289062 156.632812 171.386719 156.632812 C 179.480469 156.632812 186.042969 163.195312 186.042969 171.289062 Z M 186.042969 171.289062 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 171.386719 109.042969 C 163.390625 109.042969 156.726562 115.515625 156.726562 123.699219 C 156.726562 126.363281 157.488281 128.839844 158.632812 130.933594 L 131.027344 158.726562 C 128.933594 157.585938 126.460938 156.824219 123.796875 156.824219 C 121.128906 156.824219 118.65625 157.585938 116.5625 158.726562 L 88.769531 130.933594 C 89.910156 128.839844 90.671875 126.363281 90.671875 123.699219 C 90.671875 115.703125 84.199219 109.042969 76.015625 109.042969 C 67.828125 109.042969 61.355469 115.515625 61.355469 123.699219 C 61.355469 131.886719 67.828125 138.359375 76.015625 138.359375 C 78.679688 138.359375 81.152344 137.597656 83.25 136.453125 L 110.851562 164.054688 C 109.707031 166.152344 108.945312 168.625 108.945312 171.289062 C 108.945312 179.285156 115.417969 185.949219 123.605469 185.949219 C 131.789062 185.949219 138.261719 179.476562 138.261719 171.289062 C 138.261719 168.625 137.5 166.152344 136.359375 164.054688 L 163.960938 136.453125 C 166.054688 137.597656 168.53125 138.359375 171.195312 138.359375 C 179.191406 138.359375 185.851562 131.886719 185.851562 123.699219 C 185.851562 115.515625 179.378906 109.042969 171.386719 109.042969 Z M 171.386719 109.042969 "/%3E%3C/g%3E%3C/svg%3E%0A');
+//$headerLogoBg: $transparent url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="UTF-8"%3F%3E%3Csvg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200px" height="200px" viewBox="0 0 200 200" version="1.1"%3E%3Cg id="surface1"%3E%3Crect x="0" y="0" width="200" height="200" rx="3" style="fill:%23242020;fill-opacity:1;stroke:none;"/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 43.273438 28.519531 C 43.273438 36.613281 36.710938 43.175781 28.613281 43.175781 C 20.519531 43.175781 13.957031 36.613281 13.957031 28.519531 C 13.957031 20.425781 20.519531 13.863281 28.613281 13.863281 C 36.710938 13.863281 43.273438 20.425781 43.273438 28.519531 Z M 43.273438 28.519531 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 186.042969 28.519531 C 186.042969 36.613281 179.480469 43.175781 171.386719 43.175781 C 163.289062 43.175781 156.726562 36.613281 156.726562 28.519531 C 156.726562 20.425781 163.289062 13.863281 171.386719 13.863281 C 179.480469 13.863281 186.042969 20.425781 186.042969 28.519531 Z M 186.042969 28.519531 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 171.386719 61.453125 C 168.71875 61.453125 166.246094 62.214844 164.152344 63.355469 L 136.359375 35.753906 C 137.5 33.660156 138.261719 31.183594 138.261719 28.519531 C 138.261719 20.523438 131.789062 13.863281 123.605469 13.863281 C 115.417969 13.863281 108.945312 20.332031 108.945312 28.519531 C 108.945312 36.703125 115.417969 43.175781 123.605469 43.175781 C 126.269531 43.175781 128.746094 42.414062 130.839844 41.273438 L 158.441406 68.875 C 157.296875 70.96875 156.539062 73.445312 156.539062 76.109375 C 156.539062 78.773438 157.296875 81.25 158.441406 83.34375 L 131.027344 111.136719 C 128.933594 109.992188 126.460938 109.234375 123.796875 109.234375 C 115.800781 109.234375 109.136719 115.703125 109.136719 123.890625 C 109.136719 132.074219 115.609375 138.546875 123.796875 138.546875 C 131.980469 138.546875 138.453125 132.074219 138.453125 123.890625 C 138.453125 121.226562 137.691406 118.75 136.550781 116.65625 L 164.152344 89.054688 C 166.246094 90.195312 168.71875 90.957031 171.386719 90.957031 C 179.378906 90.957031 186.042969 84.484375 186.042969 76.300781 C 186.042969 68.113281 179.378906 61.453125 171.386719 61.453125 Z M 171.386719 61.453125 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 28.613281 90.765625 C 36.609375 90.765625 43.273438 84.296875 43.273438 76.109375 C 43.273438 73.445312 42.511719 70.96875 41.367188 68.875 L 68.972656 41.273438 C 71.066406 42.414062 73.539062 43.175781 76.203125 43.175781 C 78.871094 43.175781 81.34375 42.414062 83.4375 41.273438 L 111.039062 68.875 C 109.898438 70.96875 109.136719 73.445312 109.136719 76.109375 C 109.136719 84.105469 115.609375 90.765625 123.796875 90.765625 C 131.980469 90.765625 138.453125 84.296875 138.453125 76.109375 C 138.453125 67.925781 131.980469 61.453125 123.796875 61.453125 C 121.128906 61.453125 118.65625 62.214844 116.5625 63.355469 L 88.769531 35.753906 C 89.910156 33.660156 90.671875 31.183594 90.671875 28.519531 C 90.671875 20.523438 84.199219 13.863281 76.015625 13.863281 C 67.828125 13.863281 61.355469 20.332031 61.355469 28.519531 C 61.355469 31.183594 62.117188 33.660156 63.261719 35.753906 L 35.847656 63.546875 C 33.753906 62.402344 31.28125 61.640625 28.613281 61.640625 C 20.621094 61.640625 13.957031 68.113281 13.957031 76.300781 C 13.957031 84.484375 20.621094 90.765625 28.613281 90.765625 Z M 28.613281 90.765625 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 43.273438 171.289062 C 43.273438 179.386719 36.710938 185.949219 28.613281 185.949219 C 20.519531 185.949219 13.957031 179.386719 13.957031 171.289062 C 13.957031 163.195312 20.519531 156.632812 28.613281 156.632812 C 36.710938 156.632812 43.273438 163.195312 43.273438 171.289062 Z M 43.273438 171.289062 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 76.203125 156.632812 C 73.539062 156.632812 71.066406 157.394531 68.972656 158.535156 L 41.179688 130.933594 C 42.320312 128.839844 43.082031 126.363281 43.082031 123.699219 C 43.082031 121.035156 42.320312 118.558594 41.179688 116.464844 L 68.78125 88.863281 C 70.875 90.007812 73.347656 90.765625 76.015625 90.765625 C 84.007812 90.765625 90.671875 84.296875 90.671875 76.109375 C 90.671875 67.925781 84.199219 61.453125 76.015625 61.453125 C 67.828125 61.453125 61.355469 67.925781 61.355469 76.109375 C 61.355469 78.773438 62.117188 81.25 63.261719 83.34375 L 35.847656 111.136719 C 33.753906 109.992188 31.28125 109.234375 28.613281 109.234375 C 20.621094 109.234375 13.957031 115.703125 13.957031 123.890625 C 13.957031 132.074219 20.429688 138.546875 28.613281 138.546875 C 31.28125 138.546875 33.753906 137.785156 35.847656 136.644531 L 63.449219 164.246094 C 62.308594 166.339844 61.546875 168.816406 61.546875 171.480469 C 61.546875 179.476562 68.019531 186.136719 76.203125 186.136719 C 84.390625 186.136719 90.863281 179.667969 90.863281 171.480469 C 90.863281 163.296875 84.199219 156.632812 76.203125 156.632812 Z M 76.203125 156.632812 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 186.042969 171.289062 C 186.042969 179.386719 179.480469 185.949219 171.386719 185.949219 C 163.289062 185.949219 156.726562 179.386719 156.726562 171.289062 C 156.726562 163.195312 163.289062 156.632812 171.386719 156.632812 C 179.480469 156.632812 186.042969 163.195312 186.042969 171.289062 Z M 186.042969 171.289062 "/%3E%3Cpath style=" stroke:none;fill-rule:nonzero;fill:%23ffffff;fill-opacity:1;" d="M 171.386719 109.042969 C 163.390625 109.042969 156.726562 115.515625 156.726562 123.699219 C 156.726562 126.363281 157.488281 128.839844 158.632812 130.933594 L 131.027344 158.726562 C 128.933594 157.585938 126.460938 156.824219 123.796875 156.824219 C 121.128906 156.824219 118.65625 157.585938 116.5625 158.726562 L 88.769531 130.933594 C 89.910156 128.839844 90.671875 126.363281 90.671875 123.699219 C 90.671875 115.703125 84.199219 109.042969 76.015625 109.042969 C 67.828125 109.042969 61.355469 115.515625 61.355469 123.699219 C 61.355469 131.886719 67.828125 138.359375 76.015625 138.359375 C 78.679688 138.359375 81.152344 137.597656 83.25 136.453125 L 110.851562 164.054688 C 109.707031 166.152344 108.945312 168.625 108.945312 171.289062 C 108.945312 179.285156 115.417969 185.949219 123.605469 185.949219 C 131.789062 185.949219 138.261719 179.476562 138.261719 171.289062 C 138.261719 168.625 137.5 166.152344 136.359375 164.054688 L 163.960938 136.453125 C 166.054688 137.597656 168.53125 138.359375 171.195312 138.359375 C 179.191406 138.359375 185.851562 131.886719 185.851562 123.699219 C 185.851562 115.515625 179.378906 109.042969 171.386719 109.042969 Z M 171.386719 109.042969 "/%3E%3C/g%3E%3C/svg%3E%0A') no-repeat center center;
+//$headerLogoBgSize: cover;
+//$headerLogoText: $msWhite;
 //$headerLogoWidth: 200px;
 //$headerLogoHeight: 200px;
 // vars--masthead--mainsearch
 //$mainSearchBg: $userHue1;
 //$mainSearchText: $userText1;
 //$mainSearchLinkText: $userText1;
-//$mainSearchLinkDecorationCol: $transparent;
-//$mainSearchLinkTextHov: darken($userText1,15%);
-//$mainSearchLinkDecorationColHov: $mainSearchLinkTextHov;
+//$mainSearchLinkDecorationSettings: $defaultLinkDecorationSettings;
+//$mainSearchLinkTextHov: darken($userText1, 15%);
+//$mainSearchLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 // vars--masthead--moresearches
 //$moreSearchBg: $userHue2;
 //$moreSearchText: $userText2;
 //$moreSearchLinkText: $userText2;
-//$moreSearchLinkDecorationCol: $transparent;
-//$moreSearchLinkTextHov: lighten($userText2,15%);
-//$moreSearchLinkDecorationColHov: $moreSearchLinkTextHov;
+//$moreSearchLinkDecorationSettings: $defaultLinkDecorationSettings;
+//$moreSearchLinkTextHov: lighten($userText2, 15%);
+//$moreSearchLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 
 //
 // vars--content
@@ -212,33 +259,33 @@
 //$breadcrumbText: $defaultText;
 //$breadcrumbDivider: $defaultText;
 //$breadcrumbLinkText: $defaultLinkText;
-//$breadcrumbLinkDecorationCol: $transparent;
+//$breadcrumbLinkDecorationSettings: $defaultLinkDecorationSettings;
 //$breadcrumbLinkTextHov: $defaultLinkTextHov;
-//$breadcrumbLinkDecorationColHov: $breadcrumbLinkTextHov;
+//$breadcrumbLinkDecorationSettingsHov: $breadcrumbLinkDecorationSettings;
 // vars--content--toolbar
-//$toolbarBg: darken($defaultBg,5%);
+//$toolbarBg: darken($defaultBg, 5%);
 //$toolbarText: $defaultText;
 // vars--content--headliners
+//$headlinerBg: darken($defaultBg, 5%);
 //$headlinerText: $defaultText;
-//$headlinerBg: darken($defaultBg,5%);
 
 //
 // vars--opac
 // vars--opac--resourcelinks
-//$onlineAccessBg: lighten($msGold,33%);
+//$onlineAccessBg: lighten($msGold, 33%);
 //$onlineAccessText: $defaultText;
 //$onlineAccessLinkText: $defaultLinkText;
-//$onlineAccessLinkDecorationCol: $transparent;
+//$onlineAccessLinkDecorationSettings: $defaultLinkDecorationSettings;
 //$onlineAccessLinkTextHov: $defaultLinkTextHov;
-//$onlineAccessLinkDecorationColHov: $onlineAccessLinkTextHov;
+//$onlineAccessLinkDecorationSettingsHov: $onlineAccessLinkDecorationSettings;
 
 //
 // vars--tables
 // vars--tables--root
+//$tableHeadBg: darken($defaultBg, 5%);
 //$tableHeadText: $defaultText;
-//$tableHeadBg: darken($defaultBg,5%);
-//$tableRowText: $defaultText;
 //$tableRowBg: $defaultBg;
+//$tableRowText: $defaultText;
 // vars--tables--striped
 //$tableRowOddBg: $defaultFg;
 //$tableRowEvenBg: $defaultBg;
@@ -249,6 +296,6 @@
 //$footerBg: $msBlack;
 //$footerText: $msWhite;
 //$footerLinkText: $footerText;
-//$footerLinkDecorationCol: $transparent;
-//$footerLinkTextHov: darken($footerLinkText,15%);
-//$footerLinkDecorationColHov: $footerLinkTextHov;
+//$footerLinkDecorationSettings: $defaultLinkDecorationSettings;
+//$footerLinkTextHov: darken($footerLinkText, 15%);
+//$footerLinkDecorationSettingsHov: $footerLinkDecorationSettings;

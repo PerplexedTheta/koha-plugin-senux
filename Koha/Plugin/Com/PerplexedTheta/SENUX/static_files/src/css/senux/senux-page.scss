@@ -23,373 +23,415 @@
 //
 // main area
 .main {
-	margin: 0;
-	padding: 1rem;
-	border: $defaultBorderWidth $defaultBorderType $transparent;
-	color: $defaultText;
-	background-color: $defaultBg
+    margin: 0;
+    padding: 1rem;
+    border: $transparent;
+    color: $defaultText;
+    background-color: $defaultBg
 }
+
 @media (min-width: $breakpoint-pc) {
-	.main {
-		padding: 1rem 5rem
-	}
+    .main {
+        padding: 1rem 5rem
+    }
 }
 
 //
 // breadcrumbs
 .breadcrumb {
-	margin: .5rem 0 .9375rem;
-	background-color: $breadcrumbBg;
-	color: $breadcrumbText;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    margin: .5rem 0 .9375rem;
+    background-color: $breadcrumbBg;
+    color: $breadcrumbText;
+    border: $defaultBorderSettings
 }
 
 .breadcrumb-item {
-	color: $breadcrumbText;
+    color: $breadcrumbText;
 
-	&::before {
-		content: none
-	}
+    &::before {
+        content: none
+    }
 
-	a {
-		color: $breadcrumbLinkText;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $breadcrumbLinkDecorationCol $defaultDecorationThickness;
+    a {
+        color: $breadcrumbLinkText;
+        text-decoration: $breadcrumbLinkDecorationSettings;
 
-		&:link, &:visited {
-			color: $breadcrumbLinkText;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $breadcrumbLinkDecorationCol $defaultDecorationThickness
-		}
+        &:link,
+        &:visited {
+            color: $breadcrumbLinkText;
+            text-decoration: $breadcrumbLinkDecorationSettings;
+        }
 
-		&:hover {
-			color: $breadcrumbLinkTextHov;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $breadcrumbLinkDecorationColHov $defaultDecorationThickness
-		}
-
-		&:focus-visible, &:active,
-		&.active {
-			color: $breadcrumbLinkTextHov;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $breadcrumbLinkDecorationColHov $defaultDecorationThickness
-		}
-	}
+        &:hover {
+            color: $breadcrumbLinkTextHov;
+            text-decoration: $breadcrumbLinkDecorationSettingsHov
+        }
+    }
 }
 
-.breadcrumb-item + .breadcrumb-item {
-	&::before {
-		height: auto;
-		width: auto;
-		background: none;
-		color: $breadcrumbDivider;
-		content: "/"
-	}
+.breadcrumb-item+.breadcrumb-item {
+    &::before {
+        height: auto;
+        width: auto;
+        background: none;
+        color: $breadcrumbDivider;
+        content: "/"
+    }
 }
 
 .breadcrumb-item.active {
-	color: $breadcrumbText;
+    color: $breadcrumbText;
 
-	a {
-		color: $breadcrumbText;
-		font-weight: bold;
+    a {
+        color: $breadcrumbText;
+        font-weight: bold;
 
-		&:link, &:visited {
-			color: $breadcrumbText;
-			font-weight: bold
-		}
+        &:link,
+        &:visited {
+            color: $breadcrumbText;
+            font-weight: bold
+        }
 
-		&:hover, &:focus-visible,
-		&:active, &.active {
-			color: $breadcrumbText;
-			font-weight: bold
-		}
-	}
+        &:hover {
+            color: $breadcrumbText;
+            font-weight: bold
+        }
+    }
 }
 
 //
 // ui tabs
 .nav-tabs .nav-link {
-	color: $defaultLinkText;
-	background-color: $defaultFg;
+    color: $defaultLinkText;
+    background-color: $defaultFg;
 
-	&:hover {
-		color: $defaultLinkTextHov;
-		background-color: lighten($msWhite, 100%);
-	}
+    &:hover {
+        color: $defaultLinkTextHov;
+        background-color: lighten($msWhite, 100%);
+    }
 
-	&.active {
-		outline: none!important;
-		box-shadow: 0 0 0 0!important;
-	}
+    &.active {
+        outline: none !important;
+        box-shadow: 0 0 0 0 !important;
+    }
 }
 
 .ui-tabs .ui-tabs-nav li {
-	color: $defaultLinkText;
-	background: $defaultFg;
-	border-color: $defaultBorderCol;
-	border-radius: $defaultRadius $defaultRadius 0 0;
+    color: $defaultLinkText;
+    background: $defaultFg;
+    border: $defaultBorderSettings;
+    border-radius: $defaultRadius $defaultRadius 0 0;
 
-	&.ui-tabs-active,
-	&.ui-tabs-active.ui-state-hover,
-	&.ui-tabs-active.ui-state-hover.ui-state-active {
-		color: $defaultLinkTextFoc;
-		background-color: $defaultLinkBgFoc;
-		border-color: $defaultBorderCol;
+    &.ui-tabs-active,
+    &.ui-tabs-active.ui-state-hover,
+    &.ui-tabs-active.ui-state-hover.ui-state-active {
+        color: $defaultLinkTextFoc;
+        background-color: $defaultLinkBgFoc;
+        border: $defaultBorderSettings;
 
-		a, a:link, a:visited {
-			color: $defaultLinkTextFoc
-		}
-	}
+        a,
+        a:link,
+        a:visited {
+            color: $defaultLinkTextFoc
+        }
+    }
 }
 
 .ui-tabs .ui-tabs-panel {
-	background-color: $white;
-	border-color: $defaultBorderCol;
-	border-radius: $defaultRadius
+    background-color: $white;
+    border: $defaultBorderSettings
 }
 
 .ui-tabs .ui-state-default {
-	a, a:link, a:visited {
-		color: $defaultLinkText;
 
-		&:hover, &:focus-visible {
-			background: $defaultBg;
-			border-color: $defaultBorderCol;
-			color: $defaultLinkTextHov
-		}
-	}
+    a,
+    a:link,
+    a:visited {
+        color: $defaultLinkText;
+
+        &:hover {
+            background: $defaultBg;
+            border: $defaultBorderSettings;
+            color: $defaultLinkTextHov
+        }
+    }
 }
 
 //
 // tables
 // default
-.table-bordered, .table-bordered td,
+.table-bordered,
+.table-bordered td,
 .table-bordered th {
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol
+    border: $defaultBorderSettings
 }
 
 .table thead th {
-	color: $tableHeadText;
-	background-color: $tableHeadBg;
-	border-bottom: none
+    color: $tableHeadText;
+    background-color: $tableHeadBg;
+    border-bottom: none
 }
 
-.table tbody tr, .table tbody td {
-	color: $tableRowText;
-	background-color: $tableRowBg
+.table tbody tr,
+.table tbody td {
+    color: $tableRowText;
+    background-color: $tableRowBg
 }
 
-.table .nosort, .table .nosort.sorting,
-.table .nosort.sorting_asc, .table .nosort.sorting_desc,
-.table .sorting, .table .sorting_asc,
+.table .nosort,
+.table .nosort.sorting,
+.table .nosort.sorting_asc,
+.table .nosort.sorting_desc,
+.table .sorting,
+.table .sorting_asc,
 .table .sorting_desc {
-	color: $tableHeadText;
-	background: none;
-	background-color: $tableHeadBg;
-	text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
-
-	&:hover {
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness;
-	}
-
-	&:focus-visible, &:active,
-	&.active {
-		background: $defaultLinkBgFoc;
-		color: $defaultLinkTextFoc;
-		outline: $defaultOutlineWidth $defaultOutlineType $defaultLinkOutlineColFoc;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness;
-	}
+    color: $tableHeadText;
+    background: none;
+    background-color: $tableHeadBg;
 }
 
 .table .sorting_asc {
-	&::after {
-		font-family: var(--fa-style-family,"Font Awesome 6 Free");
-		font-weight: var(--fa-style,900);
-		font-size: 0.75em;
-		text-rendering: auto;
-		content: " \f077"
-	}
+    &::after {
+        font-family: var(--fa-style-family, "Font Awesome 6 Free");
+        font-weight: var(--fa-style, 900);
+        font-size: 0.75em;
+        text-rendering: auto;
+        content: " \f077"
+    }
 }
 
 .table .sorting_desc {
-	&::after {
-		font-family: var(--fa-style-family,"Font Awesome 6 Free");
-		font-weight: var(--fa-style,900);
-		font-size: 0.75em;
-		text-rendering: auto;
-		content: " \f078"
-	}
+    &::after {
+        font-family: var(--fa-style-family, "Font Awesome 6 Free");
+        font-weight: var(--fa-style, 900);
+        font-size: 0.75em;
+        text-rendering: auto;
+        content: " \f078"
+    }
 }
 
 // striped
-.table-striped > tbody > tr > th,
-.table-striped > tbody > tr > td {
-	color: $tableRowText;
-	background-color: $tableRowEvenBg;
-	--bs-table-color-type: unset;
-	--bs-table-bg-type: unset;
+.table-striped>tbody>tr>th,
+.table-striped>tbody>tr>td {
+    color: $tableRowText;
+    background-color: $tableRowEvenBg;
+    --bs-table-color-type: unset;
+    --bs-table-bg-type: unset;
 
-	a, a:visited {
-		color: $defaultLinkText;
+    a,
+    a:visited {
+        color: $defaultLinkText;
 
-		&.btn, &.btn.btn-primary {
-			color: $btnPriText
-		}
+        &.btn,
+        &.btn.btn-primary {
+            color: $btnPriText
+        }
 
-		&.btn.btn-default, &.btn.btn-secondary {
-			color: $btnSecText
-		}
+        &.btn.btn-default,
+        &.btn.btn-secondary {
+            color: $btnSecText
+        }
 
-		&.btn.btn-link {
-			color: $defaultLinkText
-		}
-	}
+        &.btn.btn-link {
+            color: $defaultLinkText
+        }
+    }
 }
 
-.table-striped > tbody > tr:nth-of-type(2n+1) > th,
-.table-striped > tbody > tr:nth-of-type(2n+1) > td {
-	color: $tableRowText;
-	background-color: $tableRowOddBg;
-	--bs-table-color-type: unset;
-	--bs-table-bg-type: unset;
+.table-striped>tbody>tr:nth-of-type(2n+1)>th,
+.table-striped>tbody>tr:nth-of-type(2n+1)>td {
+    color: $tableRowText;
+    background-color: $tableRowOddBg;
+    --bs-table-color-type: unset;
+    --bs-table-bg-type: unset;
 
-	a, a:visited {
-		color: $defaultLinkText;
+    a,
+    a:visited {
+        color: $defaultLinkText;
 
-		&.btn, &.btn.btn-primary {
-			color: $btnPriText
-		}
+        &.btn,
+        &.btn.btn-primary {
+            color: $btnPriText
+        }
 
-		&.btn.btn-default, &.btn.btn-secondary {
-			color: $btnSecText
-		}
+        &.btn.btn-default,
+        &.btn.btn-secondary {
+            color: $btnSecText
+        }
 
-		&.btn.btn-link {
-			color: $defaultLinkText
-		}
-	}
+        &.btn.btn-link {
+            color: $defaultLinkText
+        }
+    }
 }
 
 // table lables
 .table_entries {
-	color: $defaultText
+    color: $defaultText
 }
 
 td.overdue {
-	color: $msRed
+    color: $msRed
 }
 
 //
 // items tables
-#items, #items td,
+#items,
+#items td,
 #items th {
-	font-size: 1rem
+    font-size: 1rem
 }
 
 //
 // menus
 .menu-collapse {
-	border-right: $defaultBorderWidth $defaultBorderType $defaultBorderCol
+    border-right: $defaultBorderSettings
 }
 
-#menu, .menu {
-	font-size: .94em;
-	border-right: none;
+#menu,
+.menu {
+    font-size: .94em;
+    border-right: none;
 
-	ul {
-		padding-left: 0
-	}
+    ul {
+        padding-left: 0
+    }
 
-	li {
-		list-style-type: none;
+    li {
+        list-style-type: none;
 
-		a {
-			display: block;
-			padding: .4rem .6rem;
+        a {
+            display: block;
+            position: relative;
+            padding: .4rem .6rem;
 
+            color: $btnMenuText;
+            background-color: $btnMenuBg;
+            border: $btnMenuBorderSettings;
+            outline: $btnMenuOutlineSettings;
+            box-shadow: $btnMenuBoxShadowSettings;
+            text-decoration: $btnMenuDecorationSettings;
 
-			color: $btnMenuText;
-			background-color: $btnMenuBg;
-			border: $defaultBorderWidth $defaultBorderType $btnMenuBorderCol;
-			outline: $defaultOutlineWidth $defaultOutlineType $btnMenuOutlineCol;
-			text-decoration: none;
+            &:hover {
+                color: $btnMenuTextHov;
+                background-color: $btnMenuBgHov;
+                border: $btnMenuBorderSettingsHov;
+                outline: $btnMenuOutlineSettingsHov;
+                box-shadow: $btnMenuBoxShadowSettingsHov;
+                text-decoration: $btnMenuDecorationSettingsHov;
+            }
 
+            &:focus {
+                background-image: none !important;
+                text-shadow: none !important;
+        
+                border: $btnBorderSettingsFoc !important;
+                outline: $btnOutlineSettingsFoc !important;
+                box-shadow: none !important;
+                text-decoration: $btnDecorationSettingsFoc !important;
+        
+                &:not(:active):not(:hover) {
+                    color: $btnTextFoc !important;
+                    background-color: $btnBgFoc !important;
+                    border: $btnBorderSettingsFoc !important;
+                    outline: $btnOutlineSettingsFoc !important;
+                    box-shadow: $btnBoxShadowSettingsFoc !important;
+                    text-decoration: $btnDecorationSettingsFoc !important;
+        
+                    i.fa {
+                        color: $btnTextFoc !important
+                    }
+                }
+            }
 
-			&:hover, &:focus-visible,
-			&:active, &.active {
-				color: $btnMenuTextHov;
-				background-color: $btnMenuBgHov;
-				border: $defaultBorderWidth $defaultBorderType $btnMenuBorderColHov;
-				outline: $defaultOutlineWidth $defaultOutlineType $btnMenuOutlineColHov;
-				text-decoration: none
-			}
-		}
+            &:active, &.active {
+                top: .127rem;
+            }
+        }
 
-		&.active a {
-			color: $btnPriText;
-			background-color: $btnPriBg;
-			border: $defaultBorderWidth $defaultBorderType $btnPriBorderCol;
-			outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineCol;
-			text-decoration: none;
+        &.active a {
+            color: $btnMenuText;
+            background-color: $btnMenuBg;
+            border: $btnMenuBorderSettings;
+            outline: $btnMenuOutlineSettings;
+            box-shadow: $btnMenuBoxShadowSettings;
+            text-decoration: $btnMenuDecorationSettings;
 
-			&:hover, &:focus-visible,
-			&:active, &.active {
-				color: $btnMenuTextHov!important;
-				background-color: $btnMenuBgHov!important;
-				border: $defaultBorderWidth $defaultBorderType $btnMenuBorderColHov!important;
-				outline: $defaultOutlineWidth $defaultOutlineType $btnMenuOutlineColHov!important;
-				text-decoration: none!important
-			}
-		}
-	}
+            &:hover {
+                color: $btnMenuTextHov;
+                background-color: $btnMenuBgHov;
+                border: $btnMenuBorderSettingsHov;
+                outline: $btnMenuOutlineSettingsHov;
+                box-shadow: $btnMenuBoxShadowSettingsHov;
+                text-decoration: $btnMenuDecorationSettingsHov;
+            }
+        }
+    }
 }
+
 @media only screen and (min-width: $breakpoint-pc) {
-	#menu, .menu {
-		ul {
-			padding: 1em 0
-		}
 
-		li {
-			a {
-				margin: .4em 0;
-				margin-right: -1px
-			}
-		}
-	}
+    #menu,
+    .menu {
+        ul {
+            padding: 1em 0
+        }
+
+        li {
+            a {
+                margin: .4em 0;
+                margin-right: -1px
+            }
+        }
+    }
 }
 
 .logout {
-	&:link, &:visited {
-		color: $navbarUsermenuLogoutText;
 
-		i.fa {
-			color: $navbarUsermenuLogoutText
-		}
-	}
+    &:link,
+    &:visited {
+        color: $navbarUsermenuLogoutText;
 
-	&:hover, &:focus-visible,
-	&:active, &.active {
-		color: $navbarUsermenuLogoutTextHov;
+        i.fa {
+            color: $navbarUsermenuLogoutText
+        }
+    }
 
-		i.fa {
-			color: $navbarUsermenuLogoutTextHov
-		}
-	}
+    &:hover {
+        color: $navbarUsermenuLogoutTextHov;
+
+        i.fa {
+            color: $navbarUsermenuLogoutTextHov
+        }
+    }
+
+    &:focus {
+        color: $navbarUsermenuLogoutTextHov;
+
+        i.fa {
+            color: $navbarUsermenuLogoutTextHov
+        }
+    }
 }
 
 //
 // recolour things
-legend, .legend {
-	color: $defaultText;
-	border-bottom: none
+legend,
+.legend {
+    color: $defaultText;
+    border-bottom: none
 }
 
 .results_summary {
-	color: $defaultText;
+    color: $defaultText;
 
-	label, .label {
-		color: $defaultText
-	}
+    label,
+    .label {
+        color: $defaultText
+    }
 }
 
-caption, h5 {
-	color: $defaultText
+caption,
+h5 {
+    color: $defaultText
 }

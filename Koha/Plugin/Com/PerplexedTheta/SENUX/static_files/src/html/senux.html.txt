@@ -1,0 +1,153 @@
+<!--
+    Part of the Senux Project
+    Copyright 2021-2022 Jake Deery
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+
+<!--
+    READ ME!
+
+    To use any of these HTML Customisations, you'll need to find the
+    Customisation code related to the snippet block, and either edit the
+    existing HTML Customisation, or create a new one.
+
+    When creating the snippet, make sure you are using the plain text editor,
+    not the WYSIWYG editor. The WYSIWYG editor will interfere with the HTML, and
+    you won't get the best experience.
+
+    For more information, see
+    https://koha-community.org/manual/latest/en/html/tools.html#html-customizations-label
+-->
+
+
+<!-- opaccredits -->
+<div class="row">
+    <div class="col-12 col-lg-4">
+        <li>Powered by <a href="http://koha-community.org/" target="_blank">Koha</a>. enhanced by <a
+                href="https://github.com/PerplexedTheta/senux" target="_blank">Senux</a>!</li>
+    </div>
+    <div class="col-12 col-lg-4">
+        <!--<li>Another item</li>-->
+    </div>
+    <div class="col-12 col-lg-4">
+        <!--<li>Yet another item</li>-->
+    </div>
+</div>
+<!-- /opaccredits -->
+
+
+<!-- opacheader -->
+<div class="row">
+    <div id="opacheader_logowrapper">
+        <a href="/cgi-bin/koha/opac-main.pl">Koha online</a>
+    </div>
+    <div id="opacheader_titles">
+        <div class="container-fluid">
+            <!-- titles etc-->
+            <h1>Yet another Koha Library</h1><br />
+            <h3>Some subheading of note</h3>
+        </div>
+    </div>
+</div>
+<!-- /opacheader -->
+
+
+<!-- OPACLoginInstructions -->
+<p><strong>Notice:</strong> Please login with your 8-digit student ID number</p>
+<!-- /OPACLoginInstructions -->
+
+
+<!-- OPACMaintenanceNotice -->
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        $('.container-fluid').css('margin', 0);
+        $('#opac_maintenance').css('overflow', 'hidden');
+        $('#header-region').remove();
+        $('#opacheader').remove();
+        $('#opaccredits').remove();
+    });
+</script>
+<h2>System offline for maintenence</h2>
+<p>
+    <strong>Our systems are currently offline while an upgrade is performed.</strong> We expect this update to be
+    completed at around 10:00 BST.
+</p>
+<hr />
+<h4>Status bulletin</h4>
+<ul>
+    <li>Nothing to report</li>
+</ul>
+<!-- /OPACMaintenanceNotice-->
+
+
+<!-- OPACMainUserBlock -->
+<h3>Welcome to Koha, enhanced by Senux!</h3>
+<p>A modern, modular replacement for the UAL-style OPACs.</p>
+<!-- /OPACMainUserBlock -->
+
+
+<!-- OPACMySummaryNote -->
+<div class="alert alert-error">
+    <p>
+        If you are unable to renew one or more of your items, speak to a Librarian who will be able to offer assistance
+        with your renewal.
+    </p>
+</div>
+<!-- /OPACMySummaryNote -->
+
+
+<!-- OPACNavBottom -->
+<h3>Useful links</h3>
+<a class="btn btn-default" href="#" target="_blank">About us</a><br>
+<a class="btn btn-default" href="/cgi-bin/koha/opac-search.pl">Search</a><br>
+<a class="btn btn-default" href="/cgi-bin/koha/opac-user.pl">Your account</a>
+<p>&nbsp;</p>
+<h3>Contact us</h3>
+<ul>
+    <li>Some phone numbers</li>
+    <li>An email or two</li>
+</ul>
+<!-- /OPACNavBottom -->
+
+
+<!-- OPACNavRight -->
+<!-- begin twitter code -->
+<a class="twitter-timeline" data-width="900" data-height="576"
+href="https://twitter.com/deichman_oslo?ref_src=twsrc%5Etfw">Tweets by deichman_oslo</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!-- end twitter code -->
+<!-- /OPACNavRight -->
+
+
+<!-- OPACSearchForTitleIn -->
+<a class="dropdown-item" href="https://worldcat.org/search?q={TITLE}" target="_blank">Other Libraries (WorldCat)</a>
+<a class="dropdown-item" href="https://scholar.google.com/scholar?q={TITLE}" target="_blank">Other Databases (Google
+    Scholar)</a>
+<a class="dropdown-item" href="https://scholar.google.com/scholar?q={TITLE}" target="_blank">Other Databases (Google
+    Scholar)</a>
+<a class="dropdown-item" href="https://www.bookfinder.com/search/?author={AUTHOR}&amp;title={TITLE}&amp;st=xl&amp;ac=qr"
+    target="_blank">Online Stores (Bookfinder.com)</a>
+<a class="dropdown-item" href="https://openlibrary.org/search?author=({AUTHOR})&title=({TITLE})" target="_blank">Open
+    Library (openlibrary.org)</a>
+<!-- /OPACSearchForTitleIn -->
+
+
+<!-- PatronSelfRegistrationAdditionalInstructions -->
+<div class="alert alert-error">
+    <p>
+        If you forget your password in future, please contact a Librarian who will be happy to help
+    </p>
+</div>
+<!-- PatronSelfRegistrationAdditionalInstructions -->

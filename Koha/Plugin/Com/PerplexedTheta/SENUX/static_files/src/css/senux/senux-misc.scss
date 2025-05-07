@@ -19,26 +19,26 @@
 //
 // gdrp banner
 #-gdpr-banner {
-	color: $defaultText;
-	background-color: $defaultFg;
+    color: $defaultText;
+    background-color: $defaultFg;
 
-	p {
-		padding: 1rem
-	}
+    p {
+        padding: 1rem
+    }
 
-	a {
-		padding: 1rem
-	}
+    a {
+        padding: 1rem
+    }
 
-	button {
-		display: inline;
-		margin: 0 1rem
-	}
+    button {
+        display: inline;
+        margin: 0 1rem
+    }
 }
 
 // coverflow plugin
 .flipster--coverflow .flipster__item {
-	&::before {
-		content: none
-	}
+    &::before {
+        content: none
+    }
 }

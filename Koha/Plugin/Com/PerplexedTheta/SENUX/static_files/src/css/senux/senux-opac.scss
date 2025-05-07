@@ -20,788 +20,790 @@
 //
 // opac overrides
 .search_history {
-	display: none
+    display: none
 }
 
 //
 //
 // main page
 .maincontent {
-	color: $defaultText;
-	background-color: $transparent;
+    color: $defaultText;
+    background-color: $transparent;
 
-	h1, h2, h3,
-	h4, h5 {
-		&::after {
-			content: "";
-			display: block;
-			max-width: 33%
-		}
-	}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        &::after {
+            content: "";
+            display: block;
+            max-width: $defaultHeaderUnderlineWidthPct;
+        }
+    }
 
-	h1, h2, h3 {
-		&::after {
-			border-bottom: .25rem solid $defaultText;
-			border-radius: $defaultRadius
-		}
-	}
+    h1,
+    h2,
+    h3 {
+        &::after {
+            border: calc($defaultHeaderUnderlineThickness / 2) $defaultHeaderUnderlineType $defaultHeaderUnderlineCol;
+        }
+    }
 }
 
-#OpacMainUserBlock, #news {
-	margin: 0 0 .5rem 0;
-	padding: 1rem;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius;
-	max-width: none
+#OpacMainUserBlock,
+#news {
+    margin: 0 0 .5rem 0;
+    padding: 1rem;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings;
+    outline: $defaultOutlineSettings;
+    box-shadow: $defaultBoxShadowSettings;
+    text-decoration: $defaultDecorationSettings;
+    max-width: none
 }
 
-#navigation, #OpacNavRight,
+#navigation,
+#OpacNavRight,
 #login {
-	margin: 0 0 .5rem 0;
-	padding: 1rem;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius;
-	max-width: none;
+    margin: 0 0 .5rem 0;
+    padding: 1rem;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings;
+    outline: $defaultOutlineSettings;
+    box-shadow: $defaultBoxShadowSettings;
+    text-decoration: $defaultDecorationSettings;
+    max-width: none;
 
-	.btn {
-		width: 100%;
-		margin-bottom: .33rem
-	}
+    .btn {
+        width: 100%;
+        margin-bottom: .33rem
+    }
 
-	h3, h4, h5 {
-		&::after {
-			content: "";
-			display: block;
-			max-width: 33%;
-			border-bottom: .25rem solid $defaultText;
-			border-radius: $defaultRadius;
-		}
-	}
+    h3,
+    h4,
+    h5 {
+        &::after {
+            content: "";
+            display: block;
+            max-width: 33%;
+            border: calc($defaultHeaderUnderlineThickness / 2) $defaultHeaderUnderlineType $defaultText;
+        }
+    }
 }
 
-#user_summary {
-	margin: 0 0 .5rem 0;
-	padding: 1rem;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius;
-	max-width: none;
+#user_summary,
+#add-content,
+#course_reserves {
+    margin: 0 0 .5rem 0;
+    padding: 1rem;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings;
+    outline: $defaultOutlineSettings;
+    box-shadow: $defaultBoxShadowSettings;
+    text-decoration: $defaultDecorationSettings;
+    max-width: none;
 
-	h2 {
-		color: $headlinerText;
-		background-color: $headlinerBg;
-		border-radius: $defaultRadius
-	}
+    h2 {
+        color: $headlinerText;
+        background-color: $headlinerBg
+    }
 }
 
 #nologininstructions {
-	display: none
+    display: none
 }
 
 @media only screen and (min-width: $breakpoint-pc) {
-	#opac-main {
-		.col-12 {
-			display: flex;
-			flex: 0 0 auto;
-			flex-direction: column
-		}
+    #opac-main {
+        .col-12 {
+            display: flex;
+            flex: 0 0 auto;
+            flex-direction: column
+        }
 
-		#OpacMainUserBlock, #navigation,
-		#OpacNavRight {
-			flex-grow: 1
-		}
-	}
+        #OpacMainUserBlock,
+        #navigation,
+        #OpacNavRight {
+            flex-grow: 1
+        }
+    }
 }
 
 // news
 #news {
-	margin: 0 0 .5rem 0
-}
-
-.newsheader {
-	a {
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
-
-		&:hover {
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness
-		}
-
-		&:focus-visible, &:active,
-		&.active {
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness
-		}
-	}
+    margin: 0 0 .5rem 0
 }
 
 .newsfooter {
-	border: $defaultBorderWidth $defaultBorderType $transparent
+    border: $transparent
 }
 
 // hide rss because its old & branch select unless its required
-#news-branch-select, #rssnews-container, .rsssearchlink {
-	display: none
+#news-branch-select,
+#rssnews-container,
+.rsssearchlink {
+    display: none
 }
 
 //
 //
 // login & reserve modal
 .modal-content {
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 .closebtn {
-	opacity: 1;
-	color: $msRed;
+    opacity: 1;
+    color: $msRed;
 
-	&:hover, &:focus-visible,
-	&:active, &.active {
-		opacity: 1;
-		color: lighten($msRed, 15%)
-	}
+    &:hover {
+        opacity: 1;
+        color: lighten($msRed, 15%)
+    }
+
+    &:focus {
+        opacity: 1;
+        color: lighten($msRed, 15%)
+    }
 }
 
 //
 //
 // adv search
 #advsearch .main .container-fluid {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 .advsearch_limit {
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    border: $defaultBorderSettings
 }
 
-#advsearch_limits label, #subtypes label {
-	color: $defaultText
+#advsearch_limits label,
+#subtypes label {
+    color: $defaultText
 }
 
 //
 //
 // search results
 .selections {
-	color: $msBlack
+    color: $msBlack
 }
 
 .returntosearch {
-	padding: 0 1rem
+    padding: 0 1rem
 }
 
 @media(min-width: $breakpoint-pc) {
-	.returntosearch {
-		padding: 0
-	}
+    .returntosearch {
+        padding: 0
+    }
 }
 
 .page-item {
-	&.disabled {
-		.page-link {
-			background-color: $defaultLinkText;
-			color: $defaultBg
-		}
-	}
+    &.disabled {
+        .page-link {
+            background-color: $defaultLinkText;
+            color: $defaultBg
+        }
+    }
 
-	.page-link {
-		background-color: lighten($white, 100%);
-		color: $defaultLinkText;
-		border: none;
+    .page-link {
+        background-color: lighten($white, 100%);
+        color: $defaultLinkText;
+        border: none;
 
-		&:hover, &:focus-visible,
-		&:active, &.active {
-			background-color: $defaultLinkText;
-			color: $defaultBg;
+        &:hover {
+            background-color: $defaultLinkText;
+            color: $defaultBg;
 
-			i.fa {
-				color: $defaultBg
-			}
-		}
-	}
+            i.fa {
+                color: $defaultBg
+            }
+        }
+
+        &:focus {
+            background-color: $defaultLinkText;
+            color: $defaultBg;
+
+            i.fa {
+                color: $defaultBg
+            }
+        }
+    }
 }
 
 .pagination-sm .page-item:first-child .page-link {
-	border-top-left-radius: $defaultRadius;
-	border-bottom-left-radius: $defaultRadius
+    border-top-left-radius: $defaultRadius;
+    border-bottom-left-radius: $defaultRadius
 }
 
 .pagination-sm .page-item:last-child .page-link {
-	border-top-right-radius: $defaultRadius;
-	border-bottom-right-radius: $defaultRadius
+    border-top-right-radius: $defaultRadius;
+    border-bottom-right-radius: $defaultRadius
 }
 
-.pagination_list li, .pagination_list .li_pag_index {
-	color: $defaultText
+.pagination_list li,
+.pagination_list .li_pag_index {
+    color: $defaultText
 }
 
-#numresults, #selections {
-	color: $defaultText
+#numresults,
+#selections {
+    color: $defaultText
 }
 
 .shelves {
-	ul {
-		padding-left: 0
-	}
+    ul {
+        padding-left: 0
+    }
 }
 
 //
 // search facets
-#facetcontainer, .facetcontainer {
-	padding: 1rem;
-	margin-bottom: 1rem;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+#facetcontainer,
+.facetcontainer {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
-#search-facets, .search-facets {
-	border: $defaultBorderWidth $defaultBorderType $transparent;
+#search-facets,
+.search-facets {
+    border: $transparent;
 
-	.menu-collapse {
-		border: none;
-		padding: 1rem 0 0 0
-	}
+    .menu-collapse {
+        border: none;
+        padding: 1rem 0 0 0
+    }
 
-	ul {
-		border-right: none
-	}
+    ul {
+        border-right: none
+    }
 
-	li {
-		font-size: .9em;
-		font-weight: 700;
-		list-style-type: none
-	}
+    li {
+        font-size: .9em;
+        font-weight: 700;
+        list-style-type: none
+    }
 
-	h2 {
-		margin: 0;
-		font-size: .9em;
-		text-align: center;
+    h2 {
+        margin: 0;
+        font-size: .9em;
+        text-align: center;
 
-		a, a:link,
-		a:visited, p {
-			display: block;
-			font-weight: 700;
-			padding: .5rem .33rem;
+        a,
+        a:link,
+        a:visited,
+        p {
+            display: block;
+            font-weight: 700;
+            padding: .5rem .33rem;
 
-			color: $headlinerText;
-			background-color: $headlinerBg;
-			border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-			border-radius: $defaultRadius
-		}
+            color: $headlinerText;
+            background-color: $headlinerBg;
+            border: $defaultBorderSettings
+        }
+    }
 
-		a, a:link, a:visited {
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
+    h3 a {
+        display: block;
+        font-size: initial;
+        font-weight: bold;
 
-			&:hover {
-				text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness
-			}
-
-			&:focus-visible, &:active,
-			&.active {
-				text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness
-			}
-		}
-	}
-
-	h3 a {
-		display: block;
-		font-size: initial;
-		font-weight: bold;
-
-		i.fa {
-			float: right
-		}
-	}
+        i.fa {
+            float: right
+        }
+    }
 }
 
 #yr_id {
-	p {
-		text-align: center
-	}
+    p {
+        text-align: center
+    }
 
-	input, a.btn {
-		width: 100%
-	}
+    input,
+    a.btn {
+        width: 100%
+    }
 }
 
 #facet-yr-error {
-	color: $msRed
+    color: $msRed
 }
 
 //
 // bookbag form
 #bookbag_form {
-	border-bottom: $defaultBorderWidth $defaultBorderType $defaultBorderCol
+    border-bottom: $defaultBorderSettings
 }
 
 //
 // floating toolbar
 #floating {
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-bottom: none;
-	border-radius: $defaultRadius
+    border: $defaultBorderSettings;
+    border-bottom: none
 }
 
-#toolbar.toolbar, #toolbar.toolbar.clearfix,
-#selections-toolbar, .selections-toolbar {
-	color: $toolbarText;
-	background: $toolbarBg;
-	border-bottom: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
-}
-
-// underlined links
-#CheckAll, #CheckNone,
-.CheckAll, .CheckNone,
-#search-facets a {
-	text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
-
-	&:hover {
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness;
-	}
-
-	&:focus-visible, &:active,
-	&.active {
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness;
-	}
+#toolbar.toolbar,
+#toolbar.toolbar.clearfix,
+#selections-toolbar,
+.selections-toolbar {
+    color: $toolbarText;
+    background: $toolbarBg;
+    border-bottom: $defaultBorderSettings
 }
 
 //
 // results text of importance
-.available.reallyavailable, .available.reference,
+.available.reallyavailable,
+.available.reference,
 .unavailable {
-	display: block
+    display: block
 }
 
 .results_summary.online_resources {
-	background: $onlineAccessBg;
-	color: onlineAccessText;
-	padding: .25rem;
-	padding-left: 1rem;
+    background: $onlineAccessBg;
+    color: onlineAccessText;
+    padding: .25rem;
+    padding-left: 1rem;
 
-	.label {
-		color: $onlineAccessText;
-		font-weight: bold
-	}
+    .label {
+        color: $onlineAccessText;
+        font-weight: bold
+    }
 
-	a {
-		color: $onlineAccessLinkText;
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $onlineAccessLinkDecorationCol $defaultDecorationThickness;
+    a {
+        color: $onlineAccessLinkText;
+        text-decoration: $onlineAccessLinkDecorationSettings;
 
-		&:hover {
-			color: $onlineAccessLinkTextHov;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $onlineAccessLinkDecorationColHov $defaultDecorationThickness
-		}
-
-		&:focus-visible, &:active,
-		&.active {
-			color: $onlineAccessLinkTextHov;
-			text-decoration: $defaultDecorationLine $defaultDecorationStyle $onlineAccessLinkDecorationColHov $defaultDecorationThickness
-		}
-	}
+        &:hover {
+            color: $onlineAccessLinkTextHov;
+            text-decoration: $onlineAccessLinkDecorationSettingsHov
+        }
+    }
 }
 
 //
 // suggestions box
 .suggestion {
-	background-color: $defaultFg;
-	color: $defaultText;
-	border: $defaultBorderWidth $defaultBorderType $transparent;
-	border-radius: $defaultRadius
+    background-color: $defaultFg;
+    color: $defaultText;
+    border: $transparent
 }
 
 //
 //
 // details page
 .no-image {
-	display: none
+    display: none
 }
 
 .bookcover {
-	position: relative;
-	margin: 2.5em 1em 1em auto;
-	padding: 0;
-	float: left;
+    position: relative;
+    margin: 2.5em 1em 1em auto;
+    padding: 0;
+    float: left;
 
-	img {
-		margin: 0;
-	}
+    img {
+        margin: 0;
+    }
 
-	#biblio-cover-slider {
-		margin: 0;
-		padding: 0;
-		border: none;
-		border-radius: none
-	}
+    #biblio-cover-slider {
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0
+    }
 
-	.hint {
-		display: none
-	}
+    .hint {
+        display: none
+    }
 }
 
 #catalogue_detail_biblio {
-	padding: 1rem;
-	overflow: auto; // clearfix
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    padding: 1rem;
+    overflow: auto; // clearfix
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
-.contents .r, .contents .t {
-	font-weight: normal
+.contents .r,
+.contents .t {
+    font-weight: normal
 }
 
-#action, .actions,
-.toolbar, .view{
-	color: $defaultText;
+#action,
+.actions,
+.toolbar,
+.view {
+    color: $defaultText;
 
-	i.fa {
-		color: $defaultText
-	}
+    i.fa {
+        color: $defaultText
+    }
 
-	a {
-		color: $defaultLinkText;
+    a {
+        color: $defaultLinkText;
 
-		i.fa {
-			color: $defaultLinkText
-		}
+        i.fa {
+            color: $defaultLinkText
+        }
 
-		&:hover, &:focus-visible {
-			color: darken($defaultLinkText, 33%);
+        &:hover {
+            color: darken($defaultLinkText, 33%);
 
-			i.fa {
-				color: darken($defaultLinkText, 33%)
-			}
-		}
-	}
+            i.fa {
+                color: darken($defaultLinkText, 33%)
+            }
+        }
+
+        &:focus {
+            color: darken($defaultLinkText, 33%);
+
+            i.fa {
+                color: darken($defaultLinkText, 33%)
+            }
+        }
+    }
 }
 
 #action {
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 //
 // views
 #views {
-	border-bottom: $defaultBorderWidth $defaultBorderType $defaultBorderCol
+    border-bottom: $defaultBorderSettings
 }
 
 .view {
-	color: $defaultText;
+    color: $defaultText;
 
-	border-top: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-right: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-bottom: $defaultBorderWidth $defaultBorderType $transparent;
-	border-left: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius $defaultRadius 0 0
+    border-top: $defaultBorderSettings;
+    border-right: $defaultBorderSettings;
+    border-bottom: $transparent;
+    border-left: $defaultBorderSettings;
+    border-radius: $defaultRadius $defaultRadius 0 0
 }
 
 .current-view {
-	background-color: $defaultFg
+    background-color: $defaultFg
 }
 
 // moresearches menu
-#export .dropdown-menu, #moresearches_menu .dropdown-menu {
-	a {
-		background-color: $dropdownLinkBg;
-		color: $dropdownLinkText;
+#export .dropdown-menu,
+#moresearches_menu .dropdown-menu {
+    a {
+        background-color: $dropdownLinkBg;
+        color: $dropdownLinkText;
 
-		&:hover {
-			background-color: $dropdownLinkBgHov;
-			color: $dropdownLinkTextHov
-		}
-	}
+        &:hover {
+            background-color: $dropdownLinkBgHov;
+            color: $dropdownLinkTextHov
+        }
+    }
 }
 
 // moreactions
 .nav_results {
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 .l_Results {
-	color: $headlinerText;
-	background-color: $headlinerBg;
-	border-radius: $defaultRadius;
+    color: $headlinerText;
+    background-color: $headlinerBg
 }
-.pg_menu .pg_link a, .pg_menu .pg_link span {
-	background-color: $defaultFg;
-	border-radius: $defaultRadius
+
+.pg_menu .pg_link a,
+.pg_menu .pg_link span {
+    background-color: $defaultFg
 }
 
 //
 // socials
 #social_networks {
-	a {
-		border-radius: $defaultRadius;
-
-		&:hover, &:focus-visible,
-		&:active, &.active {
-			border-color: $defaultBorderCol
-		}
-	}
-}
-
-//
-// view tabs
-a#Normalview, a#MARCview,
-a#ISBDview {
-	text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationCol $defaultDecorationThickness;
-
-	&:hover {
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColHov $defaultDecorationThickness
-	}
-
-	&:focus-visible, &:active,
-	&.active {
-		text-decoration: $defaultDecorationLine $defaultDecorationStyle $defaultLinkDecorationColFoc $defaultDecorationThickness
-	}
+    a {
+        &:hover {
+            border-color: $defaultBorderSettings
+        }
+    }
 }
 
 //
 //
 // course reserves
 #courses {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 table.dataTable thead tr th span.dt-column-order::after,
 table.dataTable thead tr th span.dt-column-order::before {
-	color: $defaultText;
+    color: $defaultText;
 }
 
 .dataTables_filter input,
 .dataTables_filter label {
-	font-size: 1rem
+    font-size: 1rem
 }
 
 .pg_menu .pg_link a,
 .pg_menu .pg_link span {
-	&:hover, &:focus-visible,
-	&:active, &.active {
-		background-color: $defaultLinkText;
-		color: $defaultFg;
-		text-decoration: none;
 
-                i.fa {
-                  color: $defaultFg
-                }
-	}
+    &:hover {
+        background-color: $defaultLinkText;
+        color: $defaultFg;
+        text-decoration: none;
+
+        i.fa {
+            color: $defaultFg
+        }
+    }
+
+    &:focus {
+        background-color: $defaultLinkText;
+        color: $defaultFg;
+        text-decoration: none;
+
+        i.fa {
+            color: $defaultFg
+        }
+    }
 }
 
 #a_listResults,
 #listResults li a {
-	color: $defaultLinkText;
+    color: $defaultLinkText;
 
-	i.fa {
-		color: $defaultLinkText;
-	}
+    i.fa {
+        color: $defaultLinkText;
+    }
 
-	&:hover, &:focus-visible,
-	&:active, &.active {
-		background-color: $defaultLinkText;
-		color: $defaultFg;
+    &:hover {
+        background-color: $defaultLinkText;
+        color: $defaultFg;
 
-		i.fa {
-			color: $defaultFg
-		}
-	}
+        i.fa {
+            color: $defaultFg
+        }
+    }
+
+    &:focus {
+        background-color: $defaultLinkText;
+        color: $defaultFg;
+
+        i.fa {
+            color: $defaultFg
+        }
+    }
 }
 
 #listResults li a {
-	background-color: $transparent;
-	color: $defaultLinkText;
+    background-color: $transparent;
+    color: $defaultLinkText;
 }
 
 //
 //
 // serials
-#libraryfilter, #subscriptionidfilter {
-	margin-bottom: .5rem
+#libraryfilter,
+#subscriptionidfilter {
+    margin-bottom: .5rem
 }
 
 //
 //
 // account
-#opac-auth, #userdetails,
-#useraccount, #opac-patron-update .col-md-12.col-lg-10.order-1,
-#usertags, #searchhistory,
-#userreadingrecord, #userholdshistory,
-#usersuggestions, #usermessaging,
-#usershelves, #illrequests {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+#opac-auth,
+#userdetails,
+#useraccount,
+#opac-patron-update .col-md-12.col-lg-10.order-1,
+#usertags,
+#searchhistory,
+#userreadingrecord,
+#userholdshistory,
+#usersuggestions,
+#usermessaging,
+#usershelves,
+#illrequests {
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 fieldset.rows {
-	float: none
+    float: none
 }
 
 div#ill-opac-results_wrapper {
-	overflow-x: scroll
+    overflow-x: scroll
 }
 
 #illrequests .bg-info {
-	color: rgb(212, 237, 218)!important;
-	background-color: rgb(40, 167, 69)!important
+    color: rgb(212, 237, 218) !important;
+    background-color: rgb(40, 167, 69) !important
 }
 
 //
 //
 // libraries
 #library_info {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 //
 //
 // holds
 #holds {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 //
 //
 // subject cloud
 #subjectcloud {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 //
 //
 // auths
-#userauthhome, #userauthsearchresults,
+#userauthhome,
+#userauthsearchresults,
 #userauthdetails {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 //
 //
 // browser
 #userbrowser {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 //
 //
 // lists
 #useraddbybiblionumber {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 //
 //
 // basket
-#userbasket, #usersendbasket {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+#userbasket,
+#usersendbasket {
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
+}
+
+//
+//
+// flatpickr
+.flatpickr {
+    padding-left: 1.25rem !important
 }
 
 //
 //
 // languages
 #changelanguage {
-	display: none
+    display: none
+}
+
+//
+//
+// backtotop
+#backtotop {
+    &:active {
+        top: auto
+    }
 }
 
 //
 //
 // error pages
-div[id^="errormsg"], #noresultsfound {
-	padding: 1rem;
-	color: $defaultText;
-	background-color: $defaultFg;
-	border: $defaultBorderWidth $defaultBorderType $defaultBorderCol;
-	border-radius: $defaultRadius
+div[id^="errormsg"],
+#noresultsfound {
+    padding: 1rem;
+    color: $defaultText;
+    background-color: $defaultFg;
+    border: $defaultBorderSettings
 }
 
 //
 //
 // inlibro changes
 #inlibro-carrousel {
-	padding: 1rem
+    padding: 1rem
 }
 
 #inlibro-carrousel .slider img {
-	height: 250px!important
+    height: 250px !important
 }
 
 #inlibro-carrousel hr {
-	display: none
+    display: none
 }
 
 #inlibro-carrousel button {
-	background-image: none!important;
-	text-shadow: none!important;
-	text-decoration: none!important;
+    background-image: none !important;
+    text-shadow: none !important;
+    text-decoration: none !important;
 
-	color: $btnPriText!important;
-	background-color: $btnPriBg!important;
-	border: $defaultBorderWidth $defaultBorderType $btnPriBorderCol!important;
-	outline: $defaultBorderWidth $defaultBorderType $btnPriOutlineCol!important;
+    color: $btnPriText !important;
+    background-color: $btnPriBg !important;
+    border: $btnPriBorderSettings !important;
+    outline: $btnPriOutlineSettings !important;
 
-	border-radius: $defaultRadius!important;
-	outline-offset: $defaultOffset!important;
+    &:hover {
+        background-image: none !important;
+        text-shadow: none !important;
+        text-decoration: none !important;
 
-	&:hover, &:focus-visible,
-	&:active, &.active {
-		background-image: none!important;
-		text-shadow: none!important;
-		text-decoration: none!important;
-
-		color: $btnPriTextHov!important;
-		background-color: $btnPriBgHov!important;
-		border: $defaultBorderWidth $defaultBorderType $btnPriBorderColHov!important;
-		outline: $defaultBorderWidth $defaultBorderType $btnPriOutlineColHov!important;
-	}
+        color: $btnPriTextHov !important;
+        background-color: $btnPriBgHov !important;
+        border: $btnPriBorderSettingsHov !important;
+        outline: $btnPriOutlineSettingsHov !important;
+    }
 }
 
 
-#inlibro-carrousel .slider hr + div {
-	background-color: $transparent!important
+#inlibro-carrousel .slider hr+div {
+    background-color: $transparent !important
 }

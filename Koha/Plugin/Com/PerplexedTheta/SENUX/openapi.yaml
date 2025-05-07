@@ -1,0 +1,238 @@
+---
+"/settings":
+  get:
+    x-mojo-to: Com::PerplexedTheta::SENUX::APIController#list
+    operationId: getSenuxSettings
+    tags:
+    - senux
+    summary: Lists available SENUX settings
+    produces:
+    - application/json
+    responses:
+      '200':
+        description: A setting
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              settings_id:
+                type: string
+                description: internally assigned setting id
+              setting_desc:
+                type: string
+                description: a short description of what the setting is
+      '400':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+      '404':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+    x-koha-authorization:
+      permissions:
+        plugins: admin
+"/settings/{setting_id}":
+  get:
+    x-mojo-to: Com::PerplexedTheta::SENUX::APIController#get
+    operationId: getSenuxSetting
+    tags:
+    - senux
+    summary: Gets SENUX setting
+    produces:
+    - application/json
+    parameters:
+      - description: Internal setting identifier
+        name: setting_id
+        in: path
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Setting content
+        schema:
+          type: string
+      '400':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+      '404':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+    x-koha-authorization:
+      permissions:
+        plugins: admin
+  put:
+    x-mojo-to: Com::PerplexedTheta::SENUX::APIController#update
+    operationId: updateSenuxSetting
+    tags:
+    - senux
+    summary: Updates SENUX setting
+    produces:
+    - application/json
+    parameters:
+      - description: Internal setting identifier
+        name: setting_id
+        in: path
+        required: true
+        type: string
+      - description: A JSON object containing new content of existing setting
+        name: body
+        in: body
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: Setting content
+        schema:
+          type: string
+      '400':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+      '404':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+    x-koha-authorization:
+      permissions:
+        plugins: admin
+"/trigger_build":
+  get:
+    x-mojo-to: Com::PerplexedTheta::SENUX::APIController#build_types
+    operationId: getSenuxBuildTypes
+    tags:
+    - senux
+    summary: Lists available SENUX build types
+    produces:
+    - application/json
+    responses:
+      '200':
+        description: A build
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              build_type:
+                type: string
+                description: internally assigned build type
+              build_desc:
+                type: string
+                description: a short description of what the build type is
+      '400':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+      '404':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+    x-koha-authorization:
+      permissions:
+        plugins: admin
+"/trigger_build/{build_type}":
+  get:
+    x-mojo-to: Com::PerplexedTheta::SENUX::APIController#rebuild
+    operationId: triggerSenuxRebuild
+    tags:
+    - senux
+    summary: Runs a rebuild on the target build type
+    produces:
+    - application/json
+    responses:
+      '200':
+        description: Result of triggered build
+        schema:
+          type: object
+          properties:
+            status:
+              description: A short description of what just happened
+              type: string
+      '400':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+      '404':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+    x-koha-authorization:
+      permissions:
+        plugins: admin
+"/trigger_reset":
+  delete:
+    x-mojo-to: Com::PerplexedTheta::SENUX::APIController#reset
+    operationId: resetSenux
+    tags:
+    - senux
+    summary: Completely resets SENUX, losing all changes
+    produces:
+    - application/json
+    responses:
+      '204':
+        description: SENUX reset
+        schema:
+          type: string
+      '400':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+      '404':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+    x-koha-authorization:
+      permissions:
+        plugins: admin

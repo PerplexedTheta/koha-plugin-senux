@@ -1,10 +1,19 @@
 [% USE raw %]
 [% USE KohaDates %]
+[% USE Asset %]
 [% PROCESS 'i18n.inc' %]
 [% SET footerjs = 1 %]
 [% INCLUDE 'doc-head-open.inc' %]
 <title>SENUX: Configure &rsaquo; Plugins &rsaquo; Administration &rsaquo; Koha</title>
 [% INCLUDE 'doc-head-close.inc' %]
+<style>
+    .ace-editor {
+        overflow-y: hidden;
+        width: 100%;
+        height: 0;
+        border: none;
+    }
+</style>
 </head>
 
 <body id="senux_plugin_configure" class="plugin">
@@ -31,31 +40,94 @@
             <div class="col-md-10 order-md-2 order-sm-1">
                 <main>
                     <h1>SENUX: Configure</h1>
-                    <form id="form" action="" method="get">
-                        <fieldset class="rows">
-                            <p>Please specify if you wish to enable the built-in JavaScript helpers. These may clash with your OPACUserJS. If so, disable these below.</p>
-                                <li>
-                                    <label for="enable_js">Enable JavaScript</label>
-                                    <select name="enable_js">
-                                        [% IF enable_js == 1 %]
-                                        <option value="1" selected="selected">Yes</option>
-                                        <option value="0">No</option>
-                                        [% ELSE %]
-                                        <option value="1">Yes</option>
-                                        <option value="0" selected="selected">No</option>
-                                        [% END %]
-                                    </select>
-                                </li>
-                            </ol>
-                        </fieldset>
-                        <fieldset class="action">
-                            <input type="hidden" name="class" value="[% CLASS %]"/>
-                            <input type="hidden" name="method" value="[% METHOD %]"/>
-                            <input type="hidden" name="save" value="1" />
-                            <input type="submit" class="btn btn-primary" value="Save" />
-                            <a class="cancel" href="/cgi-bin/koha/plugins/plugins-home.pl">Cancel</a>
-                        </fieldset>
-                    </form>
+
+                    <div class="page-section"><!-- sample_html -->
+                        <form id="sample_html_form">
+                            <h3>Sample HTML Customisations</h3>
+                            <div id="rebuild_js_alerts"></div>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                Please click <strong>Show Sample HTML Customisations</strong> below, if you'd like to see a plain text file containing all of the SENUX HTML Customisations, which you can use to make your OPAC look even better!
+                            </fieldset>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-arrow-up-right-from-square"></i> Show Sample HTML Customisations</button>
+                            </fieldset>
+                        </form>
+                    </div><!-- /sample_html -->
+
+                    <div class="page-section"><!-- variables_scss -->
+                        <form id="variables_scss_form">
+                            <h3><code>variables.scss</code></h3>
+                            <div id="variables_scss_alerts"></div>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                This controls things like colours, backgrounds, borders, outlines, box shadows, and text decorations.
+                            </fieldset>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                <div id="variables_scss_textarea" class="ace-editor"></div>
+                            </fieldset>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                            </fieldset>
+                        </form>
+                    </div><!-- /variables_scss -->
+
+                    <div class="page-section"><!-- customisations_scss -->
+                        <form id="customisations_scss_form">
+                            <h3><code>customisations.scss</code></h3>
+                            <div id="customisations_scss_alerts"></div>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                This SASS will override everything else in SENUX, and you can write your own SASS. It is like a supercharged OPACUserCSS!
+                            </fieldset>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                <div id="customisations_scss_textarea" class="ace-editor"></div>
+                            </fieldset>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                            </fieldset>
+                        </form>
+                    </div><!-- /customisations_scss -->
+
+                    <div class="page-section"><!-- customisations_js -->
+                        <form id="customisations_js_form">
+                            <h3><code>customisations.js</code></h3>
+                            <div id="customisations_js_alerts"></div>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                This is where the custom JavaScript functions are defined, and called. You can change them to suit your needs. If you don't want to use these, delete everything from the box.
+                            </fieldset>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                <div id="customisations_js_textarea" class="ace-editor"></div>
+                            </fieldset>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                            </fieldset>
+                        </form>
+                    </div><!-- /customisations_js -->
+
+                    <div class="page-section"><!-- rebuild_all -->
+                        <form id="rebuild_all_form">
+                            <h3>Rebuild JavaScript &amp; SASS</h3>
+                            <div id="rebuild_all_alerts"></div>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                Please click <strong>Rebuild JavaScript &amp; SASS</strong> below, if you wish to rebuild the SASS into CSS, and rebuild the JavaScript. Do this, if saving isn't triggering a rebuild, if things look strange, or if the JavaScript isn't working correctly.
+                            </fieldset>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-arrows-rotate"></i> Rebuild JavaScript &amp; SASS</button>
+                            </fieldset>
+                        </form>
+                    </div><!-- /rebuild_all -->
+
+                    <div class="page-section"><!-- reset_all -->
+                        <form id="reset_all_form">
+                            <h3>Reset all</h3>
+                            <div id="reset_all_alerts"></div>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                Reset the JavaScript &amp; SASS to the out-the-box defaults. <strong>Note:</strong> this will delete all of your customisations, so be certain of your actions prior to clicking the <strong>Reset all</strong> button below.
+                            </fieldset>
+                            <fieldset class="rows" style="float:none;padding:0 1em">
+                                <button type="submit" class="btn btn-danger float-end"><i class="fa fa-trash"></i> Reset all</button>
+                            </fieldset>
+                        </form>
+                    </div><!-- /reset_all -->
+
                 </main>
             </div> <!-- /.col-md-10.order-md-2 -->
             <div class="col-md-2 order-sm-2 order-md-1">
@@ -67,14 +139,237 @@
     </div>
 
     [% MACRO jsinclude BLOCK %]
+        <!-- ace -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/ace.min.js" integrity="sha512-flsyiGnpzyMMHGTb5iRwPNK2nObeYrmOryKKZmDYXeXpQeyaYnQdR97huozvxnnFrEADLqIHGFKoehUNDk/ZNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/mode-javascript.min.js" integrity="sha512-huhE5DJyT5W8aTFrFU7wMKr/ATiKc6QJSOuARjM87z2Iw99Yg+9YuBJHRiVdvgKDWFBwSRkm69s05kgP8AqlGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/mode-sass.min.js" integrity="sha512-CJeprcrVTD16GCaYl5FqkI8nUZhlqk5nBV/HgmEVvY4DtlrC0o+MQXwNyQIx+YmZDcixZwMO91sD1aaYWXXsvw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/worker-base.min.js" integrity="sha512-s0Jut1K8ghdFoj8G1ljoW7nvsMxOjRc5CdFNWOu13HPu7Nm44yre0Azcu1aODuCM7SqmVIhFbkd32j9Q1Lyynw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/worker-javascript.min.js" integrity="sha512-slZCJhIMq5f2Mokv1eKDQV58Zz3G6Ic5Xj4QixtoK1CgfeyvQ3LFLFIrYsNRwQItfjQ6/Ev7vAos062N15xvMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/snippets/javascript.min.js" integrity="sha512-ctV95Zg8QqVaAc99/cEl0CZEcZv26enZPmyOeXH01M/8qsLFASBrzdvis1u4NNG/5Pbmmxy5cKqX6bi++BHxnA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/snippets/sass.min.js" integrity="sha512-T+cd/4UiD+p4QxD8JeEpMsEwuUwW87tqtD4ut4ZWDEOJJwR3dAjsrmF4Cwtw+MKwbMW+14QIsPnFHOMir1VkUg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/ext-inline_autocomplete.min.js" integrity="sha512-Joj0ya8OqKqZrRHbCGiLUHA6LLpVavAoRBm0FM67tlaUx+nrguoINVImfSGpXN5+gRZn4e1NNn8POAh5FA/fsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/ext-language_tools.min.js" integrity="sha512-L+lSo49H8Yv9b6EdszH1LdR7xM+hVSP1klSeAKnjAw8izjfpkoVBlFNOQGm34u1gWIS3uwTzIZ9APNv0Bx7Otw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- ./ace -->
+
         <script>
             $( document ).ready( function() {
-                $('#navmenulist a[href$="/cgi-bin/koha/plugins/plugins-home.pl"]').addClass("current");
+                var genericApiManager = new APIManager(undefined);
+
+                var variables_scss_SenuxManager = new SenuxManager('variables_scss', 'sass');
+                var customisations_scss_SenuxManager = new SenuxManager('customisations_scss', 'sass');
+                var customisations_js_SenuxManager = new SenuxManager('customisations_js', 'javascript');
+
+
+                $('#sample_html_form').on('submit', event => {
+                    event.preventDefault();
+
+                    window.open('/api/v1/contrib/senux/static/static_files/src/html/senux.html.txt', '_blank');
+                });
+
+                $('#variables_scss_form').on('submit', event => {
+                    event.preventDefault();
+
+                    variables_scss_SenuxManager.updateSetting();
+                    genericApiManager.triggerBuild('variables_scss', 'sass');
+                });
+
+                $('#customisations_scss_form').on('submit', event => {
+                    event.preventDefault();
+
+                    customisations_scss_SenuxManager.updateSetting();
+                    genericApiManager.triggerBuild('customisations_scss', 'sass');
+                });
+
+                $('#customisations_js_form').on('submit', event => {
+                    event.preventDefault();
+
+                    customisations_js_SenuxManager.updateSetting();
+                    genericApiManager.triggerBuild('customisations_js', 'js');
+                });
+
+                $('#rebuild_all_form').on('submit', event => {
+                    event.preventDefault();
+
+                    genericApiManager.triggerBuild('rebuild_all', 'all');
+                });
+
+                $('#reset_all_form').on('submit', event => {
+                    event.preventDefault();
+
+                    if(confirm('Are you sure you wish to start from scratch?'))
+                        genericApiManager.triggerReset('yes_please');
+                });
             } );
+
+            class SenuxManager {
+                constructor(settingId, editorMode = 'javascript', lintMode = false, theme = 'xcode') {
+                    this.settingId = settingId;
+                    this.editorMode = editorMode;
+                    this.lintMode = lintMode;
+                    this.theme = theme;
+
+                    this.form = this.settingId + '_form';
+                    this.alerts = this.settingId + '_alerts';
+
+                    this.aceEditor = new AceManager(this.settingId + '_textarea', this.editorMode, this.lintMode, this.theme);
+                    this.apiManager = new APIManager(this.settingId);
+
+                    this.apiManager.readRemoteContents()
+                    .done(data => {
+                        this.aceEditor.setEditorContents(data);
+                    })
+                    .fail(data => {
+                        console.error(data);
+                    });
+
+                    return true;
+                }
+
+                updateSetting() {
+                    return this.apiManager.updateRemoteContents(this.aceEditor.getEditorContents())
+                    .done(data => {
+                        $('#' + this.alerts).append('<div id="' + this.alerts + '_save_success" class=\"alert alert-success\">Saved file successfully. Make sure you <strong>save &amp; rebuild<\/strong> any other files you\'re currently editing.<\/div>');
+
+                        setTimeout(handler => {
+                            $('#' + this.alerts + '_save_success').remove();
+                        }, 7000);
+                    })
+                    .fail(data => {
+                        console.error(data);
+
+                        $('#' + this.alerts).append('<div id="' + this.alerts + '_save_danger" class=\"alert alert-danger\">Unable to save file. Please contact your system administrator.<\/div>');
+
+                        setTimeout(handler => {
+                            $('#' + this.alerts + '_save_danger').remove();
+                        }, 7000);
+                    });
+                }
+            }
+
+            class APIManager {
+                constructor(settingId) {
+                    this.settingId = settingId;
+
+                    return true;
+                }
+
+                readRemoteContents() {
+                    return $.ajax({
+                        url: '/api/v1/contrib/senux/settings/' + this.settingId,
+                        type: 'GET'
+                    });
+                }
+
+                updateRemoteContents(contents) {
+                    return $.ajax({
+                        url: '/api/v1/contrib/senux/settings/' + this.settingId,
+                        type: 'PUT',
+                        data: contents
+                    });
+                }
+
+                updateRemoteBuild(buildType) {
+                    return $.ajax({
+                        url: '/api/v1/contrib/senux/trigger_build/' + buildType,
+                        type: 'GET'
+                    });
+                }
+
+                deleteRemoteContents() {
+                    return $.ajax({
+                        url: '/api/v1/contrib/senux/trigger_reset',
+                        type: 'DELETE'
+                    });
+                }
+
+                triggerBuild(formId, buildType) {
+                    var type;
+                    if(buildType == 'sass') type = 'SASS';
+                    else if(buildType == 'js') type = 'JavaScript';
+                    else type = 'SASS &amp; JavaScript';
+
+                    return this.updateRemoteBuild(buildType)
+                    .done(data => {
+                        $('#' + formId + '_alerts').append('<div id="' + formId + '_alerts_build_success" class=\"alert alert-success\">Rebuilt ' + type + ' successfully<\/div>');
+
+                        setTimeout(handler => {
+                            $('#' + formId + '_alerts_build_success').remove();
+                        }, 5000);
+                    })
+                    .fail(data => {
+                        console.error(data);
+
+                        $('#' + formId + '_alerts').append('<div id="' + formId + '_alerts_build_danger" class=\"alert alert-danger\">Rebuild for ' + type + ' failed. You likely made a syntactic mistake. Check the browser logs for more information.<\/div>');
+
+                        setTimeout(handler => {
+                            $('#' + formId + '_alerts_build_danger').remove();
+                        }, 5000);
+                    });
+                }
+
+                triggerReset(confirm) {
+                    if(confirm === 'yes_please') {
+                        return this.deleteRemoteContents()
+                        .done(data => {
+                            window.location.reload();
+                        })
+                        .fail(data => {
+                            console.error(data);
+
+                            alert('ERROR: ' + data);
+                        });
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+            class AceManager {
+                constructor(target, editorMode = 'javascript', lintMode = false, theme = 'xcode') {
+                    this.target = target;
+                    this.editorMode = editorMode;
+                    this.lintMode = lintMode;
+                    this.theme = theme;
+
+                    this.editor = ace.edit(this.target);
+
+                    this.editor.setTheme('ace/theme/' + this.theme);
+                    this.editor.session.setMode('ace/mode/' + this.editorMode);
+
+                    this.editor.container.style.height = '35em';
+                    this.editor.container.style.border = '1px solid #d3d3d3';
+
+                    this.editor.setOptions({
+                        useWorker: true,
+                        enableBasicAutocompletion: true,
+                        highlightSelectedWord: true,
+                        cursorStyle: 'smooth',
+                        mergeUndoDeltas: 'always',
+                        useSoftTabs: true,
+                        navigateWithinSoftTabs: true,
+                        enableAutoIndent: true
+                    });
+
+                    this.editor.session.setTabSize(4);
+                    this.editor.session.setUseWrapMode(true);
+
+                    this.editor.setKeyboardHandler("ace/keyboard/vscode");
+
+                    return true;
+                }
+
+                getEditorContents() {
+                    return '' + this.editor.getValue();
+                }
+
+                setEditorContents(contents, cursorPosition = -1) {
+                    return this.editor.setValue('' + contents, cursorPosition);
+                }
+            }
         </script>
         <script>
             $( document ).ready( function() {
-                // silence is golden
+                $('#navmenulist a[href$="/cgi-bin/koha/plugins/plugins-home.pl"]').addClass("current");
             } );
         </script>
     [% END %]
