@@ -5,7 +5,6 @@ if [[ "${EUID}" -eq 0 ]]; then
     echo 'Please run as a non-root (or sudo) user.' && exit 1
 fi
 
-mkdir -p "${SCRIPT_DIR}/node_cache"
 export npm_config_cache="${SCRIPT_DIR}/node_cache"
 
 alias npm="$(which npm)"
@@ -42,6 +41,7 @@ init() {
 }
 
 install() {
+    mkdir -pv "${SCRIPT_DIR}/node_cache" || exit 1
     npm install --include=dev || exit 1
 
     return
@@ -72,7 +72,7 @@ reset_all() {
 delete() {
     rm -fv "${SCRIPT_DIR}/package-lock.json"
     rm -rfv "${SCRIPT_DIR}/node_modules/"
-    rm -rvf "${SCRIPT_DIR}/node_cache/"
+    rm -rfv "${SCRIPT_DIR}/node_cache/"
     rm -fv "${SCRIPT_DIR}/dist/senux.min.js"
     rm -fv "${SCRIPT_DIR}/dist/senux.min.css"
 
