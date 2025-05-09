@@ -221,64 +221,80 @@
                 $('#variables_scss_form').on('submit', event => {
                     event.preventDefault();
 
-                    return (async() => {
+                    (async() => {
                         spinner = new SpinnerManager('variables_scss');
                         spinner.showSpinner();
 
-                        await variables_scss_SenuxManager.updateSetting();
-                        await genericApiManager.triggerBuild('variables_scss', 'sass');
+                        try {
+                            await variables_scss_SenuxManager.updateSetting();
+                            await genericApiManager.triggerBuild('variables_scss', 'sass');
 
-                        spinner.hideSpinner();
-
-                        return false;
+                            spinner.hideSpinner();
+                        } catch(error) {
+                            spinner.hideSpinner();
+                        }
                     })();
+
+                    return false;
                 });
 
                 $('#customisations_scss_form').on('submit', event => {
                     event.preventDefault();
 
-                    return (async() => {
+                    (async() => {
                         spinner = new SpinnerManager('customisations_scss');
                         spinner.showSpinner();
 
-                        await customisations_scss_SenuxManager.updateSetting();
-                        await genericApiManager.triggerBuild('customisations_scss', 'sass');
+                        try {
+                            await customisations_scss_SenuxManager.updateSetting();
+                            await genericApiManager.triggerBuild('customisations_scss', 'sass');
 
-                        spinner.hideSpinner();
-
-                        return false;
+                            spinner.hideSpinner();
+                        } catch(error) {
+                            spinner.hideSpinner();
+                        }
                     })();
+
+                    return false;
                 });
 
                 $('#customisations_js_form').on('submit', event => {
                     event.preventDefault();
 
-                    return (async() => {
+                    (async() => {
                         spinner = new SpinnerManager('customisations_js');
                         spinner.showSpinner();
 
-                        await customisations_js_SenuxManager.updateSetting();
-                        await genericApiManager.triggerBuild('customisations_js', 'js');
+                        try {
+                            await customisations_js_SenuxManager.updateSetting();
+                            await genericApiManager.triggerBuild('customisations_js', 'js');
 
-                        spinner.hideSpinner();
-
-                        return false;
+                            spinner.hideSpinner();
+                        } catch(error) {
+                            spinner.hideSpinner();
+                        }
                     })();
+
+                    return false;
                 });
 
                 $('#rebuild_all_form').on('submit', event => {
                     event.preventDefault();
 
-                    return (async() => {
+                    (async() => {
                         spinner = new SpinnerManager('rebuild_all');
                         spinner.showSpinner();
 
-                        await genericApiManager.triggerBuild('rebuild_all', 'all');
+                        try {
+                            await genericApiManager.triggerBuild('rebuild_all', 'all');
 
-                        spinner.hideSpinner();
-
-                        return false;
+                            spinner.hideSpinner();
+                        } catch(error) {
+                            spinner.hideSpinner();
+                        }
                     })();
+
+                    return false;
                 });
 
                 $('#reset_all_form').on('submit', event => {
@@ -286,15 +302,17 @@
 
                     if(confirm('Are you really sure you wish to start from scratch?'))
                         if(confirm('Doubly sure?'))
-                            return (async() => {
+                            (async() => {
                                 spinner = new SpinnerManager('reset_all');
                                 spinner.showSpinner();
 
-                                await genericApiManager.triggerReset('yes_please');
+                                try {
+                                    await genericApiManager.triggerReset('yes_please');
 
-                                spinner.hideSpinner();
-
-                                return false;
+                                    spinner.hideSpinner();
+                                } catch(error) {
+                                    spinner.hideSpinner();
+                                }
                             })();
 
                     return false;

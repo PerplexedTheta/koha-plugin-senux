@@ -14,22 +14,22 @@ alias npx="$(which npx)"
 cd "${SCRIPT_DIR}"
 
 build_js() {
-    npx gulp js || exit 1
+    npx gulp js || exit $?
 
-    return
+    return 0
 }
 
 build_sass() {
-    npx gulp sass || exit 1
+    npx gulp sass || exit $?
 
-    return
+    return 0
 }
 
 build_all() {
     build_js
     build_sass
 
-    return
+    return 0
 }
 
 init() {
@@ -38,29 +38,30 @@ init() {
     cp -nv "${SCRIPT_DIR}/src/js/customisations.sample.js" "${SCRIPT_DIR}/customisations.js"
     build_all
 
-    return
+    return 0
 }
 
 install() {
-    mkdir -pv "${SCRIPT_DIR}/node_cache" || exit 1
-    mkdir -pv "${SCRIPT_DIR}/node_modules" || exit 1
-    npm install --include=dev || exit 1
+    mkdir -pv "${SCRIPT_DIR}/node_cache" || exit $?
+    mkdir -pv "${SCRIPT_DIR}/node_modules" || exit $?
 
-    return
+    npm install --include=dev || exit $?
+
+    return 0
 }
 
 install_all() {
     install
     init
 
-    return
+    return 0
 }
 
 reset() {
     cp -fv "${SCRIPT_DIR}/src/js/customisations.sample.js" "${SCRIPT_DIR}/customisations.js"
     build_all
 
-    return
+    return 0
 }
 
 reset_all() {
@@ -68,7 +69,7 @@ reset_all() {
     cp -fv "${SCRIPT_DIR}/src/css/customisations.sample.scss" "${SCRIPT_DIR}/customisations.scss"
     reset
 
-    return
+    return 0
 }
 
 delete() {
@@ -78,7 +79,7 @@ delete() {
     rm -fv "${SCRIPT_DIR}/dist/senux.min.js"
     rm -fv "${SCRIPT_DIR}/dist/senux.min.css"
 
-    return
+    return 0
 }
 
 delete_all() {
@@ -87,7 +88,7 @@ delete_all() {
     rm -fv "${SCRIPT_DIR}/customisations.js"
     delete
 
-    return
+    return 0
 }
 
 usage() {
@@ -146,35 +147,35 @@ Options:
 
 EOF
 
-    exit 0
+    return 0
 }
 
 while true; do
     case "$1" in
         -bj|--build-js)
-            build_js ; shift ;;
+            build_js ; exit 0 ;;
         -bs|--build-sass)
-            build_sass ; shift ;;
+            build_sass ; exit 0 ;;
         -ba|--build-all)
-            build_all ; shift ;;
+            build_all ; exit 0 ;;
         -in|--init)
-            init ; shift ;;
+            init ; exit 0 ;;
         -i|--install)
-            install ; shift ;;
+            install ; exit 0 ;;
         -ia|--install-all)
-            install_all ; shift ;;
+            install_all ; exit 0 ;;
         -r|--reset)
-            reset ; shift ;;
+            reset ; exit 0 ;;
         -ra|--reset-all)
-            reset_all ; shift ;;
+            reset_all ; exit 0 ;;
         -d|--delete)
-            delete ; shift ;;
+            delete ; exit 0 ;;
         -da|--delete-all)
-            delete_all ; shift ;;
+            delete_all ; exit 0 ;;
         -m|--man)
-            usage ; shift ;;
+            usage ; exit 0 ;;
         -h|--help)
-            usage ; shift ;;
+            usage ; exit 0 ;;
         --)
             shift ; break ;;
         *)
@@ -183,3 +184,5 @@ while true; do
 
     exit 0
 done
+
+exit 0

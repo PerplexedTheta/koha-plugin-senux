@@ -13,7 +13,8 @@ gulp.task('compile-sass', function () {
     .pipe(sass({
       outputStyle: 'compressed',
       precision: 3,
-      errLogToConsole: true,
+      silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'color-functions'],
+      quietDeps: true,
       includePaths: ['node_modules/']
     }).on('error', console.error))
     .pipe(gulp.dest('dist')); // Output directory for CSS files

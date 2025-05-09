@@ -76,9 +76,6 @@ sub npm_new {
     my ( $self, $args ) = @_;
 
     return undef
-        unless ( $self->npm_delete );
-
-    return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
     my $install = `bash -- ./manage_senux.sh --install-all 2>&1`;
@@ -159,7 +156,7 @@ sub npm_delete {
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
-    my $delete = `bash -- ./manage_senux.sh --delete 2>&1`;
+    my $delete = `bash -- ./manage_senux.sh --delete-all 2>&1`;
     unless ( $? == 0 ) {
         $self->_throw_error(
             {
