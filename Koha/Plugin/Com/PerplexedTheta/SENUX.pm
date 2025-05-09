@@ -21,6 +21,7 @@ our $metadata = {
     maximum_version => undef,
     version         => $VERSION,
     description     => 'SENUX is a custom OPAC theme, built with Bootstrap. See README.md for customisations.',
+    repo            => 'https://github.com/openfifth/koha-plugin-senux',
 };
 
 sub new {
@@ -176,9 +177,13 @@ sub npm_delete {
 
 sub configure {
     my ($self) = @_;
-    my $cgi    = $self->{'cgi'};
+    my $cgi = $self->{'cgi'};
 
     my $template = $self->get_template( { file => 'configure.tt' } );
+
+    $template->param(
+        REPO => $self->{'metadata'}->{'repo'},
+    );
 
     $self->output_html( $template->output() );
 }

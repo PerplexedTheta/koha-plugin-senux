@@ -7,6 +7,31 @@
 <title>SENUX: Configure &rsaquo; Plugins &rsaquo; Administration &rsaquo; Koha</title>
 [% INCLUDE 'doc-head-close.inc' %]
 <style>
+    #senux_logowrapper {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        background: rgba(0,0,0,0) url('/api/v1/contrib/senux/static/static_files/src/vectors/senux.svg') no-repeat center center;
+        background-size: contain;
+        width: 125px;
+    }
+    #senux_logowrapper a {
+        display: block;
+        height: 0 !important;
+        overflow: hidden;
+        padding: 125px 0 0;
+        border: .125rem solid rgba(0,0,0,0);
+    }
+    #senux_titles h1::after {
+        content: "";
+        display: block;
+        max-width: 33%;
+        border: .0625rem solid black;
+    }
+    #senux_titles p {
+        font-size: 18px;
+    }
+
     .ace-editor {
         overflow-y: hidden;
         width: 100%;
@@ -39,7 +64,18 @@
         <div class="row">
             <div class="col-md-10 order-md-2 order-sm-1">
                 <main>
-                    <h1>SENUX: Configure</h1>
+
+                    <div class="page-section" style="background:transparent"><!-- senux_header-->
+                        <div id="senux_logowrapper">
+                            <a href="/cgi-bin/koha/plugins/run.pl?class=[% CLASS %]&method=configure">SENUX: Configure</a>
+                        </div>
+                        <div id="senux_titles">
+                            <div class="container-fluid">
+                                <h1>Welcome to SENUX</h1>
+                                <p style="font-size:18px"><a href="[% REPO %]" target="_blank"><i class="fa-brands fa-github"></i> See the code</a></p>
+                            </div>
+                        </div>
+                    </div><!-- /senux_header -->
 
                     <div class="page-section"><!-- sample_html -->
                         <form id="sample_html_form">
@@ -135,6 +171,9 @@
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
                                 <button id="reset_all_btn" type="submit" class="btn btn-danger float-end"><i class="fa fa-trash"></i> Reset all</button>
+                                <div id="reset_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                    <span class="sr-only">Saving...</span>
+                                </div>
                             </fieldset>
                         </form>
                     </div><!-- /reset_all -->
@@ -247,7 +286,16 @@
 
                     if(confirm('Are you really sure you wish to start from scratch?'))
                         if(confirm('Doubly sure?'))
-                            genericApiManager.triggerReset('yes_please');
+                            return (async() => {
+                                spinner = new SpinnerManager('reset_all');
+                                spinner.showSpinner();
+
+                                await genericApiManager.triggerReset('yes_please');
+
+                                spinner.hideSpinner();
+
+                                return false;
+                            })();
 
                     return false;
                 });
