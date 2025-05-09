@@ -44,12 +44,11 @@
                     <div class="page-section"><!-- sample_html -->
                         <form id="sample_html_form">
                             <h3>Sample HTML Customisations</h3>
-                            <div id="rebuild_js_alerts"></div>
                             <fieldset class="rows" style="float:none;padding:0 1em">
                                 Please click <strong>Show Sample HTML Customisations</strong> below, if you'd like to see a plain text file containing all of the SENUX HTML Customisations, which you can use to make your OPAC look even better!
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-arrow-up-right-from-square"></i> Show Sample HTML Customisations</button>
+                                <button id="sample_html_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-arrow-up-right-from-square"></i> Show Sample HTML Customisations</button>
                             </fieldset>
                         </form>
                     </div><!-- /sample_html -->
@@ -65,7 +64,10 @@
                                 <div id="variables_scss_textarea" class="ace-editor"></div>
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                <button id="variables_scss_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                <div id="variables_scss_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                    <span class="sr-only">Saving...</span>
+                                </div>
                             </fieldset>
                         </form>
                     </div><!-- /variables_scss -->
@@ -81,7 +83,10 @@
                                 <div id="customisations_scss_textarea" class="ace-editor"></div>
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                <button id="customisations_scss_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                <div id="customisations_scss_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                    <span class="sr-only">Saving...</span>
+                                </div>
                             </fieldset>
                         </form>
                     </div><!-- /customisations_scss -->
@@ -97,7 +102,10 @@
                                 <div id="customisations_js_textarea" class="ace-editor"></div>
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                <button id="customisations_js_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                <div id="customisations_js_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                    <span class="sr-only">Saving...</span>
+                                </div>
                             </fieldset>
                         </form>
                     </div><!-- /customisations_js -->
@@ -110,7 +118,10 @@
                                 Please click <strong>Rebuild JavaScript &amp; SASS</strong> below, if you wish to rebuild the SASS into CSS, and rebuild the JavaScript. Do this, if saving isn't triggering a rebuild, if things look strange, or if the JavaScript isn't working correctly.
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button type="submit" class="btn btn-primary float-end"><i class="fa fa-arrows-rotate"></i> Rebuild JavaScript &amp; SASS</button>
+                                <button id="rebuild_all_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-arrows-rotate"></i> Rebuild JavaScript &amp; SASS</button>
+                                <div id="rebuild_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                    <span class="sr-only">Saving...</span>
+                                </div>
                             </fieldset>
                         </form>
                     </div><!-- /rebuild_all -->
@@ -123,7 +134,7 @@
                                 Reset the JavaScript &amp; SASS to the out-the-box defaults. <strong>Note:</strong> this will delete all of your customisations, so be certain of your actions prior to clicking the <strong>Reset all</strong> button below.
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button type="submit" class="btn btn-danger float-end"><i class="fa fa-trash"></i> Reset all</button>
+                                <button id="reset_all_btn" type="submit" class="btn btn-danger float-end"><i class="fa fa-trash"></i> Reset all</button>
                             </fieldset>
                         </form>
                     </div><!-- /reset_all -->
@@ -139,6 +150,7 @@
     </div>
 
     [% MACRO jsinclude BLOCK %]
+
         <!-- ace -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/ace.min.js" integrity="sha512-flsyiGnpzyMMHGTb5iRwPNK2nObeYrmOryKKZmDYXeXpQeyaYnQdR97huozvxnnFrEADLqIHGFKoehUNDk/ZNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.41.0/mode-javascript.min.js" integrity="sha512-huhE5DJyT5W8aTFrFU7wMKr/ATiKc6QJSOuARjM87z2Iw99Yg+9YuBJHRiVdvgKDWFBwSRkm69s05kgP8AqlGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -159,45 +171,85 @@
                 var customisations_scss_SenuxManager = new SenuxManager('customisations_scss', 'sass');
                 var customisations_js_SenuxManager = new SenuxManager('customisations_js', 'javascript');
 
-
                 $('#sample_html_form').on('submit', event => {
                     event.preventDefault();
 
                     window.open('/api/v1/contrib/senux/static/static_files/src/html/senux.html.txt', '_blank');
+
+                    return false;
                 });
 
                 $('#variables_scss_form').on('submit', event => {
                     event.preventDefault();
 
-                    variables_scss_SenuxManager.updateSetting();
-                    genericApiManager.triggerBuild('variables_scss', 'sass');
+                    return (async() => {
+                        spinner = new SpinnerManager('variables_scss');
+                        spinner.showSpinner();
+
+                        await variables_scss_SenuxManager.updateSetting();
+                        await genericApiManager.triggerBuild('variables_scss', 'sass');
+
+                        spinner.hideSpinner();
+
+                        return false;
+                    })();
                 });
 
                 $('#customisations_scss_form').on('submit', event => {
                     event.preventDefault();
 
-                    customisations_scss_SenuxManager.updateSetting();
-                    genericApiManager.triggerBuild('customisations_scss', 'sass');
+                    return (async() => {
+                        spinner = new SpinnerManager('customisations_scss');
+                        spinner.showSpinner();
+
+                        await customisations_scss_SenuxManager.updateSetting();
+                        await genericApiManager.triggerBuild('customisations_scss', 'sass');
+
+                        spinner.hideSpinner();
+
+                        return false;
+                    })();
                 });
 
                 $('#customisations_js_form').on('submit', event => {
                     event.preventDefault();
 
-                    customisations_js_SenuxManager.updateSetting();
-                    genericApiManager.triggerBuild('customisations_js', 'js');
+                    return (async() => {
+                        spinner = new SpinnerManager('customisations_js');
+                        spinner.showSpinner();
+
+                        await customisations_js_SenuxManager.updateSetting();
+                        await genericApiManager.triggerBuild('customisations_js', 'js');
+
+                        spinner.hideSpinner();
+
+                        return false;
+                    })();
                 });
 
                 $('#rebuild_all_form').on('submit', event => {
                     event.preventDefault();
 
-                    genericApiManager.triggerBuild('rebuild_all', 'all');
+                    return (async() => {
+                        spinner = new SpinnerManager('rebuild_all');
+                        spinner.showSpinner();
+
+                        await genericApiManager.triggerBuild('rebuild_all', 'all');
+
+                        spinner.hideSpinner();
+
+                        return false;
+                    })();
                 });
 
                 $('#reset_all_form').on('submit', event => {
                     event.preventDefault();
 
-                    if(confirm('Are you sure you wish to start from scratch?'))
-                        genericApiManager.triggerReset('yes_please');
+                    if(confirm('Are you really sure you wish to start from scratch?'))
+                        if(confirm('Doubly sure?'))
+                            genericApiManager.triggerReset('yes_please');
+
+                    return false;
                 });
             } );
 
@@ -366,12 +418,34 @@
                     return this.editor.setValue('' + contents, cursorPosition);
                 }
             }
+
+            class SpinnerManager {
+                constructor(formId) {
+                    this.btn = formId + '_btn';
+                    this.spinner = formId + '_spinner';
+                }
+
+                showSpinner() {
+                    $('#' + this.btn).css('display', 'none');
+                    $('#' + this.spinner).css('display', 'inline-block');
+
+                    return;
+                }
+
+                hideSpinner() {
+                    $('#' + this.btn).css('display', 'inline-block');
+                    $('#' + this.spinner).css('display', 'none');
+
+                    return;
+                }
+            }
         </script>
         <script>
             $( document ).ready( function() {
                 $('#navmenulist a[href$="/cgi-bin/koha/plugins/plugins-home.pl"]').addClass("current");
             } );
         </script>
+
     [% END %]
 
 [% INCLUDE 'intranet-bottom.inc' %]
