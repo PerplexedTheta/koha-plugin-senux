@@ -177,9 +177,9 @@ sub npm_delete {
 sub configure {
     my ($self) = @_;
     my $cgi    = $self->{'cgi'};
-    my $op     = $cgi->param('op') || '';
 
     my $template = $self->get_template( { file => 'configure.tt' } );
+
     $self->output_html( $template->output() );
 }
 
