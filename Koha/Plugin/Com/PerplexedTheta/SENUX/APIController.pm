@@ -47,6 +47,13 @@ sub list {
         return $c->render(
             status  => 200,
             openapi => \@settings,
+        ) unless not @settings;
+
+        return $c->render(
+            status  => 404,
+            openapi => {
+                error => 'unable to list settings',
+            },
         );
     } catch {
         $c->unhandled_exception($_);
@@ -61,13 +68,12 @@ Controller function that handles getting a setting
 
 sub get {
     my ( $self, $args ) = @_;
-    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
     my $c      = shift->openapi->valid_input or return;
+    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
 
     my $setting_id = $c->param('setting_id');
 
     return try {
-        ## check setting_id is valid first
         return $c->render(
             status  => 404,
             openapi => {
@@ -75,7 +81,6 @@ sub get {
             },
         ) unless $self->_check_setting( { setting_id => $setting_id } );
 
-        # load file
         my $content;
         $content = $plugin->load_text_file( $plugin->bundle_path . '/static_files/variables.scss' )
             if $setting_id eq 'variables_scss';
@@ -84,13 +89,11 @@ sub get {
         $content = $plugin->load_text_file( $plugin->bundle_path . '/static_files/customisations.js' )
             if $setting_id eq 'customisations_js';
 
-        ## try content
         return $c->render(
             status  => 200,
             openapi => $content,
         ) unless not defined $content;
 
-        ## catch
         return $c->render(
             status  => 404,
             openapi => {
@@ -110,14 +113,13 @@ Controller function that handles updating a setting
 
 sub update {
     my ( $self, $args ) = @_;
-    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
     my $c      = shift->openapi->valid_input or return;
+    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
 
     my $setting_id = $c->param('setting_id');
     my $body       = $c->req->text;
 
     return try {
-        ## check setting_id is valid first
         return $c->render(
             status  => 404,
             openapi => {
@@ -125,7 +127,6 @@ sub update {
             },
         ) unless $self->_check_setting( { setting_id => $setting_id } );
 
-        # save file
         my $content;
         $content = $plugin->save_text_file( $plugin->bundle_path . '/static_files/variables.scss', $body )
             if $setting_id eq 'variables_scss';
@@ -134,13 +135,11 @@ sub update {
         $content = $plugin->save_text_file( $plugin->bundle_path . '/static_files/customisations.js', $body )
             if $setting_id eq 'customisations_js';
 
-        ## try content
         return $c->render(
             status  => 200,
             openapi => $body,
         ) unless not defined $content;
 
-        ## catch
         return $c->render(
             status  => 400,
             openapi => {
@@ -168,6 +167,13 @@ sub build_types {
         return $c->render(
             status  => 200,
             openapi => \@build_types,
+        ) unless not @build_types;
+
+        return $c->render(
+            status  => 404,
+            openapi => {
+                error => 'unable to list build types',
+            },
         );
     } catch {
         $c->unhandled_exception($_);
@@ -182,13 +188,12 @@ Controller function that handles rebuilding the SASS, JS, or, both
 
 sub rebuild {
     my ( $self, $args ) = @_;
-    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
     my $c      = shift->openapi->valid_input or return;
+    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
 
     my $build_type = $c->param('build_type');
 
     return try {
-        ## check build_type is valid first
         return $c->render(
             status  => 404,
             openapi => {
@@ -199,7 +204,6 @@ sub rebuild {
         my $build;
         $build = $plugin->npm_build( { build_type => $build_type } );
 
-        ## try build
         return $c->render(
             status  => 200,
             openapi => {
@@ -207,7 +211,6 @@ sub rebuild {
             },
         ) unless not defined $build;
 
-        ## catch
         return $c->render(
             status  => 400,
             openapi => {
@@ -227,21 +230,18 @@ Controller function that handles resetting all of SENUX
 
 sub reset {
     my ( $self, $args ) = @_;
-    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
     my $c      = shift->openapi->valid_input or return;
+    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
 
     return try {
-
         my $reset_all;
         $reset_all = $plugin->npm_reset( { confirm => 'yes_please' } );
 
-        ## try build
         return $c->render(
             status  => 204,
             openapi => '',
         ) unless not defined $reset_all;
 
-        ## catch
         return $c->render(
             status  => 400,
             openapi => {
@@ -252,6 +252,10 @@ sub reset {
         $c->unhandled_exception($_);
     }
 }
+
+=head1 Ancillary
+
+=head2 Methods
 
 =head3 _list_settings
 
@@ -290,11 +294,8 @@ Helper function that checks setting exists
 sub _check_setting {
     my ( $self, $args ) = @_;
 
+    my $setting_id = $args->{'setting_id'} or return;
     my @settings   = $self->_list_settings;
-    my $setting_id = $args->{'setting_id'};
-
-    return undef
-        unless defined $setting_id;
 
     for my $element (@settings) {
         return 1
@@ -338,11 +339,8 @@ Helper function that checks build type exists
 sub _check_build_type {
     my ( $self, $args ) = @_;
 
+    my $build_type  = $args->{'build_type'} or return;
     my @build_types = $self->_list_build_types;
-    my $build_type  = $args->{'build_type'};
-
-    return undef
-        unless defined $build_type;
 
     for my $element (@build_types) {
         return 1
