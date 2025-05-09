@@ -77,17 +77,8 @@ sub npm_new {
     return undef
         unless ( $self->npm_delete );
 
-    my $cd_static_files = chdir abs_path( $self->mbf_dir ) . '/static_files';
-    unless ($cd_static_files) {
-        $self->_throw_error(
-            {
-                message     => 'could not cd to static_files',
-                return_code => $cd_static_files,
-            }
-        );
-
-        return undef;
-    }
+    return undef
+        unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
     my $install = `bash -- ./manage_senux.sh --install-all 2>&1`;
     unless ( $? == 0 ) {
@@ -111,17 +102,8 @@ sub npm_reset {
     return undef
         unless ( $args->{'confirm'} eq 'yes_please' );
 
-    my $cd_static_files = chdir abs_path( $self->mbf_dir ) . '/static_files';
-    unless ($cd_static_files) {
-        $self->_throw_error(
-            {
-                message     => 'could not cd to static_files',
-                return_code => $cd_static_files,
-            }
-        );
-
-        return undef;
-    }
+    return undef
+        unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
     my $reset_all = `bash -- ./manage_senux.sh --reset-all 2>&1`;
     unless ( $? == 0 ) {
@@ -144,17 +126,8 @@ sub npm_build {
     my $build_type = $args->{'build_type'} || 'all';
     my $build;
 
-    my $cd_static_files = chdir abs_path( $self->mbf_dir ) . '/static_files';
-    unless ($cd_static_files) {
-        $self->_throw_error(
-            {
-                message     => 'could not cd to static_files',
-                return_code => $cd_static_files,
-            }
-        );
-
-        return undef;
-    }
+    return undef
+        unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
     if ( $build_type eq 'sass' ) {
         $build = `bash -- ./manage_senux.sh --build-sass 2>&1`;
@@ -182,17 +155,8 @@ sub npm_build {
 sub npm_delete {
     my ( $self, $args ) = @_;
 
-    my $cd_static_files = chdir abs_path( $self->mbf_dir ) . '/static_files';
-    unless ($cd_static_files) {
-        $self->_throw_error(
-            {
-                message     => 'could not cd to static_files',
-                return_code => $cd_static_files,
-            }
-        );
-
-        return undef;
-    }
+    return undef
+        unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
     my $delete = `bash -- ./manage_senux.sh --delete 2>&1`;
     unless ( $? == 0 ) {
@@ -295,6 +259,24 @@ sub _is_npm_installed {
             {
                 message     => '`npm` not found in PATH',
                 return_code => 0,
+            }
+        );
+
+        return undef;
+    }
+
+    return 1;
+}
+
+sub _chdir {
+    my ( $self, $args ) = @_;
+
+    my $chdir = chdir $args->{'path'};
+    unless ($chdir) {
+        $self->_throw_error(
+            {
+                message     => 'could not cd to ' . $args->{'path'},
+                return_code => $chdir,
             }
         );
 
