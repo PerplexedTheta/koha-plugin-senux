@@ -18,6 +18,7 @@
   "homepage": "https://github.com/PerplexedTheta/senux#readme",
   "devDependencies": {
     "gulp": "^5.0.0",
+    "gulp-cli": "^3.0.0",
     "gulp-copy": "^5.0.0",
     "gulp-minify": "^3.1.0",
     "gulp-rename": "^2.0.0",

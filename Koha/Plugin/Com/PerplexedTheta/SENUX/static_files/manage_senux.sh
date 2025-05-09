@@ -5,21 +5,22 @@ if [[ "${EUID}" -eq 0 ]]; then
     echo 'Please run as a non-root (or sudo) user.' && exit 1
 fi
 
+export npm_config_prefix="${SCRIPT_DIR}"
 export npm_config_cache="${SCRIPT_DIR}/node_cache"
 
 alias npm="$(which npm)"
-alias gulp="${SCRIPT_DIR}/node_modules/gulp/bin/gulp.js"
+alias npx="$(which npx)"
 
 cd "${SCRIPT_DIR}"
 
 build_js() {
-    gulp js || exit 1
+    npx gulp js || exit 1
 
     return
 }
 
 build_sass() {
-    gulp sass || exit 1
+    npx gulp sass || exit 1
 
     return
 }
@@ -42,6 +43,7 @@ init() {
 
 install() {
     mkdir -pv "${SCRIPT_DIR}/node_cache" || exit 1
+    mkdir -pv "${SCRIPT_DIR}/node_modules" || exit 1
     npm install --include=dev || exit 1
 
     return

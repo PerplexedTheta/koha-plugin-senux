@@ -270,6 +270,17 @@ sub _is_npm_installed {
         return undef;
     }
 
+    unless ( which('npx') ) {
+        $self->_throw_error(
+            {
+                message     => '`npx` not found in PATH',
+                return_code => 0,
+            }
+        );
+
+        return undef;
+    }
+
     return 1;
 }
 
