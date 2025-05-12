@@ -149,24 +149,20 @@
 //
 //
 // login & reserve modal
-.modal-content {
+.modal-dialog {
     color: $defaultText;
-    background-color: $defaultFg;
-    border: $defaultBorderSettings
-}
 
-.closebtn {
-    opacity: 1;
-    color: $msRed;
-
-    &:hover {
-        opacity: 1;
-        color: lighten($msRed, 15%)
+    .modal-header {
+        background-color: $defaultBg;
     }
 
-    &:focus {
-        opacity: 1;
-        color: lighten($msRed, 15%)
+    .modal-body {
+        background-color: $defaultFg;
+        border: $defaultBorderSettings
+    }
+
+    .modal-footer {
+        background-color: $defaultBg
     }
 }
 

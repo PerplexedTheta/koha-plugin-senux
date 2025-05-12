@@ -29,15 +29,18 @@
 
     color: $navbarLogoText;
     background: $navbarLogoBg;
+    background-size: $navbarLogoBgSize;
 
     &:hover {
         color: $navbarLinkTextHov;
         background: $navbarLogoBgHov;
+        background-size: $navbarLogoBgSize;
     }
 
     &:focus {
         color: $navbarLinkTextHov;
         background: $navbarLogoBgHov;
+        background-size: $navbarLogoBgSize;
     }
 
     a {
