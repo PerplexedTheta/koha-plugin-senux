@@ -222,6 +222,41 @@ sub rebuild {
     }
 }
 
+=head3 reinstall
+
+Controller function that handles reinstalling npm
+
+=cut
+
+sub reinstall {
+    my ( $self, $args ) = @_;
+    my $c      = shift->openapi->valid_input or return;
+    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
+
+    return try {
+        my $reinstall;
+        $reinstall = $plugin->npm_reinstall(
+            {
+                confirm => 'yes_please',
+            }
+        );
+
+        return $c->render(
+            status  => 204,
+            openapi => '',
+        ) unless not defined $reinstall;
+
+        return $c->render(
+            status  => 400,
+            openapi => {
+                error => 'could not reinstall plugin',
+            },
+        );
+    } catch {
+        $c->unhandled_exception($_);
+    }
+}
+
 =head3 reset
 
 Controller function that handles resetting all of SENUX
@@ -235,7 +270,12 @@ sub reset {
 
     return try {
         my $reset_all;
-        $reset_all = $plugin->npm_reset( { confirm => 'yes_please' } );
+        $reset_all = $plugin->npm_reset(
+            {
+                all     => 1,
+                confirm => 'yes_please',
+            }
+        );
 
         return $c->render(
             status  => 204,

@@ -38,6 +38,10 @@
         height: 0;
         border: none;
     }
+
+    #reinstall_btn {
+        margin-left: 1em;
+    }
 </style>
 </head>
 
@@ -162,16 +166,22 @@
                         </form>
                     </div><!-- /rebuild_all -->
 
-                    <div class="page-section"><!-- reset_all -->
-                        <form id="reset_all_form">
-                            <h3>Reset all</h3>
-                            <div id="reset_all_alerts"></div>
+                    <div class="page-section"><!-- reset_reinstall_all -->
+                        <form id="reset_reinstall_all_form">
+                            <h3>Resintall &amp; Reset all</h3>
+                            <div id="reset_reinstall_all_alerts"></div>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                Reset the JavaScript &amp; SASS to the out-the-box defaults. <strong>Note:</strong> this will delete all of your customisations, so be certain of your actions prior to clicking the <strong>Reset all</strong> button below.
+                                <p>
+                                    <strong>Reinstall:</strong> Deletes the <code>npm</code> modules, and redownloads them. This is useful if, no matter how confident you are your SASS &amp; JavaScript is valid, the rebuild always fails. <strong>Note:</strong> this will NOT delete your customisations. If your SASS or JavaScript is not valid, the plugin will break, and a reset all will be needed!
+                                </p>
+                                <p>
+                                    <strong>Reset all:</strong> Reset the JavaScript &amp; SASS to the out-the-box defaults. <strong>Note:</strong> this will delete all of your customisations, so be certain of your actions prior to clicking the <strong>Reset all</strong> button below.
+                                </p>
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="reset_all_btn" type="submit" class="btn btn-danger float-end"><i class="fa fa-trash"></i> Reset all</button>
-                                <div id="reset_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                <button id="reinstall_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-download"></i> Reinstall</button>
+                                <button id="reset_all_btn" type="reset" class="btn btn-danger float-end"><i class="fa fa-trash"></i> Reset all</button>
+                                <div id="reset_reinstall_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
                                     <span class="sr-only">Saving...</span>
                                 </div>
                             </fieldset>
@@ -297,13 +307,33 @@
                     return false;
                 });
 
-                $('#reset_all_form').on('submit', event => {
+                $('#reset_reinstall_all_form').on('submit', event => {
+                    event.preventDefault();
+
+                    if(confirm('Delete all npm packages and redownload? This may take a few moments.'))
+                        (async() => {
+                            spinner = new SpinnerManager('reset_reinstall_all');
+                            spinner.showSpinner();
+
+                            try {
+                                await genericApiManager.triggerReinstall('yes_please');
+
+                                spinner.hideSpinner();
+                            } catch(error) {
+                                spinner.hideSpinner();
+                            }
+                        })();
+
+                    return false;
+                });
+
+                $('#reset_reinstall_all_form').on('reset', event => {
                     event.preventDefault();
 
                     if(confirm('Are you really sure you wish to start from scratch?'))
                         if(confirm('Doubly sure?'))
                             (async() => {
-                                spinner = new SpinnerManager('reset_all');
+                                spinner = new SpinnerManager('reset_reinstall_all');
                                 spinner.showSpinner();
 
                                 try {
@@ -393,6 +423,13 @@
                     });
                 }
 
+                reinstallRemoteModules() {
+                    return $.ajax({
+                        url: '/api/v1/contrib/senux/trigger_reinstall',
+                        type: 'DELETE'
+                    });
+                }
+
                 deleteRemoteContents() {
                     return $.ajax({
                         url: '/api/v1/contrib/senux/trigger_reset',
@@ -423,6 +460,22 @@
                             $('#' + formId + '_alerts_build_danger').remove();
                         }, 5000);
                     });
+                }
+
+                triggerReinstall(confirm) {
+                    if(confirm === 'yes_please') {
+                        return this.reinstallRemoteModules()
+                        .done(data => {
+                            window.location.reload();
+                        })
+                        .fail(data => {
+                            console.error(data);
+
+                            alert('ERROR: ' + data);
+                        });
+                    } else {
+                        return false;
+                    }
                 }
 
                 triggerReset(confirm) {

@@ -57,6 +57,13 @@ install_all() {
     return 0
 }
 
+install_reinstall() {
+    delete
+    install
+
+    return 0
+}
+
 reset() {
     cp -fv "${SCRIPT_DIR}/src/js/customisations.sample.js" "${SCRIPT_DIR}/customisations.js"
     build_all
@@ -124,6 +131,11 @@ Options:
                         populate the plugin with the necessary template SASS and
                         JavaScript file(s). Best used for fresh installs.
 
+    -ir|--reinstall     Runs this script with --delete, and the with --install.
+                        Useful if npm has broken, but you're not certain it is
+                        due to any customisations you've made (i.e. if someone
+                        has upgraded nodejs without your knowledge).
+
     -r|--reset          Resets just the JavaScript template file to its default
                         contents. Use with caution.
 
@@ -164,6 +176,8 @@ while true; do
             install ; exit 0 ;;
         -ia|--install-all)
             install_all ; exit 0 ;;
+        -ir|--reinstall)
+            install_reinstall ; exit 0 ;;
         -r|--reset)
             reset ; exit 0 ;;
         -ra|--reset-all)

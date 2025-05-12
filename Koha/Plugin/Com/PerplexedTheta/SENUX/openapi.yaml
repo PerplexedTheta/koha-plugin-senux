@@ -236,3 +236,36 @@
     x-koha-authorization:
       permissions:
         plugins: admin
+"/trigger_reinstall":
+  delete:
+    x-mojo-to: Com::PerplexedTheta::SENUX::APIController#reinstall
+    operationId: reinstallSenux
+    tags:
+    - senux
+    summary: Completely reinstalls npm's modules
+    produces:
+    - application/json
+    responses:
+      '204':
+        description: SENUX reinstall
+        schema:
+          type: string
+      '400':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+      '404':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+    x-koha-authorization:
+      permissions:
+        plugins: admin

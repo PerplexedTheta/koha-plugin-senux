@@ -43,7 +43,7 @@ sub install {
         unless ( $self->_is_npm_installed );
 
     return undef
-        unless ( $self->npm_new );
+        unless ( $self->npm_new( { all => 1 } ) );
 
     return 1;
 }
@@ -67,23 +67,55 @@ sub uninstall {
         unless ( $self->_is_npm_installed );
 
     return undef
-        unless ( $self->npm_delete );
+        unless ( $self->npm_delete( { all => 1 } ) );
 
     return 1;
 }
 
 sub npm_new {
     my ( $self, $args ) = @_;
+    my $all = $args->{'all'};
+    my $install;
 
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
-    my $install = `bash -- ./manage_senux.sh --install-all 2>&1`;
+    unless ( defined $all ) {
+        $install = `bash -- ./manage_senux.sh --install 2>&1`;
+    } else {
+        $install = `bash -- ./manage_senux.sh --install-all 2>&1`;
+    }
+
     unless ( $? == 0 ) {
         $self->_throw_error(
             {
-                message     => '`bash -- ./manage_senux.sh --install-all` failed to run',
+                message     => '`bash -- ./manage_senux.sh --install' . ($all) ? '-all' : '' . '` failed to run',
                 output      => $install,
+                return_code => $?,
+            }
+        );
+
+        return undef;
+    }
+
+    return 1;
+}
+
+sub npm_reinstall {
+    my ( $self, $args ) = @_;
+
+    return undef
+        unless ( $args->{'confirm'} eq 'yes_please' );
+
+    return undef
+        unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
+
+    my $reinstall = `bash -- ./manage_senux.sh --reinstall 2>&1`;
+    unless ( $? == 0 ) {
+        $self->_throw_error(
+            {
+                message     => '`bash -- ./manage_senux.sh --reinstall` failed to run',
+                output      => $reinstall,
                 return_code => $?,
             }
         );
@@ -96,6 +128,8 @@ sub npm_new {
 
 sub npm_reset {
     my ( $self, $args ) = @_;
+    my $all = $args->{'all'};
+    my $reset;
 
     return undef
         unless ( $args->{'confirm'} eq 'yes_please' );
@@ -103,12 +137,17 @@ sub npm_reset {
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
-    my $reset_all = `bash -- ./manage_senux.sh --reset-all 2>&1`;
+    unless ( defined $all ) {
+        $reset = `bash -- ./manage_senux.sh --reset 2>&1`;
+    } else {
+        $reset = `bash -- ./manage_senux.sh --reset-all 2>&1`;
+    }
+
     unless ( $? == 0 ) {
         $self->_throw_error(
             {
-                message     => '`bash -- ./manage_senux.sh --reset-all` failed to run',
-                output      => $reset_all,
+                message     => '`bash -- ./manage_senux.sh --reset' . ($all) ? '-all' : '' . '` failed to run',
+                output      => $reset,
                 return_code => $?,
             }
         );
@@ -152,15 +191,22 @@ sub npm_build {
 
 sub npm_delete {
     my ( $self, $args ) = @_;
+    my $all = $args->{'all'};
+    my $delete;
 
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
-    my $delete = `bash -- ./manage_senux.sh --delete-all 2>&1`;
+    unless ( defined $all ) {
+        $delete = `bash -- ./manage_senux.sh --delete 2>&1`;
+    } else {
+        $delete = `bash -- ./manage_senux.sh --delete-all 2>&1`;
+    }
+
     unless ( $? == 0 ) {
         $self->_throw_error(
             {
-                message     => '`bash -- ./manage_senux.sh --delete` failed to run',
+                message     => '`bash -- ./manage_senux.sh --delete' . ($all) ? '-all' : '' . '` failed to run',
                 output      => $delete,
                 return_code => $?,
             }
