@@ -448,25 +448,21 @@
     }
 
     a {
-        color: $defaultLinkText;
+        background-color: $dropdownLinkBg;
+        color: $dropdownLinkText;
+        text-decoration: $dropdownLinkDecorationSettings;
 
         i.fa {
-            color: $defaultLinkText
+            color: $dropdownLinkText;
         }
 
         &:hover {
-            color: darken($defaultLinkText, 33%);
+            background-color: $dropdownLinkBgHov;
+            color: $dropdownLinkTextHov;
+            text-decoration: $dropdownLinkDecorationSettingsHov;
 
             i.fa {
-                color: darken($defaultLinkText, 33%)
-            }
-        }
-
-        &:focus {
-            color: darken($defaultLinkText, 33%);
-
-            i.fa {
-                color: darken($defaultLinkText, 33%)
+                color: $dropdownLinkTextHov;
             }
         }
     }
