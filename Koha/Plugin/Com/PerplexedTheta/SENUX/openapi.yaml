@@ -124,6 +124,43 @@
     x-koha-authorization:
       permissions:
         plugins: admin
+"/add_html_customisations":
+  get:
+    x-mojo-to: Com::PerplexedTheta::SENUX::APIController#add_html_customisations
+    operationId: addSenuxHtmlCustomisations
+    tags:
+    - senux
+    summary: Adds the HTML Customisations included with SENUX
+    produces:
+    - application/json
+    responses:
+      '200':
+        description: Result of customisations sideload
+        schema:
+          type: object
+          properties:
+            status:
+              description: A short description of what just happened
+              type: string
+      '400':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+      '404':
+        description: An error occured
+        schema:
+          type: object
+          properties:
+            error:
+              description: An explanation for the error
+              type: string
+    x-koha-authorization:
+      permissions:
+        plugins: admin
 "/trigger_build":
   get:
     x-mojo-to: Com::PerplexedTheta::SENUX::APIController#build_types

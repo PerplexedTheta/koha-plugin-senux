@@ -5,6 +5,9 @@ use Modern::Perl;
 use base qw{ Koha::Plugins::Base };
 
 use Koha::Libraries;
+use Koha::AdditionalContents;
+use Koha::DateUtils qw{ dt_from_string };
+use Koha::Config::SysPrefs;
 
 use Cwd         qw( abs_path );
 use File::Which qw{ which };
@@ -86,17 +89,13 @@ sub npm_new {
         $install = `bash -- ./manage_senux.sh --install-all 2>&1`;
     }
 
-    unless ( $? == 0 ) {
-        $self->_throw_error(
-            {
-                message     => '`bash -- ./manage_senux.sh --install' . ($all) ? '-all' : '' . '` failed to run',
-                output      => $install,
-                return_code => $?,
-            }
-        );
-
-        return undef;
-    }
+    return $self->_throw_error(
+        {
+            message     => '`bash -- ./manage_senux.sh --install' . ($all) ? '-all' : '' . '` failed to run',
+            output      => $install,
+            return_code => $?,
+        }
+    ) unless ( $? == 0 );
 
     return 1;
 }
@@ -111,17 +110,13 @@ sub npm_reinstall {
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
     my $reinstall = `bash -- ./manage_senux.sh --reinstall 2>&1`;
-    unless ( $? == 0 ) {
-        $self->_throw_error(
-            {
-                message     => '`bash -- ./manage_senux.sh --reinstall` failed to run',
-                output      => $reinstall,
-                return_code => $?,
-            }
-        );
-
-        return undef;
-    }
+    return $self->_throw_error(
+        {
+            message     => '`bash -- ./manage_senux.sh --reinstall` failed to run',
+            output      => $reinstall,
+            return_code => $?,
+        }
+    ) unless ( $? == 0 );
 
     return 1;
 }
@@ -143,17 +138,13 @@ sub npm_reset {
         $reset = `bash -- ./manage_senux.sh --reset-all 2>&1`;
     }
 
-    unless ( $? == 0 ) {
-        $self->_throw_error(
-            {
-                message     => '`bash -- ./manage_senux.sh --reset' . ($all) ? '-all' : '' . '` failed to run',
-                output      => $reset,
-                return_code => $?,
-            }
-        );
-
-        return undef;
-    }
+    return $self->_throw_error(
+        {
+            message     => '`bash -- ./manage_senux.sh --reset' . ($all) ? '-all' : '' . '` failed to run',
+            output      => $reset,
+            return_code => $?,
+        }
+    ) unless ( $? == 0 );
 
     return 1;
 }
@@ -174,17 +165,13 @@ sub npm_build {
         $build = `bash -- ./manage_senux.sh --build-all 2>&1`;
     }
 
-    unless ( $? == 0 ) {
-        $self->_throw_error(
-            {
-                message     => '`bash -- ./manage_senux.sh --build-' . $build_type . '` failed to run',
-                output      => $build,
-                return_code => $?,
-            }
-        );
-
-        return undef;
-    }
+    return $self->_throw_error(
+        {
+            message     => '`bash -- ./manage_senux.sh --build-' . $build_type . '` failed to run',
+            output      => $build,
+            return_code => $?,
+        }
+    ) unless ( $? == 0 );
 
     return 1;
 }
@@ -203,16 +190,118 @@ sub npm_delete {
         $delete = `bash -- ./manage_senux.sh --delete-all 2>&1`;
     }
 
-    unless ( $? == 0 ) {
-        $self->_throw_error(
+    return $self->_throw_error(
+        {
+            message     => '`bash -- ./manage_senux.sh --delete' . ($all) ? '-all' : '' . '` failed to run',
+            output      => $delete,
+            return_code => $?,
+        }
+    ) unless ( $? == 0 );
+
+    return 1;
+}
+
+sub load_html_customisations {
+    my ( $self, $args ) = @_;
+    my $html_path = abs_path( $self->mbf_dir ) . '/static_files/src/html';
+
+    my @html_customisations = (
+        {
+            location  => 'opaccredits',
+            title     => 'SENUX_opaccredits',
+            file_path => $html_path . '/OPACCredits.sample.html',
+        },
+        {
+            location  => 'opacheader',
+            title     => 'SENUX_opacheader',
+            file_path => $html_path . '/OPACHeader.sample.html',
+        },
+        {
+            location  => 'OpacLoginInstructions',
+            title     => 'SENUX_OpacLoginInstructions',
+            file_path => $html_path . '/OPACLoginInstructions.sample.html',
+        },
+        {
+            location  => 'OpacMaintenanceNotice',
+            title     => 'SENUX_OpacMaintenanceNotice',
+            file_path => $html_path . '/OPACMaintenanceNotice.sample.html',
+        },
+        {
+            location  => 'OpacMaintenanceNotice',
+            title     => 'SENUX_OpacMaintenanceNotice',
+            file_path => $html_path . '/OPACMaintenanceNotice.sample.html',
+        },
+        {
+            location  => 'OpacMainUserBlock',
+            title     => 'SENUX_OpacMainUserBlock',
+            file_path => $html_path . '/OPACMainUserBlock.sample.html',
+        },
+        {
+            location  => 'OpacMySummaryNote',
+            title     => 'SENUX_OpacMySummaryNote',
+            file_path => $html_path . '/OPACMySummaryNote.sample.html',
+        },
+        {
+            location  => 'OpacNavBottom',
+            title     => 'SENUX_OpacNavBottom',
+            file_path => $html_path . '/OPACNavBottom.sample.html',
+        },
+        {
+            location  => 'OpacNavRight',
+            title     => 'SENUX_OpacNavRight',
+            file_path => $html_path . '/OPACNavRight.sample.html',
+        },
+        {
+            location  => 'PatronSelfRegistrationAdditionalInstructions',
+            title     => 'SENUX_PatronSelfRegistrationAdditionalInstructions',
+            file_path => $html_path . '/PatronSelfRegistrationAdditionalInstructions.sample.html',
+        },
+    );
+
+    for my $html_customisation (@html_customisations) {
+        unless (
+            $self->_check_html_customisation(
+                { location => $html_customisation->{'location'}, title => $html_customisation->{'title'} }
+            )
+            )
+        {
+            my $set_customisation = $self->_set_html_customisation(
+                {
+                    location => $html_customisation->{'location'},
+                    title    => $html_customisation->{'title'},
+                    content  => $self->_load_text_file( { filename => $html_customisation->{'file_path'} } ),
+                }
+            );
+            return $self->_throw_error(
+                {
+                    message     => 'failed to load html customisation ' . $html_customisation->{'location'},
+                    return_code => 0,
+                }
+            ) unless defined $set_customisation;
+        }
+    }
+
+    my @sys_prefs = (
+        {
+            variable  => 'OPACSearchForTitleIn',
+            type      => 'textarea',
+            file_path => $html_path . '/OPACSearchForTitleIn.sample.html',
+        },
+    );
+
+    for my $sys_pref (@sys_prefs) {
+        my $set_sys_pref = $self->_set_sys_pref(
             {
-                message     => '`bash -- ./manage_senux.sh --delete' . ($all) ? '-all' : '' . '` failed to run',
-                output      => $delete,
-                return_code => $?,
+                variable => $sys_pref->{'variable'},
+                value    => $self->_load_text_file( { filename => $sys_pref->{'file_path'} } ),
             }
         );
-
-        return undef;
+        return $self->_throw_error(
+            {
+                message     => 'failed to set syspref ' . $sys_pref->{'variable'},
+                return_code => 0,
+            }
+        ) unless defined $set_sys_pref;
     }
 
     return 1;
@@ -234,8 +323,12 @@ sub configure {
 sub load_text_file {
     my ( $self, $filename ) = @_;
 
-    return undef
-        unless defined $filename;
+    return $self->_throw_error(
+        {
+            message     => 'filename not passed as argument',
+            return_code => 0,
+        }
+    ) unless defined $filename;
 
     return $self->_load_text_file(
         {
@@ -247,11 +340,19 @@ sub load_text_file {
 sub save_text_file {
     my ( $self, $filename, $content ) = @_;
 
-    return undef
-        unless defined $filename;
+    return $self->_throw_error(
+        {
+            message     => 'filename not passed as argument',
+            return_code => 0,
+        }
+    ) unless defined $filename;
 
-    return undef
-        unless defined $content;
+    return $self->_throw_error(
+        {
+            message     => 'content not passed as argument',
+            return_code => 0,
+        }
+    ) unless defined $content;
 
     return $self->_save_text_file(
         {
@@ -405,19 +506,105 @@ sub _save_text_file {
     return 1;
 }
 
+sub _check_html_customisation {
+    my ( $self, $args ) = @_;
+    my $location = $args->{'location'};
+    my $title    = $args->{'title'};
+
+    my $additional_contents = Koha::AdditionalContents->search();
+    return undef
+        unless $additional_contents;
+
+    while ( my $additional_content = $additional_contents->next ) {
+        my $translated_contents = $additional_content->translated_contents;
+        return undef
+            unless $translated_contents;
+
+        while ( my $translated_content = $translated_contents->next ) {
+            return 1
+                if $additional_content->location eq $location
+                and $translated_content->title eq $title;
+        }
+    }
+
+    return undef;
+}
+
+sub _set_html_customisation {
+    my ( $self, $args ) = @_;
+    my $location = $args->{'location'};
+    my $title    = $args->{'title'};
+    my $content  = $args->{'content'};
+
+    my $additional_content = Koha::AdditionalContent->new(
+        {
+            category     => 'html_customizations',
+            code         => '',
+            location     => $location,
+            branchcode   => undef,
+            published_on => dt_from_string,
+        }
+    )->store;
+    return undef
+        unless $additional_content;
+
+    $additional_content->translated_contents(
+        [
+            {
+                lang    => 'default',
+                title   => $title,
+                content => $content,
+            }
+        ]
+    ) or return undef;
+
+    $additional_content->discard_changes;
+
+    return 1;
+}
+
+sub _set_sys_pref {
+    my ( $self, $args ) = @_;
+    my $variable      = lc $args->{'variable'};
+    my $variable_case = $args->{'variable'};
+    my $value         = $args->{'value'};
+    my $type          = $args->{'type'};
+
+    my $sys_pref = Koha::Config::SysPrefs->find($variable);
+
+    if ($sys_pref) {
+        $sys_pref->set(
+            {
+                variable => $variable,
+                value    => $value,
+            },
+        )->store or return undef;
+        $sys_pref->discard_changes;
+    } else {
+        $sys_pref = Koha::Config::SysPref->new(
+            {
+                variable    => $variable_case,
+                value       => $value,
+                explanation => undef,
+                type        => $type,
+                options     => undef,
+            }
+        )->store();
+    }
+
+    return 1;
+}
+
 sub _throw_error {
     my ( $self, $args ) = @_;
     my $json = JSON->new->allow_nonref;
-
-    return undef
-        unless defined $args;
 
     warn $json->encode($args);
 
     die
         if defined $self->{'_die'};
 
-    return 1;
+    return undef;
 }
 
 1;

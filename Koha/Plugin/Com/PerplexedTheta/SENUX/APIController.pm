@@ -151,6 +151,39 @@ sub update {
     }
 }
 
+=head3 add_html_customisations
+
+Controller function that handles adding html customisations
+
+=cut
+
+sub add_html_customisations {
+    my ( $self, $args ) = @_;
+    my $c      = shift->openapi->valid_input or return;
+    my $plugin = Koha::Plugin::Com::PerplexedTheta::SENUX->new;
+
+    return try {
+        my $load_html_customisations;
+        $load_html_customisations = $plugin->load_html_customisations;
+
+        return $c->render(
+            status  => 200,
+            openapi => {
+                status => 'success',
+            },
+        ) unless not defined $load_html_customisations;
+
+        return $c->render(
+            status  => 400,
+            openapi => {
+                error => 'unable to load html customisations',
+            },
+        );
+    } catch {
+        $c->unhandled_exception($_);
+    }
+}
+
 =head3 build_types
 
 Controller function that handles listing build types

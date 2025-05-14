@@ -9,7 +9,7 @@
 <style>
     #senux_logowrapper {
         border: 0;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
         background: rgba(0,0,0,0) url('/api/v1/contrib/senux/static/static_files/src/vectors/senux.svg') no-repeat center center;
         background-size: contain;
@@ -22,13 +22,11 @@
         padding: 125px 0 0;
         border: .125rem solid rgba(0,0,0,0);
     }
-    #senux_titles h1::after {
-        content: "";
-        display: block;
-        max-width: 33%;
-        border: .0625rem solid black;
+    #senux_titles h1 {
+        text-align: center;
     }
     #senux_titles p {
+        text-align: center;
         font-size: 18px;
     }
 
@@ -70,28 +68,50 @@
                 <main>
 
                     <div class="page-section" style="background:transparent"><!-- senux_header-->
-                        <div id="senux_logowrapper">
-                            <a href="/cgi-bin/koha/plugins/run.pl?class=[% CLASS %]&method=configure">SENUX: Configure</a>
-                        </div>
-                        <div id="senux_titles">
-                            <div class="container-fluid">
-                                <h1>Welcome to SENUX</h1>
-                                <p style="font-size:18px"><a href="[% REPO %]" target="_blank"><i class="fa-brands fa-github"></i> See the code</a></p>
+                        <div class="row">
+                            <div class="col-auto col-lg-3"></div>
+                            <div class="col-12 col-lg-6">
+                                <div id="senux_logowrapper">
+                                    <a href="/cgi-bin/koha/plugins/run.pl?class=[% CLASS %]&method=configure">SENUX: Configure</a>
+                                </div>
+                                <div id="senux_titles">
+                                    <div class="container-fluid">
+                                        <h1>Welcome to SENUX</h1>
+                                        <hr />
+                                        <p>
+                                            <a href="[% REPO %]" target="_blank"><i class="fa-brands fa-github"></i> See the code</a>
+                                            |
+                                            <a href="[% REPO%]/wiki" target="_blank"><i class="fa fa-life-ring"></i> Read the wiki</a>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="col-auto col-lg-3">
                         </div>
                     </div><!-- /senux_header -->
 
-                    <div class="page-section"><!-- sample_html -->
-                        <form id="sample_html_form">
-                            <h3>Sample HTML Customisations</h3>
+                    <div class="page-section"><!-- html_customisations -->
+                        <form id="html_customisations_form">
+                            <h3>HTML Customisations</h3>
+                            <div id="html_customisations_alerts"></div>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                Please click <strong>Show Sample HTML Customisations</strong> below, if you'd like to see a plain text file containing all of the SENUX HTML Customisations, which you can use to make your OPAC look even better!
+                                <p>
+                                    SENUX comes with a series of optional HTML Customisations, to get your OPAC started. Clicking the <strong>Side-load HTML Customisations</strong> button below will add these optional customisations into Koha, for you to later edit or delete as you please. <a href="https://koha-community.org/manual/latest/en/html/tools.html#html-customizations" target="_blank">Please click here if you'd like to learn about HTML Customisations</a>.
+                                </p>
+                                <p>
+                                    <strong>Note:</strong> Side-loading the SENUX HTML Customisations will not delete any previous HTML Customisations you have created, and all SENUX HTML Customisations will clearly be marked by their title.
+                                </p>
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="sample_html_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-arrow-up-right-from-square"></i> Show Sample HTML Customisations</button>
+                                <button id="html_customisations_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-code"></i> Side-load HTML Customisations</button>
+                                <div id="html_customisations_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                    <span class="sr-only">Saving...</span>
+                                </div>
+                                <a class="btn btn-link float-end" href="/cgi-bin/koha/tools/additional-contents.pl?category=html_customizations">Go to HTML Customisations</i></a>
+
                             </fieldset>
                         </form>
-                    </div><!-- /sample_html -->
+                    </div><!-- /reset_all -->
 
                     <div class="page-section"><!-- variables_scss -->
                         <form id="variables_scss_form">
@@ -104,10 +124,11 @@
                                 <div id="variables_scss_textarea" class="ace-editor"></div>
                             </fieldset>
                             <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="variables_scss_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                <button id="variables_scss_btn" type="submit" class="btn btn-primary float-end" style="margin-left:1em"><i class="fa fa-save"></i> Save file & rebuild</button>
                                 <div id="variables_scss_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
                                     <span class="sr-only">Saving...</span>
                                 </div>
+                                <a class="btn btn-link float-end" href="[% REPO %]/wiki/Glossary-of-variables" target="_blank">See glossary of variables <i class="fa fa-arrow-up-right-from-square"></i></a>
                             </fieldset>
                         </form>
                     </div><!-- /variables_scss -->
@@ -127,6 +148,7 @@
                                 <div id="customisations_scss_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
                                     <span class="sr-only">Saving...</span>
                                 </div>
+                                <a class="btn btn-link float-end" href="https://www.w3schools.com/sass/sass_intro.php" target="_blank">Learn SASS <i class="fa fa-arrow-up-right-from-square"></i></a>
                             </fieldset>
                         </form>
                     </div><!-- /customisations_scss -->
@@ -146,6 +168,7 @@
                                 <div id="customisations_js_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
                                     <span class="sr-only">Saving...</span>
                                 </div>
+                                <a class="btn btn-link float-end" href="https://www.w3schools.com/js/js_intro.asp" target="_blank">Learn JavaScript <i class="fa fa-arrow-up-right-from-square"></i></a>
                             </fieldset>
                         </form>
                     </div><!-- /customisations_js -->
@@ -162,6 +185,7 @@
                                 <div id="rebuild_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
                                     <span class="sr-only">Saving...</span>
                                 </div>
+                                <a class="btn btn-link float-end" href="[% REPO %]/wiki/Troubleshoot-build-errors" target="_blank">Troubleshoot <i class="fa fa-arrow-up-right-from-square"></i></a>
                             </fieldset>
                         </form>
                     </div><!-- /rebuild_all -->
@@ -224,6 +248,25 @@
                     event.preventDefault();
 
                     window.open('/api/v1/contrib/senux/static/static_files/src/html/senux.html.txt', '_blank');
+
+                    return false;
+                });
+
+                $('#html_customisations_form').on('submit', event => {
+                    event.preventDefault();
+
+                    (async() => {
+                        spinner = new SpinnerManager('html_customisations');
+                        spinner.showSpinner();
+
+                        try {
+                            await genericApiManager.addHtmlCustomisations('html_customisations', 'yes_please');
+
+                            spinner.hideSpinner();
+                        } catch(error) {
+                            spinner.hideSpinner();
+                        }
+                    })();
 
                     return false;
                 });
@@ -416,6 +459,13 @@
                     });
                 }
 
+                updateRemoteHtmlCustomisations() {
+                    return $.ajax({
+                        url: '/api/v1/contrib/senux/add_html_customisations',
+                        type: 'GET'
+                    });
+                }
+
                 updateRemoteBuild(buildType) {
                     return $.ajax({
                         url: '/api/v1/contrib/senux/trigger_build/' + buildType,
@@ -435,6 +485,30 @@
                         url: '/api/v1/contrib/senux/trigger_reset',
                         type: 'DELETE'
                     });
+                }
+
+                addHtmlCustomisations(formId, confirm) {
+                    if(confirm === 'yes_please') {
+                        return this.updateRemoteHtmlCustomisations()
+                        .done(data => {
+                            $('#' + formId + '_alerts').append('<div id="' + formId + '_alerts_build_success" class=\"alert alert-success\">Added HTML Customisations successfully<\/div>');
+
+                            setTimeout(handler => {
+                                $('#' + formId + '_alerts_build_success').remove();
+                            }, 5000);
+                        })
+                        .fail(data => {
+                            console.error(data);
+
+                            $('#' + formId + '_alerts').append('<div id="' + formId + '_alerts_build_danger" class=\"alert alert-danger\">Failed to add HTML Customisations<\/div>');
+
+                            setTimeout(handler => {
+                                $('#' + formId + '_alerts_build_danger').remove();
+                            }, 5000);
+                        });
+                    } else {
+                        return false;
+                    }
                 }
 
                 triggerBuild(formId, buildType) {
