@@ -24,8 +24,9 @@
 // logo
 #logo {
     display: $navbarLogoDisplayMobile;
-    width: 100px;
-    margin: 0;
+    width: $navbarLogoWidth;
+    height: auto;
+    margin: 0 1rem 0 0;
 
     color: $navbarLogoText;
     background: $navbarLogoBg;
@@ -44,8 +45,8 @@
     }
 
     a {
-        width: 100px;
-        padding: 40px 0 0;
+        width: $navbarLogoWidth;
+        padding: $navbarLogoHeight 0 0;
 
         background-color: transparent !important;
         color: $navbarLogoText;
@@ -55,7 +56,7 @@
         text-decoration: $navbarLogoDecorationSettings;
 
         &:hover {
-            background: $transparent;
+            background: $transparent !important;
             color: $navbarLogoTextHov;
             border: $navbarLogoBorderSettingsHov;
             outline: $navbarLogoOutlineSettingsHov;
@@ -65,11 +66,23 @@
         }
 
         &:focus {
-            border: $navbarLogoBorderSettingsFoc !important;
+            background: $transparent !important;
+            color: $navbarLogoTextFoc !important;
+            border: $navbarLogoBorderSettingsHov !important;
             outline: $navbarLogoOutlineSettingsFoc !important;
-            box-shadow: $navbarLogoBoxShadowSettingsFoc !important;
-            text-decoration: $navbarLogoDecorationSettingsFoc !important;
+            box-shadow: $navbarLogoBoxShadowSettingsHov !important;
+            text-decoration: $navbarLogoDecorationSettingsHov !important;
             text-decoration-thickness: .1875rem !important;
+
+            &:not(:active):not(:hover) {
+                background: $transparent !important;
+                color: $navbarLogoTextFoc !important;
+                border: $navbarLogoBorderSettingsFoc !important;
+                outline: $navbarLogoOutlineSettingsFoc !important;
+                box-shadow: $navbarLogoBoxShadowSettingsFoc !important;
+                text-decoration: $navbarLogoDecorationSettingsFoc !important;
+                text-decoration-thickness: .1875rem !important;
+            }
         }
     }
 }
@@ -86,10 +99,15 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
 
 //
 // navbar
-.navbar-expand {
+#header-region {
     background-color: $navbarBg;
+    border-radius: 0;
+}
+
+.navbar-expand {
+    background-color: $transparent;
     padding: .5rem 1rem;
-    border: $transparent
+    border: none;
 }
 
 #cartDetails {
@@ -110,7 +128,8 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
             text-decoration: $navbarLinkDecorationSettings;
             text-shadow: none;
 
-            i.fa {
+            i.fa,
+            i.fa-solid {
                 color: $navbarLinkText
             }
 
@@ -118,7 +137,8 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
                 color: $navbarLinkTextHov;
                 text-decoration: $navbarLinkDecorationSettingsHov;
 
-                i.fa {
+                i.fa,
+                i.fa-solid {
                     color: $navbarLinkTextHov
                 }
             }
@@ -129,7 +149,8 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
             color: $dropdownLinkText;
             text-decoration: $dropdownLinkDecorationSettings;
 
-            i.fa {
+            i.fa,
+            i.fa-solid {
                 color: $dropdownLinkText;
             }
 
@@ -138,7 +159,8 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
                 color: $dropdownLinkTextHov;
                 text-decoration: $dropdownLinkDecorationSettingsHov;
 
-                i.fa {
+                i.fa,
+                i.fa-solid {
                     color: $dropdownLinkTextHov;
                 }
             }

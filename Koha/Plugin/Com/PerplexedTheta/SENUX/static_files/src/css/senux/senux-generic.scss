@@ -26,10 +26,12 @@
 }
 
 html {
+    border-radius: 0;
     font-size: 16px
 }
 
 body {
+    border-radius: 0;
     color: $defaultText;
     background-color: $defaultBg
 }
@@ -70,12 +72,14 @@ a {
     background: $defaultLinkBg;
     color: $defaultLinkText;
     border: $defaultLinkBorderSettings;
+    border-radius: 0;
     outline: $defaultLinkOutlineSettings;
     box-shadow: $defaultLinkBoxShadowSettings;
     text-decoration: $defaultLinkDecorationSettings;
     text-decoration-thickness: 0.0625rem;
 
-    i.fa {
+    i.fa,
+    i.fa-solid {
         color: $defaultLinkText
     }
 
@@ -89,7 +93,8 @@ a {
         text-decoration: $defaultLinkDecorationSettings;
         text-decoration-thickness: .0625rem;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $defaultLinkText
         }
     }
@@ -103,7 +108,8 @@ a {
         text-decoration: $defaultLinkDecorationSettingsHov;
         text-decoration-thickness: .1875rem;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $defaultLinkTextHov
         }
     }
@@ -125,8 +131,9 @@ a {
             box-shadow: $defaultLinkBoxShadowSettingsFoc !important;
             text-decoration: $defaultLinkDecorationSettingsFoc !important;
             text-decoration-thickness: .1875rem !important;
-    
-            i.fa {
+
+            i.fa,
+            i.fa-solid {
                 color: $defaultLinkTextFoc !important
             }
         }
@@ -185,7 +192,8 @@ hr {
     overflow: hidden;
     width: 100%;
     margin: auto;
-    padding: 0
+    padding: 0;
+    border-radius: 0;
 }
 
 .container-fluid {
@@ -196,8 +204,10 @@ hr {
 
 //
 // buttons
+input[type="submit"].btn,
+a.btn,
 .btn,
-input[type="submit"].btn {
+.btn:not(:disabled, .disabled) {
     display: inline-block;
     position: relative;
 
@@ -211,7 +221,6 @@ input[type="submit"].btn {
     word-wrap: break-word;
     font-weight: 400;
 
-    color: $btnText;
     background-color: $btnBg;
     border: $btnBorderSettings;
     outline: $btnOutlineSettings;
@@ -221,7 +230,8 @@ input[type="submit"].btn {
     border-radius: $defaultRadius;
     outline-offset: $defaultOffset;
 
-    i.fa {
+    i.fa,
+    i.fa-solid {
         color: $btnText
     }
 
@@ -229,16 +239,11 @@ input[type="submit"].btn {
         background-image: none;
         text-shadow: none;
 
-        color: $btnTextHov;
         background-color: $btnBgHov;
         border: $btnBorderSettingsHov;
         outline: $btnOutlineSettingsHov;
         box-shadow: $btnBoxShadowSettingsHov;
         text-decoration: $btnDecorationSettingsHov;
-
-        i.fa {
-            color: $btnTextHov
-        }
     }
 
     &:focus {
@@ -258,25 +263,39 @@ input[type="submit"].btn {
             box-shadow: $btnBoxShadowSettingsFoc !important;
             text-decoration: $btnDecorationSettingsFoc !important;
 
-            i.fa {
+            i.fa,
+            i.fa-solid {
                 color: $btnTextFoc !important
             }
         }
     }
 
-    &:active, &.active {
-        top: .125rem;
+    &:active,
+    &.active {
+        background-color: $btnBg;
+        border: $btnBorderSettings;
+        top: .125rem !important;
+    }
+
+    &:disabled,
+    &.disabled {
+        background-color: $btnBg;
+        border: $btnBorderSettings;
+        outline: $btnOutlineSettings;
+        box-shadow: $btnBoxShadowSettings;
+        opacity: $btnDisabledOpacity !important
     }
 }
 
+#loginModal input[type=submit],
+#loginModal input[type=submit]:not(:disabled, .disabled),
+input[type="submit"].btn-primary,
+a.btn-primary,
 .btn-primary,
-#loginModal input[type="submit"],
-.btn-primary:not(:disabled):not(.disabled),
-.btn-success,
-.btn-success:not(:disabled):not(.disabled),
-#searchsubmit.btn.btn-primary,
-.btn-primary.disabled,
-.btn-primary:disabled {
+.btn-primary:not(:disabled, .disabled),
+input[type="submit"].btn-success,
+a.btn-success .btn-success,
+.btn-success:not(:disabled, .disabled) {
     background-image: none;
     text-shadow: none;
 
@@ -287,7 +306,8 @@ input[type="submit"].btn {
     box-shadow: $btnPriBoxShadowSettings;
     text-decoration: $btnPriDecorationSettings;
 
-    i.fa {
+    i.fa,
+    i.fa-solid {
         color: $btnPriText
     }
 
@@ -301,26 +321,48 @@ input[type="submit"].btn {
         outline: $btnPriOutlineSettingsHov;
         box-shadow: $btnPriBoxShadowSettingsHov;
         text-decoration: $btnPriDecorationSettingsHov;
-    
-        i.fa {
+
+        i.fa,
+        i.fa-solid {
             color: $btnPriTextHov
+        }
+    }
+
+    &:active,
+    &.active {
+        color: $btnPriTextHov;
+        background-color: $btnPriBgHov;
+        border: $btnPriBorderSettingsHov;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnPriTextHov;
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        color: $btnPriText;
+        background-color: $btnPriBg;
+        border: $btnPriBorderSettings;
+        outline: $btnPriOutlineSettings;
+        box-shadow: $btnPriBoxShadowSettings;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnPriText;
         }
     }
 }
 
-.btn-primary.disabled,
-.btn-primary:disabled {
-    opacity: .6;
-}
-
+input[type="submit"].btn-default,
+a.btn-default,
 .btn-default,
+.btn-default:not(:disabled, .disabled),
+input[type="submit"].btn-secondary,
+a.btn-secondary,
 .btn-secondary,
-.btn-default:not(:disabled):not(.disabled),
-.btn-secondary:not(:disabled):not(.disabled),
-.btn-default.disabled,
-.btn-default:disabled,
-.btn-secondary.disabled,
-.btn-secondary:disabled {
+.btn-secondary:not(:disabled, .disabled) {
     background-image: none;
     text-shadow: none;
 
@@ -331,7 +373,8 @@ input[type="submit"].btn {
     box-shadow: $btnSecBoxShadowSettings;
     text-decoration: $btnSecDecorationSettings;
 
-    i.fa {
+    i.fa,
+    i.fa-solid {
         color: $btnSecText
     }
 
@@ -345,25 +388,47 @@ input[type="submit"].btn {
         outline: $btnSecOutlineSettingsHov;
         box-shadow: $btnSecBoxShadowSettingsHov;
         text-decoration: $btnSecDecorationSettingsHov;
-    
-        i.fa {
+
+        i.fa,
+        i.fa-solid {
             color: $btnSecTextHov
+        }
+    }
+
+    &:active,
+    &.active {
+        color: $btnSecTextHov;
+        background-color: $btnSecBgHov;
+        border: $btnSecBorderSettingsHov;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnSecTextHov;
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        color: $btnSecText;
+        background-color: $btnSecBg;
+        border: $btnSecBorderSettings;
+        outline: $btnSecOutlineSettings;
+        box-shadow: $btnSecBoxShadowSettings;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnSecText;
         }
     }
 }
 
-.btn-default.disabled,
-.btn-default:disabled,
-.btn-secondary.disabled,
-.btn-secondary:disabled {
-    opacity: .6;
-}
-
+input[type="submit"].btn-link,
+a.btn-link,
 .btn-link,
-.dt-button,
-.btn-link:not(:disabled):not(.disabled),
-.btn-link.disabled,
-.btn-link:disabled {
+.btn-link:not(:disabled, .disabled),
+input[type="submit"].dt-button,
+a.dt-button .dt-button,
+.dt-button:not(:disabled, .disabled) {
     background-image: none;
     text-shadow: none;
 
@@ -374,7 +439,8 @@ input[type="submit"].btn {
     box-shadow: $btnLinkBoxShadowSettings;
     text-decoration: $btnLinkDecorationSettings;
 
-    i.fa {
+    i.fa,
+    i.fa-solid {
         color: $btnLinkText
     }
 
@@ -389,16 +455,38 @@ input[type="submit"].btn {
         box-shadow: $btnLinkBoxShadowSettingsHov;
         text-decoration: $btnLinkDecorationSettingsHov;
         text-decoration-thickness: .1875rem;
-    
-        i.fa {
+
+        i.fa,
+        i.fa-solid {
             color: $btnLinkTextHov
         }
     }
-}
 
-.btn-link.disabled,
-.btn-link:disabled {
-    opacity: .6
+    &:active,
+    &.active {
+        color: $btnLinkTextHov;
+        background-color: $btnLinkBgHov;
+        border: $btnLinkBorderSettingsHov;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnLinkTextHov;
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        color: $btnLinkText;
+        background-color: $btnLinkBg;
+        border: $btnLinkBorderSettings;
+        outline: $btnLinkOutlineSettings;
+        box-shadow: $btnLinkBoxShadowSettings;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnLinkText;
+        }
+    }
 }
 
 .dt-button::before {
@@ -409,42 +497,68 @@ input[type="submit"].btn {
     color: darken($defaultLinkText, 15%)
 }
 
-.btn-danger,
 input[type="submit"].btn-danger,
-.btn-danger:not(:disabled):not(.disabled),
-.btn-danger.disabled,
-.btn-danger:disabled {
+a.btn-danger,
+.btn-danger,
+.btn-danger:not(:disabled, .disabled) {
     background-image: none;
     text-shadow: none;
 
-    color: $msWhite;
-    background-color: $msRed;
-    /*border: $msRed;
-    outline: $defaultOutlineWidth $defaultOutlineType $btnPriOutlineCol;
-    box-shadow: $defaultBoxShadowSettings $btnPriBoxShadowCol;*/
+    color: $btnDangerText;
+    background-color: $btnDangerBg;
+    border: $btnDangerBorderSettings;
+    outline: $btnDangerOutlineSettings;
+    box-shadow: $btnDangerBoxShadowSettings;
+    text-decoration: $btnDangerDecorationSettings;
 
-    i.fa {
-        color: $msWhite
+    i.fa,
+    i.fa-solid {
+        color: $btnDangerText
     }
 
     &:hover {
         background-image: none;
         text-shadow: none;
 
-        color: $msWhite;
-        background-color: darken($msRed, 15%);
-        /*border: darken($msRed, 10%);
-        outline: $defaultOutlineWidth $defaultOutlineType darken($msRed, 10%);
-        box-shadow: $defaultBoxShadowSettings darken($msRed, 10%);*/
+        color: $btnDangerTextHov;
+        background-color: $btnDangerBgHov;
+        border: $btnDangerBorderSettingsHov;
+        outline: $btnDangerOutlineSettingsHov;
+        box-shadow: $btnDangerBoxShadowSettingsHov;
+        text-decoration: $btnDangerDecorationSettingsHov;
 
-        i.fa {
-            color: $msWhite
+        i.fa,
+        i.fa-solid {
+            color: $btnDangerTextHov
+        }
+    }
+
+    &:active,
+    &.active {
+        color: $btnDangerTextHov;
+        background-color: $btnDangerBgHov;
+        border: $btnDangerBorderSettingsHov;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnDangerTextHov;
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        color: $btnDangerText;
+        background-color: $btnDangerBg;
+        border: $btnDangerBorderSettings;
+        outline: $btnDangerOutlineSettings;
+        box-shadow: $btnDangerBoxShadowSettings;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnDangerText;
         }
     }
 }
-
-.btn-danger.disabled,
-.btn-danger:disabled {}
 
 .input-append .add-on:last-child,
 .input-append .btn:last-child,
@@ -471,8 +585,6 @@ input[type="search-md"],
 input[type="search"],
 select,
 textarea,
-.form-control,
-.table_controls,
 .dataTables_filter input[type="search"],
 .form-select {
     padding: .375rem .75rem;
@@ -523,6 +635,11 @@ textarea,
         outline: $inputDisabledOutlineSettings;
         box-shadow: $inputDisabledBoxShadowSettings;
         text-decoration: $inputDisabledDecorationSettings;
+    }
+
+    &::placeholder {
+        color: $inputText;
+        opacity: $inputPlaceholderOpacity
     }
 }
 
@@ -585,7 +702,8 @@ input[type="radio"] {
         text-decoration: $inputDecorationSettingsFoc !important;
     }
 
-    &:active, &.active {
+    &:active,
+    &.active {
         top: .125rem;
     }
 

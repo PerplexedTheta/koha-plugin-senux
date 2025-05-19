@@ -27,6 +27,7 @@
 
     color: $footerText;
     background-color: $footerBg;
+    border-radius: 0;
 
     p,
     h1,
@@ -46,14 +47,15 @@
 
     li {
         list-style-type: none;
-        border: calc($defaultHeaderUnderlineThickness / 2) $defaultHeaderUnderlineType $defaultHeaderUnderlineCol;
+        border: $defaultHeaderUnderlineSettings
     }
 
     a {
         color: $footerLinkText;
         text-decoration: $footerLinkDecorationSettings;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $footerLinkText;
             text-decoration: $footerLinkDecorationSettings
         }
@@ -62,7 +64,8 @@
             color: $footerLinkTextHov;
             text-decoration: $footerLinkDecorationSettingsHov;
 
-            i.fa {
+            i.fa,
+            i.fa-solid {
                 color: $footerLinkTextHov;
                 text-decoration: $footerLinkDecorationSettingsHov
             }

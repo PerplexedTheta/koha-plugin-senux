@@ -42,7 +42,8 @@
     margin: .5rem 0 .9375rem;
     background-color: $breadcrumbBg;
     color: $breadcrumbText;
-    border: $defaultBorderSettings
+    border: $defaultBorderSettings;
+    border-radius: $defaultRadius
 }
 
 .breadcrumb-item {
@@ -74,8 +75,8 @@
         height: auto;
         width: auto;
         background: none;
-        color: $breadcrumbDivider;
-        content: "/"
+        color: $breadcrumbDividerText;
+        content: $breadcrumbDividerContents
     }
 }
 
@@ -120,7 +121,7 @@
     color: $defaultLinkText;
     background: $defaultFg;
     border: $defaultBorderSettings;
-    border-radius: $defaultRadius $defaultRadius 0 0;
+    border-radius: 0;
 
     &.ui-tabs-active,
     &.ui-tabs-active.ui-state-hover,
@@ -162,7 +163,11 @@
 // default
 .table-bordered,
 .table-bordered td,
-.table-bordered th {
+.table-bordered th,
+.table-striped,
+.table-striped td,
+.table-striped th {
+    --bs-table-border-color: unset;
     border: $defaultBorderSettings
 }
 
@@ -215,8 +220,10 @@
 .table-striped>tbody>tr>td {
     color: $tableRowText;
     background-color: $tableRowEvenBg;
+
     --bs-table-color-type: unset;
     --bs-table-bg-type: unset;
+    --bs-table-border-color: unset;
 
     a,
     a:visited {
@@ -308,6 +315,7 @@ td.overdue {
             color: $btnMenuText;
             background-color: $btnMenuBg;
             border: $btnMenuBorderSettings;
+            border-radius: $defaultRadius;
             outline: $btnMenuOutlineSettings;
             box-shadow: $btnMenuBoxShadowSettings;
             text-decoration: $btnMenuDecorationSettings;
@@ -324,12 +332,12 @@ td.overdue {
             &:focus {
                 background-image: none !important;
                 text-shadow: none !important;
-        
+
                 border: $btnBorderSettingsFoc !important;
                 outline: $btnOutlineSettingsFoc !important;
                 box-shadow: none !important;
                 text-decoration: $btnDecorationSettingsFoc !important;
-        
+
                 &:not(:active):not(:hover) {
                     color: $btnTextFoc !important;
                     background-color: $btnBgFoc !important;
@@ -337,14 +345,16 @@ td.overdue {
                     outline: $btnOutlineSettingsFoc !important;
                     box-shadow: $btnBoxShadowSettingsFoc !important;
                     text-decoration: $btnDecorationSettingsFoc !important;
-        
-                    i.fa {
+
+                    i.fa,
+                    i.fa-solid {
                         color: $btnTextFoc !important
                     }
                 }
             }
 
-            &:active, &.active {
+            &:active,
+            &.active {
                 top: .127rem;
             }
         }
@@ -392,7 +402,8 @@ td.overdue {
     &:visited {
         color: $navbarUsermenuLogoutText;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $navbarUsermenuLogoutText
         }
     }
@@ -400,7 +411,8 @@ td.overdue {
     &:hover {
         color: $navbarUsermenuLogoutTextHov;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $navbarUsermenuLogoutTextHov
         }
     }
@@ -408,7 +420,8 @@ td.overdue {
     &:focus {
         color: $navbarUsermenuLogoutTextHov;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $navbarUsermenuLogoutTextHov
         }
     }

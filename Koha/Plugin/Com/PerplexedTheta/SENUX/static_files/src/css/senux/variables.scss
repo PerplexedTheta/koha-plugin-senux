@@ -26,7 +26,7 @@
 //
 // vars--global
 // vars--global--monotones
-$transparent: rgba(0,0,0,0);
+$transparent: rgba(0, 0, 0, 0);
 $black: rgba(0, 0, 0, 1);
 $white: rgba(255, 255, 255, 1);
 // vars--global--microsoft
@@ -42,11 +42,11 @@ $msLagoon: rgba(3, 120, 124, 1);
 $msPurple: rgba(101, 102, 163, 1);
 $msMagenta: rgba(135, 68, 125, 1);
 // vars--global--senux
-$userHue1: rgba(8, 75, 131, 1);
+$userHue1: rgba(0, 65, 124, 1);
 $userHue2: rgba(27, 112, 177, 1);
-$userHue3: rgba(127, 200, 248, 1);
+$userHue3: rgba(99, 163, 233, 1);
 $userHue4: rgba(224, 0, 67, 1);
-$userHue5: rgba(255, 173, 198, 1);
+$userHue5: rgba(255, 151, 166, 1);
 $userText1: $white;
 $userText2: $white;
 $userText3: $black;
@@ -69,19 +69,17 @@ $defaultRadius: 0;
 $defaultOffset: 0;
 $defaultBorderSettings: .066rem solid darken($defaultFg, 15%);
 $defaultOutlineSettings: .125rem solid $transparent;
-$defaultBoxShadowSettings: 0 .125rem 0 $transparent;
+$defaultBoxShadowSettings: 0 .125rem 0 0 $transparent;
 $defaultDecorationSettings: none;
 // vars--generic--headers
-$defaultHeaderUnderlineThickness: .125rem;
-$defaultHeaderUnderlineType: solid;
-$defaultHeaderUnderlineCol: $defaultText;
+$defaultHeaderUnderlineSettings: calc(.125rem / 2) solid $defaultText;
 $defaultHeaderUnderlineWidthPct: 33%;
 // vars--generic--links
 $defaultLinkBg: $transparent;
 $defaultLinkText: $msBlue;
 $defaultLinkBorderSettings: none;
 $defaultLinkOutlineSettings: .1875rem solid $transparent;
-$defaultLinkBoxShadowSettings: 0 .125rem 0 $transparent;
+$defaultLinkBoxShadowSettings: 0 .125rem 0 0 $transparent;
 $defaultLinkDecorationSettings: underline;
 $defaultLinkBgHov: $transparent;
 $defaultLinkTextHov: darken($defaultLinkText, 5%);
@@ -93,7 +91,7 @@ $defaultLinkBgFoc: $msGold;
 $defaultLinkTextFoc: $msBlack;
 $defaultLinkBorderSettingsFoc: $defaultLinkBorderSettings;
 $defaultLinkOutlineSettingsFoc: .1875rem solid $msGold;
-$defaultLinkBoxShadowSettingsFoc: 0 .125rem 0 $msBlack;
+$defaultLinkBoxShadowSettingsFoc: 0 .125rem 0 0 $msBlack;
 $defaultLinkDecorationSettingsFoc: none;
 
 //
@@ -103,46 +101,46 @@ $btnBg: $transparent;
 $btnText: $defaultLinkText;
 $btnBorderSettings: .125rem solid $btnBg;
 $btnOutlineSettings: $defaultOutlineSettings;
-$btnBoxShadowSettings: 0 .125rem 0 $msBlack;
+$btnBoxShadowSettings: 0 .125rem 0 0 $msBlack;
 $btnDecorationSettings: $defaultDecorationSettings;
 $btnBgHov: $transparent;
 $btnTextHov: $defaultLinkTextHov;
 $btnBorderSettingsHov: .125rem solid $btnBgHov;
-$btnOutlineSettingsHov: $defaultOutlineSettings;
+$btnOutlineSettingsHov: $btnOutlineSettings;
 $btnBoxShadowSettingsHov: $btnBoxShadowSettings;
 $btnDecorationSettingsHov: $btnDecorationSettings;
 $btnBgFoc: $msGold;
 $btnTextFoc: $msBlack;
 $btnBorderSettingsFoc: .125rem solid $btnBgFoc;
-$btnOutlineSettingsFoc: $defaultOutlineSettings;
-$btnBoxShadowSettingsFoc: $btnBoxShadowSettings;
-$btnDecorationSettingsFoc: $btnDecorationSettings;
+$btnOutlineSettingsFoc: $btnOutlineSettingsHov;
+$btnBoxShadowSettingsFoc: $btnBoxShadowSettingsHov;
+$btnDecorationSettingsFoc: $btnDecorationSettingsHov;
 // vars--main--btns--pri
 $btnPriBg: darken($userHue4, 5%);
 $btnPriText: darken($userText4, 5%);
 $btnPriBorderSettings: .125rem solid $btnPriBg;
-$btnPriOutlineSettings: $defaultOutlineSettings;
+$btnPriOutlineSettings: $btnOutlineSettings;
 $btnPriBoxShadowSettings: $btnBoxShadowSettings;
-$btnPriDecorationSettings: $defaultDecorationSettings;
-$btnPriBgHov: darken($userHue4, 15%);
-$btnPriTextHov: $btnPriText;
+$btnPriDecorationSettings: $btnDecorationSettings;
+$btnPriBgHov: darken($userHue5, 15%);
+$btnPriTextHov: darken($userText5, 15%);
 $btnPriBorderSettingsHov: .125rem solid $btnPriBgHov;
-$btnPriOutlineSettingsHov: $defaultOutlineSettings;
+$btnPriOutlineSettingsHov: $btnPriOutlineSettings;
 $btnPriBoxShadowSettingsHov: $btnPriBoxShadowSettings;
-$btnPriDecorationSettingsHov: $btnDecorationSettings;
+$btnPriDecorationSettingsHov: $btnPriDecorationSettings;
 // vars--main--btns--sec
 $btnSecBg: darken($msWhite, 25%);
 $btnSecText: $msBlack;
 $btnSecBorderSettings: .125rem solid $btnSecBg;
-$btnSecOutlineSettings: $defaultOutlineSettings;
+$btnSecOutlineSettings: $btnOutlineSettings;
 $btnSecBoxShadowSettings: $btnBoxShadowSettings;
-$btnSecDecorationSettings: $defaultDecorationSettings;
+$btnSecDecorationSettings: $btnDecorationSettings;
 $btnSecBgHov: darken($msWhite, 15%);
 $btnSecTextHov: $btnSecText;
 $btnSecBorderSettingsHov: .125rem solid $btnSecBgHov;
-$btnSecOutlineSettingsHov: $defaultOutlineSettings;
+$btnSecOutlineSettingsHov: $btnSecOutlineSettings;
 $btnSecBoxShadowSettingsHov: $btnSecBoxShadowSettings;
-$btnSecDecorationSettingsHov: $btnDecorationSettings;
+$btnSecDecorationSettingsHov: $btnSecDecorationSettings;
 // vars--main--btns--menu
 $btnMenuBg: $btnSecBg;
 $btnMenuText: $btnSecText;
@@ -157,18 +155,33 @@ $btnMenuOutlineSettingsHov: $btnSecOutlineSettingsHov;
 $btnMenuBoxShadowSettingsHov: $btnSecBoxShadowSettingsHov;
 $btnMenuDecorationSettingsHov: $btnSecDecorationSettingsHov;
 // vars--main--btns--link
-$btnLinkBg: $btnBg;
-$btnLinkText: $btnText;
+$btnLinkBg: $defaultLinkBg;
+$btnLinkText: $defaultLinkText;
 $btnLinkBorderSettings: none;
 $btnLinkOutlineSettings: none;
 $btnLinkBoxShadowSettings: none;
 $btnLinkDecorationSettings: $defaultLinkDecorationSettings;
-$btnLinkBgHov: $btnBgHov;
-$btnLinkTextHov: $btnTextHov;
+$btnLinkBgHov: $defaultLinkBgHov;
+$btnLinkTextHov: $defaultLinkTextHov;
 $btnLinkBorderSettingsHov: none;
 $btnLinkOutlineSettingsHov: none;
 $btnLinkBoxShadowSettingsHov: none;
 $btnLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
+// vars--main--btns--danger
+$btnDangerBg: $msRed;
+$btnDangerText: $msWhite;
+$btnDangerBorderSettings: .125rem solid $btnDangerBg;
+$btnDangerOutlineSettings: $btnOutlineSettings;
+$btnDangerBoxShadowSettings: $btnBoxShadowSettings;
+$btnDangerDecorationSettings: $btnDecorationSettings;
+$btnDangerBgHov: darken($msRed, 15%);
+$btnDangerTextHov: $btnDangerText;
+$btnDangerBorderSettingsHov: .125rem solid $btnDangerBgHov;
+$btnDangerOutlineSettingsHov: $btnDangerOutlineSettings;
+$btnDangerBoxShadowSettingsHov: $btnDangerBoxShadowSettings;
+$btnDangerDecorationSettingsHov: $btnDangerDecorationSettings;
+// vars--main--btns--disabled
+$btnDisabledOpacity: .66;
 // vars--main--inputs
 $inputBg: $white;
 $inputText: $msBlack;
@@ -179,15 +192,15 @@ $inputDecorationSettings: none;
 $inputBgHov: $inputBg;
 $inputTextHov: $inputText;
 $inputBorderSettingsHov: $inputBorderSettings;
-$inputOutlineSettingsHov: $defaultOutlineSettings;
-$inputBoxShadowSettingsHov: 0 0 0 .125rem inset;
+$inputOutlineSettingsHov: $inputOutlineSettings;
+$inputBoxShadowSettingsHov: 0 0 0 .125rem $inputText inset;
 $inputDecorationSettingsHov: $inputDecorationSettings;
-$inputBgFoc: $inputBg;
-$inputTextFoc: $inputText;
-$inputBorderSettingsFoc: $inputBorderSettings;
+$inputBgFoc: $inputBgHov;
+$inputTextFoc: $inputTextHov;
+$inputBorderSettingsFoc: $inputBorderSettingsHov;
 $inputOutlineSettingsFoc: $msGold solid .1875rem;
-$inputBoxShadowSettingsFoc:$inputBoxShadowSettingsHov;
-$inputDecorationSettingsFoc: $inputDecorationSettings;
+$inputBoxShadowSettingsFoc: $inputBoxShadowSettingsHov;
+$inputDecorationSettingsFoc: $inputDecorationSettingsHov;
 // vars--main--inputs--disabled
 $inputDisabledBg: rgba(224, 224, 224, 1);
 $inputDisabledText: $inputText;
@@ -195,20 +208,22 @@ $inputDisabledBorderSettings: $inputBorderSettings;
 $inputDisabledOutlineSettings: $inputOutlineSettings;
 $inputDisabledBoxShadowSettings: $inputBoxShadowSettings;
 $inputDisabledDecorationSettings: $inputDecorationSettings;
+// vars--main--inputs--placeholder
+$inputPlaceholderOpacity: .66;
 // vars--main--dropdowns
 $dropdownBg: $msWhite;
 $dropdownText: $msBlack;
 $dropdownLinkBg: $transparent;
-$dropdownLinkText: $msBlack;
+$dropdownLinkText: $msBlue;
 $dropdownLinkBorderSettings: $defaultLinkBorderSettings;
 $dropdownLinkOutlineSettings: $defaultLinkOutlineSettings;
 $dropdownLinkBoxShadowSettings: $defaultLinkBoxShadowSettings;
 $dropdownLinkDecorationSettings: $defaultLinkDecorationSettings;
-$dropdownLinkBgHov: $userHue2;
+$dropdownLinkBgHov: $msBlue;
 $dropdownLinkTextHov: $msWhite;
-$dropdownLinkBorderSettingsHov: $defaultLinkBorderSettings;
-$dropdownLinkOutlineSettingsHov: $defaultLinkOutlineSettings;
-$dropdownLinkBoxShadowSettingsHov: $defaultLinkBoxShadowSettings;
+$dropdownLinkBorderSettingsHov: $dropdownLinkBorderSettings;
+$dropdownLinkOutlineSettingsHov: $dropdownLinkOutlineSettings;
+$dropdownLinkBoxShadowSettingsHov: $dropdownLinkBoxShadowSettings;
 $dropdownLinkDecorationSettingsHov: $dropdownLinkDecorationSettings;
 
 //
@@ -217,7 +232,7 @@ $dropdownLinkDecorationSettingsHov: $dropdownLinkDecorationSettings;
 $navbarBg: $msBlack;
 $navbarLinkText: lighten($msBlack, 85%);
 $navbarLinkDecorationSettings: none;
-$navbarLinkTextHov: lighten($msBlack, 65%);
+$navbarLinkTextHov: lighten($msBlack, 60%);
 $navbarLinkDecorationSettingsHov: $navbarLinkDecorationSettings;
 // vars--navbar--logo
 $navbarLogoBg: $transparent url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="22.939"%3E%3Cpath fill="%23faf9fa" d="M8.54 1.1C9.7.4 11.04.05 12.38 0a6.03 6.05 0 0 1 5.16 3.1 10.3 10.32 0 0 1 1.23 4.13 18.86 18.9 0 0 1-4.4 13.16 8.42 8.45 0 0 1-4.28 2.48 5.37 5.4 0 0 1-3.97-.97c-.7-.5-.96-1.4-.92-2.23.63.86 1.6 1.45 2.7 1.5.95.02 1.9-.4 2.55-1.12a3.45 3.46 0 0 0 .18-4.42c-.46-.54-1-1.03-1.65-1.37a5.78 5.8 0 0 0-2.08-.63 7.23 7.26 0 0 0-3.88.8 4.67 4.7 0 0 0-2.24 3.1c-.28 1-.17 2.06-.07 3.05-.43-1.14-.6-2.4-.7-3.62v-.9A19.3 19.35 0 0 1 5.03 3.83C6.06 2.76 7.2 1.78 8.53 1.1zm15.54.8c1.58.05 3.17 0 4.7-.38-1.16 4.05-2.32 8.08-3.48 12.13.14-.08.27-.18.4-.3 1.42-1.26 2.8-2.6 4.24-3.85.67-.55 1.37-1.17 2.23-1.35.4-.1.88-.07 1.2.23.72.65.65 1.92-.08 2.54-.4.35-.98.42-1.46.28-.4-.1-.62-.5-.97-.7-.55 0-1.03.35-1.46.67-.87.75-1.73 1.53-2.62 2.26-.03.12.1.23.13.35.9 1.58 1.8 3.18 2.68 4.78.32.5.64 1.07 1.16 1.42.27.2.7.16.92-.06.48-.4.82-.94 1.05-1.5.28 0 .55 0 .8 0-.33.9-.75 1.82-1.4 2.58-.45.54-1.1 1.03-1.83 1-.64.02-1.2-.35-1.62-.8-.66-.75-1.12-1.66-1.6-2.54-.72-1.24-1.4-2.5-2.1-3.75-.63 2.22-1.2 4.46-1.85 6.66-.73 0-1.5 0-2.2 0 1.43-5.16 2.85-10.32 4.3-15.5.24-.85.56-1.7.54-2.58 0-.32-.2-.65-.53-.72-.45-.1-.9-.03-1.36-.04.08-.27.15-.53.23-.78zm29.7 0c1.58.04 3.17.04 4.7-.38-.9 3.33-1.9 6.65-2.82 10a9.93 9.96 0 0 1 2.8-2.78 4.16 4.17 0 0 1 2.9-.57c.7.12 1.37.57 1.67 1.26.25.52.27 1.1.2 1.68-.14 1.52-.8 2.93-1.3 4.36-.4 1.2-.87 2.4-1.27 3.6-.13.46-.34 1-.2 1.5.12.33.58.37.9.25.3-.15.56-.38.8-.65.4-.57.8-1.2.96-1.9.3 0 .57 0 .88 0a5.46 5.48 0 0 1-1.86 3.1c-.7.56-1.72.76-2.57.47-.76-.25-1.23-1.03-1.26-1.8-.03-.8.24-1.6.47-2.36.43-1.33.96-2.63 1.45-3.94.45-1.22.93-2.45.93-3.76a.8.8 0 0 0-.6-.78c-.9-.16-1.77.23-2.46.76a9.1 9.13 0 0 0-2.25 2.86c-.9 1.57-1.48 3.33-1.94 5.07-.36 1.2-.7 2.43-1.05 3.64h-2.22c1.03-3.7 2.06-7.44 3.1-11.16.54-2 1.13-4 1.65-6 .08-.42.28-.86.12-1.28-.04-.23-.27-.34-.46-.34-.5-.1-.98-.04-1.5-.05.1-.26.2-.52.24-.78zM43.6 8.1a6.57 6.6 0 0 0-3.1.73 9.26 9.28 0 0 0-4.1 9.14c.2 1.38.9 2.72 2.13 3.44 1 .62 2.22.66 3.33.47a6.35 6.37 0 0 0 3.48-1.84c.84-.83 1.5-1.83 1.96-2.93.6-1.54.84-3.24.6-4.88a5.14 5.16 0 0 0-1.8-3.33 4.4 4.4 0 0 0-2.5-.8zm.02.75c.46 0 .9.14 1.23.46.58.52.74 1.32.83 2.07a13.63 13.67 0 0 1-2.27 8.3 3.54 3.55 0 0 1-2.3 1.52c-.62.07-1.32-.04-1.77-.5-.58-.6-.7-1.44-.77-2.22-.1-1.95.32-3.88 1.05-5.67.4-.9.8-1.82 1.44-2.6.46-.56 1.05-1.05 1.76-1.25.26-.08.54-.1.8-.1zm29.74-.76c-.12 0-.23 0-.32 0a5.18 5.2 0 0 0-3.5 1.55 10.2 10.22 0 0 0-2.8 8.54c.18 1.2.67 2.45 1.7 3.22.8.6 1.95.64 2.9.4a5.78 5.8 0 0 0 3.2-2.53c.05.73.18 1.53.68 2.12.46.54 1.26.65 1.92.44.62-.2 1.14-.65 1.53-1.15.64-.8 1.06-1.73 1.35-2.7-.26 0-.53 0-.8.02-.23.86-.7 1.62-1.18 2.34-.28.32-.6.76-1.08.68-.32-.08-.44-.46-.46-.75-.08-.87.06-1.73.3-2.57.87-3.07 1.76-6.13 2.63-9.2-.75 0-1.5 0-2.25 0-.26.9-.54 1.85-.8 2.8 0-.9-.37-1.75-1-2.36a2.96 2.97 0 0 0-2-.88zm.08 1.07c.45 0 .93.1 1.3.42.56.5.74 1.3.82 2.03.23 2.4-.42 4.8-1.53 6.9-.5.92-1.2 1.86-2.23 2.2-.63.2-1.4.23-1.96-.15-.68-.42-.83-1.28-.9-2-.05-1.37.13-2.73.47-4.06.4-1.37.88-2.77 1.72-3.95.44-.62 1.08-1.15 1.85-1.34.16-.03.3-.05.46-.05z"/%3E%3C/svg%3E%0A') no-repeat left center;
@@ -227,11 +242,11 @@ $navbarLogoBorderSettings: $defaultLinkBorderSettings;
 $navbarLogoOutlineSettings: $defaultLinkOutlineSettings;
 $navbarLogoBoxShadowSettings: $defaultLinkBoxShadowSettings;
 $navbarLogoDecorationSettings: $defaultLinkDecorationSettings;
-$navbarLogoBgHov: $transparent url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="22.939"%3E%3Cpath fill="%23cac3c5" d="M8.54 1.1C9.7.4 11.04.05 12.38 0a6.03 6.05 0 0 1 5.16 3.1 10.3 10.32 0 0 1 1.23 4.13 18.86 18.9 0 0 1-4.4 13.16 8.42 8.45 0 0 1-4.28 2.48 5.37 5.4 0 0 1-3.97-.97c-.7-.5-.96-1.4-.92-2.23.63.86 1.6 1.45 2.7 1.5.95.02 1.9-.4 2.55-1.12a3.45 3.46 0 0 0 .18-4.42c-.46-.54-1-1.03-1.65-1.37a5.78 5.8 0 0 0-2.08-.63 7.23 7.26 0 0 0-3.88.8 4.67 4.7 0 0 0-2.24 3.1c-.28 1-.17 2.06-.07 3.05-.43-1.14-.6-2.4-.7-3.62v-.9A19.3 19.35 0 0 1 5.03 3.83C6.06 2.76 7.2 1.78 8.53 1.1zm15.54.8c1.58.05 3.17 0 4.7-.38-1.16 4.05-2.32 8.08-3.48 12.13.14-.08.27-.18.4-.3 1.42-1.26 2.8-2.6 4.24-3.85.67-.55 1.37-1.17 2.23-1.35.4-.1.88-.07 1.2.23.72.65.65 1.92-.08 2.54-.4.35-.98.42-1.46.28-.4-.1-.62-.5-.97-.7-.55 0-1.03.35-1.46.67-.87.75-1.73 1.53-2.62 2.26-.03.12.1.23.13.35.9 1.58 1.8 3.18 2.68 4.78.32.5.64 1.07 1.16 1.42.27.2.7.16.92-.06.48-.4.82-.94 1.05-1.5.28 0 .55 0 .8 0-.33.9-.75 1.82-1.4 2.58-.45.54-1.1 1.03-1.83 1-.64.02-1.2-.35-1.62-.8-.66-.75-1.12-1.66-1.6-2.54-.72-1.24-1.4-2.5-2.1-3.75-.63 2.22-1.2 4.46-1.85 6.66-.73 0-1.5 0-2.2 0 1.43-5.16 2.85-10.32 4.3-15.5.24-.85.56-1.7.54-2.58 0-.32-.2-.65-.53-.72-.45-.1-.9-.03-1.36-.04.08-.27.15-.53.23-.78zm29.7 0c1.58.04 3.17.04 4.7-.38-.9 3.33-1.9 6.65-2.82 10a9.93 9.96 0 0 1 2.8-2.78 4.16 4.17 0 0 1 2.9-.57c.7.12 1.37.57 1.67 1.26.25.52.27 1.1.2 1.68-.14 1.52-.8 2.93-1.3 4.36-.4 1.2-.87 2.4-1.27 3.6-.13.46-.34 1-.2 1.5.12.33.58.37.9.25.3-.15.56-.38.8-.65.4-.57.8-1.2.96-1.9.3 0 .57 0 .88 0a5.46 5.48 0 0 1-1.86 3.1c-.7.56-1.72.76-2.57.47-.76-.25-1.23-1.03-1.26-1.8-.03-.8.24-1.6.47-2.36.43-1.33.96-2.63 1.45-3.94.45-1.22.93-2.45.93-3.76a.8.8 0 0 0-.6-.78c-.9-.16-1.77.23-2.46.76a9.1 9.13 0 0 0-2.25 2.86c-.9 1.57-1.48 3.33-1.94 5.07-.36 1.2-.7 2.43-1.05 3.64h-2.22c1.03-3.7 2.06-7.44 3.1-11.16.54-2 1.13-4 1.65-6 .08-.42.28-.86.12-1.28-.04-.23-.27-.34-.46-.34-.5-.1-.98-.04-1.5-.05.1-.26.2-.52.24-.78zM43.6 8.1a6.57 6.6 0 0 0-3.1.73 9.26 9.28 0 0 0-4.1 9.14c.2 1.38.9 2.72 2.13 3.44 1 .62 2.22.66 3.33.47a6.35 6.37 0 0 0 3.48-1.84c.84-.83 1.5-1.83 1.96-2.93.6-1.54.84-3.24.6-4.88a5.14 5.16 0 0 0-1.8-3.33 4.4 4.4 0 0 0-2.5-.8zm.02.75c.46 0 .9.14 1.23.46.58.52.74 1.32.83 2.07a13.63 13.67 0 0 1-2.27 8.3 3.54 3.55 0 0 1-2.3 1.52c-.62.07-1.32-.04-1.77-.5-.58-.6-.7-1.44-.77-2.22-.1-1.95.32-3.88 1.05-5.67.4-.9.8-1.82 1.44-2.6.46-.56 1.05-1.05 1.76-1.25.26-.08.54-.1.8-.1zm29.74-.76c-.12 0-.23 0-.32 0a5.18 5.2 0 0 0-3.5 1.55 10.2 10.22 0 0 0-2.8 8.54c.18 1.2.67 2.45 1.7 3.22.8.6 1.95.64 2.9.4a5.78 5.8 0 0 0 3.2-2.53c.05.73.18 1.53.68 2.12.46.54 1.26.65 1.92.44.62-.2 1.14-.65 1.53-1.15.64-.8 1.06-1.73 1.35-2.7-.26 0-.53 0-.8.02-.23.86-.7 1.62-1.18 2.34-.28.32-.6.76-1.08.68-.32-.08-.44-.46-.46-.75-.08-.87.06-1.73.3-2.57.87-3.07 1.76-6.13 2.63-9.2-.75 0-1.5 0-2.25 0-.26.9-.54 1.85-.8 2.8 0-.9-.37-1.75-1-2.36a2.96 2.97 0 0 0-2-.88zm.08 1.07c.45 0 .93.1 1.3.42.56.5.74 1.3.82 2.03.23 2.4-.42 4.8-1.53 6.9-.5.92-1.2 1.86-2.23 2.2-.63.2-1.4.23-1.96-.15-.68-.42-.83-1.28-.9-2-.05-1.37.13-2.73.47-4.06.4-1.37.88-2.77 1.72-3.95.44-.62 1.08-1.15 1.85-1.34.16-.03.3-.05.46-.05z"/%3E%3C/svg%3E%0A') no-repeat left center;
-$navbarLogoTextHov: $defaultLinkTextHov;
+$navbarLogoBgHov: $navbarLogoBg;
+$navbarLogoTextHov: $navbarLinkTextHov;
 $navbarLogoBorderSettingsHov: $defaultLinkBorderSettingsHov;
-$navbarLogoOutlineSettingsHov: $defaultLinkOutlineSettingsHov;
-$navbarLogoBoxShadowSettingsHov: $defaultLinkBoxShadowSettingsHov;
+$navbarLogoOutlineSettingsHov: .125rem solid $navbarLogoTextHov;
+$navbarLogoBoxShadowSettingsHov: 0 0 0 .25rem $navbarLogoTextHov inset;
 $navbarLogoDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 $navbarLogoBgFoc: $navbarLogoBgHov;
 $navbarLogoTextFoc: $defaultLinkTextFoc;
@@ -239,40 +254,43 @@ $navbarLogoBorderSettingsFoc: $defaultLinkBorderSettingsFoc;
 $navbarLogoOutlineSettingsFoc: $defaultLinkOutlineSettingsFoc;
 $navbarLogoBoxShadowSettingsFoc: $defaultLinkBoxShadowSettingsFoc;
 $navbarLogoDecorationSettingsFoc: $defaultLinkDecorationSettingsFoc;
+$navbarLogoWidth: 100px;
+$navbarLogoHeight: 40px;
 $navbarLogoDisplay: block;
 $navbarLogoDisplayMobile: block;
 // vars--navbar--usermenu
-$navbarUsermenuBg: $msWhite;
-$navbarUsermenuText: $msBlack;
-$navbarUsermenuLinkText: $msBlue;
-$navbarUsermenuLinkTextHov: darken($msBlue, 15%);
+$navbarUsermenuBg: $dropdownBg;
+$navbarUsermenuText: $dropdownText;
+$navbarUsermenuLinkText: $dropdownLinkText;
+$navbarUsermenuLinkTextHov: darken($navbarUsermenuLinkText, 15%);
 $navbarUsermenuLogoutText: $msRed;
-$navbarUsermenuLogoutTextHov: darken($msRed, 15%);
+$navbarUsermenuLogoutTextHov: darken($navbarUsermenuLogoutText, 15%);
 
 //
 // vars--masthead
 // vars--masthead--root
-$headerBg: $black url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height="100%25" width="100%25"%3E%3Cdefs%3E%3Cpattern id="doodad" width="64" height="64" viewBox="0 0 40 40" patternUnits="userSpaceOnUse" patternTransform="rotate(135)"%3E%3Crect width="100%25" height="100%25" fill="rgba(153, 0, 46,1)"/%3E%3Cpath d="M0 10h40v20h-40z" fill="rgba(153, 128, 0,1)"/%3E%3Cpath d="M-40 10h20l1 10l-1 10h-20l1-10zM0 10h20l1 10l-1 10h-20l1-10z" fill="rgba(0, 0, 0,0)"/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill="url(%23doodad)" height="200%25" width="200%25"/%3E%3C/svg%3E ');
+/*$headerBg: $userHue1;*/
+$headerBg: linear-gradient(rgba(0, 0, 0, .66), rgba(0, 0, 0, .66)),url('data:image/svg+xml,<svg id="stripes-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="svg-stripes-pattern-15796" patternTransform="rotate(45)" width="100%" height="50" x="0" y="0" patternUnits="userSpaceOnUse"><animate attributeName="y" begin="0s" dur="300s" from="0" to="5000px" repeatCount="indefinite" fill="freeze"></animate><g><rect x="0" y="0" width="100%" height="25" fill="rgba(255, 208, 0, 1)"></rect><rect x="0" y="25" width="100%" height="25" fill="rgba(255, 0, 217, 1)"></rect></g></pattern></defs><rect x="0" y="0" width="100%" height="100%" fill="url(%23svg-stripes-pattern-15796)"></rect></svg>');
 $headerBgSize: cover;
-$headerText: $msWhite;
+$headerText: $userText1;
 $headerLogoBg: $transparent url('/api/v1/contrib/senux/static/static_files/src/vectors/senux.svg') no-repeat center center;
 $headerLogoBgSize: contain;
 $headerLogoText: $msWhite;
 $headerLogoWidth: 200px;
 $headerLogoHeight: 200px;
 // vars--masthead--mainsearch
-$mainSearchBg: $userHue1;
-$mainSearchText: $userText1;
-$mainSearchLinkText: $userText1;
+$mainSearchBg: $userHue2;
+$mainSearchText: $userText2;
+$mainSearchLinkText: $userText2;
 $mainSearchLinkDecorationSettings: $defaultLinkDecorationSettings;
-$mainSearchLinkTextHov: darken($userText1, 15%);
+$mainSearchLinkTextHov: darken($mainSearchLinkText, 15%);
 $mainSearchLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 // vars--masthead--moresearches
-$moreSearchBg: $userHue2;
-$moreSearchText: $userText2;
-$moreSearchLinkText: $userText2;
+$moreSearchBg: $userHue3;
+$moreSearchText: $userText3;
+$moreSearchLinkText: $userText3;
 $moreSearchLinkDecorationSettings: $defaultLinkDecorationSettings;
-$moreSearchLinkTextHov: lighten($userText2, 15%);
+$moreSearchLinkTextHov: lighten($moreSearchLinkText, 15%);
 $moreSearchLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 
 //
@@ -280,11 +298,12 @@ $moreSearchLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 // vars--content--breadcrumb
 $breadcrumbBg: $defaultFg;
 $breadcrumbText: $defaultText;
-$breadcrumbDivider: $defaultText;
+$breadcrumbDividerText: lighten($breadcrumbText, 50%);
+$breadcrumbDividerContents: '/';
 $breadcrumbLinkText: $defaultLinkText;
 $breadcrumbLinkDecorationSettings: $defaultLinkDecorationSettings;
 $breadcrumbLinkTextHov: $defaultLinkTextHov;
-$breadcrumbLinkDecorationSettingsHov: $breadcrumbLinkDecorationSettings;
+$breadcrumbLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 // vars--content--toolbar
 $toolbarBg: darken($defaultBg, 5%);
 $toolbarText: $defaultText;
@@ -295,18 +314,18 @@ $headlinerText: $defaultText;
 //
 // vars--opac
 // vars--opac--resourcelinks
-$onlineAccessBg: lighten($msGold, 33%);
-$onlineAccessText: $defaultText;
+$onlineAccessBg: lighten($msGold, 35%);
+$onlineAccessText: $msBlack;
 $onlineAccessLinkText: $defaultLinkText;
 $onlineAccessLinkDecorationSettings: $defaultLinkDecorationSettings;
 $onlineAccessLinkTextHov: $defaultLinkTextHov;
-$onlineAccessLinkDecorationSettingsHov: $onlineAccessLinkDecorationSettings;
+$onlineAccessLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 
 //
 // vars--tables
 // vars--tables--root
 $tableHeadBg: darken($defaultBg, 5%);
-$tableHeadText: $defaultText;
+$tableHeadText: darken($defaultText, 5%);
 $tableRowBg: $defaultBg;
 $tableRowText: $defaultText;
 // vars--tables--striped
@@ -321,4 +340,4 @@ $footerText: $msWhite;
 $footerLinkText: $footerText;
 $footerLinkDecorationSettings: $defaultLinkDecorationSettings;
 $footerLinkTextHov: darken($footerLinkText, 15%);
-$footerLinkDecorationSettingsHov: $footerLinkDecorationSettings;
+$footerLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;

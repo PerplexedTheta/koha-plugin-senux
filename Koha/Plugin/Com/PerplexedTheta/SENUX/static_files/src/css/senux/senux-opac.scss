@@ -46,7 +46,7 @@
     h2,
     h3 {
         &::after {
-            border: calc($defaultHeaderUnderlineThickness / 2) $defaultHeaderUnderlineType $defaultHeaderUnderlineCol;
+            border: $defaultHeaderUnderlineSettings
         }
     }
 }
@@ -87,7 +87,7 @@
             content: "";
             display: block;
             max-width: 33%;
-            border: calc($defaultHeaderUnderlineThickness / 2) $defaultHeaderUnderlineType $defaultText;
+            border: $defaultHeaderUnderlineSettings
         }
     }
 }
@@ -143,7 +143,7 @@
 #news-branch-select,
 #rssnews-container,
 .rsssearchlink {
-    display: none
+    display: none !important
 }
 
 //
@@ -188,8 +188,20 @@
 //
 //
 // search results
+#userresults {
+    .table-striped td,
+    .table-striped th {
+        border: none;
+    }
+
+    .table-striped,
+    .table-striped tr {
+        border: $defaultBorderSettings;
+    }
+}
+
 .selections {
-    color: $msBlack
+    color: $black
 }
 
 .returntosearch {
@@ -219,7 +231,8 @@
             background-color: $defaultLinkText;
             color: $defaultBg;
 
-            i.fa {
+            i.fa,
+            i.fa-solid {
                 color: $defaultBg
             }
         }
@@ -228,7 +241,8 @@
             background-color: $defaultLinkText;
             color: $defaultBg;
 
-            i.fa {
+            i.fa,
+            i.fa-solid {
                 color: $defaultBg
             }
         }
@@ -314,7 +328,8 @@
         font-size: initial;
         font-weight: bold;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             float: right
         }
     }
@@ -443,8 +458,18 @@
 .view {
     color: $defaultText;
 
-    i.fa {
+    i.fa,
+    i.fa-solid {
         color: $defaultText
+    }
+
+    button.disabled,
+    button[disabled] {
+        color: $btnLinkText;
+        background-color: $btnLinkBg;
+        border: $btnLinkBorderSettings;
+        outline: $btnLinkOutlineSettings;
+        box-shadow: $btnLinkBoxShadowSettings
     }
 
     a {
@@ -452,7 +477,8 @@
         color: $dropdownLinkText;
         text-decoration: $dropdownLinkDecorationSettings;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $dropdownLinkText;
         }
 
@@ -461,7 +487,8 @@
             color: $dropdownLinkTextHov;
             text-decoration: $dropdownLinkDecorationSettingsHov;
 
-            i.fa {
+            i.fa,
+            i.fa-solid {
                 color: $dropdownLinkTextHov;
             }
         }
@@ -561,7 +588,8 @@ table.dataTable thead tr th span.dt-column-order::before {
         color: $defaultFg;
         text-decoration: none;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $defaultFg
         }
     }
@@ -571,7 +599,8 @@ table.dataTable thead tr th span.dt-column-order::before {
         color: $defaultFg;
         text-decoration: none;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $defaultFg
         }
     }
@@ -581,7 +610,8 @@ table.dataTable thead tr th span.dt-column-order::before {
 #listResults li a {
     color: $defaultLinkText;
 
-    i.fa {
+    i.fa,
+    i.fa-solid {
         color: $defaultLinkText;
     }
 
@@ -589,7 +619,8 @@ table.dataTable thead tr th span.dt-column-order::before {
         background-color: $defaultLinkText;
         color: $defaultFg;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $defaultFg
         }
     }
@@ -598,7 +629,8 @@ table.dataTable thead tr th span.dt-column-order::before {
         background-color: $defaultLinkText;
         color: $defaultFg;
 
-        i.fa {
+        i.fa,
+        i.fa-solid {
             color: $defaultFg
         }
     }
