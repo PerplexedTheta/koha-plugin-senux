@@ -60,7 +60,81 @@
     outline: $defaultOutlineSettings;
     box-shadow: $defaultBoxShadowSettings;
     text-decoration: $defaultDecorationSettings;
-    max-width: none
+    max-width: none;
+
+    .card,
+    .jumbotron {
+        display: flex;
+        margin-bottom: .75rem;
+        flex-wrap: wrap;
+        flex-direction: row;
+
+        color: $defaultText;
+        background-color: $defaultBg;
+        border: $defaultBorderSettings;
+        outline: $defaultOutlineSettings;
+        box-shadow: $defaultBoxShadowSettings;
+        text-decoration: $defaultDecorationSettings;
+
+        border-radius: var(--bs-border-radius);
+
+        .card-img-left,
+        .jumbotron-img-left {
+            border-top-left-radius: var(--bs-card-inner-border-radius);
+            border-bottom-left-radius: var(--bs-card-inner-border-radius)
+        }
+
+        .card-img-right,
+        .jumbotron-img-right {
+            border-top-right-radius: var(--bs-card-inner-border-radius);
+            border-bottom-right-radius: var(--bs-card-inner-border-radius)
+        }
+
+        .card-img-left,
+        .card-img-right,
+        .jumbotron-img-left,
+        .jumbotron-img-right {
+            background-color: $defaultFg;
+            max-width: 25%;
+            height: auto
+        }
+
+        .card-block,
+        .jumbotron-block {
+            flex: 1 1 auto;
+            padding: .5rem 1rem
+        }
+    }
+
+    .card-bg-dark,
+    .jumbotron-bg-dark {
+        color: $defaultBg;
+        background-color: $defaultText;
+        border-color: lighten($defaultText, 15%);
+
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6,
+        label,
+        .label,
+        .hint {
+            color: $defaultBg;
+
+            &::after {
+                border-color: $defaultBg
+            }
+        }
+    }
 }
 
 #navigation,
@@ -189,6 +263,7 @@
 //
 // search results
 #userresults {
+
     .table-striped td,
     .table-striped th {
         border: none;
