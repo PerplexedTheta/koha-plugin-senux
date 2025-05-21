@@ -48,6 +48,8 @@ sub install {
     return undef
         unless ( $self->npm_new( { all => 1 } ) );
 
+    $self->store_data( { compile_count => 0 } );
+
     return 1;
 }
 
@@ -59,6 +61,9 @@ sub upgrade {
 
     return undef
         unless ( $self->npm_new );
+
+    return undef
+        unless ( $self->npm_build );
 
     return 1;
 }
@@ -172,6 +177,8 @@ sub npm_build {
             return_code => $?,
         }
     ) unless ( $? == 0 );
+
+    $self->_increment_compile_count;
 
     return 1;
 }
@@ -390,14 +397,19 @@ sub static_routes {
 
 sub opac_head {
     my ($self) = @_;
+    my $version = $self->_get_compile_count;
 
-    return '<link rel="stylesheet" href="/api/v1/contrib/senux/static/static_files/dist/senux.min.css" />';
+    return
+        '<link rel="stylesheet" href="/api/v1/contrib/senux/static/static_files/dist/senux.min.css?version='
+        . $version . '" />';
 }
 
 sub opac_js {
     my ($self) = @_;
+    my $version = $self->_get_compile_count;
 
-    return '<script src="/api/v1/contrib/senux/static/static_files/dist/senux.min.js"></script>';
+    return '<script src="/api/v1/contrib/senux/static/static_files/dist/senux.min.js?version=' . $version
+        . '"></script>';
 }
 
 sub _is_npm_installed {
@@ -504,6 +516,19 @@ sub _save_text_file {
     close $fh;
 
     return 1;
+}
+
+sub _get_compile_count {
+    my ( $self, $args ) = @_;
+
+    return $self->retrieve_data('compile_count') || 0;
+}
+
+sub _increment_compile_count {
+    my ( $self, $args ) = @_;
+    my $compile_count = $self->_get_compile_count;
+
+    return $self->store_data( { compile_count => ++$compile_count } );
 }
 
 sub _check_html_customisation {
