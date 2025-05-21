@@ -458,79 +458,6 @@ sub _chdir {
     return 1;
 }
 
-sub _load_text_file {
-    my ( $self, $args ) = @_;
-    my $filename = $args->{'filename'};
-
-    unless ( -f $filename ) {
-        $self->_throw_error(
-            {
-                message     => $args->{'filename'} . ' does not exist',
-                return_code => 0,
-            }
-        );
-
-        return undef;
-    }
-
-    open my $fh, '<', $filename;
-
-    unless ( defined $fh ) {
-        $self->_throw_error(
-            {
-                message     => 'could not create filehandle',
-                return_code => $?,
-            }
-        );
-
-        return undef;
-    }
-
-    chomp( my @lines = <$fh> );
-
-    close $fh;
-
-    return join "\n", @lines;
-}
-
-sub _save_text_file {
-    my ( $self, $args ) = @_;
-    my $filename = $args->{'filename'};
-    my $content  = $args->{'content'};
-
-    open my $fh, '>', $filename;
-
-    unless ( defined $fh ) {
-        $self->_throw_error(
-            {
-                message     => 'could not create filehandle',
-                return_code => $?,
-            }
-        );
-
-        return undef;
-    }
-
-    print $fh $content;
-
-    close $fh;
-
-    return 1;
-}
-
-sub _get_compile_count {
-    my ( $self, $args ) = @_;
-
-    return $self->retrieve_data('compile_count') || 0;
-}
-
-sub _increment_compile_count {
-    my ( $self, $args ) = @_;
-    my $compile_count = $self->_get_compile_count;
-
-    return $self->store_data( { compile_count => ++$compile_count } );
-}
-
 sub _check_html_customisation {
     my ( $self, $args ) = @_;
     my $location = $args->{'location'};
@@ -618,6 +545,79 @@ sub _set_sys_pref {
     }
 
     return 1;
+}
+
+sub _load_text_file {
+    my ( $self, $args ) = @_;
+    my $filename = $args->{'filename'};
+
+    unless ( -f $filename ) {
+        $self->_throw_error(
+            {
+                message     => $args->{'filename'} . ' does not exist',
+                return_code => 0,
+            }
+        );
+
+        return undef;
+    }
+
+    open my $fh, '<', $filename;
+
+    unless ( defined $fh ) {
+        $self->_throw_error(
+            {
+                message     => 'could not create filehandle',
+                return_code => $?,
+            }
+        );
+
+        return undef;
+    }
+
+    chomp( my @lines = <$fh> );
+
+    close $fh;
+
+    return join "\n", @lines;
+}
+
+sub _save_text_file {
+    my ( $self, $args ) = @_;
+    my $filename = $args->{'filename'};
+    my $content  = $args->{'content'};
+
+    open my $fh, '>', $filename;
+
+    unless ( defined $fh ) {
+        $self->_throw_error(
+            {
+                message     => 'could not create filehandle',
+                return_code => $?,
+            }
+        );
+
+        return undef;
+    }
+
+    print $fh $content;
+
+    close $fh;
+
+    return 1;
+}
+
+sub _get_compile_count {
+    my ( $self, $args ) = @_;
+
+    return $self->retrieve_data('compile_count') || 0;
+}
+
+sub _increment_compile_count {
+    my ( $self, $args ) = @_;
+    my $compile_count = $self->_get_compile_count;
+
+    return $self->store_data( { compile_count => ++$compile_count } );
 }
 
 sub _throw_error {
