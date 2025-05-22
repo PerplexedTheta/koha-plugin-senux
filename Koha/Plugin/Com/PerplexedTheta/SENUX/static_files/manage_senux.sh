@@ -5,6 +5,32 @@ if [[ "${EUID}" -eq 0 ]]; then
     echo 'Please run as a non-root (or sudo) user.' && exit 1
 fi
 
+install_nvm_and_node() {
+    mkdir -pv "${SCRIPT_DIR}/nvm_dir"
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.sh | NVM_DIR="${SCRIPT_DIR}/nvm_dir" bash
+    source_nvm
+    nvm install --lts
+
+    return 0
+}
+
+source_nvm() {
+    if [[ -s "${SCRIPT_DIR}/nvm_dir/nvm.sh" ]]; then
+        . "${SCRIPT_DIR}/nvm_dir/nvm.sh"
+    else
+        echo "could not find nvm" && exit 1
+    fi
+
+    return 0
+}
+
+if [[ ! -d "${SCRIPT_DIR}/nvm_dir" ]]; then
+    install_nvm_and_node
+    source_nvm
+else
+    source_nvm
+fi
+
 export npm_config_prefix="${SCRIPT_DIR}"
 export npm_config_cache="${SCRIPT_DIR}/node_cache"
 
@@ -90,6 +116,7 @@ delete() {
 }
 
 delete_all() {
+    rm -rfv "${SCRIPT_DIR}/nvm_dir"
     rm -fv "${SCRIPT_DIR}/variables.scss"
     rm -fv "${SCRIPT_DIR}/customisations.scss"
     rm -fv "${SCRIPT_DIR}/customisations.js"
