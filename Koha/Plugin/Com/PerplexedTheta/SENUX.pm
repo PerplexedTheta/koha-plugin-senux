@@ -43,10 +43,7 @@ sub install {
     my ($self) = @_;
 
     return undef
-        unless ( $self->_is_npm_installed );
-
-    return undef
-        unless ( $self->npm_new( { all => 1 } ) );
+        unless ( $self->npm_new );
 
     $self->store_data( { compile_count => 0 } );
 
@@ -57,22 +54,13 @@ sub upgrade {
     my ($self) = @_;
 
     return undef
-        unless ( $self->_is_npm_installed );
-
-    return undef
-        unless ( $self->npm_new );
-
-    return undef
-        unless ( $self->npm_build );
+        unless ( $self->npm_reinstall );
 
     return 1;
 }
 
 sub uninstall {
     my ($self) = @_;
-
-    return undef
-        unless ( $self->_is_npm_installed );
 
     return undef
         unless ( $self->npm_delete( { all => 1 } ) );
@@ -88,15 +76,10 @@ sub npm_new {
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
-    unless ( defined $all ) {
-        $install = `bash -- ./manage_senux.sh --install 2>&1`;
-    } else {
-        $install = `bash -- ./manage_senux.sh --install-all 2>&1`;
-    }
-
+    $install = `bash -- ./manage_senux.sh --install 2>&1`;
     return $self->_throw_error(
         {
-            message     => '`bash -- ./manage_senux.sh --install' . ($all) ? '-all' : '' . '` failed to run',
+            message     => '`bash -- ./manage_senux.sh --install` failed to run',
             output      => $install,
             return_code => $?,
         }
@@ -410,34 +393,6 @@ sub opac_js {
 
     return '<script src="/api/v1/contrib/senux/static/static_files/dist/senux.min.js?version=' . $version
         . '"></script>';
-}
-
-sub _is_npm_installed {
-    my ($self) = @_;
-
-    unless ( which('npm') ) {
-        $self->_throw_error(
-            {
-                message     => '`npm` not found in PATH',
-                return_code => 0,
-            }
-        );
-
-        return undef;
-    }
-
-    unless ( which('npx') ) {
-        $self->_throw_error(
-            {
-                message     => '`npx` not found in PATH',
-                return_code => 0,
-            }
-        );
-
-        return undef;
-    }
-
-    return 1;
 }
 
 sub _chdir {

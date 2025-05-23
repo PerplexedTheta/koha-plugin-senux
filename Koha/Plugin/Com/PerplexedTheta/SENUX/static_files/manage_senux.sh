@@ -5,47 +5,102 @@ if [[ "${EUID}" -eq 0 ]]; then
     echo 'Please run as a non-root (or sudo) user.' && exit 1
 fi
 
-install_nvm_and_node() {
-    mkdir -pv "${SCRIPT_DIR}/nvm_dir"
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.sh | NVM_DIR="${SCRIPT_DIR}/nvm_dir" bash
-    source_nvm
-    nvm install --lts
-
-    return 0
-}
+alias curl="$(which curl)"
 
 source_nvm() {
-    if [[ -s "${SCRIPT_DIR}/nvm_dir/nvm.sh" ]]; then
-        . "${SCRIPT_DIR}/nvm_dir/nvm.sh"
+    unset npm_config_prefix
+    unset npm_config_cache
+
+    export NVM_DIR="${SCRIPT_DIR}/nvm_dir"
+    if [[ -s "${NVM_DIR}/nvm.sh" ]]; then
+        . "${NVM_DIR}/nvm.sh" || exit $?
     else
-        echo "could not find nvm" && exit 1
+        echo "nvm command not found on PATH" && exit 1
     fi
 
     return 0
 }
 
-if [[ ! -d "${SCRIPT_DIR}/nvm_dir" ]]; then
+install_nvm_and_node() {
+    mkdir -pv "${SCRIPT_DIR}/nvm_dir"
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.sh | NVM_DIR="${SCRIPT_DIR}/nvm_dir" bash
+    source_nvm
+    nvm install --lts || exit $?
+
+    return 0
+}
+
+if [[ ! -s "${SCRIPT_DIR}/nvm_dir/nvm.sh" ]]; then
     install_nvm_and_node
-    source_nvm
-else
-    source_nvm
 fi
 
-export npm_config_prefix="${SCRIPT_DIR}"
-export npm_config_cache="${SCRIPT_DIR}/node_cache"
+source_npm() {
+    source_nvm
 
-alias npm="$(which npm)"
-alias npx="$(which npx)"
+    if [[ ! -s "$(which npm)" ]] \
+    || [[ ! -s "$(which npx)" ]]; then
+        echo "npm or npx command not found on PATH" && exit 1
+    fi
+
+    alias npm="$(which npm)"
+    alias npx="$(which npx)"
+
+    export npm_config_prefix="${SCRIPT_DIR}"
+    export npm_config_cache="${SCRIPT_DIR}/node_cache"
+
+    return 0
+}
+
+install_npm_modules() {
+    source_npm
+
+    mkdir -pv "${SCRIPT_DIR}/node_cache"
+    mkdir -pv "${SCRIPT_DIR}/node_modules"
+
+    npm install --include=dev || exit $?
+
+    return 0
+}
+
+if [[ ! -d "${SCRIPT_DIR}/node_modules/gulp" ]] \
+|| [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-cli" ]] \
+|| [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-copy" ]] \
+|| [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-minify" ]] \
+|| [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-rename" ]] \
+|| [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-rimraf" ]] \
+|| [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-sass" ]] \
+|| [[ ! -d "${SCRIPT_DIR}/node_modules/sass" ]]; then
+    install_npm_modules
+fi
+
+init() {
+    if [[ ! -f "${SCRIPT_DIR}/variables.scss" ]]; then
+        cp -v "${SCRIPT_DIR}/src/css/variables.sample.scss" "${SCRIPT_DIR}/variables.scss"
+    fi
+    if [[ ! -f "${SCRIPT_DIR}/customisations.scss" ]]; then
+        cp -v "${SCRIPT_DIR}/src/css/customisations.sample.scss" "${SCRIPT_DIR}/customisations.scss"
+    fi
+    if [[ ! -f "${SCRIPT_DIR}/customisations.js" ]]; then
+        cp -v "${SCRIPT_DIR}/src/js/customisations.sample.js" "${SCRIPT_DIR}/customisations.js"
+    fi
+
+    return 0
+}
 
 cd "${SCRIPT_DIR}"
+init
 
 build_js() {
+    source_npm
+
     npx gulp js || exit $?
 
     return 0
 }
 
 build_sass() {
+    source_npm
+
     npx gulp sass || exit $?
 
     return 0
@@ -58,34 +113,17 @@ build_all() {
     return 0
 }
 
-init() {
-    cp -nv "${SCRIPT_DIR}/src/css/variables.sample.scss" "${SCRIPT_DIR}/variables.scss"
-    cp -nv "${SCRIPT_DIR}/src/css/customisations.sample.scss" "${SCRIPT_DIR}/customisations.scss"
-    cp -nv "${SCRIPT_DIR}/src/js/customisations.sample.js" "${SCRIPT_DIR}/customisations.js"
-    build_all
-
-    return 0
-}
-
 install() {
-    mkdir -pv "${SCRIPT_DIR}/node_cache" || exit $?
-    mkdir -pv "${SCRIPT_DIR}/node_modules" || exit $?
-
-    npm install --include=dev || exit $?
-
-    return 0
-}
-
-install_all() {
-    install
-    init
+    build_all
 
     return 0
 }
 
 install_reinstall() {
     delete
-    install
+    install_nvm_and_node
+    install_npm_modules
+    build_all
 
     return 0
 }
@@ -109,6 +147,7 @@ delete() {
     rm -fv "${SCRIPT_DIR}/package-lock.json"
     rm -rfv "${SCRIPT_DIR}/node_modules/"
     rm -rfv "${SCRIPT_DIR}/node_cache/"
+    rm -rfv "${SCRIPT_DIR}/nvm_dir/"
     rm -fv "${SCRIPT_DIR}/dist/senux.min.js"
     rm -fv "${SCRIPT_DIR}/dist/senux.min.css"
 
@@ -116,7 +155,6 @@ delete() {
 }
 
 delete_all() {
-    rm -rfv "${SCRIPT_DIR}/nvm_dir"
     rm -fv "${SCRIPT_DIR}/variables.scss"
     rm -fv "${SCRIPT_DIR}/customisations.scss"
     rm -fv "${SCRIPT_DIR}/customisations.js"
@@ -145,20 +183,11 @@ Options:
 
     -ba|--build-all     Runs build-js, then runs build-sass. That's all.
 
-    -in|--init          Populates the plugin with necessary template SASS and
-                        JavaScript file(s). Essential for any builds to pass.
-                        Note that running this script with --init will not reset
-                        any pre-existing templates. To do that, see --reset and
-                        --reset-all.
+    -i|--install        An alias for --build-all. As this script checks the nvm
+                        and npm and runs an install if required, on each call,
+                        an install flag is essentially pointless.
 
-    -i|--install        Runs npm install, but doesn't populate the plugin with
-                        any templates. Best used for upgrades.
-
-    -ia|--install-all   Runs npm install, then calls this script with --init, to
-                        populate the plugin with the necessary template SASS and
-                        JavaScript file(s). Best used for fresh installs.
-
-    -ir|--reinstall     Runs this script with --delete, and the with --install.
+    -ir|--reinstall     Runs this script with --delete, and then with --install.
                         Useful if npm has broken, but you're not certain it is
                         due to any customisations you've made (i.e. if someone
                         has upgraded nodejs without your knowledge).
@@ -170,15 +199,15 @@ Options:
                         out any customisations you've made. Use with extreme
                         caution.
 
-    -d|--delete         Deletes the npm files and the package-lock.json. Useful
-                        if your installation has stopped working due to problems
-                        with nodejs.
+    -d|--delete         Deletes the nvm and npm files, and the package-lock.json.
+                        Useful if your installation has stopped working due to
+                        problems with nodejs.
 
     -da|--delete-all    A HIGHLY DESTRUCTIVE ACTION. This will delete all of the
                         template files created and updated by the user, as well
-                        as run the --delete action, which cleans up npm. ONLY do
-                        this if you're starting your styling from scratch, or if
-                        you wish to remove the plugin permanently.
+                        as run the --delete action, which cleans up nvm and npm.
+                        ONLY do this if you're starting your styling from
+                        scratch, or if you wish to remove the plugin permanently.
 
     -h|--help           Shows this message
 
@@ -197,12 +226,8 @@ while true; do
             build_sass ; exit 0 ;;
         -ba|--build-all)
             build_all ; exit 0 ;;
-        -in|--init)
-            init ; exit 0 ;;
         -i|--install)
             install ; exit 0 ;;
-        -ia|--install-all)
-            install_all ; exit 0 ;;
         -ir|--reinstall)
             install_reinstall ; exit 0 ;;
         -r|--reset)
@@ -220,7 +245,7 @@ while true; do
         --)
             shift ; break ;;
         *)
-            echo 'Internal error processing command line arguments' ; exit 1 ;;
+            echo 'Everything is ready for use' ; exit 0 ;;
     esac
 
     exit 0
