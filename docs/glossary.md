@@ -47,7 +47,7 @@ These are just some type definitions, to avoid repetition below. When you see `(
 | `(type:decimal:range)`                      | `a decimal value within the range specified` | A floating point number, where the `range` specifies the minimum to maximum numerical value. For example, a range of `0-1` would permit `0.33` but not `1.33`. |
 | `(type:url)`                                | `url('<hyperlink>')` | A css function containing a link to an external resource, typically an image |
 | `(type:display)`                            | `none\|block\|inline\|flex\|grid\|table` | A display type to specify for an element. Typically, you'll most commonly want either none (hidden) or block (visible) |
-| `(type:string:length)`                      | `'a string'` | A string... of text! Any freehand text you like, encapsulated single or double quotes. **Note** that if you see `length` specifies, this means you cannot exceed that number of characters in the string. |
+| `(type:string:length)`                       | `'a string'` | A string... of text! Any freehand text you like, encapsulated single or double quotes. **Note** that if you see `length` specifies, this means you cannot exceed that number of characters in the string. |
 
 Compound types build upon the base types defined above. You'll need to reference the base types, to understand the compound types.
 
