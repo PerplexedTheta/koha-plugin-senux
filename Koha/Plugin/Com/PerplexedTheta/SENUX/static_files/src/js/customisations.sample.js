@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', event => {
 
-
+    
     // ---> insert here <---
 
     // vars
@@ -561,13 +561,22 @@ function facetPublicationDateRangeResetHandler() {
 //
 // function to handle reservation link actions
 function reservationLinkHandler() {
-    $('a[href*="/cgi-bin/koha/opac-reserve.pl"]').on('click', function (event) {
-        event.preventDefault();
-        $('#modalReserveOk').attr('href', $(this).attr('href')); // set link to be correct
-        $("#reserveModal").modal("show"); // show modal
+  $('a[href*="/cgi-bin/koha/opac-reserve.pl"]').on('click', function (event) {
+    let thisUrl = $(this).attr('href');
+    event.preventDefault();
+
+    $('body').append('<div id=\"reserveModal\" class=\"modal show\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"modalReserveLabel\" aria-modal=\"true\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><h1 class=\"modal-title\" id=\"modalReserveLabel\">Place a request on this item?<\/h1><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"><\/button><\/div><div class=\"modal-body\"><p id=\"modalReserveDesc\">Please click Ok to progress with this request. Be sure to await an email from your local Library branch, before coming in.<\/p><\/div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" data-bs-dismiss=\"modal\">Cancel<\/button><a href=\"\" class=\"btn btn-primary\" aria-describedby=\"modalReserveDesc\">Ok<\/a><\/div><\/div><\/div><\/div>');
+
+    $('#reserveModal').on('shown.bs.modal', function (event) {
+      $('#reserveModal a').attr('href', thisUrl);
     });
 
-    $('#loginModal').after('<div class=\"modal show\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"modalLoginLabel\" id=\"reserveModal\" aria-modal=\"true\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><h2 class=\"modal-title\" id=\"modalReserveLabel\">Place a reservation on this item?<\/h2><button type=\"button\" class=\"closebtn\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">\u00D7<\/span><\/button><\/div><div class=\"modal-body\"><p id=\"modalReserveDesc\">Please click Ok to progress with this reservation. Be sure to await an email from your local Library branch, before coming in!<\/p><\/div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel<\/button><a id=\"modalReserveOk\" href=\"#\" class=\"btn btn-primary\" aria-describedby=\"modalReserveDesc\">Ok<\/a><\/div><\/div><\/div><\/div>');
+    $('#reserveModal').on('hidden.bs.modal', function (event) {
+      $('#reserveModal').remove();
+    });
+
+    $('#reserveModal').modal('show');
+  });
 }
 
 
