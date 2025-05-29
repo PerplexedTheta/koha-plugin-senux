@@ -5,7 +5,7 @@ if [[ "${EUID}" -eq 0 ]]; then
     echo 'Please run as a non-root (or sudo) user.' && exit 1
 fi
 
-alias curl="$(which curl)"
+cd "${SCRIPT_DIR}"
 
 source_nvm() {
     unset npm_config_prefix
@@ -22,6 +22,8 @@ source_nvm() {
 }
 
 install_nvm_and_node() {
+    alias curl="$(which curl)"
+
     mkdir -pv "${SCRIPT_DIR}/nvm_dir"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.sh | NVM_DIR="${SCRIPT_DIR}/nvm_dir" bash
     source_nvm
@@ -86,8 +88,6 @@ init() {
 
     return 0
 }
-
-cd "${SCRIPT_DIR}"
 init
 
 build_js() {
