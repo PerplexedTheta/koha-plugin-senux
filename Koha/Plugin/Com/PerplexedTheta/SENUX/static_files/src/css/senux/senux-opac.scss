@@ -850,7 +850,7 @@ div#ill-opac-results_wrapper {
 // backtotop
 #backtotop {
     &:active {
-        top: auto
+        top: auto !important
     }
 }
 

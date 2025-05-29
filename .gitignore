@@ -1,6 +1,6 @@
 node_cache/
 node_modules/
-package-log.json
+package-lock.json
 Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/dist/senux.min.*
 Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/node_cache/
 Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/node_modules/
