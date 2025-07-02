@@ -126,6 +126,9 @@ document.addEventListener('DOMContentLoaded', event => {
 
 
 window.addEventListener("load", event => {
+    // accessibility
+    //unwrapCoverImg();
+
     // add tooltips
     addBootstrapTooltips();
 });
@@ -154,6 +157,16 @@ function externalLinkAriaLabeller() {
     });
 }
 
+
+// function to unwrap cover images
+function unwrapCoverImg() {
+    $('.bookcover').each(function () {
+        var img = $(this).find('img');
+
+        img.unwrap();
+        img.attr('alt', '');
+    });
+}
 
 //
 // function to change where we scroll to
