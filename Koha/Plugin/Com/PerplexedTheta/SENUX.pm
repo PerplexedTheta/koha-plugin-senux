@@ -14,12 +14,12 @@ use File::Which qw{ which };
 use JSON;
 use JSON::Validator::Schema::OpenAPIv2;
 
-our $VERSION  = '24.11.05';
+our $VERSION  = '24.11.06';
 our $metadata = {
     name            => 'SENUX',
     author          => 'Jake Deery',
     date_authored   => '2025-04-11',
-    date_updated    => '2025-05-09',
+    date_updated    => '2025-07-02',
     minimum_version => '24.11.00.000',
     maximum_version => undef,
     version         => $VERSION,
