@@ -148,8 +148,7 @@ delete() {
     rm -rfv "${SCRIPT_DIR}/node_modules/"
     rm -rfv "${SCRIPT_DIR}/node_cache/"
     rm -rfv "${SCRIPT_DIR}/nvm_dir/"
-    rm -fv "${SCRIPT_DIR}/dist/senux.min.js"
-    rm -fv "${SCRIPT_DIR}/dist/senux.min.css"
+    rm -fv "${SCRIPT_DIR}/dist/senux."*
 
     return 0
 }
