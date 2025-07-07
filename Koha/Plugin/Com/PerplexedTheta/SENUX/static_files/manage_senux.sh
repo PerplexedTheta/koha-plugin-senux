@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 SCRIPT_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)"
 
+
 if [[ "${EUID}" -eq 0 ]]; then
     echo 'Please run as a non-root (or sudo) user.' && exit 1
 fi
 
 cd "${SCRIPT_DIR}"
 
-source_nvm() {
-    unset npm_config_prefix
-    unset npm_config_cache
+export NPM_DIR="${SCRIPT_DIR}/.npm"
+export NVM_DIR="${SCRIPT_DIR}/.nvm"
 
-    export NVM_DIR="${SCRIPT_DIR}/nvm_dir"
+source_nvm() {
     if [[ -s "${NVM_DIR}/nvm.sh" ]]; then
         . "${NVM_DIR}/nvm.sh" || exit $?
     else
@@ -22,17 +22,20 @@ source_nvm() {
 }
 
 install_nvm_and_node() {
-    alias curl="$(which curl)"
+    mkdir -pv "${NVM_DIR}"
 
-    mkdir -pv "${SCRIPT_DIR}/nvm_dir"
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.sh | NVM_DIR="${SCRIPT_DIR}/nvm_dir" bash
+    alias curl="$(which curl)"
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.sh | bash -E
+
     source_nvm
+
     nvm install --lts || exit $?
+    npm install -g npm || exit $?
 
     return 0
 }
 
-if [[ ! -s "${SCRIPT_DIR}/nvm_dir/nvm.sh" ]]; then
+if [[ ! -s "${NVM_DIR}/nvm.sh" ]]; then
     install_nvm_and_node
 fi
 
@@ -47,17 +50,15 @@ source_npm() {
     alias npm="$(which npm)"
     alias npx="$(which npx)"
 
-    export npm_config_prefix="${SCRIPT_DIR}"
-    export npm_config_cache="${SCRIPT_DIR}/node_cache"
+    export npm_config_cache="${NPM_DIR}"
 
     return 0
 }
 
 install_npm_modules() {
-    source_npm
+    mkdir -pv "${NPM_DIR}"
 
-    mkdir -pv "${SCRIPT_DIR}/node_cache"
-    mkdir -pv "${SCRIPT_DIR}/node_modules"
+    source_npm
 
     npm install --include=dev || exit $?
 
@@ -66,11 +67,10 @@ install_npm_modules() {
 
 if [[ ! -d "${SCRIPT_DIR}/node_modules/gulp" ]] \
 || [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-cli" ]] \
-|| [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-copy" ]] \
 || [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-minify" ]] \
 || [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-rename" ]] \
-|| [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-rimraf" ]] \
 || [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-sass" ]] \
+|| [[ ! -d "${SCRIPT_DIR}/node_modules/gulp-sourcemaps" ]] \
 || [[ ! -d "${SCRIPT_DIR}/node_modules/sass" ]]; then
     install_npm_modules
 fi
@@ -144,10 +144,10 @@ reset_all() {
 }
 
 delete() {
-    rm -fv "${SCRIPT_DIR}/package-lock.json"
+    rm -rfv "${NPM_DIR}/"
+    rm -rfv "${NVM_DIR}/"
     rm -rfv "${SCRIPT_DIR}/node_modules/"
-    rm -rfv "${SCRIPT_DIR}/node_cache/"
-    rm -rfv "${SCRIPT_DIR}/nvm_dir/"
+    rm -fv "${SCRIPT_DIR}/package-lock.json"
     rm -fv "${SCRIPT_DIR}/dist/senux."*
 
     return 0

@@ -1,10 +1,10 @@
 node_cache/
 node_modules/
 package-lock.json
-Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/dist/senux.min.*
-Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/node_cache/
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/.npm
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/.nvm
+Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/dist/senux.*
 Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/node_modules/
-Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/nvm_dir/
 Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/customisations.js
 Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/customisations.scss
 Koha/Plugin/Com/PerplexedTheta/SENUX/static_files/variables.scss
