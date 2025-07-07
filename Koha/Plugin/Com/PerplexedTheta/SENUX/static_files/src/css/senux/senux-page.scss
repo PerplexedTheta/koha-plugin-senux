@@ -333,22 +333,24 @@ td.overdue {
                 background-image: none !important;
                 text-shadow: none !important;
 
-                border: $btnBorderSettingsFoc !important;
-                outline: $btnOutlineSettingsFoc !important;
-                box-shadow: none !important;
-                text-decoration: $btnDecorationSettingsFoc !important;
+                color: $btnMenuTextHov !important;
+                background-color: $btnMenuBgHov !important;
+                border: $btnMenuBorderSettingsFoc !important;
+                outline: $btnMenuOutlineSettingsFoc !important;
+                box-shadow: $btnMenuBoxShadowSettingsFoc !important;
+                text-decoration: $btnMenuDecorationSettingsFoc !important;
 
                 &:not(:active):not(:hover) {
-                    color: $btnTextFoc !important;
-                    background-color: $btnBgFoc !important;
-                    border: $btnBorderSettingsFoc !important;
-                    outline: $btnOutlineSettingsFoc !important;
-                    box-shadow: $btnBoxShadowSettingsFoc !important;
-                    text-decoration: $btnDecorationSettingsFoc !important;
+                    color: $btnMenuTextFoc !important;
+                    background-color: $btnMenuBgFoc !important;
+                    border: $btnMenuBorderSettingsFoc !important;
+                    outline: $btnMenuOutlineSettingsFoc !important;
+                    box-shadow: $btnMenuBoxShadowSettingsFoc !important;
+                    text-decoration: $btnMenuDecorationSettingsFoc !important;
 
                     i.fa,
                     i.fa-solid {
-                        color: $btnTextFoc !important
+                        color: $btnMenuTextFoc !important
                     }
                 }
             }

@@ -115,27 +115,19 @@ a {
     }
 
     &:focus {
+        background: $defaultLinkBgFoc !important;
+        color: $defaultLinkTextFoc !important;
         border: $defaultLinkBorderSettingsFoc !important;
+        border-color: $transparent !important;
         outline: $defaultLinkOutlineSettingsFoc !important;
+        outline-color: $transparent !important;
         box-shadow: $defaultLinkBoxShadowSettingsFoc !important;
         text-decoration: $defaultLinkDecorationSettingsFoc !important;
         text-decoration-thickness: .1875rem !important;
 
-        &:not(:active):not(:hover) {
-            background: $defaultLinkBgFoc !important;
-            color: $defaultLinkTextFoc !important;
-            border: $defaultLinkBorderSettingsFoc !important;
-            border-color: $transparent !important;
-            outline: $defaultLinkOutlineSettingsFoc !important;
-            outline-color: $transparent !important;
-            box-shadow: $defaultLinkBoxShadowSettingsFoc !important;
-            text-decoration: $defaultLinkDecorationSettingsFoc !important;
-            text-decoration-thickness: .1875rem !important;
-
-            i.fa,
-            i.fa-solid {
-                color: $defaultLinkTextFoc !important
-            }
+        i.fa,
+        i.fa-solid {
+            color: $defaultLinkTextFoc !important
         }
     }
 }
@@ -221,7 +213,6 @@ a.btn,
     word-wrap: break-word;
     font-weight: 400;
 
-    background-color: $btnBg;
     border: $btnBorderSettings;
     outline: $btnOutlineSettings;
     box-shadow: $btnBoxShadowSettings;
@@ -229,11 +220,6 @@ a.btn,
 
     border-radius: $defaultRadius;
     outline-offset: $defaultOffset;
-
-    i.fa,
-    i.fa-solid {
-        color: $btnText
-    }
 
     &:hover {
         background-image: none;
@@ -250,36 +236,23 @@ a.btn,
         background-image: none !important;
         text-shadow: none !important;
 
+        background-color: $btnBgFoc !important;
         border: $btnBorderSettingsFoc !important;
         outline: $btnOutlineSettingsFoc !important;
         box-shadow: none !important;
         text-decoration: $btnDecorationSettingsFoc !important;
-
-        &:not(:active):not(:hover) {
-            color: $btnTextFoc !important;
-            background-color: $btnBgFoc !important;
-            border: $btnBorderSettingsFoc !important;
-            outline: $btnOutlineSettingsFoc !important;
-            box-shadow: $btnBoxShadowSettingsFoc !important;
-            text-decoration: $btnDecorationSettingsFoc !important;
-
-            i.fa,
-            i.fa-solid {
-                color: $btnTextFoc !important
-            }
-        }
     }
 
     &:active,
     &.active {
-        background-color: $btnBg;
+        background-color: $transparent;
         border: $btnBorderSettings;
         top: .125rem !important;
     }
 
     &:disabled,
     &.disabled {
-        background-color: $btnBg;
+        background-color: $transparent;
         border: $btnBorderSettings;
         outline: $btnOutlineSettings;
         box-shadow: $btnBoxShadowSettings;
@@ -325,6 +298,32 @@ a.btn-success .btn-success,
         i.fa,
         i.fa-solid {
             color: $btnPriTextHov
+        }
+    }
+
+    &:focus {
+        background-image: none !important;
+        text-shadow: none !important;
+
+        color: $btnPriTextHov !important;
+        background-color: $btnPriBgHov !important;
+        border: $btnPriBorderSettingsFoc !important;
+        outline: $btnPriOutlineSettingsFoc !important;
+        box-shadow: $btnPriBoxShadowSettingsFoc !important;
+        text-decoration: $btnPriDecorationSettingsFoc !important;
+
+        &:not(:active):not(:hover) {
+            color: $btnPriTextFoc !important;
+            background-color: $btnPriBgFoc !important;
+            border: $btnPriBorderSettingsFoc !important;
+            outline: $btnPriOutlineSettingsFoc !important;
+            box-shadow: $btnPriBoxShadowSettingsFoc !important;
+            text-decoration: $btnPriDecorationSettingsFoc !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $btnPriTextFoc !important
+            }
         }
     }
 
@@ -395,6 +394,32 @@ a.btn-secondary,
         }
     }
 
+    &:focus {
+        background-image: none !important;
+        text-shadow: none !important;
+
+        color: $btnSecTextHov !important;
+        background-color: $btnSecBgHov !important;
+        border: $btnSecBorderSettingsFoc !important;
+        outline: $btnSecOutlineSettingsFoc !important;
+        box-shadow: $btnSecBoxShadowSettingsFoc !important;
+        text-decoration: $btnSecDecorationSettingsFoc !important;
+
+        &:not(:active):not(:hover) {
+            color: $btnSecTextFoc !important;
+            background-color: $btnSecBgFoc !important;
+            border: $btnSecBorderSettingsFoc !important;
+            outline: $btnSecOutlineSettingsFoc !important;
+            box-shadow: $btnSecBoxShadowSettingsFoc !important;
+            text-decoration: $btnSecDecorationSettingsFoc !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $btnSecTextFoc !important
+            }
+        }
+    }
+
     &:active,
     &.active {
         color: $btnSecTextHov;
@@ -459,6 +484,32 @@ a.dt-button .dt-button,
         i.fa,
         i.fa-solid {
             color: $btnLinkTextHov
+        }
+    }
+
+    &:focus {
+        background-image: none !important;
+        text-shadow: none !important;
+
+        color: $btnLinkTextHov !important;
+        background-color: $btnLinkBgHov !important;
+        border: $btnLinkBorderSettingsFoc !important;
+        outline: $btnLinkOutlineSettingsFoc !important;
+        box-shadow: $btnLinkBoxShadowSettingsFoc !important;
+        text-decoration: $btnLinkDecorationSettingsFoc !important;
+
+        &:not(:active):not(:hover) {
+            color: $btnLinkTextFoc !important;
+            background-color: $btnLinkBgFoc !important;
+            border: $btnLinkBorderSettingsFoc !important;
+            outline: $btnLinkOutlineSettingsFoc !important;
+            box-shadow: $btnLinkBoxShadowSettingsFoc !important;
+            text-decoration: $btnLinkDecorationSettingsFoc !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $btnLinkTextFoc !important
+            }
         }
     }
 
@@ -530,6 +581,32 @@ a.btn-danger,
         i.fa,
         i.fa-solid {
             color: $btnDangerTextHov
+        }
+    }
+
+    &:focus {
+        background-image: none !important;
+        text-shadow: none !important;
+
+        color: $btnDangerTextHov !important;
+        background-color: $btnDangerBgHov !important;
+        border: $btnDangerBorderSettingsFoc !important;
+        outline: $btnDangerOutlineSettingsFoc !important;
+        box-shadow: $btnDangerBoxShadowSettingsFoc !important;
+        text-decoration: $btnDangerDecorationSettingsFoc !important;
+
+        &:not(:active):not(:hover) {
+            color: $btnDangerTextFoc !important;
+            background-color: $btnDangerBgFoc !important;
+            border: $btnDangerBorderSettingsFoc !important;
+            outline: $btnDangerOutlineSettingsFoc !important;
+            box-shadow: $btnDangerBoxShadowSettingsFoc !important;
+            text-decoration: $btnDangerDecorationSettingsFoc !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $btnDangerTextFoc !important
+            }
         }
     }
 

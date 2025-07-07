@@ -69,7 +69,7 @@ $defaultRadius: 0;
 $defaultOffset: 0;
 $defaultBorderSettings: .066rem solid darken($defaultFg, 15%);
 $defaultOutlineSettings: .125rem solid $transparent;
-$defaultBoxShadowSettings: 0 .125rem 0 0 $transparent;
+$defaultBoxShadowSettings: 0 -.1875rem $transparent, 0 .25rem $transparent;
 $defaultDecorationSettings: none;
 // vars--generic--headers
 $defaultHeaderUnderlineSettings: calc(.125rem / 2) solid $defaultText;
@@ -78,8 +78,8 @@ $defaultHeaderUnderlineWidthPct: 33%;
 $defaultLinkBg: $transparent;
 $defaultLinkText: $msBlue;
 $defaultLinkBorderSettings: none;
-$defaultLinkOutlineSettings: .1875rem solid $transparent;
-$defaultLinkBoxShadowSettings: 0 .125rem 0 0 $transparent;
+$defaultLinkOutlineSettings: .25rem solid $transparent;
+$defaultLinkBoxShadowSettings: 0 -.1875rem $transparent, 0 .25rem $transparent;
 $defaultLinkDecorationSettings: underline;
 $defaultLinkBgHov: $transparent;
 $defaultLinkTextHov: darken($defaultLinkText, 5%);
@@ -90,16 +90,14 @@ $defaultLinkDecorationSettingsHov: underline;
 $defaultLinkBgFoc: $msGold;
 $defaultLinkTextFoc: $msBlack;
 $defaultLinkBorderSettingsFoc: $defaultLinkBorderSettings;
-$defaultLinkOutlineSettingsFoc: .1875rem solid $msGold;
-$defaultLinkBoxShadowSettingsFoc: 0 .125rem 0 0 $msBlack;
+$defaultLinkOutlineSettingsFoc: .25rem solid $msGold;
+$defaultLinkBoxShadowSettingsFoc: 0 -.1875rem $msGold, 0 .25rem $black;
 $defaultLinkDecorationSettingsFoc: none;
 
 //
 // vars--main
 // vars--main--btns
-$btnBg: $transparent;
-$btnText: $defaultLinkText;
-$btnBorderSettings: .125rem solid $btnBg;
+$btnBorderSettings: .125rem solid $transparent;
 $btnOutlineSettings: $defaultOutlineSettings;
 $btnBoxShadowSettings: 0 .125rem 0 0 $msBlack;
 $btnDecorationSettings: $defaultDecorationSettings;
@@ -111,10 +109,10 @@ $btnBoxShadowSettingsHov: $btnBoxShadowSettings;
 $btnDecorationSettingsHov: $btnDecorationSettings;
 $btnBgFoc: $msGold;
 $btnTextFoc: $msBlack;
-$btnBorderSettingsFoc: .125rem solid $btnBgFoc;
-$btnOutlineSettingsFoc: $btnOutlineSettingsHov;
-$btnBoxShadowSettingsFoc: $btnBoxShadowSettingsHov;
-$btnDecorationSettingsFoc: $btnDecorationSettingsHov;
+$btnBorderSettingsFoc: .125rem solid $black;
+$btnOutlineSettingsFoc: $msGold solid .1875rem;
+$btnBoxShadowSettingsFoc: 0 0 0 .125rem $black inset;
+$btnDecorationSettingsFoc: none;
 // vars--main--btns--pri
 $btnPriBg: darken($userHue4, 5%);
 $btnPriText: darken($userText4, 5%);
@@ -128,6 +126,12 @@ $btnPriBorderSettingsHov: .125rem solid $btnPriBgHov;
 $btnPriOutlineSettingsHov: $btnPriOutlineSettings;
 $btnPriBoxShadowSettingsHov: $btnPriBoxShadowSettings;
 $btnPriDecorationSettingsHov: $btnPriDecorationSettings;
+$btnPriBgFoc: $btnPriBg;
+$btnPriTextFoc: $btnPriText;
+$btnPriBorderSettingsFoc: $btnBorderSettingsFoc;
+$btnPriOutlineSettingsFoc: $btnOutlineSettingsFoc;
+$btnPriBoxShadowSettingsFoc: $btnBoxShadowSettingsFoc;
+$btnPriDecorationSettingsFoc: $btnDecorationSettingsFoc;
 // vars--main--btns--sec
 $btnSecBg: darken($msWhite, 25%);
 $btnSecText: $msBlack;
@@ -141,19 +145,12 @@ $btnSecBorderSettingsHov: .125rem solid $btnSecBgHov;
 $btnSecOutlineSettingsHov: $btnSecOutlineSettings;
 $btnSecBoxShadowSettingsHov: $btnSecBoxShadowSettings;
 $btnSecDecorationSettingsHov: $btnSecDecorationSettings;
-// vars--main--btns--menu
-$btnMenuBg: $btnSecBg;
-$btnMenuText: $btnSecText;
-$btnMenuBorderSettings: $btnSecBorderSettings;
-$btnMenuOutlineSettings: $btnSecOutlineSettings;
-$btnMenuBoxShadowSettings: $btnSecBoxShadowSettings;
-$btnMenuDecorationSettings: $btnSecDecorationSettings;
-$btnMenuBgHov: $btnSecBgHov;
-$btnMenuTextHov: $btnSecTextHov;
-$btnMenuBorderSettingsHov: $btnSecBorderSettingsHov;
-$btnMenuOutlineSettingsHov: $btnSecOutlineSettingsHov;
-$btnMenuBoxShadowSettingsHov: $btnSecBoxShadowSettingsHov;
-$btnMenuDecorationSettingsHov: $btnSecDecorationSettingsHov;
+$btnSecBgFoc: $btnSecBg;
+$btnSecTextFoc: $btnSecText;
+$btnSecBorderSettingsFoc: $btnBorderSettingsFoc;
+$btnSecOutlineSettingsFoc: $btnOutlineSettingsFoc;
+$btnSecBoxShadowSettingsFoc: $btnBoxShadowSettingsFoc;
+$btnSecDecorationSettingsFoc: $btnDecorationSettingsFoc;
 // vars--main--btns--link
 $btnLinkBg: $defaultLinkBg;
 $btnLinkText: $defaultLinkText;
@@ -167,6 +164,31 @@ $btnLinkBorderSettingsHov: none;
 $btnLinkOutlineSettingsHov: none;
 $btnLinkBoxShadowSettingsHov: none;
 $btnLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
+$btnLinkBgFoc: $btnLinkBg;
+$btnLinkTextFoc: $btnLinkText;
+$btnLinkBorderSettingsFoc: $btnBorderSettingsFoc;
+$btnLinkOutlineSettingsFoc: $btnOutlineSettingsFoc;
+$btnLinkBoxShadowSettingsFoc: $btnBoxShadowSettingsFoc;
+$btnLinkDecorationSettingsFoc: $btnDecorationSettingsFoc;
+// vars--main--btns--menu
+$btnMenuBg: darken($msWhite, 25%);
+$btnMenuText: $msBlack;
+$btnMenuBorderSettings: .125rem solid $btnSecBg;
+$btnMenuOutlineSettings: $btnOutlineSettings;
+$btnMenuBoxShadowSettings: $btnBoxShadowSettings;
+$btnMenuDecorationSettings: $btnDecorationSettings;
+$btnMenuBgHov: darken($msWhite, 15%);
+$btnMenuTextHov: $btnSecText;
+$btnMenuBorderSettingsHov: .125rem solid $btnSecBgHov;
+$btnMenuOutlineSettingsHov: $btnSecOutlineSettings;
+$btnMenuBoxShadowSettingsHov: $btnSecBoxShadowSettings;
+$btnMenuDecorationSettingsHov: $btnSecDecorationSettings;
+$btnMenuBgFoc: $btnSecBg;
+$btnMenuTextFoc: $btnSecText;
+$btnMenuBorderSettingsFoc: $btnBorderSettingsFoc;
+$btnMenuOutlineSettingsFoc: $btnOutlineSettingsFoc;
+$btnMenuBoxShadowSettingsFoc: $btnBoxShadowSettingsFoc;
+$btnMenuDecorationSettingsFoc: $btnDecorationSettingsFoc;
 // vars--main--btns--danger
 $btnDangerBg: $msRed;
 $btnDangerText: $msWhite;
@@ -180,6 +202,12 @@ $btnDangerBorderSettingsHov: .125rem solid $btnDangerBgHov;
 $btnDangerOutlineSettingsHov: $btnDangerOutlineSettings;
 $btnDangerBoxShadowSettingsHov: $btnDangerBoxShadowSettings;
 $btnDangerDecorationSettingsHov: $btnDangerDecorationSettings;
+$btnDangerBgFoc: $btnDangerBg;
+$btnDangerTextFoc: $btnDangerText;
+$btnDangerBorderSettingsFoc: $btnBorderSettingsFoc;
+$btnDangerOutlineSettingsFoc: $btnOutlineSettingsFoc;
+$btnDangerBoxShadowSettingsFoc: $btnBoxShadowSettingsFoc;
+$btnDangerDecorationSettingsFoc: $btnDecorationSettingsFoc;
 // vars--main--btns--disabled
 $btnDisabledOpacity: .66;
 // vars--main--inputs
@@ -245,7 +273,7 @@ $navbarLogoDecorationSettings: $defaultLinkDecorationSettings;
 $navbarLogoBgHov: $navbarLogoBg;
 $navbarLogoTextHov: $navbarLinkTextHov;
 $navbarLogoBorderSettingsHov: $defaultLinkBorderSettingsHov;
-$navbarLogoOutlineSettingsHov: .125rem solid $navbarLogoTextHov;
+$navbarLogoOutlineSettingsHov: .125rem solid $navbarLinkTextHov;
 $navbarLogoBoxShadowSettingsHov: 0 0 0 .25rem $navbarLogoTextHov inset;
 $navbarLogoDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 $navbarLogoBgFoc: $navbarLogoBgHov;
@@ -283,14 +311,14 @@ $mainSearchBg: $userHue2;
 $mainSearchText: $userText2;
 $mainSearchLinkText: $userText2;
 $mainSearchLinkDecorationSettings: $defaultLinkDecorationSettings;
-$mainSearchLinkTextHov: darken($mainSearchLinkText, 15%);
+$mainSearchLinkTextHov: darken($userText2, 15%);
 $mainSearchLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 // vars--masthead--moresearches
 $moreSearchBg: $userHue3;
 $moreSearchText: $userText3;
 $moreSearchLinkText: $userText3;
 $moreSearchLinkDecorationSettings: $defaultLinkDecorationSettings;
-$moreSearchLinkTextHov: lighten($moreSearchLinkText, 15%);
+$moreSearchLinkTextHov: lighten($userText3, 15%);
 $moreSearchLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 
 //
@@ -315,7 +343,7 @@ $headlinerText: $defaultText;
 // vars--opac
 // vars--opac--resourcelinks
 $onlineAccessBg: lighten($msGold, 35%);
-$onlineAccessText: $msBlack;
+$onlineAccessText: $defaultText;
 $onlineAccessLinkText: $defaultLinkText;
 $onlineAccessLinkDecorationSettings: $defaultLinkDecorationSettings;
 $onlineAccessLinkTextHov: $defaultLinkTextHov;
@@ -325,7 +353,7 @@ $onlineAccessLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
 // vars--tables
 // vars--tables--root
 $tableHeadBg: darken($defaultBg, 5%);
-$tableHeadText: darken($defaultText, 5%);
+$tableHeadText: $defaultText;
 $tableRowBg: $defaultBg;
 $tableRowText: $defaultText;
 // vars--tables--striped
