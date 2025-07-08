@@ -567,6 +567,17 @@
                 color: $dropdownLinkTextHov;
             }
         }
+
+        &:focus {
+            background: $dropdownLinkBgFoc !important;
+            color: $dropdownLinkTextFoc !important;
+            text-decoration: $dropdownLinkDecorationSettingsFoc !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $dropdownLinkTextFoc !important
+            }
+        }
     }
 }
 
@@ -605,6 +616,16 @@
         &:hover {
             background-color: $dropdownLinkBgHov;
             color: $dropdownLinkTextHov
+        }
+
+        &:focus {
+            background: $dropdownLinkBgFoc !important;
+            color: $dropdownLinkTextFoc !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $dropdownLinkTextFoc !important
+            }
         }
     }
 }

@@ -194,7 +194,11 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
             }
 
             &:focus {
-                color: $navbarUsermenuLinkTextHov
+                color: $navbarUsermenuLinkTextHov !important;
+
+                &:not(:active):not(:hover) {
+                    color: $navbarUsermenuLinkTextHov !important
+                }
             }
         }
     }
@@ -207,7 +211,11 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
         }
 
         &:focus {
-            color: $navbarUsermenuLogoutTextHov
+            color: $navbarUsermenuLogoutTextHov !important;
+
+            &:not(:active):not(:hover) {
+                color: $navbarUsermenuLogoutTextHov !important
+            }
         }
     }
 }

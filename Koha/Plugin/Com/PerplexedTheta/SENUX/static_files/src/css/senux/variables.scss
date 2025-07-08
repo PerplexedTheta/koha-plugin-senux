@@ -97,6 +97,8 @@ $defaultLinkDecorationSettingsFoc: none;
 //
 // vars--main
 // vars--main--btns
+$btnBg: $defaultLinkBg;
+$btnText: $defaultLinkText;
 $btnBorderSettings: .125rem solid $transparent;
 $btnOutlineSettings: $defaultOutlineSettings;
 $btnBoxShadowSettings: 0 .125rem 0 0 $msBlack;
@@ -249,10 +251,16 @@ $dropdownLinkBoxShadowSettings: $defaultLinkBoxShadowSettings;
 $dropdownLinkDecorationSettings: $defaultLinkDecorationSettings;
 $dropdownLinkBgHov: $msBlue;
 $dropdownLinkTextHov: $msWhite;
-$dropdownLinkBorderSettingsHov: $dropdownLinkBorderSettings;
-$dropdownLinkOutlineSettingsHov: $dropdownLinkOutlineSettings;
-$dropdownLinkBoxShadowSettingsHov: $dropdownLinkBoxShadowSettings;
-$dropdownLinkDecorationSettingsHov: $dropdownLinkDecorationSettings;
+$dropdownLinkBorderSettingsHov: $defaultLinkBorderSettingsHov;
+$dropdownLinkOutlineSettingsHov: $defaultLinkOutlineSettingsHov;
+$dropdownLinkBoxShadowSettingsHov: $defaultLinkBoxShadowSettingsHov;
+$dropdownLinkDecorationSettingsHov: $defaultLinkDecorationSettingsHov;
+$dropdownLinkBgFoc: $defaultLinkBgFoc;
+$dropdownLinkTextFoc: $defaultLinkTextFoc;
+$dropdownLinkBorderSettingsFoc: $defaultLinkBorderSettingsFoc;
+$dropdownLinkOutlineSettingsFoc: $defaultLinkOutlineSettingsFoc;
+$dropdownLinkBoxShadowSettingsFoc: $defaultLinkBoxShadowSettingsFoc;
+$dropdownLinkDecorationSettingsFoc: $defaultLinkDecorationSettingsFoc;
 
 //
 // vars--navbar

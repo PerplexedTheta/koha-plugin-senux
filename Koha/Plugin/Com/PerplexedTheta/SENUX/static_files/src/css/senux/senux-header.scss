@@ -183,8 +183,51 @@
     text-decoration: $dropdownLinkDecorationSettings;
 
     &:hover {
+        background: $dropdownLinkBgHov;
         color: $dropdownLinkTextHov;
-        background-color: $dropdownLinkBgHov;
-        text-decoration: $dropdownLinkDecorationSettingsHov
+        border: $dropdownLinkBorderSettingsHov;
+        outline: $dropdownLinkOutlineSettingsHov;
+        box-shadow: $dropdownLinkBoxShadowSettingsHov;
+        text-decoration: $dropdownLinkDecorationSettingsHov;
+        text-decoration-thickness: .1875rem;
+
+        i.fa,
+        i.fa-solid {
+            color: $dropdownLinkTextHov
+        }
+    }
+
+    &:focus {
+        background: $dropdownLinkBgHov !important;
+        color: $dropdownLinkTextHov !important;
+        border: $dropdownLinkBorderSettingsFoc !important;
+        border-color: $transparent !important;
+        outline: $dropdownLinkOutlineSettingsFoc !important;
+        outline-color: $transparent !important;
+        box-shadow: $dropdownLinkBoxShadowSettingsFoc !important;
+        text-decoration: $dropdownLinkDecorationSettingsHov !important;
+        text-decoration-thickness: .1875rem !important;
+
+        &:not(:active):not(:hover) {
+            background: $dropdownLinkBgFoc !important;
+            color: $dropdownLinkTextFoc !important;
+            border: $dropdownLinkBorderSettingsFoc !important;
+            border-color: $transparent !important;
+            outline: $dropdownLinkOutlineSettingsFoc !important;
+            outline-color: $transparent !important;
+            box-shadow: $dropdownLinkBoxShadowSettingsFoc !important;
+            text-decoration: $dropdownLinkDecorationSettingsFoc !important;
+            text-decoration-thickness: .1875rem !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $btnPriTextFoc !important
+            }
+        }
+
+        i.fa,
+        i.fa-solid {
+            color: $dropdownLinkTextFoc !important
+        }
     }
 }
