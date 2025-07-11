@@ -164,7 +164,7 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
 #members,
 #header_langmenu {
     li {
-        a {
+        a:not(.dropdown-item) {
             color: $navbarLinkText;
             background-color: $navbarLinkBg;
             border: $navbarLinkBorderSettings;
