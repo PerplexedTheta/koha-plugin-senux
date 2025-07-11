@@ -361,7 +361,11 @@ a.btn-default,
 input[type="submit"].btn-secondary,
 a.btn-secondary,
 .btn-secondary,
-.btn-secondary:not(:disabled, .disabled) {
+.btn-secondary:not(:disabled, .disabled),
+input[type="submit"].btn-info,
+a.btn-info,
+.btn-info,
+.btn-info:not(:disabled, .disabled) {
     background-image: none;
     text-shadow: none;
 
@@ -451,12 +455,12 @@ input[type="submit"].btn-link,
 a.btn-link,
 .btn-link,
 .btn-link:not(:disabled, .disabled),
+a.btn-close,
+.btn-close,
+.btn-close:not(:disabled, .disabled),
 input[type="submit"].dt-button,
 a.dt-button .dt-button,
 .dt-button:not(:disabled, .disabled) {
-    background-image: none;
-    text-shadow: none;
-
     color: $btnLinkText;
     background-color: $btnLinkBg;
     border: $btnLinkBorderSettings;
@@ -470,9 +474,6 @@ a.dt-button .dt-button,
     }
 
     &:hover {
-        background-image: none;
-        text-shadow: none;
-
         color: $btnLinkTextHov;
         background-color: $btnLinkBgHov;
         border: $btnLinkBorderSettingsHov;
@@ -488,9 +489,6 @@ a.dt-button .dt-button,
     }
 
     &:focus {
-        background-image: none !important;
-        text-shadow: none !important;
-
         color: $btnLinkTextHov !important;
         background-color: $btnLinkBgHov !important;
         border: $btnLinkBorderSettingsFoc !important;
