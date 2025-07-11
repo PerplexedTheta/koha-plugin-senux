@@ -208,6 +208,11 @@
         text-decoration: $dropdownLinkDecorationSettingsHov !important;
         text-decoration-thickness: .1875rem !important;
 
+        i.fa,
+        i.fa-solid {
+            color: $dropdownLinkBgHov !important
+        }
+
         &:not(:active):not(:hover) {
             background: $dropdownLinkBgFoc !important;
             color: $dropdownLinkTextFoc !important;
@@ -221,7 +226,7 @@
 
             i.fa,
             i.fa-solid {
-                color: $btnPriTextFoc !important
+                color: $dropdownLinkTextFoc !important
             }
         }
 

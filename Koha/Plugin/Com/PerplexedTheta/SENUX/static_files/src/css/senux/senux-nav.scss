@@ -39,49 +39,90 @@
     }
 
     &:focus {
-        color: $navbarLinkTextHov;
+        color: $navbarLinkTextFoc;
         background: $navbarLogoBgHov;
         background-size: $navbarLogoBgSize;
     }
 
     a {
-        width: $navbarLogoWidth;
-        padding: $navbarLogoHeight 0 0;
+        color: $navbarLinkText;
+        background-color: $navbarLinkBg;
+        border: $navbarLinkBorderSettings;
+        outline: $navbarLinkOutlineSettings;
+        box-shadow: $navbarLinkBoxShadowSettings;
+        text-decoration: $navbarLinkDecorationSettings;
 
-        background-color: transparent !important;
-        color: $navbarLogoText;
-        border: $navbarLogoBorderSettings;
-        outline: $navbarLogoOutlineSettings;
-        box-shadow: $navbarLogoBoxShadowSettings;
-        text-decoration: $navbarLogoDecorationSettings;
+        i.fa,
+        i.fa-solid {
+            color: $navbarLinkText
+        }
 
         &:hover {
-            background: $transparent !important;
-            color: $navbarLogoTextHov;
-            border: $navbarLogoBorderSettingsHov;
-            outline: $navbarLogoOutlineSettingsHov;
-            box-shadow: $navbarLogoBoxShadowSettingsHov;
-            text-decoration: $navbarLogoDecorationSettingsHov;
+            color: $navbarLinkTextHov;
+            background-color: $navbarLinkBgHov;
+            border: $navbarLinkBorderSettingsHov;
+            outline: $navbarLinkOutlineSettingsHov;
+            box-shadow: $navbarLinkBoxShadowSettingsHov;
+            text-decoration: $navbarLinkDecorationSettingsHov;
             text-decoration-thickness: .1875rem;
+
+            i.fa,
+            i.fa-solid {
+                color: $navbarLinkTextHov
+            }
         }
 
         &:focus {
-            background: $transparent !important;
-            color: $navbarLogoTextFoc !important;
-            border: $navbarLogoBorderSettingsHov !important;
-            outline: $navbarLogoOutlineSettingsFoc !important;
-            box-shadow: $navbarLogoBoxShadowSettingsHov !important;
-            text-decoration: $navbarLogoDecorationSettingsHov !important;
-            text-decoration-thickness: .1875rem !important;
+            color: $navbarLinkTextHov !important;
+            background-color: $navbarLinkBgHov !important;
+            border: $navbarLinkBorderSettingsFoc !important;
+            outline: $navbarLinkOutlineSettingsFoc !important;
+            box-shadow: $navbarLinkBoxShadowSettingsFoc !important;
+            text-decoration: $navbarLinkDecorationSettingsFoc !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $navbarLinkTextHov !important
+            }
 
             &:not(:active):not(:hover) {
-                background: $transparent !important;
-                color: $navbarLogoTextFoc !important;
-                border: $navbarLogoBorderSettingsFoc !important;
-                outline: $navbarLogoOutlineSettingsFoc !important;
-                box-shadow: $navbarLogoBoxShadowSettingsFoc !important;
-                text-decoration: $navbarLogoDecorationSettingsFoc !important;
-                text-decoration-thickness: .1875rem !important;
+                color: $navbarLinkTextFoc !important;
+                background-color: $navbarLinkBgFoc !important;
+                border: $navbarLinkBorderSettingsFoc !important;
+                outline: $navbarLinkOutlineSettingsFoc !important;
+                box-shadow: $navbarLinkBoxShadowSettingsFoc !important;
+                text-decoration: $navbarLinkDecorationSettingsFoc !important;
+
+                i.fa,
+                i.fa-solid {
+                    color: $navbarLinkTextFoc !important
+                }
+            }
+        }
+
+        &:active,
+        &.active {
+            color: $navbarLinkTextHov;
+            background-color: $navbarLinkBgHov;
+            border: $navbarLinkBorderSettingsHov;
+
+            i.fa,
+            i.fa-solid {
+                color: $navbarLinkTextHov;
+            }
+        }
+
+        &:disabled,
+        &.disabled {
+            color: $navbarLinkText;
+            background-color: $navbarLinkBg;
+            border: $navbarLinkBorderSettings;
+            outline: $navbarLinkOutlineSettings;
+            box-shadow: $navbarLinkBoxShadowSettings;
+
+            i.fa,
+            i.fa-solid {
+                color: $navbarLinkText;
             }
         }
     }
@@ -125,8 +166,11 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
     li {
         a {
             color: $navbarLinkText;
+            background-color: $navbarLinkBg;
+            border: $navbarLinkBorderSettings;
+            outline: $navbarLinkOutlineSettings;
+            box-shadow: $navbarLinkBoxShadowSettings;
             text-decoration: $navbarLinkDecorationSettings;
-            text-shadow: none;
 
             i.fa,
             i.fa-solid {
@@ -135,11 +179,70 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
 
             &:hover {
                 color: $navbarLinkTextHov;
+                background-color: $navbarLinkBgHov;
+                border: $navbarLinkBorderSettingsHov;
+                outline: $navbarLinkOutlineSettingsHov;
+                box-shadow: $navbarLinkBoxShadowSettingsHov;
                 text-decoration: $navbarLinkDecorationSettingsHov;
+                text-decoration-thickness: .1875rem;
 
                 i.fa,
                 i.fa-solid {
                     color: $navbarLinkTextHov
+                }
+            }
+
+            &:focus {
+                color: $navbarLinkTextHov !important;
+                background-color: $navbarLinkBgHov !important;
+                border: $navbarLinkBorderSettingsFoc !important;
+                outline: $navbarLinkOutlineSettingsFoc !important;
+                box-shadow: $navbarLinkBoxShadowSettingsFoc !important;
+                text-decoration: $navbarLinkDecorationSettingsFoc !important;
+
+                i.fa,
+                i.fa-solid {
+                    color: $navbarLinkTextHov !important
+                }
+
+                &:not(:active):not(:hover) {
+                    color: $navbarLinkTextFoc !important;
+                    background-color: $navbarLinkBgFoc !important;
+                    border: $navbarLinkBorderSettingsFoc !important;
+                    outline: $navbarLinkOutlineSettingsFoc !important;
+                    box-shadow: $navbarLinkBoxShadowSettingsFoc !important;
+                    text-decoration: $navbarLinkDecorationSettingsFoc !important;
+
+                    i.fa,
+                    i.fa-solid {
+                        color: $navbarLinkTextFoc !important
+                    }
+                }
+            }
+
+            &:active,
+            &.active {
+                color: $navbarLinkTextHov;
+                background-color: $navbarLinkBgHov;
+                border: $navbarLinkBorderSettingsHov;
+
+                i.fa,
+                i.fa-solid {
+                    color: $navbarLinkTextHov;
+                }
+            }
+
+            &:disabled,
+            &.disabled {
+                color: $navbarLinkText;
+                background-color: $navbarLinkBg;
+                border: $navbarLinkBorderSettings;
+                outline: $navbarLinkOutlineSettings;
+                box-shadow: $navbarLinkBoxShadowSettings;
+
+                i.fa,
+                i.fa-solid {
+                    color: $navbarLinkText;
                 }
             }
         }

@@ -312,6 +312,11 @@ a.btn-success .btn-success,
         box-shadow: $btnPriBoxShadowSettingsFoc !important;
         text-decoration: $btnPriDecorationSettingsFoc !important;
 
+        i.fa,
+        i.fa-solid {
+            color: $btnPriTextHov !important
+        }
+
         &:not(:active):not(:hover) {
             color: $btnPriTextFoc !important;
             background-color: $btnPriBgFoc !important;
@@ -409,6 +414,11 @@ a.btn-info,
         box-shadow: $btnSecBoxShadowSettingsFoc !important;
         text-decoration: $btnSecDecorationSettingsFoc !important;
 
+        i.fa,
+        i.fa-solid {
+            color: $btnSecTextHov !important
+        }
+
         &:not(:active):not(:hover) {
             color: $btnSecTextFoc !important;
             background-color: $btnSecBgFoc !important;
@@ -464,7 +474,9 @@ a.dt-button .dt-button,
     color: $btnLinkText;
     background-color: $btnLinkBg;
     border: $btnLinkBorderSettings;
+    border-color: $transparent;
     outline: $btnLinkOutlineSettings;
+    outline-color: $transparent;
     box-shadow: $btnLinkBoxShadowSettings;
     text-decoration: $btnLinkDecorationSettings;
 
@@ -495,6 +507,11 @@ a.dt-button .dt-button,
         outline: $btnLinkOutlineSettingsFoc !important;
         box-shadow: $btnLinkBoxShadowSettingsFoc !important;
         text-decoration: $btnLinkDecorationSettingsFoc !important;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnLinkTextHov !important
+        }
 
         &:not(:active):not(:hover) {
             color: $btnLinkTextFoc !important;
@@ -592,6 +609,11 @@ a.btn-danger,
         outline: $btnDangerOutlineSettingsFoc !important;
         box-shadow: $btnDangerBoxShadowSettingsFoc !important;
         text-decoration: $btnDangerDecorationSettingsFoc !important;
+
+        i.fa,
+        i.fa-solid {
+            color: $btnDangerTextHov !important
+        }
 
         &:not(:active):not(:hover) {
             color: $btnDangerTextFoc !important;

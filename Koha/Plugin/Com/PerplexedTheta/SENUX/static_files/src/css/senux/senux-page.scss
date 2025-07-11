@@ -340,6 +340,11 @@ td.overdue {
                 box-shadow: $btnMenuBoxShadowSettingsFoc !important;
                 text-decoration: $btnMenuDecorationSettingsFoc !important;
 
+                i.fa,
+                i.fa-solid {
+                    color: $btnMenuTextHov !important
+                }
+
                 &:not(:active):not(:hover) {
                     color: $btnMenuTextFoc !important;
                     background-color: $btnMenuBgFoc !important;
