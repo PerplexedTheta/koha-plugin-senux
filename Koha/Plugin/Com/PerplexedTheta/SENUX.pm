@@ -304,7 +304,8 @@ sub configure {
     my $template = $self->get_template( { file => 'configure.tt' } );
 
     $template->param(
-        REPO => $self->{'metadata'}->{'repo'},
+        IS_ENABLED => $self->is_enabled,
+        METADATA   => $self->{'metadata'},
     );
 
     $self->output_html( $template->output() );

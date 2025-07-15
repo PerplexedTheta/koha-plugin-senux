@@ -92,144 +92,161 @@
                         </div>
                     </div><!-- /senux_header -->
 
-                    <div class="page-section"><!-- html_customisations -->
-                        <form id="html_customisations_form">
-                            <h3>HTML Customisations</h3>
-                            <div id="html_customisations_alerts"></div>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <p>
-                                    SENUX comes with a series of optional HTML Customisations, to get your OPAC started. Clicking the <strong>Side-load HTML Customisations</strong> button below will add these optional customisations into Koha, for you to later edit or delete as you please. <a href="https://koha-community.org/manual/latest/en/html/tools.html#html-customizations" target="_blank">Please click here if you'd like to learn about HTML Customisations</a>.
-                                </p>
-                                <p>
-                                    <strong>Note:</strong> Side-loading the SENUX HTML Customisations will not delete any previous HTML Customisations you have created, and all SENUX HTML Customisations will clearly be marked by their title.
-                                </p>
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="html_customisations_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-code"></i> Side-load HTML Customisations</button>
-                                <div id="html_customisations_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
-                                    <span class="sr-only">Saving...</span>
-                                </div>
-                                <a class="btn btn-link float-end" href="/cgi-bin/koha/tools/additional-contents.pl?category=html_customizations">Go to HTML Customisations</i></a>
+                    [% UNLESS IS_ENABLED %]
+                        <div class="page-section"><!-- plugin_disabled -->
+                            <form id="plugin_disabled_form">
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <h3>Plugin Disabled</h3>
+                                    <p>
+                                        SENUX makes extensive use of Koha's REST API. When you disable the plugin, those API endpoints are switched off, so we cannot serve the OPAC CSS and JavaScript, nor can we provide the endpoints required to edit the SASS and JavaScript files.
+                                    </p>
+                                    <p>
+                                        If you want to resume using SENUX, please enable the plugin again. If you're having trouble, try running reinstall all with the plugin enabled, or contact your systems administrator.
+                                    </p>
+                                    <a class="btn btn-link float-end" href="/cgi-bin/koha/plugins/plugins-home.pl">Go to Plugins page</a>
+                                </fieldset>
+                            </form>
+                        </div><!-- /plugin_disabled -->
+                    [% ELSE %]
+                        <div class="page-section"><!-- html_customisations -->
+                            <form id="html_customisations_form">
+                                <h3>HTML Customisations</h3>
+                                <div id="html_customisations_alerts"></div>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <p>
+                                        SENUX comes with a series of optional HTML Customisations, to get your OPAC started. Clicking the <strong>Side-load HTML Customisations</strong> button below will add these optional customisations into Koha, for you to later edit or delete as you please. <a href="https://koha-community.org/manual/latest/en/html/tools.html#html-customizations" target="_blank">Please click here if you'd like to learn about HTML Customisations</a>.
+                                    </p>
+                                    <p>
+                                        <strong>Note:</strong> Side-loading the SENUX HTML Customisations will not delete any previous HTML Customisations you have created, and all SENUX HTML Customisations will clearly be marked by their title.
+                                    </p>
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <button id="html_customisations_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-code"></i> Side-load HTML Customisations</button>
+                                    <div id="html_customisations_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                        <span class="sr-only">Saving...</span>
+                                    </div>
+                                    <a class="btn btn-link float-end" href="/cgi-bin/koha/tools/additional-contents.pl?category=html_customizations">Go to HTML Customisations</a>
 
-                            </fieldset>
-                        </form>
-                    </div><!-- /reset_all -->
+                                </fieldset>
+                            </form>
+                        </div><!-- /html_customisations -->
 
-                    <div class="page-section"><!-- variables_scss -->
-                        <form id="variables_scss_form">
-                            <h3><code>variables.scss</code></h3>
-                            <div id="variables_scss_alerts"></div>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                This controls things like colours, backgrounds, borders, outlines, box shadows, and text decorations.
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <div id="variables_scss_textarea" class="ace-editor"></div>
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="variables_scss_btn" type="submit" class="btn btn-primary float-end" style="margin-left:1em"><i class="fa fa-save"></i> Save file & rebuild</button>
-                                <div id="variables_scss_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
-                                    <span class="sr-only">Saving...</span>
-                                </div>
-                                <a class="btn btn-link float-end" href="[% REPO %]/wiki/Glossary-of-variables" target="_blank">See glossary of variables <i class="fa fa-arrow-up-right-from-square"></i></a>
-                            </fieldset>
-                        </form>
-                    </div><!-- /variables_scss -->
+                        <div class="page-section"><!-- variables_scss -->
+                            <form id="variables_scss_form">
+                                <h3><code>variables.scss</code></h3>
+                                <div id="variables_scss_alerts"></div>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    This controls things like colours, backgrounds, borders, outlines, box shadows, and text decorations.
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <div id="variables_scss_textarea" class="ace-editor"></div>
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <button id="variables_scss_btn" type="submit" class="btn btn-primary float-end" style="margin-left:1em"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                    <div id="variables_scss_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                        <span class="sr-only">Saving...</span>
+                                    </div>
+                                    <a class="btn btn-link float-end" href="[% REPO %]/wiki/Glossary-of-variables" target="_blank">See glossary of variables <i class="fa fa-arrow-up-right-from-square"></i></a>
+                                </fieldset>
+                            </form>
+                        </div><!-- /variables_scss -->
 
-                    <div class="page-section"><!-- customisations_scss -->
-                        <form id="customisations_scss_form">
-                            <h3><code>customisations.scss</code></h3>
-                            <div id="customisations_scss_alerts"></div>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                This SASS will override everything else in SENUX, and you can write your own SASS. It is like a supercharged OPACUserCSS!
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <div id="customisations_scss_textarea" class="ace-editor"></div>
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="customisations_scss_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
-                                <div id="customisations_scss_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
-                                    <span class="sr-only">Saving...</span>
-                                </div>
-                                <a class="btn btn-link float-end" href="https://www.w3schools.com/sass/sass_intro.php" target="_blank">Learn SASS <i class="fa fa-arrow-up-right-from-square"></i></a>
-                            </fieldset>
-                        </form>
-                    </div><!-- /customisations_scss -->
+                        <div class="page-section"><!-- customisations_scss -->
+                            <form id="customisations_scss_form">
+                                <h3><code>customisations.scss</code></h3>
+                                <div id="customisations_scss_alerts"></div>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    This SASS will override everything else in SENUX, and you can write your own SASS. It is like a supercharged OPACUserCSS!
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <div id="customisations_scss_textarea" class="ace-editor"></div>
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <button id="customisations_scss_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                    <div id="customisations_scss_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                        <span class="sr-only">Saving...</span>
+                                    </div>
+                                    <a class="btn btn-link float-end" href="https://www.w3schools.com/sass/sass_intro.php" target="_blank">Learn SASS <i class="fa fa-arrow-up-right-from-square"></i></a>
+                                </fieldset>
+                            </form>
+                        </div><!-- /customisations_scss -->
 
-                    <div class="page-section"><!-- customisations_js -->
-                        <form id="customisations_js_form">
-                            <h3><code>customisations.js</code></h3>
-                            <div id="customisations_js_alerts"></div>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                This is where the custom JavaScript functions are defined, and called. You can change them to suit your needs. If you don't want to use these, delete everything from the box.
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <div id="customisations_js_textarea" class="ace-editor"></div>
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="customisations_js_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
-                                <div id="customisations_js_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
-                                    <span class="sr-only">Saving...</span>
-                                </div>
-                                <a class="btn btn-link float-end" href="https://www.w3schools.com/js/js_intro.asp" target="_blank">Learn JavaScript <i class="fa fa-arrow-up-right-from-square"></i></a>
-                            </fieldset>
-                        </form>
-                    </div><!-- /customisations_js -->
+                        <div class="page-section"><!-- customisations_js -->
+                            <form id="customisations_js_form">
+                                <h3><code>customisations.js</code></h3>
+                                <div id="customisations_js_alerts"></div>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    This is where the custom JavaScript functions are defined, and called. You can change them to suit your needs. If you don't want to use these, delete everything from the box.
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <div id="customisations_js_textarea" class="ace-editor"></div>
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <button id="customisations_js_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Save file & rebuild</button>
+                                    <div id="customisations_js_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                        <span class="sr-only">Saving...</span>
+                                    </div>
+                                    <a class="btn btn-link float-end" href="https://www.w3schools.com/js/js_intro.asp" target="_blank">Learn JavaScript <i class="fa fa-arrow-up-right-from-square"></i></a>
+                                </fieldset>
+                            </form>
+                        </div><!-- /customisations_js -->
 
-                    <div class="page-section"><!-- rebuild_all -->
-                        <form id="rebuild_all_form">
-                            <h3>Rebuild JavaScript &amp; SASS</h3>
-                            <div id="rebuild_all_alerts"></div>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                Please click <strong>Rebuild JavaScript &amp; SASS</strong> below, if you wish to rebuild the SASS into CSS, and rebuild the JavaScript. Do this, if saving isn't triggering a rebuild, if things look strange, or if the JavaScript isn't working correctly.
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="rebuild_all_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-arrows-rotate"></i> Rebuild JavaScript &amp; SASS</button>
-                                <div id="rebuild_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
-                                    <span class="sr-only">Saving...</span>
-                                </div>
-                                <a class="btn btn-link float-end" href="[% REPO %]/wiki/Troubleshoot-build-errors" target="_blank">Troubleshoot <i class="fa fa-arrow-up-right-from-square"></i></a>
-                            </fieldset>
-                        </form>
-                    </div><!-- /rebuild_all -->
+                        <div class="page-section"><!-- rebuild_all -->
+                            <form id="rebuild_all_form">
+                                <h3>Rebuild JavaScript &amp; SASS</h3>
+                                <div id="rebuild_all_alerts"></div>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    Please click <strong>Rebuild JavaScript &amp; SASS</strong> below, if you wish to rebuild the SASS into CSS, and rebuild the JavaScript. Do this, if saving isn't triggering a rebuild, if things look strange, or if the JavaScript isn't working correctly.
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <button id="rebuild_all_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-arrows-rotate"></i> Rebuild JavaScript &amp; SASS</button>
+                                    <div id="rebuild_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                        <span class="sr-only">Saving...</span>
+                                    </div>
+                                    <a class="btn btn-link float-end" href="[% REPO %]/wiki/Troubleshoot-build-errors" target="_blank">Troubleshoot <i class="fa fa-arrow-up-right-from-square"></i></a>
+                                </fieldset>
+                            </form>
+                        </div><!-- /rebuild_all -->
 
-                    <div class="page-section"><!-- export_all -->
-                        <form id="export_all_form">
-                            <h3>Export JavaScript &amp; SASS</h3>
-                            <div id="export_all_alerts"></div>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                Please click <strong>Export JavaScript &amp; SASS</strong> below, if you wish to back up a copy of your variables and customisations as they exist right now. This should be done periodically, and the resultant files should be stored somewhere you deem to be safe.
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="export_all_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-floppy-disk"></i> Export JavaScript &amp; SASS</button>
-                                <div id="export_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
-                                    <span class="sr-only">Saving...</span>
-                                </div>
-                                <a class="btn btn-link float-end" href="https://gist.github.com" target="_blank">GitHub Gist &ndash; text-based backup service <i class="fa fa-arrow-up-right-from-square"></i></a>
-                            </fieldset>
-                        </form>
-                    </div><!-- /rebuild_all -->
+                        <div class="page-section"><!-- export_all -->
+                            <form id="export_all_form">
+                                <h3>Export JavaScript &amp; SASS</h3>
+                                <div id="export_all_alerts"></div>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    Please click <strong>Export JavaScript &amp; SASS</strong> below, if you wish to back up a copy of your variables and customisations as they exist right now. This should be done periodically, and the resultant files should be stored somewhere you deem to be safe.
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <button id="export_all_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-floppy-disk"></i> Export JavaScript &amp; SASS</button>
+                                    <div id="export_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                        <span class="sr-only">Saving...</span>
+                                    </div>
+                                    <a class="btn btn-link float-end" href="https://gist.github.com" target="_blank">GitHub Gist &ndash; text-based backup service <i class="fa fa-arrow-up-right-from-square"></i></a>
+                                </fieldset>
+                            </form>
+                        </div><!-- /export_all -->
 
-                    <div class="page-section"><!-- reset_reinstall_all -->
-                        <form id="reset_reinstall_all_form">
-                            <h3>Resintall &amp; Reset all</h3>
-                            <div id="reset_reinstall_all_alerts"></div>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <p>
-                                    <strong>Reinstall:</strong> Deletes the <code>npm</code> modules, and redownloads them. This is useful if, no matter how confident you are your SASS &amp; JavaScript is valid, the rebuild always fails. <strong>Note:</strong> this will NOT delete your customisations. If your SASS or JavaScript is not valid, the plugin will break, and a reset all will be needed!
-                                </p>
-                                <p>
-                                    <strong>Reset all:</strong> Reset the JavaScript &amp; SASS to the out-the-box defaults. <strong>Note:</strong> this will delete all of your customisations, so be certain of your actions prior to clicking the <strong>Reset all</strong> button below.
-                                </p>
-                            </fieldset>
-                            <fieldset class="rows" style="float:none;padding:0 1em">
-                                <button id="reinstall_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-download"></i> Reinstall</button>
-                                <button id="reset_all_btn" type="reset" class="btn btn-danger float-end"><i class="fa fa-trash"></i> Reset all</button>
-                                <div id="reset_reinstall_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
-                                    <span class="sr-only">Saving...</span>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div><!-- /reset_all -->
+                        <div class="page-section"><!-- reset_reinstall_all -->
+                            <form id="reset_reinstall_all_form">
+                                <h3>Resintall &amp; Reset all</h3>
+                                <div id="reset_reinstall_all_alerts"></div>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <p>
+                                        <strong>Reinstall:</strong> Deletes the <code>npm</code> modules, and redownloads them. This is useful if, no matter how confident you are your SASS &amp; JavaScript is valid, the rebuild always fails. <strong>Note:</strong> this will NOT delete your customisations. If your SASS or JavaScript is not valid, the plugin will break, and a reset all will be needed!
+                                    </p>
+                                    <p>
+                                        <strong>Reset all:</strong> Reset the JavaScript &amp; SASS to the out-the-box defaults. <strong>Note:</strong> this will delete all of your customisations, so be certain of your actions prior to clicking the <strong>Reset all</strong> button below.
+                                    </p>
+                                </fieldset>
+                                <fieldset class="rows" style="float:none;padding:0 1em">
+                                    <button id="reinstall_btn" type="submit" class="btn btn-primary float-end"><i class="fa fa-download"></i> Reinstall</button>
+                                    <button id="reset_all_btn" type="reset" class="btn btn-danger float-end"><i class="fa fa-trash"></i> Reset all</button>
+                                    <div id="reset_reinstall_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
+                                        <span class="sr-only">Saving...</span>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div><!-- /reset_reinstall_all -->
+                    [% END %]
 
                 </main>
             </div> <!-- /.col-md-10.order-md-2 -->
