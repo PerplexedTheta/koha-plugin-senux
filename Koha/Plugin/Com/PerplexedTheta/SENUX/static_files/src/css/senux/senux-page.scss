@@ -307,7 +307,8 @@ td.overdue {
     li {
         list-style-type: none;
 
-        a {
+        a,
+        button {
             display: block;
             position: relative;
             padding: .4rem .6rem;
