@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
     // vars
     var baseLang = $('html').attr('lang');
-    var baseHost = window.location.hostname;
+    var baseHost = window.location.origin;
     var baseUri = window.location.pathname + window.location.search + window.location.hash;
 
     //
@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', event => {
     // comment this out if you don't use saml
     /*
     $('#opac-auth > h2:contains("Shibboleth Login")').text('Academic student or staff?');
-    $('#opac-auth > p:contains("Log in using a Shibboleth account.")').html('<a href=\"\/Shibboleth.sso\/Login?target=https:\/\/' + window.location.hostname + window.location.pathname + window.location.search + '\" class=\"btn btn-primary\">Go to Institutional login &raquo;<\/a>');
+    $('#opac-auth > p:contains("Log in using a Shibboleth account.")').html('<a href=\"\/Shibboleth.sso\/Login?target=' + window.location.origin + window.location.pathname + window.location.search + '\" class=\"btn btn-primary\">Go to Institutional login &raquo;<\/a>');
     $('#opac-auth > h2:contains("Local login")').text('Academic partner or public user?');
     $('#opac-auth > p:contains("If you do not have a Shibboleth account")').text('If you do not have an Institution account, then you may login below.');
-    $('#loginModal').html('<div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><h2 class=\"modal-title\" id=\"modalLoginLabel\">Log in to your account<\/h2><button type=\"button\" class=\"closebtn\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">\u00D7<\/span><\/button><\/div><div id=\"modalAuth\" class=\"modal-body\"><h3>Academic student or staff?<\/h3><p><a href=\"\/Shibboleth.sso\/Login?target=https:\/\/' + window.location.hostname + window.location.pathname + window.location.search + '\" class=\"btn btn-primary\">Go to Institutional login &raquo;<\/a><\/p><h3>Academic partner or public user?<\/h3><p><a href=\"\/cgi-bin\/koha\/opac-user.pl\" class=\"btn btn-primary\">Go to local Koha login &raquo;<\/a><\/p><\/div><\/div><\/div>');
+    $('#loginModal').html('<div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><h2 class=\"modal-title\" id=\"modalLoginLabel\">Log in to your account<\/h2><button type=\"button\" class=\"closebtn\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">\u00D7<\/span><\/button><\/div><div id=\"modalAuth\" class=\"modal-body\"><h3>Academic student or staff?<\/h3><p><a href=\"\/Shibboleth.sso\/Login?target=' + window.location.origin + window.location.pathname + window.location.search + '\" class=\"btn btn-primary\">Go to Institutional login &raquo;<\/a><\/p><h3>Academic partner or public user?<\/h3><p><a href=\"\/cgi-bin\/koha\/opac-user.pl\" class=\"btn btn-primary\">Go to local Koha login &raquo;<\/a><\/p><\/div><\/div><\/div>');
     */
 
     // relabel & swap go search button type
@@ -475,10 +475,11 @@ function facetClearAllHandler() {
     if ($('#search-facets .menu-collapse li:contains("[x]")').length > 0) $('#search-facets ul:first').prepend('<li id=\"cls_id\"><h3 id=\"facet-cls\"><a href=\"#facetAllClear\" class=\"logout\">Clear all facets <i class=\"fa fa-times\" aria-hidden=\"true\"><\/i><\/a><\/h3><\/li>');
 
     // handle any clicks
-    $('a[href="#facetAllClear"]').on('click', function (event) {
+    $('a[href="#facetAllClear"]').first()
+    .on('click', function (event) {
         event.preventDefault();
 
-        window.location.href = 'https://' + window.location.hostname + '/cgi-bin/koha/opac-search.pl?q=' + q;
+        window.location.href = window.location.origin + '/cgi-bin/koha/opac-search.pl?q=' + q;
     });
 
     return;
@@ -504,7 +505,13 @@ function facetPublicationDateRange() {
     var currentYear = new Date().getFullYear();
 
     // first, inject the markup
-    $('#search-facets ul:first').append('<li id=\"yr_id\"><h3 id=\"facet-yr\"><a href=\"#expandFacet\">Publication date range<i class=\"fa fa-chevron-down\" aria-hidden=\"true\"><\/i><\/a><\/h3> <div style=\"display:none\"><input name=\"limit-yr\" type=\"text\" class=\"mt-4\"><p class=\"hint pt-2\">For example: 1999-2001<\/p><p id=\"limit-yr-err\" class=\"hint pt-2\" style=\"display:none;color:red\">Please check you entered two valid years<\/p><a href=\"#facetYrRefine\" class=\"btn btn-primary mt-2\">Refine by date<\/a><\/div><\/li>');
+    $('#search-facets ul:first').append('<li id=\"yr_id\"><h3 id=\"facet-yr\"><a href=\"#expandFacet\">Publication date range<i class=\"fa fa-chevron-down\" aria-hidden=\"true\"><\/i><\/a><\/h3> <div style=\"display:none\"><label class=\"mt-4\" for=\"limit-yr\">Enter publication date range:<\/label><input name=\"limit-yr\" type=\"text\"><p class=\"hint pt-2\">For example: 1999-2001<\/p><p id=\"limit-yr-err\" class=\"hint pt-2\" style=\"display:none;color:red\">Please check you entered two valid years<\/p><a href=\"#facetYrRefine\" class=\"btn btn-primary mt-2\">Refine by date<\/a><\/div><\/li>');
+
+    // then, inject the facet clear button, if applicable
+    if (urlFacetSet) {
+        $('input[name="limit-yr"]').val(urlFacet);
+        $('a[href="#facetYrRefine"]').after('<a href=\"#facetYrClear\" class=\"btn btn-danger mt-2\">Clear date refinement [x]<\/a>'); // add clear button
+    }
 
     // then handle clicks
     $('#facet-yr a').on('click', function (event) {
@@ -518,7 +525,8 @@ function facetPublicationDateRange() {
         $(this).find('i.fa').toggleClass('fa-chevron-left');
     });
 
-    $('a[href="#facetYrRefine"]').on('click', function (event) {
+    $('a[href="#facetYrRefine"]').first()
+    .on('click', function (event) {
         event.preventDefault();
 
         facetPublicationDateRangeSubmitHandler();
@@ -528,7 +536,8 @@ function facetPublicationDateRange() {
 
         facetPublicationDateRangeResetHandler();
     });
-    $('input[name="limit-yr"]').on('keyup', function (event) {
+    $('input[name="limit-yr"]').first()
+    .on('keyup', function (event) {
         if (event.key === 'Enter' || event.keyCode === 13) {
             event.preventDefault();
 
@@ -537,10 +546,9 @@ function facetPublicationDateRange() {
     });
 
     if (urlFacetSet) {
-        $('input[name="limit-yr"]').val(urlFacet);
-        $('a[href="#facetYrRefine"]').after('<a href=\"#facetYrClear\" class=\"btn btn-danger mt-2\">Clear date refinement [x]<\/a>'); // add clear button
-        $('#facet-yr a').click(); // we want to show the user the facet, you see
+        $('#facet-yr a').first().click(); // we want to show the user the facet, you see
     }
+
     return;
 }
 
@@ -565,7 +573,7 @@ function facetPublicationDateRangeSubmitHandler() {
 
     // do it
     urlParams.append('limit', 'yr,st-numeric=' + inputFacet); // add our years
-    window.location.href = 'https://' + window.location.hostname + window.location.pathname + '?' + urlParams.toString(); // lets go
+    window.location.href = window.location.origin + window.location.pathname + '?' + urlParams.toString(); // lets go
 
     return;
 }
@@ -589,7 +597,7 @@ function facetPublicationDateRangeResetHandler() {
     urlParams = new URLSearchParams(urlParamString);
 
     // do it
-    window.location.href = 'https://' + window.location.hostname + window.location.pathname + '?' + urlParams.toString(); // lets go
+    window.location.href = window.location.origin + window.location.pathname + '?' + urlParams.toString(); // lets go
     return;
 }
 
