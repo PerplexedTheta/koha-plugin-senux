@@ -106,7 +106,7 @@ window.addEventListener("load", event => {
     //unwrapCoverImg();
 
     // add tooltips
-    addBootstrapTooltips();
+    //addBootstrapTooltips();
 });
 
 
