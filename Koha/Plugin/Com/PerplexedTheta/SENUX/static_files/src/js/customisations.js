@@ -85,9 +85,9 @@ document.addEventListener('DOMContentLoaded', event => {
     // add a link to clear all search facets
     facetClearAllHandler();
 
-    // explorit / ebsco masthead pulldown handler
-    //mastheadEventHandler('explorit');
-    //searchCatalogue('explorit');
+    // explorit / ebsco / eds masthead pulldown handler
+    //mastheadEventHandler('explorit || ebsco || eds');
+    //searchCatalogue('explorit || ebsco || eds');
 
     // enable tooltipping on the search pulldown
     searchDropdownTooltipHandler();
@@ -225,10 +225,8 @@ function mastheadEventHandler(altSearchName) {
             searchExplorit();
         } else if ($(this).val() == 'ebsco') { // if the user picks ebsco . . .
             searchEbsco();
-        } else if ($(this).val() == 'everything') { // for explorit full search
-            $('#fullText').val('');
-        } else if ($(this).val() == 'ftonly') { // for explorit text-only search
-            $('#fullText').val('true');
+        } else if ($(this).val() == 'eds') { // if the user picks eds . . .
+            searchEDS();
         }
     });
 }
@@ -259,11 +257,15 @@ function searchCatalogue(altSearchName) {
             value: 'explorit',
             text: 'Search Articles Plus'
         }));
-    }
-    if (altSearchName == 'ebsco') {
-        $('#masthead_search').append($('<option>', { // explorit option
+    } else if (altSearchName == 'ebsco') {
+        $('#masthead_search').append($('<option>', { // ebsco option
             value: 'ebsco',
             text: 'Search EBSCO'
+        }));
+    } else if (altSearchName == 'eds') {
+        $('#masthead_search').append($('<option>', { // eds option
+            value: 'eds',
+            text: 'Search EDS'
         }));
     }
     $('#masthead_search').append($('<option>', { // catalogue option
@@ -299,20 +301,19 @@ function searchCatalogue(altSearchName) {
 
 
 //
-// masthead seach pulldown changes -- search catalogue
+// masthead seach pulldown changes -- search explorit
 function searchExplorit() {
     // form config
     $('#masthead_search').find('option').remove().end(); // remove all masthead options
     $('#searchform').find('input[type="hidden"]').remove().end(); // remove all masthead hidden inputs
-    $('#searchform').attr('action', '//foo.bar/baz/'); // set form name
+    $('#searchform').attr('action', 'https://xxx.catalogueplus.deepwebaccess.com/xxx/desktop/en/search.html'); // set form name
     $('#searchform').attr('name', 'dwtform'); // set form name
     $('#searchform').attr('method', 'post'); // set form method
     $('#searchform').attr('target', '_blank'); // set target
     $('#translControl1').attr('name', 'fullRecord'); // set search box name
     $('#translControl1').attr('placeholder', 'Find full-text articles, reports, images, books and e-books'); // set text field placeholder
-    $('#masthead_search').attr('name', 'formName');
-    $('#masthead_search').before('<input id=\"fullText\" type=\"hidden\" name=\"fullTextOnly\" value=\"\" \/>');
-    $('#masthead_search').after('<input type=\"hidden\" name=\"formName\" value=\"undefined\" \/>');
+    $('#masthead_search').attr('name', 'fullTextOnly');
+    $('#masthead_search').before('<input name=\"formName\" value=\"everything\" type=\"hidden\" \/>');
     $('#select_library').attr('name', '');
     $('#select_library').parent().css('display', 'none'); // hide library pulldown
 
@@ -322,14 +323,23 @@ function searchExplorit() {
         text: 'Search Catalogue'
     }));
     $('#masthead_search').append($('<option>', { // explorit option
-        value: 'everything',
+        value: '',
         text: 'Search Articles Plus',
         selected: 'selected'
     }));
     $('#masthead_search').append($('<option>', { // search fulltext-only
-        value: 'ftonly',
+        value: 'true',
         text: '-- Search full-text only'
     }));
+
+    // explorit formName handler
+    $('#masthead_search').on('change click keyup', function (event) {
+        if ($('#masthead_search').val() == 'true') { // are we doing an full-text search?
+            $('input[name="formName"]').first().val('ftonly');
+        } else {
+            $('input[name="formName"]').first().val('everything');
+        }
+    });
 
     // explorit link handler
     $('a[href="#switchSearch"]').on('click', function (event) {
@@ -342,7 +352,7 @@ function searchExplorit() {
 
 
 //
-// masthead seach pulldown changes -- search catalogue
+// masthead seach pulldown changes -- search ebsco
 function searchEbsco() {
     // form config
     $('#masthead_search').find('option').remove().end(); // remove all masthead options
@@ -355,7 +365,7 @@ function searchEbsco() {
     $('#translControl1').attr('placeholder', 'Find full-text articles, reports, images, books and e-books'); // set text field placeholder
     $('#masthead_search').attr('name', '');
     $('#masthead_search').before('<input name=\"schemaId\" value=\"search\" type=\"hidden\" \/>');
-    $('#masthead_search').before('<input name=\"custid\" value=\"sxxxxxxx\" type=\"hidden\" \/>');
+    $('#masthead_search').before('<input name=\"custid\" value=\"nsxxxxxx\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"groupid\" value=\"main\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"profid\" value=\"eds\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"scope\" value=\"site\" type=\"hidden\" \/>');
@@ -378,8 +388,53 @@ function searchEbsco() {
     // ebsco link handler
     $('a[href="#switchSearch"]').on('click', function (event) {
         event.preventDefault(); // prevent the url from changing
-        if ($('#searchform').attr('name') == 'searchform') searchExplorit();
+        if ($('#searchform').attr('name') == 'searchform') searchEbsco();
         else if ($('#searchform').attr('name') == '') searchCatalogue('ebsco');
+    });
+
+}
+
+
+//
+// masthead seach pulldown changes -- search eds
+function searchEDS() {
+    // form config
+    $('#masthead_search').find('option').remove().end(); // remove all masthead options
+    $('#searchform').find('input[type="hidden"]').remove().end(); // remove all masthead hidden inputs
+    $('#searchform').attr('action', 'https://research.ebsco.com/c/xxxxxx/search/results'); // set form name
+    $('#searchform').attr('name', ''); // set form name
+    $('#searchform').attr('method', 'get'); // set form method
+    $('#searchform').attr('target', '_blank'); // set target
+    $('#translControl1').attr('name', 'q'); // set search box name
+    $('#translControl1').attr('placeholder', 'Find full-text articles, reports, images, books and e-books'); // set text field placeholder
+    $('#masthead_search').attr('name', 'limiters');
+    $('#select_library').attr('name', '');
+    $('#masthead_search').before('<input name=\"autocorrect\" value=\"y\" type=\"hidden\" \/>');
+    $('#masthead_search').before('<input name=\"resetPageNumber\" value=\"true\" type=\"hidden\" \/>');
+    $('#masthead_search').before('<input name=\"searchMode\" value=\"all\" type=\"hidden\" \/>');
+    $('#masthead_search').before('<input name=\"searchSegment\" value=\"all-results\" type=\"hidden\" \/>');
+    $('#select_library').parent().css('display', 'none'); // hide library pulldown
+
+    // dropdown config
+    $('#masthead_search').append($('<option>', { // catalogue option
+        value: 'catalogue',
+        text: 'Search Catalogue'
+    }));
+    $('#masthead_search').append($('<option>', { // explorit option
+        value: 'None',
+        text: 'Search EDS',
+        selected: 'selected'
+    }));
+    $('#masthead_search').append($('<option>', { // search fulltext-only
+        value: 'FT:Y',
+        text: '-- Search full-text only'
+    }));
+
+    // eds link handler
+    $('a[href="#switchSearch"]').on('click', function (event) {
+        event.preventDefault(); // prevent the url from changing
+        if ($('#searchform').attr('name') == 'searchform') searchEDS();
+        else if ($('#searchform').attr('name') == '') searchCatalogue('eds');
     });
 
 }
