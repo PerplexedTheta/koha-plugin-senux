@@ -76,7 +76,7 @@
         box-shadow: $defaultBoxShadowSettings;
         text-decoration: $defaultDecorationSettings;
 
-        border-radius: var(--bs-border-radius);
+        border-radius: $defaultRadius;
 
         .card-img-left,
         .jumbotron-img-left {
