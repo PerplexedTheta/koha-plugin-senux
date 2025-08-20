@@ -89,9 +89,6 @@ document.addEventListener('DOMContentLoaded', event => {
     //mastheadEventHandler('explorit || ebsco || eds');
     //searchCatalogue('explorit || ebsco || eds');
 
-    // enable tooltipping on the search pulldown
-    searchDropdownTooltipHandler();
-
     // enable proper dropdown selection
     //searchDropdownBranchHandler();
 
@@ -229,6 +226,7 @@ function mastheadEventHandler(altSearchName) {
             searchEDS();
         }
     });
+    $('#masthead_search').after('<div id=\"mastheadHint\" style=\"display:none\"><label for=\"limit\"><i class=\"arrow-up\"><\/i> Click to refine further <i class=\"arrow-up\"><\/i><\/label><\/div>');
 }
 
 
@@ -250,6 +248,7 @@ function searchCatalogue(altSearchName) {
     $('#select_library').attr('name', 'limit');
     $('#select_library').parent().css('display', 'initial'); // show library pulldown
     if ($('input[name="weight_search"]').length < 1) $('#searchform').append('<input type=\"hidden\" name=\"weight_search\" value=\"1\">'); // (re)add weight_search
+    $('#mastheadHint').css('display', 'none');
 
     // dropdown config
     if (altSearchName == 'explorit') {
@@ -316,6 +315,7 @@ function searchExplorit() {
     $('#masthead_search').before('<input name=\"formName\" value=\"everything\" type=\"hidden\" \/>');
     $('#select_library').attr('name', '');
     $('#select_library').parent().css('display', 'none'); // hide library pulldown
+    $('#mastheadHint').css('display', 'block'); // show hint
 
     // dropdown config
     $('#masthead_search').append($('<option>', { // catalogue option
@@ -373,6 +373,7 @@ function searchEbsco() {
     $('#masthead_search').before('<input name=\"direct\" value=\"true\" type=\"hidden\" \/>');
     $('#select_library').attr('name', '');
     $('#select_library').parent().css('display', 'none'); // hide library pulldown
+    $('#mastheadHint').css('display', 'block'); // show hint
 
     // dropdown config
     $('#masthead_search').append($('<option>', { // catalogue option
@@ -415,6 +416,7 @@ function searchEDS() {
     $('#masthead_search').before('<input name=\"searchMode\" value=\"all\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"searchSegment\" value=\"all-results\" type=\"hidden\" \/>');
     $('#select_library').parent().css('display', 'none'); // hide library pulldown
+    $('#mastheadHint').css('display', 'block'); // show hint
 
     // dropdown config
     $('#masthead_search').append($('<option>', { // catalogue option
@@ -442,20 +444,6 @@ function searchEDS() {
         else if ($('#searchform').attr('name') == '') searchCatalogue('eds');
     });
 
-}
-
-
-//
-// function to improve search dropdown tooltip
-function searchDropdownTooltipHandler() {
-    $('#masthead_search').on('change', function () {
-        if ($('#masthead_search option:selected').val() == 'everything' || $('#masthead_search option:selected').val() == '') {
-            $('#masthead_search').tooltip({ title: "Click to refine further", placement: "left" });
-            $('#masthead_search').tooltip('show');
-        } else {
-            $('#masthead_search').tooltip('dispose');
-        }
-    });
 }
 
 

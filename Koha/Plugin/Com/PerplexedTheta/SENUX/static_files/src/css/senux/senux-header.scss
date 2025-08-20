@@ -126,6 +126,25 @@
     label {
         display: none
     }
+
+    #mastheadHint {
+        text-align: center;
+
+        label {
+            display: inline-block;
+            color: $mainSearchText;
+            font-size: .90em;
+            font-weight: normal;
+        }
+
+        i.arrow-up {
+            display: inline-block;
+            border: solid;
+            border-width: 0 3px 3px 0;
+            padding: 3px;
+            transform:rotate(-135deg)
+        }
+    }
 }
 
 #searchform {
@@ -133,6 +152,9 @@
     padding: 1.5rem 1rem;
     max-width: 1440px;
 
+    #masthead_search {
+        min-width: 14em;
+    }
 
     button,
     input,
