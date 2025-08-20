@@ -410,6 +410,7 @@ function searchEDS() {
     $('#masthead_search').attr('name', 'limiters');
     $('#select_library').attr('name', '');
     $('#masthead_search').before('<input name=\"autocorrect\" value=\"y\" type=\"hidden\" \/>');
+    $('#masthead_search').before('<input name=\"db\" value=\"\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"resetPageNumber\" value=\"true\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"searchMode\" value=\"all\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"searchSegment\" value=\"all-results\" type=\"hidden\" \/>');
@@ -428,6 +429,10 @@ function searchEDS() {
     $('#masthead_search').append($('<option>', { // search fulltext-only
         value: 'FT:Y',
         text: '-- Search full-text only'
+    }));
+    $('#masthead_search').append($('<option>', { // search fulltext-only
+        value: 'RV:Y',
+        text: '-- Search peer-reviewed only'
     }));
 
     // eds link handler
