@@ -259,6 +259,16 @@
     color: $defaultText
 }
 
+#advsearch_form .action {
+    line-height: 3rem;
+}
+
+@media only screen and (min-width: $breakpoint-pc) {
+    #advsearch_form .action {
+        line-height: inherit;
+    }
+}
+
 //
 //
 // search results
