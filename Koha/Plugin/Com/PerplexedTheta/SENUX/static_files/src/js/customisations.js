@@ -410,11 +410,13 @@ function searchEDS() {
     $('#translControl1').attr('placeholder', 'Find full-text articles, reports, images, books and e-books'); // set text field placeholder
     $('#masthead_search').attr('name', 'limiters');
     $('#select_library').attr('name', '');
+    $('#masthead_search').before('<input name=\"acr_values\" value=\"guest\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"autocorrect\" value=\"y\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"db\" value=\"\" type=\"hidden\" \/>');
-    $('#masthead_search').before('<input name=\"resetPageNumber\" value=\"true\" type=\"hidden\" \/>');
+    $('#masthead_search').before('<input name=\"limiters\" value=\"None\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"searchMode\" value=\"all\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"searchSegment\" value=\"all-results\" type=\"hidden\" \/>');
+    $('#masthead_search').before('<input name=\"skipResultsFetch\" value=\"true\" type=\"hidden\" \/>');
     $('#select_library').parent().css('display', 'none'); // hide library pulldown
     $('#mastheadHint').css('display', 'block'); // show hint
 
