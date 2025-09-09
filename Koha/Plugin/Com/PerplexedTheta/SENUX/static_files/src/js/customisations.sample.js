@@ -77,6 +77,12 @@ document.addEventListener('DOMContentLoaded', event => {
     // rename 'save records'
     renameSaveRecord();
 
+    // replace all instances of password with pin
+    //replacePasswordWithPin();
+
+    // monitor disabled elements, setting tabindex where appropriate
+    handleDisableClassChange();
+
     // add authority record alt text & tooltips
     $('a.authlink').attr('alt', 'View authority record');
     $('a.authlink').attr('title', 'View authority record');
@@ -386,11 +392,13 @@ function searchEDS() {
     $('#translControl1').attr('placeholder', 'Find full-text articles, reports, images, books and e-books'); // set text field placeholder
     $('#masthead_search').attr('name', 'limiters');
     $('#select_library').attr('name', '');
+    $('#masthead_search').before('<input name=\"acr_values\" value=\"guest\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"autocorrect\" value=\"y\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"db\" value=\"\" type=\"hidden\" \/>');
-    $('#masthead_search').before('<input name=\"resetPageNumber\" value=\"true\" type=\"hidden\" \/>');
+    $('#masthead_search').before('<input name=\"limiters\" value=\"None\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"searchMode\" value=\"all\" type=\"hidden\" \/>');
     $('#masthead_search').before('<input name=\"searchSegment\" value=\"all-results\" type=\"hidden\" \/>');
+    $('#masthead_search').before('<input name=\"skipResultsFetch\" value=\"true\" type=\"hidden\" \/>');
     $('#select_library').parent().css('display', 'none'); // hide library pulldown
     $('#mastheadHint').css('display', 'block'); // show hint
 
@@ -688,4 +696,47 @@ function replacePasswordWithPin() {
     // tidy-up
     $('input[value="Change password"]').val('Change PIN');
 
+}
+
+
+//
+// function to map handlers to observeDisableClassChange
+function handleDisableClassChange() {
+    const controls = $(
+        '.selections-toolbar .links a, .selections-toolbar .links input, .selections-toolbar .links select, .selections-toolbar .links label, .selections-toolbar .links button'
+    );
+
+    // apply observer, if possible
+    controls.each((idx, control) => {
+        if ($(control).hasClass('disabled'))
+          $(control).attr('tabindex', '-1');
+
+        observeDisableClassChange($(control)[0]);
+    });
+
+    return;
+}
+
+
+//
+// function to observe and act upon disable class changes
+function observeDisableClassChange(element) {
+    // the observer
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach(function(mutation) {
+            let attributeValue = $(mutation.target).prop(mutation.attributeName);
+            if (attributeValue.indexOf('disabled') > -1)
+              $(mutation.target).attr('tabindex', '-1');
+            else
+              $(mutation.target).removeAttr('tabindex');
+        });
+    });
+
+    // trigger observation
+    observer.observe(element, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+
+    return;
 }
