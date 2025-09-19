@@ -150,20 +150,23 @@ function unwrapCoverImg() {
 //
 // function to change where we scroll to
 function scrollToThis(element) {
-    // make scroll to content go to search box
-    $('#scrolltocontent').off(); // disable other event listners
-    $("#scrolltocontent").click(function (event) {
-        event.preventDefault();
+    window.addEventListener('load', event => {
+        $('#scrolltocontent').off(); 
 
-        var content = $(element); // based on passed param
-        if (content.length > 0) { // jump to element
-            $('html,body').animate({
-                scrollTop: content.first().offset().top
-            }, 'slow');
+        $('#scrolltocontent').on('click', event => {
+            event.preventDefault();
 
-            content.first().find(':focusable').eq(0).focus(); // focus it
-        }
+            var content = $(element); // based on passed param
+            if (content.length > 0) { // jump to element
+                $('html,body').animate({
+                    scrollTop: content.first().offset().top
+                }, 'slow');
+
+                content.first().find(':focusable').eq(0).focus(); // focus it
+            }
+        });
     });
+
     return;
 }
 
