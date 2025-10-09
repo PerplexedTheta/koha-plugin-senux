@@ -31,9 +31,6 @@ document.addEventListener('DOMContentLoaded', event => {
     // remove cart notice
     $('#cartDetails').remove();
 
-    // set searchbar text label
-    $('#opac-main-search label').text('Catalogue Search');
-
     // login modal - shibboleth
     // comment this out if you don't use saml
     /*

@@ -124,7 +124,10 @@
     }
 
     label {
-        display: none
+        color: $mainSearchText;
+        font-size: 1.15em;
+        font-weight: bold;
+        margin: 0;
     }
 
     #mastheadHint {
