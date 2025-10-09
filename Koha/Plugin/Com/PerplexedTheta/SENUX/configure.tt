@@ -79,11 +79,11 @@
                                         <h1>Welcome to SENUX</h1>
                                         <hr />
                                         <p>
-                                            <a href="[% REPO %]" target="_blank"><i class="fa-brands fa-github"></i> See the code</a>
+                                            <a href="[% METADATA.repo %]" target="_blank"><i class="fa-brands fa-github"></i> See the code</a>
                                             |
-                                            <a href="[% REPO %]/wiki" target="_blank"><i class="fa fa-life-ring"></i> Read the wiki</a>
+                                            <a href="[% METADATA.repo %]/wiki" target="_blank"><i class="fa fa-life-ring"></i> Read the wiki</a>
                                             |
-                                            <a href="[% REPO %]/issues?q=state%3Aopen" target="_blank"><i class="fa fa-bug"></i> Report an issue</a>
+                                            <a href="[% METADATA.repo %]/issues?q=state%3Aopen" target="_blank"><i class="fa fa-bug"></i> Report an issue</a>
                                         </p>
                                     </div>
                                 </div>
@@ -296,6 +296,10 @@
                         spinner.showSpinner();
 
                         try {
+                            if(!await confirm('Are you sure?')) {
+                                throw new Error('User cancelled');
+                            }
+
                             await genericApiManager.addHtmlCustomisations('html_customisations', 'yes_please');
 
                             spinner.hideSpinner();
