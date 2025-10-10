@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', event => {
     // site-wide logic (MAIN FUNC)
 
     // nav menus
-    $('#cart-list-nav').html('<!--<li class=\"nav-item\"><a href=\"\/cgi-bin\/koha\/opac-main.pl\" class=\"nav-link\" title=\"Homepage\" id=\"hmpmenu\"><i class=\"fa fa-home fa-icon-white\"><\/i><\/a><\/li>--><li class=\"nav-item\"><a href=\"#openFolder\" class=\"nav-link\" title=\"Folder\" id=\"cartmenu\" role=\"button\"><i id=\"carticon\" class=\"fa fa-folder-open fa-icon-black\"><\/i> <span class=\"cartlabel\">Folder<\/span><\/a><\/li><li class=\"nav-item\"><a href=\"\/cgi-bin\/koha\/opac-shelves.pl?op=list&public=1\" class=\"nav-link\" title=\"Lists\" id=\"listsmenu\" role=\"button\"><i id=\"listsicon\" class=\"fa fa-list fa-icon-black\"><\/i> <span class=\"listslabel\">Lists<\/span><\/a><\/li><li class=\"nav-item\"><a href=\"\/cgi-bin\/koha\/opac-main.pl?news_id=2\" class=\"nav-link\" title=\"Help\" id=\"helpmenu\"><i class=\"fa fa-info-circle fa-icon-white\"><\/i> <span class=\"custlabel1\">Help<\/span><\/a><\/li>');
+    $('#cart-list-nav').append('<li class=\"nav-item\"><a href=\"\/cgi-bin\/koha\/opac-main.pl?news_id=92\" class=\"nav-link\" title=\"Help\" id=\"helpmenu\"><i class=\"fa fa-info-circle fa-icon-white\"><\/i> <span class=\"custlabel1\">Help<\/span><\/a><\/li>');
 
     // relabel login link
     if ($('#user-menu').hasClass('dropdown-toggle') == false) $('.userlabel').text('Log in');
