@@ -171,8 +171,8 @@ function unwrapCoverImg() {
 //
 // function to change where we scroll to
 function scrollToThis(element) {
-    window.addEventListener('load', event => {
-        $('#scrolltocontent').off(); 
+    window.addEventListener('load', () => {
+        $('#scrolltocontent').off('click');
 
         $('#scrolltocontent').on('click', event => {
             event.preventDefault();
