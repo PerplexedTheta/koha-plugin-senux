@@ -456,7 +456,7 @@ function facetAccordeons() {
         // vars
         var currentText = $(this).text();
 
-        $(this).html('<a href="\#expandFacet"\>' + currentText + ' <i class=\"fa fa-chevron-down\" aria-hidden=\"true\"><\/i><\/a>');
+        $(this).html('<a href="\#expandFacet"\ aria-expanded=\"false\">' + currentText + ' <i class=\"fa fa-chevron-down\" aria-hidden=\"true\"><\/i><\/a>');
     });
 
     // remove the display:none and collapsible facet
@@ -479,8 +479,14 @@ function facetAccordeons() {
     $('a[href="#expandFacet"]').on('click', function (event) {
         event.preventDefault();
 
-        if ($(this).parents('h3').siblings('ul').css('display') == 'none') $(this).parents('h3').siblings('ul').show(); // unhide
-        else $(this).parents('h3').siblings('ul').hide(); // else hide
+        if ($(this).parents('h3').siblings('ul').css('display') == 'none') {
+            $(this).attr('aria-expanded', 'true');
+            $(this).parents('h3').siblings('ul').show(); // unhide
+        }
+        else {
+            $(this).attr('aria-expanded', 'false');
+            $(this).parents('h3').siblings('ul').hide(); // else hide
+        }
 
         $(this).find('i.fa').toggleClass('fa-chevron-down'); // swap the chevrons
         $(this).find('i.fa').toggleClass('fa-chevron-left');
@@ -539,7 +545,7 @@ function facetPublicationDateRange() {
     var currentYear = new Date().getFullYear();
 
     // first, inject the markup
-    $('#search-facets ul:first').append('<li id=\"yr_id\"><h3 id=\"facet-yr\"><a href=\"#expandFacet\">Publication date range<i class=\"fa fa-chevron-down\" aria-hidden=\"true\"><\/i><\/a><\/h3> <div style=\"display:none\"><label class=\"mt-4\" for=\"limit-yr\">Enter publication date range:<\/label><input name=\"limit-yr\" type=\"text\"><p class=\"hint pt-2\">For example: 1999-2001<\/p><p id=\"limit-yr-err\" class=\"hint pt-2\" style=\"display:none;color:red\">Please check you entered two valid years<\/p><a href=\"#facetYrRefine\" class=\"btn btn-primary mt-2\">Refine by date<\/a><\/div><\/li>');
+    $('#search-facets ul:first').append('<li id=\"yr_id\"><h3 id=\"facet-yr\"><a href=\"#expandFacet\" aria-expanded=\"false\">Publication date range<i class=\"fa fa-chevron-down\" aria-hidden=\"true\"><\/i><\/a><\/h3> <div style=\"display:none\"><label class=\"mt-4\" for=\"limit-yr\">Enter publication date range:<\/label><input name=\"limit-yr\" type=\"text\"><p class=\"hint pt-2\">For example: 1999-2001<\/p><p id=\"limit-yr-err\" class=\"hint pt-2\" style=\"display:none;color:red\">Please check you entered two valid years<\/p><a href=\"#facetYrRefine\" class=\"btn btn-primary mt-2\">Refine by date<\/a><\/div><\/li>');
 
     // then, inject the facet clear button, if applicable
     if (urlFacetSet) {
@@ -552,8 +558,13 @@ function facetPublicationDateRange() {
         event.preventDefault(); // disable usual behaviour
         event.stopImmediatePropagation();
 
-        if ($(this).parents('h3').siblings('div').css('display') == 'none') $(this).parents('h3').siblings('div').show(); // see facetAccordeon for how this code works
-        else $(this).parents('h3').siblings('div').hide();
+        if ($(this).parents('h3').siblings('div').css('display') == 'none') {
+            $(this).attr('aria-expanded', 'true');
+            $(this).parents('h3').siblings('div').show(); // see facetAccordeon for how this code works
+        } else {
+            $(this).attr('aria-expanded', 'false');
+            $(this).parents('h3').siblings('div').hide();
+        }
 
         $(this).find('i.fa').toggleClass('fa-chevron-down');
         $(this).find('i.fa').toggleClass('fa-chevron-left');
