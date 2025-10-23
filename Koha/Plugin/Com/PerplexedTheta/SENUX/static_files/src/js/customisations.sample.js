@@ -77,9 +77,6 @@ document.addEventListener('DOMContentLoaded', event => {
     // replace all instances of password with pin
     //replacePasswordWithPin();
 
-    // monitor disabled elements, setting tabindex where appropriate
-    handleDisableClassChange();
-
     // add authority record alt text & tooltips
     $('a.authlink').attr('alt', 'View authority record');
     $('a.authlink').attr('title', 'View authority record');
@@ -104,6 +101,11 @@ document.addEventListener('DOMContentLoaded', event => {
 window.addEventListener("load", event => {
     // accessibility
     //unwrapCoverImg();
+
+    // listen for disabled class addition/subtraction
+    //setTimeout(() => {
+    //    handleDisableClassChange();
+    //}, 2000);
 
     // add tooltips
     //addBootstrapTooltips();
@@ -703,17 +705,16 @@ function replacePasswordWithPin() {
 // function to map handlers to observeDisableClassChange
 function handleDisableClassChange() {
     const controls = $(
-        '.selections-toolbar .links a, .selections-toolbar .links input, .selections-toolbar .links select, .selections-toolbar .links label, .selections-toolbar .links button'
+        '.selections-toolbar .links a, .selections-toolbar .links input, .selections-toolbar .links select, .selections-toolbar .links label, .selections-toolbar .links button, .dt-buttons button, input.disabled'
     );
 
     // apply observer, if possible
-    controls.each((idx, control) => {
-        if ($(control).hasClass('disabled')) {
-            $(control).attr('aria-disabled', 'true');
-            $(control).attr('tabindex', '-1');
+    controls.each((idx, element) => {
+        if ($(element).hasClass('disabled')) {
+            $(element).attr('aria-disabled', 'true');
+            $(element).attr('tabindex', '-1');
         }
-
-        observeDisableClassChange($(control)[0]);
+        observeDisableClassChange($(element)[0]);
     });
 
     return;
@@ -728,7 +729,7 @@ function observeDisableClassChange(element) {
         mutations.forEach(function(mutation) {
             let attributeValue = $(mutation.target).prop(mutation.attributeName);
             if (attributeValue.indexOf('disabled') > -1) {
-                $(mutation.target).attr('aria-disabled', '-1');
+                $(mutation.target).attr('aria-disabled', 'true');
                 $(mutation.target).attr('tabindex', '-1');
             } else {
                 $(mutation.target).removeAttr('aria-disabled');
