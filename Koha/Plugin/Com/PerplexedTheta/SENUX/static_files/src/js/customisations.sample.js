@@ -708,8 +708,10 @@ function handleDisableClassChange() {
 
     // apply observer, if possible
     controls.each((idx, control) => {
-        if ($(control).hasClass('disabled'))
-          $(control).attr('tabindex', '-1');
+        if ($(control).hasClass('disabled')) {
+            $(control).attr('aria-disabled', 'true');
+            $(control).attr('tabindex', '-1');
+        }
 
         observeDisableClassChange($(control)[0]);
     });
@@ -725,10 +727,13 @@ function observeDisableClassChange(element) {
     const observer = new MutationObserver((mutations) => {
         mutations.forEach(function(mutation) {
             let attributeValue = $(mutation.target).prop(mutation.attributeName);
-            if (attributeValue.indexOf('disabled') > -1)
-              $(mutation.target).attr('tabindex', '-1');
-            else
-              $(mutation.target).removeAttr('tabindex');
+            if (attributeValue.indexOf('disabled') > -1) {
+                $(mutation.target).attr('aria-disabled', '-1');
+                $(mutation.target).attr('tabindex', '-1');
+            } else {
+                $(mutation.target).removeAttr('aria-disabled');
+                $(mutation.target).removeAttr('tabindex');
+            }
         });
     });
 
