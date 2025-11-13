@@ -14,7 +14,7 @@ use File::Which qw{ which };
 use JSON;
 use JSON::Validator::Schema::OpenAPIv2;
 
-our $VERSION  = '24.11.09';
+our $VERSION  = '24.11.10';
 our $metadata = {
     name            => 'SENUX',
     author          => 'Jake Deery',
