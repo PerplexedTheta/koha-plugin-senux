@@ -1,6 +1,7 @@
 {
   "name": "koha-plugin-senux",
-  "version": "24.11.10",
+  "version": "24.11.14",
+  "date_updated": "2026-02-02",
   "description": "A Koha plugin that will allow for borrower-centred marketing consent preferences",
   "main": "gulpfile.js",
   "scripts": {
@@ -11,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/PerplexedTheta/koha-plugin-senux.git"
   },
-  "author": "PTFS Europe Ltd",
+  "author": "Open Fifth Ltd",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/PerplexedTheta/koha-plugin-senux/issues"
