@@ -72,18 +72,22 @@
                             <div class="col-auto col-lg-3"></div>
                             <div class="col-12 col-lg-6">
                                 <div id="senux_logowrapper">
-                                    <a href="/cgi-bin/koha/plugins/run.pl?class=[% CLASS %]&method=configure">SENUX: Configure</a>
+                                    <a href="/cgi-bin/koha/plugins/run.pl?class=[% CLASS | uri %]&method=configure">SENUX: Configure</a>
                                 </div>
                                 <div id="senux_titles">
                                     <div class="container-fluid">
                                         <h1>Welcome to SENUX</h1>
+                                        <p>
+                                            <small id="plugin_updated">Plugin last updated: <span class="date">[% METADATA.date_updated | html %]</span></small><br />
+                                            <small id="date_updated">Data last updated: <span class="date">[% DATE_UPDATED | html %]</span></small>
+                                        </p>
                                         <hr />
                                         <p>
-                                            <a href="[% METADATA.repo %]" target="_blank"><i class="fa-brands fa-github"></i> See the code</a>
+                                            <a href="[% METADATA.repo | uri %]" target="_blank"><i class="fa-brands fa-github"></i> See the code</a>
                                             |
-                                            <a href="[% METADATA.repo %]/wiki" target="_blank"><i class="fa fa-life-ring"></i> Read the wiki</a>
+                                            <a href="[% METADATA.repo | uri %]/wiki" target="_blank"><i class="fa fa-life-ring"></i> Read the wiki</a>
                                             |
-                                            <a href="[% METADATA.repo %]/issues?q=state%3Aopen" target="_blank"><i class="fa fa-bug"></i> Report an issue</a>
+                                            <a href="[% METADATA.repo | uri %]/issues?q=state%3Aopen" target="_blank"><i class="fa fa-bug"></i> Report an issue</a>
                                         </p>
                                     </div>
                                 </div>
@@ -146,7 +150,7 @@
                                     <div id="variables_scss_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
                                         <span class="sr-only">Saving...</span>
                                     </div>
-                                    <a class="btn btn-link float-end" href="[% REPO %]/wiki/Glossary-of-variables" target="_blank">See glossary of variables <i class="fa fa-arrow-up-right-from-square"></i></a>
+                                    <a class="btn btn-link float-end" href="[% METADATA.repo | uri %]/wiki/Glossary-of-variables" target="_blank">See glossary of variables <i class="fa fa-arrow-up-right-from-square"></i></a>
                                 </fieldset>
                             </form>
                         </div><!-- /variables_scss -->
@@ -203,7 +207,7 @@
                                     <div id="rebuild_all_spinner" class="spinner-border text-secondary float-end" role="status" style="display:none">
                                         <span class="sr-only">Saving...</span>
                                     </div>
-                                    <a class="btn btn-link float-end" href="[% REPO %]/wiki/Troubleshoot-build-errors" target="_blank">Troubleshoot <i class="fa fa-arrow-up-right-from-square"></i></a>
+                                    <a class="btn btn-link float-end" href="[% METADATA.repo | uri %]/wiki/Troubleshoot-build-errors" target="_blank">Troubleshoot <i class="fa fa-arrow-up-right-from-square"></i></a>
                                 </fieldset>
                             </form>
                         </div><!-- /rebuild_all -->
@@ -595,6 +599,7 @@
                     return this.updateRemoteBuild(buildType)
                     .done(data => {
                         $('#' + formId + '_alerts').append('<div id="' + formId + '_alerts_build_success" class=\"alert alert-success\">Rebuilt ' + type + ' successfully<\/div>');
+                        $('#date_updated .date').text(data.date_updated);
 
                         setTimeout(handler => {
                             $('#' + formId + '_alerts_build_success').remove();

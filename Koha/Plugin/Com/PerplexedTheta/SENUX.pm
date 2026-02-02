@@ -13,6 +13,7 @@ use Cwd         qw( abs_path );
 use File::Which qw{ which };
 use JSON;
 use JSON::Validator::Schema::OpenAPIv2;
+use POSIX qw{ strftime };
 
 our $VERSION  = '24.11.10';
 our $metadata = {
@@ -45,7 +46,12 @@ sub install {
     return undef
         unless ( $self->npm_new );
 
-    $self->store_data( { compile_count => 0 } );
+    $self->store_data(
+        {
+            compile_count => 0,
+            date_updated  => strftime( "%Y-%m-%d %H:%M:%S", localtime ),
+        }
+    );
 
     return 1;
 }
@@ -55,6 +61,8 @@ sub upgrade {
 
     return undef
         unless ( $self->npm_reinstall );
+
+    $self->store_data( { date_updated  => strftime( "%Y-%m-%d %H:%M:%S", localtime ) } );
 
     return 1;
 }
@@ -162,6 +170,7 @@ sub npm_build {
     ) unless ( $? == 0 );
 
     $self->_increment_compile_count;
+    $self->_increment_date_updated;
 
     return 1;
 }
@@ -304,8 +313,10 @@ sub configure {
     my $template = $self->get_template( { file => 'configure.tt' } );
 
     $template->param(
-        IS_ENABLED => $self->is_enabled,
-        METADATA   => $self->{'metadata'},
+        IS_ENABLED    => $self->is_enabled,
+        METADATA      => $self->{'metadata'},
+        COMPILE_COUNT => $self->_get_compile_count,
+        DATE_UPDATED  => $self->_get_date_updated,
     );
 
     $self->output_html( $template->output() );
@@ -569,11 +580,23 @@ sub _get_compile_count {
     return $self->retrieve_data('compile_count') || 0;
 }
 
+sub _get_date_updated {
+    my ( $self, $args ) = @_;
+
+    return $self->retrieve_data('date_updated') || '0000-00-00 00:00:00';
+}
+
 sub _increment_compile_count {
     my ( $self, $args ) = @_;
     my $compile_count = $self->_get_compile_count;
 
     return $self->store_data( { compile_count => ++$compile_count } );
+}
+
+sub _increment_date_updated {
+    my ( $self, $args ) = @_;
+
+    return $self->store_data( { date_updated => strftime( "%Y-%m-%d %H:%M:%S", localtime ) } );
 }
 
 sub _throw_error {

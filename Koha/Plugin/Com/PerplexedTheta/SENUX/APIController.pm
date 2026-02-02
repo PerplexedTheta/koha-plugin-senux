@@ -240,7 +240,9 @@ sub rebuild {
         return $c->render(
             status  => 200,
             openapi => {
-                status => 'success',
+                status        => 'success',
+                compile_count => $plugin->_get_compile_count,
+                date_updated  => $plugin->_get_date_updated,
             },
         ) unless not defined $build;
 
