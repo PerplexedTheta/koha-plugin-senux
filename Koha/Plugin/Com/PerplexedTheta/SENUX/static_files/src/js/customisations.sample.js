@@ -757,3 +757,21 @@ function observeDisableClassChange(element) {
 
     return;
 }
+
+
+//
+// enquire registrations
+enquire.register("screen and (min-width:992px)", {
+    match: () => {
+        $(".menu-collapse-toggle")
+            .removeAttr("aria-expanded")
+            .off("click", facetHandler);
+        $('#search-facets h2 a').replaceWith('<p>Refine your search<\/p>');
+    },
+    unmatch: () => {
+        $('#search-facets h2 p').replaceWith('<a href=\"#\" class=\"menu-collapse-toggle\">Refine your search<\/a>');
+        $(".menu-collapse-toggle")
+            .attr("aria-expanded", "false")
+            .on("click", facetHandler);
+    },
+});
