@@ -78,13 +78,11 @@ sub uninstall {
 
 sub npm_new {
     my ( $self, $args ) = @_;
-    my $all = $args->{'all'};
-    my $install;
 
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
-    $install = `bash -- ./manage_senux.sh --install 2>&1`;
+    my $install = `bash -- ./manage_senux.sh --install 2>&1`;
     return $self->_throw_error(
         {
             message     => '`bash -- ./manage_senux.sh --install` failed to run',
@@ -100,7 +98,7 @@ sub npm_reinstall {
     my ( $self, $args ) = @_;
 
     return undef
-        unless ( $args->{'confirm'} eq 'yes_please' );
+        unless ( defined $args && $args->{'confirm'} eq 'yes_please' );
 
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
@@ -119,19 +117,20 @@ sub npm_reinstall {
 
 sub npm_reset {
     my ( $self, $args ) = @_;
-    my $all = $args->{'all'};
-    my $reset;
 
     return undef
-        unless ( $args->{'confirm'} eq 'yes_please' );
+        unless ( defined $args && $args->{'confirm'} eq 'yes_please' );
 
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
-    unless ( defined $all ) {
-        $reset = `bash -- ./manage_senux.sh --reset 2>&1`;
-    } else {
+    my $all = $args->{'all'} ? $args->{'all'} : undef;
+
+    my $reset;
+    if ( $all ) {
         $reset = `bash -- ./manage_senux.sh --reset-all 2>&1`;
+    } else {
+        $reset = `bash -- ./manage_senux.sh --reset 2>&1`;
     }
 
     return $self->_throw_error(
@@ -147,12 +146,13 @@ sub npm_reset {
 
 sub npm_build {
     my ( $self, $args ) = @_;
-    my $build_type = $args->{'build_type'} || 'all';
-    my $build;
 
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
+    my $build_type = $args->{'build_type'} || 'all';
+
+    my $build;
     if ( $build_type eq 'sass' ) {
         $build = `bash -- ./manage_senux.sh --build-sass 2>&1`;
     } elsif ( $build_type eq 'js' ) {
@@ -177,13 +177,14 @@ sub npm_build {
 
 sub npm_delete {
     my ( $self, $args ) = @_;
-    my $all = $args->{'all'};
-    my $delete;
 
     return undef
         unless ( $self->_chdir( { path => abs_path( $self->mbf_dir ) . '/static_files' } ) );
 
-    unless ( defined $all ) {
+    my $all = $args->{'all'} ? $args->{'all'} : undef;
+
+    my $delete;
+    unless ( $all ) {
         $delete = `bash -- ./manage_senux.sh --delete 2>&1`;
     } else {
         $delete = `bash -- ./manage_senux.sh --delete-all 2>&1`;
