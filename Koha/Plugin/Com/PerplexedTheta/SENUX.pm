@@ -15,7 +15,7 @@ use JSON;
 use JSON::Validator::Schema::OpenAPIv2;
 use POSIX qw{ strftime };
 
-our $VERSION  = '24.11.14';
+our $VERSION  = '24.11.15';
 our $metadata = {
     name            => 'SENUX',
     author          => 'Jake Deery',
