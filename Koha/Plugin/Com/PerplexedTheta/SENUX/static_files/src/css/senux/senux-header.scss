@@ -261,3 +261,141 @@
         }
     }
 }
+
+.login-link {
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    line-height: 1.2;
+    white-space: nowrap;
+    border-radius: var(--bs-dropdown-item-border-radius, 0);
+
+    color: $navbarUsermenuLinkText;
+    text-decoration: $navbarUsermenuLinkDecorationSettings;
+
+    &:hover {
+        background: $navbarUsermenuLinkBgHov;
+        color: $navbarUsermenuLinkTextHov;
+        border: $navbarUsermenuLinkBorderSettingsHov;
+        outline: $navbarUsermenuLinkOutlineSettingsHov;
+        box-shadow: $navbarUsermenuLinkBoxShadowSettingsHov;
+        text-decoration: $navbarUsermenuLinkDecorationSettingsHov;
+        text-decoration-thickness: .1875rem;
+
+        i.fa,
+        i.fa-solid {
+            color: $navbarUsermenuLinkTextHov
+        }
+    }
+
+    &:focus {
+        background: $navbarUsermenuLinkBgHov !important;
+        color: $navbarUsermenuLinkTextHov !important;
+        border: $navbarUsermenuLinkBorderSettingsFoc !important;
+        border-color: $transparent !important;
+        outline: $navbarUsermenuLinkOutlineSettingsFoc !important;
+        outline-color: $transparent !important;
+        box-shadow: $navbarUsermenuLinkBoxShadowSettingsFoc !important;
+        text-decoration: $navbarUsermenuLinkDecorationSettingsHov !important;
+        text-decoration-thickness: .1875rem !important;
+
+        i.fa,
+        i.fa-solid {
+            color: $navbarUsermenuLinkBgHov !important
+        }
+
+        &:not(:active):not(:hover) {
+            background: $navbarUsermenuLinkBgFoc !important;
+            color: $navbarUsermenuLinkTextFoc !important;
+            border: $navbarUsermenuLinkBorderSettingsFoc !important;
+            border-color: $transparent !important;
+            outline: $navbarUsermenuLinkOutlineSettingsFoc !important;
+            outline-color: $transparent !important;
+            box-shadow: $navbarUsermenuLinkBoxShadowSettingsFoc !important;
+            text-decoration: $navbarUsermenuLinkDecorationSettingsFoc !important;
+            text-decoration-thickness: .1875rem !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $navbarUsermenuLinkTextFoc !important
+            }
+        }
+
+        i.fa,
+        i.fa-solid {
+            color: $navbarUsermenuLinkTextFoc !important
+        }
+    }
+}
+
+#logout.logout {
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    line-height: 1.2;
+    white-space: nowrap;
+    border-radius: var(--bs-dropdown-item-border-radius, 0);
+
+    color: $navbarUsermenuLogoutText;
+    text-decoration: $navbarUsermenuLogoutDecorationSettings;
+
+    &:hover {
+        background: $navbarUsermenuLogoutBgHov;
+        color: $navbarUsermenuLogoutTextHov;
+        border: $navbarUsermenuLinkBorderSettingsHov;
+        outline: $navbarUsermenuLinkOutlineSettingsHov;
+        box-shadow: $navbarUsermenuLinkBoxShadowSettingsHov;
+        text-decoration: $navbarUsermenuLogoutDecorationSettingsHov;
+        text-decoration-thickness: .1875rem;
+
+        i.fa,
+        i.fa-solid {
+            color: $navbarUsermenuLogoutTextHov
+        }
+    }
+
+    &:focus {
+        background: $navbarUsermenuLogoutBgHov !important;
+        color: $navbarUsermenuLogoutTextHov !important;
+        border: $navbarUsermenuLinkBorderSettingsFoc !important;
+        border-color: $transparent !important;
+        outline: $navbarUsermenuLinkOutlineSettingsFoc !important;
+        outline-color: $transparent !important;
+        box-shadow: $navbarUsermenuLinkBoxShadowSettingsFoc !important;
+        text-decoration: $navbarUsermenuLogoutDecorationSettingsHov !important;
+        text-decoration-thickness: .1875rem !important;
+
+        i.fa,
+        i.fa-solid {
+            color: $navbarUsermenuLogoutBgHov !important
+        }
+
+        &:not(:active):not(:hover) {
+            background: $navbarUsermenuLinkBgFoc !important;
+            color: $navbarUsermenuLinkTextFoc !important;
+            border: $navbarUsermenuLinkBorderSettingsFoc !important;
+            border-color: $transparent !important;
+            outline: $navbarUsermenuLinkOutlineSettingsFoc !important;
+            outline-color: $transparent !important;
+            box-shadow: $navbarUsermenuLinkBoxShadowSettingsFoc !important;
+            text-decoration: $navbarUsermenuLinkDecorationSettingsFoc !important;
+            text-decoration-thickness: .1875rem !important;
+
+            i.fa,
+            i.fa-solid {
+                color: $navbarUsermenuLinkTextFoc !important
+            }
+        }
+
+        i.fa,
+        i.fa-solid {
+            color: $navbarUsermenuLinkTextFoc !important
+        }
+    }
+}

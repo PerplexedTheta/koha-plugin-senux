@@ -289,10 +289,33 @@ $navbarLogoDisplayMobile: block;
 // vars--navbar--usermenu
 $navbarUsermenuBg: $dropdownBg;
 $navbarUsermenuText: $dropdownText;
+$navbarUsermenuLinkBg: $dropdownLinkBg;
 $navbarUsermenuLinkText: $dropdownLinkText;
-$navbarUsermenuLinkTextHov: darken($navbarUsermenuLinkText, 15%);
+$navbarUsermenuLinkBorderSettings: $dropdownLinkBorderSettings;
+$navbarUsermenuLinkOutlineSettings: $dropdownLinkOutlineSettings;
+$navbarUsermenuLinkBoxShadowSettings: $dropdownLinkBoxShadowSettings;
+$navbarUsermenuLinkDecorationSettings: $dropdownLinkDecorationSettings;
+$navbarUsermenuLinkBgHov: $dropdownLinkBgHov;
+$navbarUsermenuLinkTextHov: $dropdownLinkTextHov;
+$navbarUsermenuLinkBorderSettingsHov: $dropdownLinkBorderSettingsHov;
+$navbarUsermenuLinkOutlineSettingsHov: $dropdownLinkOutlineSettingsHov;
+$navbarUsermenuLinkBoxShadowSettingsHov: $dropdownLinkBoxShadowSettingsHov;
+$navbarUsermenuLinkDecorationSettingsHov: $dropdownLinkDecorationSettingsHov;
+$navbarUsermenuLinkBgFoc: $dropdownLinkBgFoc;
+$navbarUsermenuLinkTextFoc: $dropdownLinkTextFoc;
+$navbarUsermenuLinkBorderSettingsFoc: $dropdownLinkBorderSettingsFoc;
+$navbarUsermenuLinkOutlineSettingsFoc: $dropdownLinkOutlineSettingsFoc;
+$navbarUsermenuLinkBoxShadowSettingsFoc: $dropdownLinkBoxShadowSettingsFoc;
+$navbarUsermenuLinkDecorationSettingsFoc: $dropdownLinkDecorationSettingsFoc;
+$navbarUsermenuLogoutBg: $navbarUsermenuBg;
 $navbarUsermenuLogoutText: $msRed;
-$navbarUsermenuLogoutTextHov: darken($navbarUsermenuLogoutText, 15%);
+$navbarUsermenuLogoutDecorationSettings: $navbarUsermenuLinkDecorationSettings;
+$navbarUsermenuLogoutBgHov: $navbarUsermenuLogoutText;
+$navbarUsermenuLogoutTextHov: $navbarUsermenuLogoutBg;
+$navbarUsermenuLogoutDecorationSettingsHov: $navbarUsermenuLinkDecorationSettingsHov;
+$navbarUsermenuLogoutBgFoc: $dropdownLinkBgFoc;
+$navbarUsermenuLogoutTextFoc: $dropdownLinkTextFoc;
+$navbarUsermenuLogoutDecorationSettingsFoc: $navbarUsermenuLinkDecorationSettingsFoc;
 
 //
 // vars--masthead

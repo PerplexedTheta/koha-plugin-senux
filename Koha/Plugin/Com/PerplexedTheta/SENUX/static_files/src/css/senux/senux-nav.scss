@@ -164,7 +164,7 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
 #members,
 #header_langmenu {
     li {
-        a:not(.dropdown-item) {
+        a:not(.dropdown-item, .login-link, #logout.logout) {
             color: $navbarLinkText;
             background-color: $navbarLinkBg;
             border: $navbarLinkBorderSettings;
@@ -286,38 +286,56 @@ img[src="/opac-tmpl/bootstrap/images/koha-green-logo.png?raw=1"] {
 }
 
 #loggedinuser-menu {
+    margin: 0;
+    padding: 0;
+
     background-color: $navbarUsermenuBg;
 
     p {
-        a.login-link {
-            color: $navbarUsermenuLinkText;
+        margin: 0;
+        padding: 0;
 
-            &:hover {
-                color: $navbarUsermenuLinkTextHov
+        a.login-link {
+            background-color: $navbarUsermenuLinkBg;
+            color: $navbarUsermenuLinkText;
+            text-decoration: $navbarUsermenuLinkDecorationSettings;
+
+            i.fa,
+            i.fa-solid {
+                color: $navbarUsermenuLinkText;
             }
 
-            &:focus {
-                color: $navbarUsermenuLinkTextHov !important;
+            &:hover {
+                background-color: $navbarUsermenuLinkBgHov;
+                color: $navbarUsermenuLinkTextHov;
+                text-decoration: $navbarUsermenuLinkDecorationSettingsHov;
 
-                &:not(:active):not(:hover) {
-                    color: $navbarUsermenuLinkTextHov !important
+                i.fa,
+                i.fa-solid {
+                    color: $navbarUsermenuLinkTextHov;
                 }
             }
         }
     }
 
     a#logout.logout {
+        background-color: $navbarUsermenuLogoutBg;
         color: $navbarUsermenuLogoutText;
+        text-decoration: $navbarUsermenuLogoutDecorationSettings;
 
-        &:hover {
-            color: $navbarUsermenuLogoutTextHov
+        i.fa,
+        i.fa-solid {
+            color: $navbarUsermenuLogoutText;
         }
 
-        &:focus {
-            color: $navbarUsermenuLogoutTextHov !important;
+        &:hover {
+            background-color: $navbarUsermenuLogoutBgHov;
+            color: $navbarUsermenuLogoutTextHov;
+            text-decoration: $navbarUsermenuLogoutDecorationSettingsHov;
 
-            &:not(:active):not(:hover) {
-                color: $navbarUsermenuLogoutTextHov !important
+            i.fa,
+            i.fa-solid {
+                color: $navbarUsermenuLogoutTextHov;
             }
         }
     }
