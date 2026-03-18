@@ -15,12 +15,12 @@ use JSON;
 use JSON::Validator::Schema::OpenAPIv2;
 use POSIX qw{ strftime };
 
-our $VERSION  = '24.11.15';
+our $VERSION  = '24.11.16';
 our $metadata = {
     name            => 'SENUX',
     author          => 'Jake Deery',
     date_authored   => '2025-04-11',
-    date_updated    => '2026-02-02',
+    date_updated    => '2026-03-18',
     minimum_version => '24.11.00.000',
     maximum_version => undef,
     version         => $VERSION,
