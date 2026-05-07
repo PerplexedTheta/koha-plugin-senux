@@ -49,9 +49,6 @@ document.addEventListener('DOMContentLoaded', event => {
     $('select[name="borrower_primary_contact_method"]').removeAttr('readonly');
     $('select[name="borrower_primary_contact_method"]').attr('disabled', 'disabled');
 
-    // hide search facets under menus
-    facetAccordeons();
-
     // add publication date range to facets
     facetPublicationDateRange();
 
@@ -449,62 +446,6 @@ function searchDropdownBranchHandler() {
 
 
 //
-// function to add accordeons to search facets
-function facetAccordeons() {
-    // change the labels to be links
-    $('#search-facets .menu-collapse h3').each(function () {
-        // vars
-        var currentText = $(this).text();
-
-        $(this).html('<a href="\#expandFacet"\ aria-expanded=\"false\">' + currentText + ' <i class=\"fa fa-chevron-down\" aria-hidden=\"true\"><\/i><\/a>');
-    });
-
-    // remove the display:none and collapsible facet
-    $('#search-facets .collapsible-facet').each(function () {
-        $(this).removeAttr('style');
-        $(this).removeAttr('class');
-    });
-
-    // remove the toggle links
-    $('#search-facets .moretoggle').each(function () {
-        $(this).remove();
-    });
-
-    // hide the lists
-    $('#search-facets .menu-collapse ul').each(function () {
-        $(this).hide();
-    });
-
-    // facet link handler
-    $('a[href="#expandFacet"]').on('click', function (event) {
-        event.preventDefault();
-
-        if ($(this).parents('h3').siblings('ul').css('display') == 'none') {
-            $(this).attr('aria-expanded', 'true');
-            $(this).parents('h3').siblings('ul').show(); // unhide
-        }
-        else {
-            $(this).attr('aria-expanded', 'false');
-            $(this).parents('h3').siblings('ul').hide(); // else hide
-        }
-
-        $(this).find('i.fa').toggleClass('fa-chevron-down'); // swap the chevrons
-        $(this).find('i.fa').toggleClass('fa-chevron-left');
-    });
-
-    // unhide anything that has been selected
-    $('#search-facets .menu-collapse li').find('li:contains("[x]")').each(function () {
-        $(this).parents('li').find('h3 a').click();
-    });
-    $('#search-facets .menu-collapse li').find('li:contains("Showing only available items")').each(function () {
-        $(this).parents('li').find('h3 a').click();
-    });
-
-    return;
-}
-
-
-//
 // function to add a button which, on click, clears all search facets
 function facetClearAllHandler() {
     // vars
@@ -545,7 +486,7 @@ function facetPublicationDateRange() {
     var currentYear = new Date().getFullYear();
 
     // first, inject the markup
-    $('#search-facets ul:first').append('<li id=\"yr_id\"><h3 id=\"facet-yr\"><a href=\"#expandFacet\" aria-expanded=\"false\">Publication date range<i class=\"fa fa-chevron-down\" aria-hidden=\"true\"><\/i><\/a><\/h3> <div style=\"display:none\"><label class=\"mt-4\" for=\"limit-yr\">Enter publication date range:<\/label><input name=\"limit-yr\" type=\"text\"><p class=\"hint pt-2\">For example: 1999-2001<\/p><p id=\"limit-yr-err\" class=\"hint pt-2\" style=\"display:none;color:red\">Please check you entered two valid years<\/p><a href=\"#facetYrRefine\" class=\"btn btn-primary mt-2\">Refine by date<\/a><\/div><\/li>');
+    $('#search-facets ul:first').append('<li id=\"yr_id\"><a class=\"facet-toggle\" aria-expanded=\"false\" data-bs-toggle=\"collapse\" data-bs-target=\"#yr_id_collapse\" id=\"facet-yr\">Publication date range</a> <div class=\"facet-collapse collapse\" id=\"yr_id_collapse\"><label class=\"facet-label\" for=\"limit-yr\">Enter publication date range:<\/label><input id="limit-yr" name=\"limit-yr\" type=\"text\"><p class=\"hint pt-2\">For example: 1999-2001<\/p><p id=\"limit-yr-err\" class=\"hint pt-2\" style=\"display:none;color:red\">Please check you entered two valid years<\/p><a href=\"#facetYrRefine\" class=\"btn btn-primary mt-2\">Refine by date<\/a></div>');
 
     // then, inject the facet clear button, if applicable
     if (urlFacetSet) {

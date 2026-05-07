@@ -426,13 +426,16 @@
 }
 
 #yr_id {
+    label,
     p {
-        text-align: center
+        font-size: 90%;
+        font-weight: normal;
+        font-weight: 400;
     }
 
     input,
     a.btn {
-        width: 100%
+        width: 90%;
     }
 }
 
