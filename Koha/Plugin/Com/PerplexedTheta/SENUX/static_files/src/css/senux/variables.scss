@@ -26,27 +26,27 @@
 //
 // vars--global
 // vars--global--monotones
-$transparent: rgba(0, 0, 0, 0);
-$black: rgba(0, 0, 0, 1);
-$white: rgba(255, 255, 255, 1);
+$transparent: #00000000;
+$black: #000000;
+$white: #ffffff;
 // vars--global--microsoft
-$msBlack: rgba(35, 31, 32, 1);
-$msWhite: rgba(243, 242, 241, 1);
-$msCharcoal: rgba(59, 58, 57, 1);
-$msCloudy: rgba(243, 242, 241, 1);
-$msRed: rgba(177, 55, 25, 1);
-$msGold: rgba(242, 200, 17, 1);
-$msGreen: rgba(15, 112, 59, 1);
-$msBlue: rgba(43, 87, 154, 1);
-$msLagoon: rgba(3, 120, 124, 1);
-$msPurple: rgba(101, 102, 163, 1);
-$msMagenta: rgba(135, 68, 125, 1);
+$msBlack: #231f20;
+$msWhite: #f3f2f1;
+$msCharcoal: #3b3a39;
+$msCloudy: #f3f2f1;
+$msRed: #b13719;
+$msGold: #f2c811;
+$msGreen: #0f703b;
+$msBlue: #2b579a;
+$msLagoon: #03787c;
+$msPurple: #6566a3;
+$msMagenta: #87447d;
 // vars--global--senux
-$userHue1: rgba(0, 65, 124, 1);
-$userHue2: rgba(27, 112, 177, 1);
-$userHue3: rgba(99, 163, 233, 1);
-$userHue4: rgba(224, 0, 67, 1);
-$userHue5: rgba(255, 151, 166, 1);
+$userHue1: #00417c;
+$userHue2: #1b70b1;
+$userHue3: #63a3e9;
+$userHue4: #e00043;
+$userHue5: #ff97a6;
 $userText1: $white;
 $userText2: $white;
 $userText3: $black;
