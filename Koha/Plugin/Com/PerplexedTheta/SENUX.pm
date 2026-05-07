@@ -15,13 +15,13 @@ use JSON;
 use JSON::Validator::Schema::OpenAPIv2;
 use POSIX qw{ strftime };
 
-our $VERSION  = '24.11.16';
+our $VERSION  = '25.11.00';
 our $metadata = {
     name            => 'SENUX',
     author          => 'Jake Deery',
     date_authored   => '2025-04-11',
-    date_updated    => '2026-03-18',
-    minimum_version => '24.11.00.000',
+    date_updated    => '2026-05-07',
+    minimum_version => '25.11.00.000',
     maximum_version => undef,
     version         => $VERSION,
     description     => 'SENUX is a custom OPAC theme, built with Bootstrap. See README.md for customisations.',
